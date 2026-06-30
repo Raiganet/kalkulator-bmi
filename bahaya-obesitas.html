@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Favicon Lengkap -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahaya Obesitas - Risiko Kesehatan Serius | Kalkulator Online</title>
+    <meta name="description" content="Kenali bahaya obesitas dan risiko kesehatan yang mengintai. Pelajari cara mencegah dan mengatasi obesitas untuk hidup yang lebih sehat.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .danger-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5b7c1 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.1);
+        }
+        .danger-box h3 { color: #c0392b; margin-top: 0; }
+        .warning-list {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.1);
+        }
+        .warning-list h3 { color: #d68910; margin-top: 0; }
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.1);
+        }
+        .success-box h3 { color: #155724; margin-top: 0; }
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+        .stat-box h3 { color: white; margin-top: 0; font-size: 22px; }
+        .stat-box p { color: rgba(255,255,255,0.95); margin: 8px 0; font-size: 15px; }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        th, td { padding: 14px 18px; text-align: left; }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        td {
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #555;
+        }
+        tr:nth-child(even) td { background: #f8f9fc; }
+        tr:hover td { background: #eef1ff; }
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+            color: #555;
+            font-size: 15px;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+        .cta-box h3 { color: white; margin-bottom: 10px; font-size: 22px; }
+        .cta-box a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+        strong { color: #333; }
+        a { color: #667eea; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .footer {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .footer a {
+            color: #667eea;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer a:hover { text-decoration: underline; }
+        .footer p { color: #aaa; font-size: 13px; margin-top: 10px; }
+        @media (max-width: 768px) {
+            .container { padding: 25px; margin: 20px auto; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        <h1>Bahaya Obesitas: Risiko Kesehatan yang Mengintai</h1>
+        <p>Obesitas bukan sekadar masalah penampilan, melainkan kondisi medis serius yang dapat mengancam jiwa. Menurut World Health Organization (WHO), obesitas telah menjadi epidemi global yang mempengaruhi lebih dari 650 juta orang dewasa di seluruh dunia.</p>
+        
+        <div class="stat-box">
+            <h3>📊 Fakta Mengejutkan tentang Obesitas</h3>
+            <p>• Lebih dari 2.8 juta orang meninggal setiap tahun akibat kelebihan berat badan atau obesitas</p>
+            <p>• Obesitas meningkatkan risiko kematian dini hingga 20-40%</p>
+            <p>• 44% kasus diabetes dan 23% kasus penyakit jantung disebabkan oleh obesitas</p>
+        </div>
+        
+        <h2>Apa Itu Obesitas?</h2>
+        <p>Obesitas adalah kondisi medis yang ditandai dengan penumpukan lemak tubuh berlebihan yang dapat mengganggu kesehatan. Seseorang dikategorikan obesitas jika memiliki <strong>BMI (Body Mass Index) ≥ 30</strong>.</p>
+        
+        <h3>Tingkat Obesitas:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>BMI</th>
+                    <th>Risiko Kesehatan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Obesitas Tingkat I</td><td>30 - 34.9</td><td>⚠️ Tinggi</td></tr>
+                <tr><td>Obesitas Tingkat II</td><td>35 - 39.9</td><td> Sangat Tinggi</td></tr>
+                <tr><td>Obesitas Ekstrem (Morbid)</td><td>≥ 40</td><td>☠️ Ekstrem</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="danger-box">
+            <h3>⚠️ Penyakit Serius Akibat Obesitas</h3>
+            <p>Obesitas dapat memicu berbagai penyakit kronis yang mengancam jiwa. Berikut adalah risiko kesehatan utama yang perlu Anda waspadai:</p>
+        </div>
+        
+        <h2>1. Diabetes Tipe 2</h2>
+        <p>Obesitas adalah penyebab utama diabetes tipe 2. Kelebihan lemak tubuh menyebabkan resistensi insulin, di mana sel-sel tubuh tidak merespons insulin dengan baik.</p>
+        <div class="warning-list">
+            <h3>Risiko:</h3>
+            <ul>
+                <li>Orang dengan obesitas memiliki risiko 80x lebih tinggi terkena diabetes tipe 2</li>
+                <li>Setiap kenaikan 1 unit BMI meningkatkan risiko diabetes sebesar 12%</li>
+                <li>Obesitas sentral (lemak perut) lebih berbahaya daripada obesitas umum</li>
+            </ul>
+        </div>
+        <h3>Komplikasi Diabetes:</h3>
+        <ul>
+            <li>Gagal ginjal</li>
+            <li>Kebutaan (retinopati diabetik)</li>
+            <li>Saraf rusak (neuropati)</li>
+            <li>Luka yang sulit sembuh hingga amputasi</li>
+            <li>Serangan jantung dan stroke</li>
+        </ul>
+        
+        <h2>2. Penyakit Jantung dan Stroke</h2>
+        <p>Obesitas membebani kerja jantung dan sistem peredaran darah. Lemak berlebih menyebabkan penyumbatan pembuluh darah dan peningkatan tekanan darah.</p>
+        <div class="warning-list">
+            <h3>Dampak pada Jantung:</h3>
+            <ul>
+                <li><strong>Penyakit Jantung Koroner:</strong> Penyumbatan arteri koroner yang mengalirkan darah ke jantung</li>
+                <li><strong>Serangan Jantung:</strong> Risiko 2-3x lebih tinggi pada orang obesitas</li>
+                <li><strong>Gagal Jantung:</strong> Jantung tidak mampu memompa darah dengan efektif</li>
+                <li><strong>Aritmia:</strong> Irama jantung tidak teratur</li>
+            </ul>
+        </div>
+        <h3>Risiko Stroke:</h3>
+        <ul>
+            <li>Obesitas meningkatkan risiko stroke iskemik (penyumbatan) hingga 64%</li>
+            <li>Setiap kenaikan 1 unit BMI meningkatkan risiko stroke sebesar 4%</li>
+        </ul>
+        
+        <h2>3. Hipertensi (Tekanan Darah Tinggi)</h2>
+        <p>Obesitas menyebabkan peningkatan volume darah dan resistensi pembuluh darah, yang berujung pada tekanan darah tinggi.</p>
+        <div class="warning-list">
+            <h3>Fakta:</h3>
+            <ul>
+                <li>70-80% penderita hipertensi mengalami obesitas</li>
+                <li>Setiap kenaikan 10 kg berat badan meningkatkan tekanan darah sistolik 3-4 mmHg</li>
+                <li>Tekanan darah tinggi yang tidak terkontrol dapat menyebabkan stroke, serangan jantung, dan gagal ginjal</li>
+            </ul>
+        </div>
+        
+        <h2>4. Kanker</h2>
+        <p>Obesitas terkait dengan peningkatan risiko berbagai jenis kanker. Lemak tubuh menghasilkan hormon dan faktor pertumbuhan yang dapat memicu perkembangan sel kanker.</p>
+        <h3>Jenis Kanker yang Berhubungan dengan Obesitas:</h3>
+        <ul>
+            <li><strong>Kanker Payudara:</strong> Risiko meningkat 20-40% pada wanita pasca-menopause dengan obesitas</li>
+            <li><strong>Kanker Usus Besar (Kolon):</strong> Risiko meningkat 30%</li>
+            <li><strong>Kanker Rahim (Endometrium):</strong> Risiko meningkat 2-4x</li>
+            <li><strong>Kanker Ginjal:</strong> Risiko meningkat 2x</li>
+            <li><strong>Kanker Pankreas:</strong> Risiko meningkat 20-50%</li>
+            <li><strong>Kanker Hati, Kandung Empedu, dan Esophagus</strong></li>
+        </ul>
+        
+        <h2>5. Sleep Apnea (Gangguan Tidur)</h2>
+        <p>Obesitas menyebabkan penumpukan lemak di leher yang menyempitkan saluran napas saat tidur, mengakibatkan sleep apnea.</p>
+        <div class="warning-list">
+            <h3>Gejala dan Dampak:</h3>
+            <ul>
+                <li>Napas terhenti berulang kali saat tidur (bisa ratusan kali per malam)</li>
+                <li>Mendengkur keras</li>
+                <li>Kantuk berlebihan di siang hari</li>
+                <li>Risiko kecelakaan lalu lintas meningkat</li>
+                <li>Meningkatkan risiko penyakit jantung dan stroke</li>
+                <li>Penurunan konsentrasi dan memori</li>
+            </ul>
+        </div>
+        
+        <h2>6. Osteoartritis (Nyeri Sendi)</h2>
+        <p>Berat badan berlebih memberikan tekanan ekstra pada sendi, terutama lutut, pinggul, dan punggung bawah.</p>
+        <h3>Dampak:</h3>
+        <ul>
+            <li>Kerusakan tulang rawan sendi</li>
+            <li>Nyeri kronis yang mengganggu aktivitas</li>
+            <li>Keterbatasan gerak</li>
+            <li>Risiko kebutuhan operasi penggantian sendi</li>
+            <li>Setiap 0.5 kg kenaikan berat badan meningkatkan risiko osteoartritis lutut</li>
+        </ul>
+        
+        <h2>7. Penyakit Hati Berlemak (Fatty Liver)</h2>
+        <p>Obesitas menyebabkan penumpukan lemak di hati yang dapat berkembang menjadi peradangan dan sirosis.</p>
+        <div class="warning-list">
+            <h3>Tahapan Penyakit:</h3>
+            <ol>
+                <li>Steatosis (penumpukan lemak)</li>
+                <li>Steatohepatitis (peradangan hati)</li>
+                <li>Fibrosis (jaringan parut)</li>
+                <li>Sirosis (kerusakan hati permanen)</li>
+                <li>Gagal hati atau kanker hati</li>
+            </ol>
+        </div>
+        
+        <h2>8. Gangguan Kesehatan Mental</h2>
+        <p>Obesitas tidak hanya mempengaruhi kesehatan fisik, tetapi juga kesehatan mental dan kualitas hidup.</p>
+        <h3>Dampak Psikologis:</h3>
+        <ul>
+            <li><strong>Depresi:</strong> Risiko depresi meningkat 55% pada orang dengan obesitas</li>
+            <li><strong>Kecemasan (Anxiety):</strong> Stres dan kecemasan berlebihan</li>
+            <li><strong>Body Image Negatif:</strong> Rasa tidak percaya diri dan malu</li>
+            <li><strong>Stigma Sosial:</strong> Diskriminasi di tempat kerja dan sosial</li>
+            <li><strong>Kualitas Hidup Menurun:</strong> Keterbatasan dalam aktivitas sehari-hari</li>
+        </ul>
+        
+        <h2>9. Gangguan Reproduksi</h2>
+        <h3>Pada Wanita:</h3>
+        <ul>
+            <li><strong>PCOS (Polycystic Ovary Syndrome):</strong> Gangguan hormon yang menyebabkan kista ovarium</li>
+            <li><strong>Infertilitas:</strong> Sulit hamil</li>
+            <li><strong>Komplikasi Kehamilan:</strong> Diabetes gestasional, preeklampsia, kelahiran prematur</li>
+            <li><strong>Kanker Endometrium:</strong> Risiko meningkat</li>
+        </ul>
+        <h3>Pada Pria:</h3>
+        <ul>
+            <li><strong>Disfungsi Ereksi:</strong> Risiko meningkat 2x</li>
+            <li><strong>Penurunan Testosteron:</strong> Libido menurun</li>
+            <li><strong>Infertilitas:</strong> Kualitas sperma menurun</li>
+        </ul>
+        
+        <h2>10. Komplikasi Lainnya</h2>
+        <ul>
+            <li><strong>Penyakit Ginjal:</strong> Obesitas meningkatkan risiko gagal ginjal kronis</li>
+            <li><strong>Asma:</strong> Gejala asma lebih parah dan sulit dikontrol</li>
+            <li><strong>Infeksi:</strong> Sistem imun melemah, lebih mudah sakit</li>
+            <li><strong>Demensia:</strong> Risiko Alzheimer dan demensia meningkat</li>
+            <li><strong>Batu Empedu:</strong> Risiko meningkat 2-3x</li>
+        </ul>
+        
+        <div class="danger-box">
+            <h3>☠️ Risiko Kematian Dini</h3>
+            <p>Obesitas ekstrem (BMI ≥ 40) dapat mengurangi harapan hidup hingga <strong>10 tahun</strong>. Obesitas adalah penyebab kematian kedua yang dapat dicegah setelah merokok!</p>
+        </div>
+        
+        <h2>Cara Mencegah dan Mengatasi Obesitas</h2>
+        <div class="success-box">
+            <h3>✅ Langkah-Langkah Efektif:</h3>
+            <ol>
+                <li><strong>Ubah Pola Makan:</strong>
+                    <ul>
+                        <li>Kurangi kalori harian (defisit 500-750 kalori/hari)</li>
+                        <li>Perbanyak sayur, buah, dan serat</li>
+                        <li>Hindari gula, lemak jenuh, dan makanan olahan</li>
+                        <li>Kontrol porsi makan</li>
+                    </ul>
+                </li>
+                <li><strong>Olahraga Teratur:</strong>
+                    <ul>
+                        <li>Minimal 150-300 menit olahraga sedang per minggu</li>
+                        <li>Kombinasi kardio dan latihan kekuatan</li>
+                        <li>Tingkatkan aktivitas fisik sehari-hari</li>
+                    </ul>
+                </li>
+                <li><strong>Ubah Gaya Hidup:</strong>
+                    <ul>
+                        <li>Tidur cukup 7-9 jam per malam</li>
+                        <li>Kelola stres dengan baik</li>
+                        <li>Hindari merokok dan batasi alkohol</li>
+                        <li>Pantau berat badan secara rutin</li>
+                    </ul>
+                </li>
+                <li><strong>Konsultasi Medis:</strong>
+                    <ul>
+                        <li>Konsultasi dengan dokter untuk program penurunan berat badan</li>
+                        <li>Periksa kondisi kesehatan secara berkala</li>
+                        <li>Pertimbangkan terapi obat atau operasi jika diperlukan</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        
+        <h2>Kapan Harus ke Dokter?</h2>
+        <p>Segera konsultasikan ke dokter jika:</p>
+        <ul>
+            <li>BMI Anda ≥ 30</li>
+            <li>Mengalami gejala penyakit terkait obesitas (sesak napas, nyeri dada, nyeri sendi)</li>
+            <li>Sulit menurunkan berat badan meski sudah diet dan olahraga</li>
+            <li>Mengalami sleep apnea (mendengkur keras, napas terhenti saat tidur)</li>
+            <li>Memiliki kondisi medis yang memperburuk obesitas (hipotiroid, PCOS, diabetes)</li>
+        </ul>
+        
+        <div class="cta-box">
+            <h3> Cek BMI Anda Sekarang!</h3>
+            <p>Jangan tunggu sampai terlambat! Gunakan kalkulator BMI gratis kami untuk mengetahui apakah Anda berisiko obesitas.</p>
+            <p><a href="index.html">→ Hitung BMI Sekarang</a></p>
+        </div>
+        
+        <h2>Pertanyaan Umum (FAQ)</h2>
+        <h3>Apakah obesitas bisa disembuhkan?</h3>
+        <p>Obesitas adalah kondisi kronis yang bisa dikelola dengan perubahan gaya hidup, diet, olahraga, dan dalam beberapa kasus memerlukan obat-obatan atau operasi. Penurunan berat badan 5-10% sudah memberikan manfaat kesehatan yang signifikan.</p>
+        
+        <h3>Berapa lama waktu yang dibutuhkan untuk mengatasi obesitas?</h3>
+        <p>Penurunan berat badan yang sehat adalah 0.5-1 kg per minggu. Untuk mengatasi obesitas secara signifikan, dibutuhkan komitmen jangka panjang (bulan hingga tahun).</p>
+        
+        <h3>Apakah operasi bariatric aman?</h3>
+        <p>Operasi bariatric (seperti gastric bypass) aman untuk pasien yang memenuhi kriteria (BMI ≥ 40 atau ≥ 35 dengan komorbiditas). Operasi ini efektif namun memerlukan perubahan gaya hidup permanen dan pemantauan medis.</p>
+        
+        <h3>Apakah anak-anak bisa mengalami obesitas?</h3>
+        <p>Ya, obesitas pada anak semakin meningkat. Obesitas masa kecil meningkatkan risiko obesitas dewasa dan penyakit kronis. Penting untuk menerapkan pola makan sehat dan aktivitas fisik sejak dini.</p>
+    </div>
+    <div class="footer">
+        <p>
+            <a href="index.html">Kalkulator BMI</a> |
+            <a href="kalkulator-kalori.html">Kalkulator Kalori</a> |
+            <a href="faq.html">FAQ</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="about.html">Tentang Kami</a> |
+            <a href="contact.html">Kontak</a>
+        </p>
+        <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+    </div>
+</body>
+</html>

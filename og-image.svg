@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="100%" stop-color="#764ba2"/>
+    </linearGradient>
+    
+    <!-- Card Shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-gradient)"/>
+  
+  <!-- Decorative Circles -->
+  <circle cx="1000" cy="100" r="250" fill="#ffffff" opacity="0.05"/>
+  <circle cx="100" cy="550" r="300" fill="#ffffff" opacity="0.05"/>
+  <circle cx="1100" cy="500" r="150" fill="#ffffff" opacity="0.08"/>
+
+  <!-- LEFT SIDE: TEXT CONTENT -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    
+    <!-- Badge -->
+    <rect x="80" y="180" width="220" height="40" rx="20" fill="#ffffff" opacity="0.2"/>
+    <text x="190" y="207" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="1">✨ GRATIS &amp; AKURAT</text>
+
+    <!-- Main Title -->
+    <text x="80" y="290" font-size="76" font-weight="800" fill="#ffffff" letter-spacing="-1">Kalkulator BMI</text>
+    
+    <!-- Subtitle -->
+    <text x="80" y="350" font-size="36" font-weight="500" fill="#ffffff" opacity="0.9">Hitung Berat Badan Idealmu</text>
+    <text x="80" y="400" font-size="36" font-weight="500" fill="#ffffff" opacity="0.9">dalam Hitungan Detik</text>
+
+    <!-- URL Pill -->
+    <rect x="80" y="460" width="380" height="50" rx="25" fill="#ffffff" opacity="0.15"/>
+    <text x="270" y="493" font-size="22" font-weight="600" fill="#ffffff" text-anchor="middle"> kalkulatoronline.my.id</text>
+  </g>
+
+  <!-- RIGHT SIDE: CALCULATOR MOCKUP CARD -->
+  <g transform="translate(680, 140)">
+    <!-- White Card -->
+    <rect width="440" height="350" rx="24" fill="#ffffff" filter="url(#shadow)"/>
+    
+    <!-- Card Header -->
+    <text x="220" y="50" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#333333" text-anchor="middle">📊 Hasil Perhitungan Kamu</text>
+    <line x1="40" y1="70" x2="400" y2="70" stroke="#f0f0f0" stroke-width="2"/>
+
+    <!-- BMI Circle -->
+    <circle cx="220" cy="160" r="65" fill="url(#bg-gradient)"/>
+    <text x="220" y="150" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle" opacity="0.8">BMI SCORE</text>
+    <text x="220" y="185" font-family="system-ui, sans-serif" font-size="42" font-weight="800" fill="#ffffff" text-anchor="middle">22.5</text>
+
+    <!-- Status Badge -->
+    <rect x="140" y="240" width="160" height="36" rx="18" fill="#d4edda"/>
+    <text x="220" y="264" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#155724" text-anchor="middle">✅ Normal (Ideal)</text>
+
+    <!-- Stats Row -->
+    <rect x="40" y="290" width="170" height="40" rx="10" fill="#f8f9fc"/>
+    <text x="125" y="315" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#555555" text-anchor="middle">⚖️ 65 kg</text>
+
+    <rect x="230" y="290" width="170" height="40" rx="10" fill="#f8f9fc"/>
+    <text x="315" y="315" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#555555" text-anchor="middle">📏 170 cm</text>
+  </g>
+</svg>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Favicon Lengkap -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Ideal untuk Wanita - Panduan Lengkap | Kalkulator Online</title>
+    <meta name="description" content="Berapa BMI ideal untuk wanita? Pelajari rentang BMI sehat untuk wanita, tips mencapai berat badan ideal, dan cara menghitungnya.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+        .highlight-box h3 { color: #667eea; margin-top: 0; }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        th, td { padding: 14px 18px; text-align: left; }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        td {
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #555;
+        }
+        tr:nth-child(even) td { background: #f8f9fc; }
+        tr:hover td { background: #eef1ff; }
+        .tips-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.1);
+        }
+        .tips-box h3 { color: #d68910; margin-top: 0; }
+        .warning {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5b7c1 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 5px solid #e74c3c;
+            color: #721c24;
+        }
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+            color: #555;
+            font-size: 15px;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+        .cta-box h3 { color: white; margin-bottom: 10px; font-size: 22px; }
+        .cta-box a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+        strong { color: #333; }
+        a { color: #667eea; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .footer {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .footer a {
+            color: #667eea;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer a:hover { text-decoration: underline; }
+        .footer p { color: #aaa; font-size: 13px; margin-top: 10px; }
+        @media (max-width: 768px) {
+            .container { padding: 25px; margin: 20px auto; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        <h1>BMI Ideal untuk Wanita: Panduan Lengkap</h1>
+        <p>Mengetahui BMI (Body Mass Index) ideal sangat penting bagi wanita untuk menjaga kesehatan dan kebugaran tubuh. BMI membantu menentukan apakah berat badan Anda berada dalam kategori sehat atau berisiko terhadap berbagai penyakit.</p>
+        
+        <div class="highlight-box">
+            <h3>📊 BMI Ideal Wanita</h3>
+            <p><strong>BMI ideal untuk wanita dewasa adalah 18.5 - 24.9</strong></p>
+            <p>Rentang ini menunjukkan berat badan yang sehat dan risiko penyakit yang rendah.</p>
+        </div>
+        
+        <h2>BMI Ideal Berdasarkan Kategori</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>BMI</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Kurus</td><td>&lt; 18.5</td><td>️ Perlu penambahan berat badan</td></tr>
+                <tr><td><strong>Normal (Ideal)</strong></td><td><strong>18.5 - 24.9</strong></td><td>✅ Berat badan sehat</td></tr>
+                <tr><td>Gemuk (Overweight)</td><td>25 - 29.9</td><td>⚠️ Perlu penurunan berat badan</td></tr>
+                <tr><td>Obesitas</td><td>≥ 30</td><td>❌ Risiko kesehatan tinggi</td></tr>
+            </tbody>
+        </table>
+        
+        <h2>BMI Ideal Berdasarkan Tinggi Badan</h2>
+        <p>Berikut adalah panduan berat badan ideal untuk wanita berdasarkan tinggi badan:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tinggi Badan</th>
+                    <th>Berat Ideal (BMI 18.5)</th>
+                    <th>Berat Ideal (BMI 24.9)</th>
+                    <th>Rentang Ideal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>150 cm</td><td>42 kg</td><td>56 kg</td><td>42 - 56 kg</td></tr>
+                <tr><td>155 cm</td><td>44 kg</td><td>60 kg</td><td>44 - 60 kg</td></tr>
+                <tr><td>160 cm</td><td>47 kg</td><td>64 kg</td><td>47 - 64 kg</td></tr>
+                <tr><td>165 cm</td><td>50 kg</td><td>68 kg</td><td>50 - 68 kg</td></tr>
+                <tr><td>170 cm</td><td>54 kg</td><td>72 kg</td><td>54 - 72 kg</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="warning">
+            <strong>⚠️ Catatan Penting:</strong> Tabel di atas adalah panduan umum. Berat badan ideal juga dipengaruhi oleh faktor-faktor seperti massa otot, kepadatan tulang, usia, dan kondisi kesehatan.
+        </div>
+        
+        <h2>Faktor yang Mempengaruhi BMI Wanita</h2>
+        <h3>1. Usia</h3>
+        <p>Metabolisme wanita cenderung melambat seiring bertambahnya usia. Wanita di atas 40 tahun mungkin memerlukan penyesuaian pola makan dan olahraga untuk mempertahankan BMI ideal.</p>
+        
+        <h3>2. Kehamilan dan Menyusui</h3>
+        <p>Wanita hamil dan menyusui memiliki kebutuhan nutrisi yang berbeda. BMI tidak berlaku untuk ibu hamil. Konsultasikan dengan dokter untuk panduan berat badan yang tepat.</p>
+        
+        <h3>3. Massa Otot vs Lemak</h3>
+        <p>Wanita yang rutin berolahraga dan memiliki massa otot tinggi mungkin memiliki BMI di atas 25, namun tetap sehat karena otot lebih padat daripada lemak.</p>
+        
+        <h3>4. Hormon</h3>
+        <p>Perubahan hormon (misalnya saat menstruasi, menopause, atau PCOS) dapat mempengaruhi berat badan dan distribusi lemak tubuh.</p>
+        
+        <h2>Tips Mencapai dan Mempertahankan BMI Ideal untuk Wanita</h2>
+        <div class="tips-box">
+            <h3>🥗 Pola Makan Sehat</h3>
+            <ul>
+                <li>Konsumsi makanan bergizi seimbang (karbohidrat kompleks, protein, lemak sehat)</li>
+                <li>Perbanyak sayur dan buah (minimal 5 porsi per hari)</li>
+                <li>Kurangi gula, garam, dan lemak jenuh</li>
+                <li>Hindari makanan cepat saji dan olahan</li>
+                <li>Minum air putih minimal 8 gelas per hari</li>
+                <li>Makan porsi kecil tapi sering (5-6 kali sehari)</li>
+            </ul>
+        </div>
+        
+        <div class="tips-box">
+            <h3>‍♀️ Olahraga Teratur</h3>
+            <ul>
+                <li>Lakukan olahraga kardio (jalan cepat, lari, renang) minimal 150 menit per minggu</li>
+                <li>Latihan kekuatan (angkat beban, bodyweight) 2-3 kali per minggu</li>
+                <li>Yoga atau pilates untuk fleksibilitas dan kekuatan inti</li>
+                <li>Aktivitas fisik sehari-hari (naik tangga, berjalan kaki)</li>
+            </ul>
+        </div>
+        
+        <div class="tips-box">
+            <h3>😴 Istirahat Cukup</h3>
+            <ul>
+                <li>Tidur 7-9 jam per malam</li>
+                <li>Kelola stres dengan meditasi, pernapasan, atau hobi</li>
+                <li>Hindari begadang (dapat meningkatkan hormon lapar)</li>
+            </ul>
+        </div>
+        
+        <h2>Risiko BMI Tidak Ideal untuk Wanita</h2>
+        <h3>BMI Terlalu Rendah (&lt; 18.5):</h3>
+        <ul>
+            <li>Gangguan menstruasi atau amenore (tidak haid)</li>
+            <li>Osteoporosis (tulang keropos)</li>
+            <li>Sistem imun lemah</li>
+            <li>Kesuburan menurun</li>
+            <li>Risiko komplikasi kehamilan</li>
+            <li>Kelelahan kronis</li>
+        </ul>
+        
+        <h3>BMI Terlalu Tinggi (≥ 25):</h3>
+        <ul>
+            <li>Diabetes tipe 2</li>
+            <li>Penyakit jantung dan stroke</li>
+            <li>Hipertensi (tekanan darah tinggi)</li>
+            <li>Kanker (payudara, rahim, usus besar)</li>
+            <li>Sleep apnea (gangguan tidur)</li>
+            <li>Osteoartritis (nyeri sendi)</li>
+            <li>PCOS (Polycystic Ovary Syndrome)</li>
+            <li>Depresi dan kecemasan</li>
+        </ul>
+        
+        <h2>Kapan Harus ke Dokter?</h2>
+        <p>Segera konsultasikan ke dokter jika:</p>
+        <ul>
+            <li>BMI Anda &lt; 18.5 atau ≥ 30</li>
+            <li>Berat badan turun atau naik drastis tanpa sebab yang jelas</li>
+            <li>Mengalami gangguan menstruasi</li>
+            <li>Sulit menurunkan berat badan meski sudah diet dan olahraga</li>
+            <li>Memiliki kondisi medis tertentu (diabetes, hipotiroid, PCOS)</li>
+        </ul>
+        
+        <div class="cta-box">
+            <h3>💪 Mulai Perjalanan Sehat Anda!</h3>
+            <p>Hitung BMI Anda sekarang dan dapatkan panduan untuk mencapai berat badan ideal.</p>
+            <p><a href="index.html">→ Hitung BMI Sekarang</a></p>
+        </div>
+        
+        <h2>Pertanyaan Umum (FAQ)</h2>
+        <h3>Apakah BMI ideal wanita sama dengan pria?</h3>
+        <p>Ya, rentang BMI ideal (18.5 - 24.9) sama untuk wanita dan pria dewasa. Namun, distribusi lemak tubuh dan komposisi tubuh berbeda antara wanita dan pria.</p>
+        
+        <h3>Berapa berat badan ideal untuk wanita tinggi 160 cm?</h3>
+        <p>Untuk tinggi 160 cm, berat badan ideal adalah 47-64 kg (berdasarkan BMI 18.5 - 24.9).</p>
+        
+        <h3>Apakah BMI 27 berbahaya untuk wanita?</h3>
+        <p>BMI 27 termasuk kategori overweight (gemuk). Ini meningkatkan risiko penyakit, namun bukan berarti Anda sakit. Disarankan untuk menurunkan berat badan secara bertahap melalui diet sehat dan olahraga.</p>
+        
+        <h3>Bagaimana cara menurunkan BMI dengan cepat?</h3>
+        <p>Turunkan berat badan secara sehat dengan defisit kalori 500-750 kalori per hari, yang akan menghasilkan penurunan 0.5-1 kg per minggu. Hindari diet ekstrem!</p>
+        
+        <h3>Apakah BMI akurat untuk wanita hamil?</h3>
+        <p>Tidak. BMI tidak berlaku untuk wanita hamil. Berat badan selama kehamilan harus dipantau oleh dokter kandungan dengan panduan khusus.</p>
+    </div>
+    <div class="footer">
+        <p>
+            <a href="index.html">Kalkulator BMI</a> |
+            <a href="kalkulator-kalori.html">Kalkulator Kalori</a> |
+            <a href="faq.html">FAQ</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="about.html">Tentang Kami</a> |
+            <a href="contact.html">Kontak</a>
+        </p>
+        <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+    </div>
+</body>
+</html>

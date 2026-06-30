@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Favicon Lengkap -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - Kalkulator Online</title>
+    <meta name="description" content="Hubungi tim KalkulatorOnline.my.id untuk pertanyaan, saran, atau masukan seputar website kami.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .contact-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 25px 0;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+        }
+        .contact-item:last-child { margin-bottom: 0; }
+        .contact-icon {
+            font-size: 28px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .contact-info { flex: 1; }
+        .contact-label {
+            font-size: 13px;
+            color: #888;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .contact-value {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+        .contact-value a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .contact-value a:hover { text-decoration: underline; }
+        .response-time {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+        .footer {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .footer a {
+            color: #667eea;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer a:hover { text-decoration: underline; }
+        .footer p { color: #aaa; font-size: 13px; margin-top: 10px; }
+        @media (max-width: 768px) {
+            .container { padding: 25px; margin: 20px auto; }
+            h1 { font-size: 26px; }
+            .contact-item { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        <h1>Hubungi Kami</h1>
+        <p>Kami sangat menghargai masukan, pertanyaan, atau saran dari Anda. Jika Anda memiliki pertanyaan mengenai penggunaan kalkulator atau ada fitur yang ingin disarankan, silakan hubungi kami melalui:</p>
+        
+        <div class="contact-box">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-info">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value"><a href="mailto:diky.hermansyah91@gmail.com">diky.hermansyah91@gmail.com</a></div>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🌐</div>
+                <div class="contact-info">
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value"><a href="https://kalkulatoronline.my.id">kalkulatoronline.my.id</a></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="response-time">
+            <strong>⏰ Waktu Respon:</strong> Kami akan berusaha membalas pesan Anda secepat mungkin (1x24 jam pada hari kerja).
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            <a href="index.html">Kalkulator BMI</a> |
+            <a href="kalkulator-kalori.html">Kalkulator Kalori</a> |
+            <a href="faq.html">FAQ</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="about.html">Tentang Kami</a> |
+            <a href="contact.html">Kontak</a>
+        </p>
+        <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+    </div>
+</body>
+</html>

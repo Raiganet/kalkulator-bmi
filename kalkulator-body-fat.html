@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Favicon Lengkap -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Body Fat Percentage - Persentase Lemak Tubuh | Kalkulator Online</title>
+    <meta name="description" content="Hitung persentase lemak tubuh (Body Fat Percentage) menggunakan metode US Navy. Ketahui komposisi tubuhmu dengan akurat.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7747788833891823" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .back-link {
+            display: inline-flex;
+            margin-bottom: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header .subtitle { color: #666; font-size: 16px; }
+        .calculator-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8d6 100%);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; font-size: 14px; }
+        input, select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #ffe8d6;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            background: white;
+        }
+        input:focus, select:focus { outline: none; border-color: #fa709a; }
+        .radio-group { display: flex; gap: 15px; margin-top: 10px; }
+        .radio-option { flex: 1; position: relative; }
+        .radio-option input { position: absolute; opacity: 0; }
+        .radio-label {
+            display: block;
+            padding: 14px;
+            background: white;
+            border: 2px solid #ffe8d6;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .radio-option input:checked + .radio-label {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border-color: #fa709a;
+        }
+        .calculate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            display: none;
+            text-align: center;
+        }
+        .bf-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            background: conic-gradient(from 0deg, #fa709a var(--percent), #f0f0f0 var(--percent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bf-inner {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .bf-value { font-size: 42px; font-weight: 800; color: #fa709a; }
+        .bf-label { font-size: 14px; color: #666; }
+        .bf-category {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+        }
+        .article {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .article h2 { color: #fa709a; margin-bottom: 20px; font-size: 24px; }
+        .article h3 { color: #fee140; margin: 25px 0 15px; font-size: 18px; }
+        .article p { line-height: 1.8; color: #555; margin-bottom: 15px; }
+        .article table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .article th {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+        .article td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; }
+        .article tr:nth-child(even) { background: #fff5f5; }
+        .footer {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .footer a { color: #fa709a; margin: 0 12px; text-decoration: none; font-weight: 500; }
+        .footer p { color: #999; font-size: 13px; margin-top: 10px; }
+        @media (max-width: 768px) {
+            .container { padding: 25px; margin: 20px auto; }
+            .header h1 { font-size: 28px; }
+            .radio-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        
+        <div class="header">
+            <h1>🧍 Kalkulator Body Fat</h1>
+            <p class="subtitle">Hitung Persentase Lemak Tubuh (Metode US Navy)</p>
+        </div>
+        
+        <div class="calculator-card">
+            <div class="form-group">
+                <label>Jenis Kelamin</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="gender" id="male" value="male" checked>
+                        <label for="male" class="radio-label">👨 Pria</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="gender" id="female" value="female">
+                        <label for="female" class="radio-label">👩 Wanita</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="tinggi">Tinggi Badan (cm)</label>
+                <input type="number" id="tinggi" placeholder="Contoh: 170" min="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="leher">Lingkar Leher (cm)</label>
+                <input type="number" id="leher" placeholder="Contoh: 38" min="1">
+            </div>
+            
+            <div class="form-group" id="pinggang-group">
+                <label for="pinggang">Lingkar Pinggang (cm) - di pusar</label>
+                <input type="number" id="pinggang" placeholder="Contoh: 80" min="1">
+            </div>
+            
+            <div class="form-group" id="pinggul-group" style="display: none;">
+                <label for="pinggul">Lingkar Pinggul (cm) - bagian terlebar</label>
+                <input type="number" id="pinggul" placeholder="Contoh: 95" min="1">
+            </div>
+            
+            <button class="calculate-btn" onclick="hitungBodyFat()">🧍 Hitung Body Fat</button>
+            
+            <div class="result" id="result">
+                <div class="bf-circle" id="bf-circle" style="--percent: 0%">
+                    <div class="bf-inner">
+                        <div class="bf-value" id="r-bf">0%</div>
+                        <div class="bf-label">Body Fat</div>
+                    </div>
+                </div>
+                <div class="bf-category" id="r-category">-</div>
+                <p id="r-message" style="margin-top: 20px; color: #666; line-height: 1.6;"></p>
+            </div>
+        </div>
+        
+        <div class="article">
+            <h2>📊 Apa Itu Body Fat Percentage?</h2>
+            <p><strong>Body Fat Percentage</strong> adalah persentase lemak dalam tubuh dibandingkan dengan total berat badan. Metrik ini lebih akurat daripada BMI untuk menilai komposisi tubuh dan risiko kesehatan.</p>
+            
+            <h3>📐 Metode US Navy</h3>
+            <p>Kalkulator ini menggunakan rumus US Navy yang dikembangkan oleh Hodgdon & Beckett (1984). Rumus ini membutuhkan pengukuran:</p>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Pria:</strong> Tinggi badan, lingkar leher, lingkar pinggang</li>
+                <li><strong>Wanita:</strong> Tinggi badan, lingkar leher, lingkar pinggang, lingkar pinggul</li>
+            </ul>
+            
+            <h3>🎯 Kategori Body Fat</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Pria</th>
+                        <th>Wanita</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Atlet</td><td>6-13%</td><td>14-20%</td></tr>
+                    <tr><td>✅ Fit</td><td>14-17%</td><td>21-24%</td></tr>
+                    <tr><td>⚠️ Rata-rata</td><td>18-24%</td><td>25-31%</td></tr>
+                    <tr><td>❌ Obesitas</td><td>≥ 25%</td><td>≥ 32%</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>💡 Cara Mengukur dengan Akurat</h3>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Leher:</strong> Ukur di bawah jakun, pita rata dan tidak terlalu kencang</li>
+                <li><strong>Pinggang (pria):</strong> Di pusar, posisi berdiri tegak</li>
+                <li><strong>Pinggang (wanita):</strong> Di bagian tersempit (biasanya di atas pusar)</li>
+                <li><strong>Pinggul (wanita):</strong> Di bagian terlebar bokong</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>
+                <a href="index.html">Kalkulator BMI</a> |
+                <a href="kalkulator-kalori.html">Kalkulator Kalori</a> |
+                <a href="kalkulator-air.html">Kalkulator Air</a> |
+                <a href="kalkulator-whtr.html">Kalkulator WHtR</a> |
+                <a href="faq.html">FAQ</a> |
+                <a href="privacy.html">Privacy Policy</a>
+            </p>
+            <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle field berdasarkan gender
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'female') {
+                    document.getElementById('pinggul-group').style.display = 'block';
+                } else {
+                    document.getElementById('pinggul-group').style.display = 'none';
+                }
+            });
+        });
+        
+        function hitungBodyFat() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const tinggi = parseFloat(document.getElementById('tinggi').value);
+            const leher = parseFloat(document.getElementById('leher').value);
+            const pinggang = parseFloat(document.getElementById('pinggang').value);
+            const pinggul = parseFloat(document.getElementById('pinggul').value);
+            
+            if (!tinggi || !leher || !pinggang) {
+                alert('Mohon isi semua data!');
+                return;
+            }
+            
+            if (gender === 'female' && !pinggul) {
+                alert('Wanita harus mengisi lingkar pinggul!');
+                return;
+            }
+            
+            // Konversi ke inch (rumus US Navy pakai inch)
+            const tinggiInch = tinggi / 2.54;
+            const leherInch = leher / 2.54;
+            const pinggangInch = pinggang / 2.54;
+            const pinggulInch = pinggul / 2.54;
+            
+            let bodyFat;
+            if (gender === 'male') {
+                bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(pinggangInch - leherInch) + 0.15456 * Math.log10(tinggiInch)) - 450;
+            } else {
+                bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(pinggangInch + pinggulInch - leherInch) + 0.22100 * Math.log10(tinggiInch)) - 450;
+            }
+            
+            bodyFat = Math.max(0, bodyFat).toFixed(1);
+            
+            // Tampilkan hasil
+            document.getElementById('r-bf').innerText = bodyFat + '%';
+            document.getElementById('bf-circle').style.setProperty('--percent', bodyFat + '%');
+            
+            const category = document.getElementById('r-category');
+            const message = document.getElementById('r-message');
+            const bf = parseFloat(bodyFat);
+            
+            if (gender === 'male') {
+                if (bf < 6) {
+                    category.innerText = 'Sangat Rendah';
+                    category.style.background = '#9b59b6';
+                    message.innerText = 'Body fat sangat rendah. Pastikan asupan nutrisi cukup!';
+                } else if (bf <= 13) {
+                    category.innerText = '🏆 Atlet';
+                    category.style.background = '#27ae60';
+                    message.innerText = 'Luar biasa! Kamu memiliki komposisi tubuh seperti atlet profesional.';
+                } else if (bf <= 17) {
+                    category.innerText = '✅ Fit';
+                    category.style.background = '#2ecc71';
+                    message.innerText = 'Bagus! Tubuhmu dalam kondisi fit dan sehat.';
+                } else if (bf <= 24) {
+                    category.innerText = '⚠️ Rata-rata';
+                    category.style.background = '#f39c12';
+                    message.innerText = 'Body fat dalam kategori rata-rata. Masih bisa diperbaiki dengan olahraga rutin.';
+                } else {
+                    category.innerText = '❌ Obesitas';
+                    category.style.background = '#e74c3c';
+                    message.innerText = 'Body fat tinggi. Disarankan konsultasi dengan dokter dan mulai program penurunan berat badan.';
+                }
+            } else {
+                if (bf < 14) {
+                    category.innerText = 'Sangat Rendah';
+                    category.style.background = '#9b59b6';
+                    message.innerText = 'Body fat sangat rendah. Pastikan asupan nutrisi cukup untuk kesehatan hormonal!';
+                } else if (bf <= 20) {
+                    category.innerText = '🏆 Atlet';
+                    category.style.background = '#27ae60';
+                    message.innerText = 'Luar biasa! Kamu memiliki komposisi tubuh seperti atlet profesional.';
+                } else if (bf <= 24) {
+                    category.innerText = '✅ Fit';
+                    category.style.background = '#2ecc71';
+                    message.innerText = 'Bagus! Tubuhmu dalam kondisi fit dan sehat.';
+                } else if (bf <= 31) {
+                    category.innerText = '⚠️ Rata-rata';
+                    category.style.background = '#f39c12';
+                    message.innerText = 'Body fat dalam kategori rata-rata. Masih bisa diperbaiki dengan olahraga rutin.';
+                } else {
+                    category.innerText = '❌ Obesitas';
+                    category.style.background = '#e74c3c';
+                    message.innerText = 'Body fat tinggi. Disarankan konsultasi dengan dokter dan mulai program penurunan berat badan.';
+                }
+            }
+            
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Robots.txt untuk KalkulatorOnline.my.id
+# Mengatur crawler search engine
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://kalkulatoronline.my.id/sitemap.xml
+
+# Crawl-delay untuk menghormati server
+Crawl-delay: 1

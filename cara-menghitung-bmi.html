@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Favicon Lengkap -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Menghitung BMI - Panduan Lengkap | Kalkulator Online</title>
+    <meta name="description" content="Pelajari cara menghitung BMI (Body Mass Index) secara manual dengan rumus yang benar. Panduan lengkap dengan contoh perhitungan.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .formula {
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+        .example {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 25px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.1);
+        }
+        .example h3 { color: #d68910; margin-top: 0; }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        th, td { padding: 14px 18px; text-align: left; }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        td {
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #555;
+        }
+        tr:nth-child(even) td { background: #f8f9fc; }
+        tr:hover td { background: #eef1ff; }
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+            color: #555;
+            font-size: 15px;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+        .cta-box h3 { color: white; margin-bottom: 10px; font-size: 22px; }
+        .cta-box a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+        strong { color: #333; }
+        a { color: #667eea; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .footer {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .footer a {
+            color: #667eea;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer a:hover { text-decoration: underline; }
+        .footer p { color: #aaa; font-size: 13px; margin-top: 10px; }
+        @media (max-width: 768px) {
+            .container { padding: 25px; margin: 20px auto; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
+            .formula { font-size: 16px; padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        <h1>Cara Menghitung BMI (Body Mass Index)</h1>
+        <p>BMI (Body Mass Index) atau Indeks Massa Tubuh (IMT) adalah pengukuran sederhana yang menggunakan berat dan tinggi badan untuk memperkirakan status berat badan seseorang. Metode ini dikembangkan oleh Adolphe Quetelet pada abad ke-19 dan kini menjadi standar internasional yang digunakan oleh WHO.</p>
+        
+        <h2>Rumus Menghitung BMI</h2>
+        <div class="formula">BMI = Berat Badan (kg) ÷ [Tinggi Badan (m)]²</div>
+        <p>Atau bisa juga ditulis:</p>
+        <div class="formula">BMI = Berat Badan (kg) ÷ (Tinggi Badan (m) × Tinggi Badan (m))</div>
+        
+        <h2>Langkah-Langkah Perhitungan BMI</h2>
+        <ol>
+            <li><strong>Ukur Berat Badan</strong><br>Timbang berat badan Anda menggunakan timbangan yang akurat. Catat hasilnya dalam satuan <strong>kilogram (kg)</strong>.</li>
+            <li><strong>Ukur Tinggi Badan</strong><br>Ukur tinggi badan Anda menggunakan stadiometer atau pengukur tinggi badan. Catat hasilnya dalam satuan <strong>sentimeter (cm)</strong>.</li>
+            <li><strong>Konversi Tinggi Badan ke Meter</strong><br>Ubah tinggi badan dari cm ke meter dengan membagi 100.<br><em>Contoh: 170 cm = 170 ÷ 100 = 1.7 meter</em></li>
+            <li><strong>Kuadratkan Tinggi Badan</strong><br>Kalikan tinggi badan (dalam meter) dengan dirinya sendiri.<br><em>Contoh: 1.7 m × 1.7 m = 2.89 m²</em></li>
+            <li><strong>Bagi Berat dengan Hasil Kuadrat Tinggi</strong><br>Bagi berat badan (kg) dengan hasil kuadrat tinggi badan (m²).<br><em>Contoh: 65 kg ÷ 2.89 m² = 22.5</em></li>
+        </ol>
+        
+        <h2>Contoh Perhitungan Lengkap</h2>
+        <div class="example">
+            <h3> Contoh 1: Perhitungan BMI</h3>
+            <p><strong>Diketahui:</strong></p>
+            <ul>
+                <li>Berat badan: 65 kg</li>
+                <li>Tinggi badan: 170 cm</li>
+            </ul>
+            <p><strong>Langkah Perhitungan:</strong></p>
+            <ol>
+                <li>Konversi tinggi ke meter: 170 cm ÷ 100 = 1.7 m</li>
+                <li>Kuadratkan tinggi: 1.7 × 1.7 = 2.89 m²</li>
+                <li>Hitung BMI: 65 ÷ 2.89 = <strong>22.5</strong></li>
+            </ol>
+            <p><strong>Hasil:</strong> BMI = 22.5 (Kategori: <strong>Normal/Ideal</strong>)</p>
+        </div>
+        
+        <div class="example">
+            <h3>📝 Contoh 2: Perhitungan BMI</h3>
+            <p><strong>Diketahui:</strong></p>
+            <ul>
+                <li>Berat badan: 80 kg</li>
+                <li>Tinggi badan: 165 cm</li>
+            </ul>
+            <p><strong>Langkah Perhitungan:</strong></p>
+            <ol>
+                <li>Konversi tinggi ke meter: 165 cm ÷ 100 = 1.65 m</li>
+                <li>Kuadratkan tinggi: 1.65 × 1.65 = 2.72 m²</li>
+                <li>Hitung BMI: 80 ÷ 2.72 = <strong>29.4</strong></li>
+            </ol>
+            <p><strong>Hasil:</strong> BMI = 29.4 (Kategori: <strong>Gemuk/Overweight</strong>)</p>
+        </div>
+        
+        <h2>Kategori BMI Menurut WHO</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Rentang BMI</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>⚠️ Kurus (Underweight)</td><td>&lt; 18.5</td><td>Berat badan kurang, risiko malnutrisi</td></tr>
+                <tr><td>✅ Normal (Ideal)</td><td>18.5 - 24.9</td><td>Berat badan sehat, risiko penyakit rendah</td></tr>
+                <tr><td>️ Gemuk (Overweight)</td><td>25 - 29.9</td><td>Kelebihan berat badan, perlu perhatian</td></tr>
+                <tr><td> Obesitas Tingkat I</td><td>30 - 34.9</td><td>Risiko tinggi penyakit</td></tr>
+                <tr><td>❌ Obesitas Tingkat II</td><td>35 - 39.9</td><td>Risiko sangat tinggi</td></tr>
+                <tr><td>️ Obesitas Ekstrem</td><td>≥ 40</td><td>Risiko ekstrem, perlu penanganan medis</td></tr>
+            </tbody>
+        </table>
+        
+        <h2>Kalkulator BMI Otomatis</h2>
+        <p>Jika Anda ingin menghitung BMI dengan lebih cepat dan mudah, gunakan <a href="index.html">Kalkulator BMI Online</a> kami. Cukup masukkan berat dan tinggi badan, hasil akan muncul secara otomatis!</p>
+        
+        <div class="cta-box">
+            <h3>🧮 Hitung BMI Anda Sekarang!</h3>
+            <p>Gunakan kalkulator BMI gratis kami untuk mengetahui status berat badan Anda dalam hitungan detik.</p>
+            <p><a href="index.html">→ Buka Kalkulator BMI</a></p>
+        </div>
+        
+        <h2>Keunggulan Menghitung BMI</h2>
+        <ul>
+            <li><strong>Mudah dan Cepat:</strong> Hanya perlu berat dan tinggi badan</li>
+            <li><strong>Tanpa Alat Khusus:</strong> Bisa dihitung manual dengan kalkulator</li>
+            <li><strong>Standar Internasional:</strong> Diakui oleh WHO dan tenaga medis di seluruh dunia</li>
+            <li><strong>Gratis:</strong> Tidak perlu biaya untuk pengukuran</li>
+            <li><strong>Indikator Kesehatan:</strong> Membantu mendeteksi risiko penyakit terkait berat badan</li>
+        </ul>
+        
+        <h2>Keterbatasan BMI</h2>
+        <p>Perlu diingat bahwa BMI memiliki beberapa keterbatasan:</p>
+        <ul>
+            <li>Tidak membedakan antara massa otot dan massa lemak</li>
+            <li>Tidak memperhitungkan distribusi lemak tubuh</li>
+            <li>Tidak memperhitungkan usia, jenis kelamin, dan etnis</li>
+            <li>Atlet atau orang berotot mungkin memiliki BMI tinggi meskipun sehat</li>
+            <li>Ibu hamil dan menyusui memerlukan pengukuran khusus</li>
+        </ul>
+        
+        <h2>Pertanyaan Umum (FAQ)</h2>
+        <h3>Apakah BMI akurat untuk semua orang?</h3>
+        <p>BMI adalah alat skrining yang baik untuk populasi umum, tetapi tidak selalu akurat untuk atlet, ibu hamil, lansia, atau anak-anak.</p>
+        
+        <h3>Berapa BMI ideal untuk wanita dan pria?</h3>
+        <p>BMI ideal untuk wanita dan pria dewasa sama, yaitu antara 18.5 - 24.9.</p>
+        
+        <h3>Apakah BMI sama dengan persentase lemak tubuh?</h3>
+        <p>Tidak. BMI hanya estimasi berdasarkan berat dan tinggi badan, sedangkan persentase lemak tubuh mengukur komposisi tubuh secara langsung.</p>
+        
+        <h3>Seberapa sering saya harus menghitung BMI?</h3>
+        <p>Disarankan untuk memantau BMI setiap 1-3 bulan, terutama jika Anda sedang dalam program penurunan atau penambahan berat badan.</p>
+    </div>
+    <div class="footer">
+        <p>
+            <a href="index.html">Kalkulator BMI</a> |
+            <a href="kalkulator-kalori.html">Kalkulator Kalori</a> |
+            <a href="faq.html">FAQ</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="about.html">Tentang Kami</a> |
+            <a href="contact.html">Kontak</a>
+        </p>
+        <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+    </div>
+</body>
+</html>
