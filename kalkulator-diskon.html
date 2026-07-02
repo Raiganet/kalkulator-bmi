@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Body Fat % - Persentase Lemak Tubuh | KalkulatorOnline.my.id</title>
-    <meta name="description" content="Hitung persentase lemak tubuh dengan metode US Navy.">
+    <title>Kalkulator Diskon - Hitung Potongan Harga | KalkulatorOnline.my.id</title>
+    <meta name="description" content="Hitung diskon dan harga akhir setelah potongan dengan mudah.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -33,20 +33,16 @@
         .hero-header .subtitle { color: #888; font-size: 16px; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; color: #444; font-weight: 600; font-size: 14px; }
-        .form-group input, .form-group select { width: 100%; padding: 16px 18px; border: 2px solid #e8ecf1; border-radius: 14px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500; transition: all 0.3s ease; background: #f8f9fc; }
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12); }
-        .gender-selector { display: flex; gap: 10px; margin-bottom: 20px; }
-        .gender-btn { flex: 1; padding: 15px; border: 2px solid #e8ecf1; border-radius: 14px; background: white; cursor: pointer; font-size: 16px; font-weight: 600; transition: all 0.3s ease; }
-        .gender-btn.active { border-color: #667eea; background: #f0f4ff; color: #667eea; }
+        .form-group input { width: 100%; padding: 16px 18px; border: 2px solid #e8ecf1; border-radius: 14px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500; transition: all 0.3s ease; background: #f8f9fc; }
+        .form-group input:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12); }
         .calculate-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 14px; font-size: 18px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4); }
         .calculate-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5); }
         .result { margin-top: 30px; display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 20px; color: white; }
         .result h2 { text-align: center; margin-bottom: 20px; font-size: 24px; }
-        .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .result-card { background: rgba(255,255,255,0.15); padding: 20px; border-radius: 14px; text-align: center; }
-        .result-card .value { font-size: 32px; font-weight: 800; margin: 10px 0; }
-        .result-card .label { font-size: 14px; opacity: 0.9; }
-        .kategori-badge { display: block; text-align: center; margin-top: 20px; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 18px; background: rgba(255,255,255,0.95); color: #333; }
+        .result-card .value { font-size: 24px; font-weight: 800; margin: 10px 0; }
+        .result-card .label { font-size: 13px; opacity: 0.9; }
         .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
         .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
         .article ul { margin-left: 20px; margin-bottom: 20px; }
@@ -73,7 +69,7 @@
                 <div class="dropdown">
                     <a href="#" class="dropbtn">🏥 Kesehatan </a>
                     <div class="dropdown-content">
-                        <a href="index.html">⚖️️ Kalkulator BMI</a>
+                        <a href="index.html">⚖️ Kalkulator BMI</a>
                         <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
                         <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
                         <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
@@ -107,52 +103,49 @@
 
         <div class="card">
             <div class="hero-header">
-                <div class="badge">🧍 Komposisi Tubuh</div>
-                <h1>Kalkulator Body Fat %</h1>
-                <p class="subtitle">Hitung Persentase Lemak Tubuh (Metode US Navy)</p>
-            </div>
-
-            <div class="gender-selector">
-                <button class="gender-btn active" onclick="selectGender('pria')">👨 Pria</button>
-                <button class="gender-btn" onclick="selectGender('wanita')">👩 Wanita</button>
+                <div class="badge">💸 Hemat Belanja</div>
+                <h1>Kalkulator Diskon</h1>
+                <p class="subtitle">Hitung Potongan Harga & Harga Akhir</p>
             </div>
 
             <div class="form-grid">
-                <div class="form-group"><label>Tinggi Badan (cm)</label><input type="number" id="tinggi" placeholder="Contoh: 170" min="1"></div>
-                <div class="form-group"><label>Lingkar Leher (cm)</label><input type="number" id="leher" placeholder="Contoh: 38" min="1"></div>
-                <div class="form-group"><label>Lingkar Pinggang (cm)</label><input type="number" id="pinggang" placeholder="Contoh: 85" min="1"></div>
-                <div class="form-group" id="pinggul-group" style="display:none;"><label>Lingkar Pinggul (cm)</label><input type="number" id="pinggul" placeholder="Contoh: 95" min="1"></div>
+                <div class="form-group"><label>Harga Asli (Rp)</label><input type="number" id="harga" placeholder="Contoh: 500000" min="0"></div>
+                <div class="form-group"><label>Diskon (%)</label><input type="number" id="diskon" placeholder="Contoh: 25" min="0" max="100"></div>
             </div>
 
-            <button class="calculate-btn" onclick="hitungBodyFat()">🧍 Hitung Body Fat %</button>
+            <button class="calculate-btn" onclick="hitungDiskon()">💸 Hitung Diskon</button>
 
             <div class="result" id="result">
-                <h2>📊 Persentase Lemak Tubuh</h2>
+                <h2>📊 Hasil Perhitungan</h2>
                 <div class="result-grid">
-                    <div class="result-card"><div class="label">Body Fat %</div><div class="value" id="r-fat">0</div><div class="label">persen</div></div>
-                    <div class="result-card"><div class="label">Kategori</div><div class="value" id="r-kategori" style="font-size: 20px;">-</div></div>
+                    <div class="result-card"><div class="label">Harga Asli</div><div class="value" id="r-asli">Rp 0</div></div>
+                    <div class="result-card"><div class="label">Potongan Diskon</div><div class="value" id="r-potongan">Rp 0</div></div>
+                    <div class="result-card"><div class="label">Harga Akhir</div><div class="value" id="r-akhir">Rp 0</div></div>
                 </div>
-                <div class="kategori-badge" id="r-badge">-</div>
             </div>
         </div>
 
         <div class="card article">
-            <h2>📚 Tentang Body Fat %</h2>
-            <p>Persentase lemak tubuh diukur menggunakan metode US Navy yang akurat. Pria idealnya memiliki 10-20% lemak tubuh, sedangkan wanita 18-28%.</p>
-            <h3> Tools Lainnya</h3>
+            <h2>📚 Cara Menghitung Diskon</h2>
+            <p>Rumus menghitung diskon sangat sederhana:</p>
+            <ul>
+                <li><strong>Potongan Diskon</strong> = Harga Asli × (Persentase Diskon ÷ 100)</li>
+                <li><strong>Harga Akhir</strong> = Harga Asli - Potongan Diskon</li>
+            </ul>
+            <h3>🔗 Tools Lainnya</h3>
             <div class="tools-grid">
-                <a href="index.html" class="tool-card"><div class="tool-icon">⚖️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
-                <a href="kalkulator-whtr.html" class="tool-card"><div class="tool-icon">📏</div><div class="tool-name">Kalkulator WHtR</div><div class="tool-desc">Rasio pinggang-tinggi</div></a>
-                <a href="kalkulator-kalori.html" class="tool-card"><div class="tool-icon">🔥</div><div class="tool-name">Kalkulator Kalori</div><div class="tool-desc">Kebutuhan kalori harian</div></a>
-                <a href="kalkulator-bmr.html" class="tool-card"><div class="tool-icon">❤️</div><div class="tool-name">Kalkulator BMR</div><div class="tool-desc">Metabolisme basal</div></a>
+                <a href="kalkulator-ppn.html" class="tool-card"><div class="tool-icon">🧾</div><div class="tool-name">Kalkulator PPN</div><div class="tool-desc">Hitung pajak PPN</div></a>
+                <a href="kalkulator-persen.html" class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Kalkulator Persentase</div><div class="tool-desc">Hitung persentase</div></a>
+                <a href="kalkulator-cicilan.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-name">Kalkulator Cicilan</div><div class="tool-desc">Simulasi KPR & Kredit</div></a>
+                <a href="kalkulator-umur.html" class="tool-card"><div class="tool-icon">🎂</div><div class="tool-name">Kalkulator Umur</div><div class="tool-desc">Hitung usia tepat</div></a>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-links">
                 <a href="index.html">BMI</a>
-                <a href="kalkulator-body-fat.html">Body Fat</a>
-                <a href="kalkulator-whtr.html">WHtR</a>
+                <a href="kalkulator-diskon.html">Diskon</a>
+                <a href="kalkulator-ppn.html">PPN</a>
                 <a href="faq.html">FAQ</a>
                 <a href="about.html">Tentang</a>
             </div>
@@ -161,45 +154,16 @@
     </div>
 
     <script>
-        let gender = 'pria';
-        function selectGender(g) {
-            gender = g;
-            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById('pinggul-group').style.display = g === 'wanita' ? 'block' : 'none';
-        }
-        function hitungBodyFat() {
-            const tinggi = parseFloat(document.getElementById('tinggi').value);
-            const leher = parseFloat(document.getElementById('leher').value);
-            const pinggang = parseFloat(document.getElementById('pinggang').value);
-            if (!tinggi || !leher || !pinggang) { alert('Mohon isi semua field!'); return; }
-            let bodyFat;
-            if (gender === 'pria') {
-                bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(pinggang - leher) + 0.15456 * Math.log10(tinggi)) - 450;
-            } else {
-                const pinggul = parseFloat(document.getElementById('pinggul').value);
-                if (!pinggul) { alert('Wanita harus isi lingkar pinggul!'); return; }
-                bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(pinggang + pinggul - leher) + 0.22100 * Math.log10(tinggi)) - 450;
-            }
-            document.getElementById('r-fat').innerText = bodyFat.toFixed(1);
-            const badge = document.getElementById('r-badge');
-            const kategori = document.getElementById('r-kategori');
-            let kat = '';
-            if (gender === 'pria') {
-                if (bodyFat < 6) kat = 'Essential Fat';
-                else if (bodyFat < 14) kat = 'Atlet';
-                else if (bodyFat < 18) kat = 'Fitness';
-                else if (bodyFat < 25) kat = 'Average';
-                else kat = 'Obese';
-            } else {
-                if (bodyFat < 14) kat = 'Essential Fat';
-                else if (bodyFat < 21) kat = 'Atlet';
-                else if (bodyFat < 25) kat = 'Fitness';
-                else if (bodyFat < 32) kat = 'Average';
-                else kat = 'Obese';
-            }
-            kategori.innerText = kat;
-            badge.innerText = `Kategori: ${kat}`;
+        function formatRupiah(angka) { return 'Rp ' + Math.round(angka).toLocaleString('id-ID'); }
+        function hitungDiskon() {
+            const harga = parseFloat(document.getElementById('harga').value);
+            const diskon = parseFloat(document.getElementById('diskon').value);
+            if (!harga || isNaN(diskon)) { alert('Mohon isi harga dan persentase diskon!'); return; }
+            const potongan = harga * (diskon / 100);
+            const hargaAkhir = harga - potongan;
+            document.getElementById('r-asli').innerText = formatRupiah(harga);
+            document.getElementById('r-potongan').innerText = formatRupiah(potongan);
+            document.getElementById('r-akhir').innerText = formatRupiah(hargaAkhir);
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
