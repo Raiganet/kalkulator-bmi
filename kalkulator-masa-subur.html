@@ -4,42 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Masa Subur & Ovulasi - Program Kehamilan | KalkulatorOnline.my.id</title>
-    <meta name="description" content="Hitung masa subur dan tanggal ovulasi wanita untuk program kehamilan. Ketahui waktu terbaik untuk hamil.">
-    <meta name="keywords" content="kalkulator masa subur, hitung ovulasi, program hamil, kalkulator kehamilan, masa subur wanita">
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="description" content="Hitung masa subur dan tanggal ovulasi wanita untuk program kehamilan.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Kalkulator Masa Subur",
-      "url": "https://www.kalkulatoronline.my.id/kalkulator-masa-subur.html",
-      "description": "Hitung masa subur dan ovulasi untuk program kehamilan"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://www.kalkulatoronline.my.id/"},{"@type": "ListItem","position": 2,"name": "Kalkulator Masa Subur","item": "https://www.kalkulatoronline.my.id/kalkulator-masa-subur.html"}]
-    }
-    </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS SAMA PERSIS DENGAN FILE CICILAN DI ATAS UNTUK KONSISTENSI */
+        /* SAMA PERSIS DENGAN INDEX.HTML (CSS NAVBAR + DROPDOWN) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .wrapper { max-width: 900px; margin: 0 auto; }
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
         .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
         .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
         .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
         .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-header { text-align: center; margin-bottom: 35px; }
@@ -73,7 +59,16 @@
         .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
         .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
         .footer p { color: #aaa; font-size: 13px; }
-        @media (max-width: 768px) { .form-grid, .result-grid, .tools-grid { grid-template-columns: 1fr; } .hero-header h1 { font-size: 28px; } .navbar { flex-direction: column; gap: 12px; } }
+        @media (max-width: 768px) {
+            .form-grid, .result-grid, .tools-grid { grid-template-columns: 1fr; }
+            .hero-header h1 { font-size: 28px; }
+            .navbar { flex-direction: column; gap: 12px; }
+            .navbar .nav-links { justify-content: center; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown .dropbtn { width: 100%; text-align: center; }
+            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .dropdown-content a { text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -81,10 +76,38 @@
         <nav class="navbar">
             <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
             <div class="nav-links">
-                <a href="index.html">BMI</a>
-                <a href="kalkulator-cicilan.html">Cicilan</a>
-                <a href="kalkulator-masa-subur.html">Masa Subur</a>
-                <a href="faq.html">FAQ</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="index.html">️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html"> Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html"> Panduan BMI</a>
+                        <a href="faq.html"> FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
             </div>
         </nav>
 
@@ -94,58 +117,30 @@
                 <h1>Kalkulator Masa Subur</h1>
                 <p class="subtitle">Hitung Tanggal Ovulasi & Masa Subur Wanita</p>
             </div>
-
             <div class="form-grid">
-                <div class="form-group">
-                    <label>📅 Hari Pertama Haid Terakhir (HPHT)</label>
-                    <input type="date" id="hpht">
-                </div>
-                <div class="form-group">
-                    <label>🔄 Panjang Siklus Haid (Hari)</label>
-                    <input type="number" id="siklus" value="28" min="20" max="45">
-                </div>
+                <div class="form-group"><label>📅 Hari Pertama Haid Terakhir (HPHT)</label><input type="date" id="hpht"></div>
+                <div class="form-group"><label>🔄 Panjang Siklus Haid (Hari)</label><input type="number" id="siklus" value="28" min="20" max="45"></div>
             </div>
-
             <button class="calculate-btn" onclick="hitungSubur()">🌸 Hitung Masa Subur</button>
-
             <div class="result" id="result">
                 <h2>📊 Hasil Perhitungan</h2>
                 <div class="result-grid">
-                    <div class="result-card">
-                        <div class="label">Tanggal Ovulasi</div>
-                        <div class="value" id="r-ovulasi">-</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="label">Masa Subur (Mulai - Selesai)</div>
-                        <div class="value" id="r-subur" style="font-size: 18px;">-</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="label">Perkiraan Haid Berikutnya</div>
-                        <div class="value" id="r-haid" style="font-size: 18px;">-</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="label">Fase Saat Ini</div>
-                        <div class="value" id="r-fase" style="font-size: 18px;">-</div>
-                    </div>
+                    <div class="result-card"><div class="label">Tanggal Ovulasi</div><div class="value" id="r-ovulasi">-</div></div>
+                    <div class="result-card"><div class="label">Masa Subur (Mulai - Selesai)</div><div class="value" id="r-subur" style="font-size: 18px;">-</div></div>
+                    <div class="result-card"><div class="label">Perkiraan Haid Berikutnya</div><div class="value" id="r-haid" style="font-size: 18px;">-</div></div>
+                    <div class="result-card"><div class="label">Fase Saat Ini</div><div class="value" id="r-fase" style="font-size: 18px;">-</div></div>
                 </div>
             </div>
         </div>
 
         <div class="card article">
             <h2> Tentang Masa Subur</h2>
-            <p>Masa subur adalah periode di mana wanita memiliki peluang terbesar untuk hamil. Ovulasi (pelepasan sel telur) biasanya terjadi 14 hari sebelum haid berikutnya. Sel telur hanya bertahan 12-24 jam, namun sperma bisa hidup hingga 5 hari di dalam tubuh wanita.</p>
-            <ul>
-                <li><strong>Masa Subur:</strong> 5 hari sebelum ovulasi hingga 1 hari setelah ovulasi.</li>
-                <li><strong>Tanda Ovulasi:</strong> Suhu basal tubuh naik, lendir serviks bening seperti putih telur.</li>
-                <li><strong>Siklus Normal:</strong> 21 hingga 35 hari. Rata-rata 28 hari.</li>
-            </ul>
-
+            <p>Masa subur adalah periode di mana wanita memiliki peluang terbesar untuk hamil. Ovulasi (pelepasan sel telur) biasanya terjadi 14 hari sebelum haid berikutnya.</p>
             <h3>🔗 Tools Lainnya</h3>
             <div class="tools-grid">
                 <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon">👶</div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & Usia Janin</div></a>
-                <a href="index.html" class="tool-card"><div class="tool-icon">⚖️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
+                <a href="index.html" class="tool-card"><div class="tool-icon">️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
                 <a href="kalkulator-cicilan.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-name">Kalkulator Cicilan</div><div class="tool-desc">Simulasi KPR & Kredit</div></a>
-                <a href="konversi-satuan.html" class="tool-card"><div class="tool-icon">📏</div><div class="tool-name">Konversi Satuan</div><div class="tool-desc">Ubah satuan ukuran</div></a>
             </div>
         </div>
 
@@ -162,40 +157,26 @@
     </div>
 
     <script>
-        function formatTanggal(date) {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            return date.toLocaleDateString('id-ID', options);
-        }
+        function formatTanggal(date) { const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; return date.toLocaleDateString('id-ID', options); }
         function hitungSubur() {
             const hphtInput = document.getElementById('hpht').value;
             const siklus = parseInt(document.getElementById('siklus').value);
-            
             if (!hphtInput) { alert('Mohon pilih tanggal HPHT!'); return; }
-            
             const hpht = new Date(hphtInput);
             const ovulasi = new Date(hpht);
             ovulasi.setDate(hpht.getDate() + (siklus - 14));
-            
-            const mulaiSubur = new Date(ovulasi);
-            mulaiSubur.setDate(ovulasi.getDate() - 5);
-            
-            const selesaiSubur = new Date(ovulasi);
-            selesaiSubur.setDate(ovulasi.getDate() + 1);
-            
-            const haidBerikutnya = new Date(hpht);
-            haidBerikutnya.setDate(hpht.getDate() + siklus);
-            
+            const mulaiSubur = new Date(ovulasi); mulaiSubur.setDate(ovulasi.getDate() - 5);
+            const selesaiSubur = new Date(ovulasi); selesaiSubur.setDate(ovulasi.getDate() + 1);
+            const haidBerikutnya = new Date(hpht); haidBerikutnya.setDate(hpht.getDate() + siklus);
             const today = new Date();
             let fase = "Folikel";
             if (today >= mulaiSubur && today <= selesaiSubur) fase = "Masa Subur!";
             else if (today > selesaiSubur && today < haidBerikutnya) fase = "Luteal";
             else if (today >= haidBerikutnya) fase = "Haid";
-            
             document.getElementById('r-ovulasi').innerText = formatTanggal(ovulasi);
             document.getElementById('r-subur').innerText = `${formatTanggal(mulaiSubur)} - ${formatTanggal(selesaiSubur)}`;
             document.getElementById('r-haid').innerText = formatTanggal(haidBerikutnya);
             document.getElementById('r-fase').innerText = fase;
-            
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }

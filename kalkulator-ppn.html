@@ -4,194 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator PPN - Hitung Pajak Pertambahan Nilai | KalkulatorOnline.my.id</title>
-    <meta name="description" content="Kalkulator PPN online gratis. Hitung PPN 11%, harga sebelum PPN, dan total harga dengan mudah.">
-    <meta name="keywords" content="kalkulator PPN, hitung PPN, pajak pertambahan nilai, PPN 11%, kalkulator pajak">
-    
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="description" content="Hitung PPN 11% dan total harga dengan mudah.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
-    
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Kalkulator PPN",
-      "url": "https://www.kalkulatoronline.my.id/kalkulator-ppn.html",
-      "description": "Hitung PPN 11% dengan mudah dan cepat"
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.kalkulatoronline.my.id/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Kalkulator PPN",
-        "item": "https://www.kalkulatoronline.my.id/kalkulator-ppn.html"
-      }]
-    }
-    </script>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-24G7H4QNBD');
-    </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
+        /* CSS SAMA PERSIS DENGAN DISKON DI ATAS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh; padding: 20px;
-        }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .wrapper { max-width: 900px; margin: 0 auto; }
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 25px; background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px;
-        }
-        .navbar .logo {
-            font-size: 20px; font-weight: 800; color: white;
-            text-decoration: none; display: flex; align-items: center; gap: 8px;
-        }
-        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; }
-        .navbar .nav-links a {
-            color: rgba(255,255,255,0.85); text-decoration: none;
-            font-size: 13px; font-weight: 500; padding: 8px 14px;
-            border-radius: 10px; transition: all 0.3s ease;
-        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
+        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
         .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
-        .card {
-            background: rgba(255, 255, 255, 0.98); border-radius: 24px;
-            padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px; animation: slideUp 0.6s ease-out;
-        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-header { text-align: center; margin-bottom: 35px; }
-        .hero-header .badge {
-            display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 6px 18px; border-radius: 50px;
-            font-size: 12px; font-weight: 600; margin-bottom: 15px;
-        }
-        .hero-header h1 {
-            font-size: 38px; font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
+        .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
         .hero-header .subtitle { color: #888; font-size: 16px; }
-        .calc-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            border: 2px solid #e8ecf1; border-radius: 16px;
-            padding: 25px; margin-bottom: 20px;
-        }
-        .calc-section h3 {
-            color: #667eea; font-size: 18px; font-weight: 700;
-            margin-bottom: 15px; display: flex; align-items: center; gap: 10px;
-        }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; color: #444; font-weight: 600; font-size: 14px; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 14px 18px; border: 2px solid #e8ecf1; border-radius: 12px;
-            font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500;
-            transition: all 0.3s ease; background: white;
-        }
-        .form-group input:focus, .form-group select:focus {
-            outline: none; border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
-        }
-        .calc-btn {
-            width: 100%; padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; border: none; border-radius: 12px;
-            font-size: 16px; font-weight: 700; font-family: 'Poppins', sans-serif;
-            cursor: pointer; transition: all 0.3s ease;
-        }
-        .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
-        .result-box {
-            margin-top: 15px; padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px; color: white; text-align: center;
-            display: none;
-        }
-        .result-box .result-value { font-size: 28px; font-weight: 800; margin: 10px 0; }
-        .result-box .result-label { font-size: 14px; opacity: 0.9; }
-        .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .result-grid .mini-card {
-            background: rgba(255,255,255,0.15); padding: 12px;
-            border-radius: 10px; text-align: center;
-        }
-        .result-grid .mini-value { font-size: 18px; font-weight: 700; }
-        .result-grid .mini-label { font-size: 11px; opacity: 0.9; }
+        .form-group input, .form-group select { width: 100%; padding: 16px 18px; border: 2px solid #e8ecf1; border-radius: 14px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500; transition: all 0.3s ease; background: #f8f9fc; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12); }
+        .calculate-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 14px; font-size: 18px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4); }
+        .calculate-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5); }
+        .result { margin-top: 30px; display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 20px; color: white; }
+        .result h2 { text-align: center; margin-bottom: 20px; font-size: 24px; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .result-card { background: rgba(255,255,255,0.15); padding: 20px; border-radius: 14px; text-align: center; }
+        .result-card .value { font-size: 24px; font-weight: 800; margin: 10px 0; }
+        .result-card .label { font-size: 13px; opacity: 0.9; }
         .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
-        .article h3 { font-size: 20px; font-weight: 600; color: #667eea; margin: 30px 0 15px; }
         .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
         .article ul { margin-left: 20px; margin-bottom: 20px; }
         .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
-        .premium-table {
-            width: 100%; border-collapse: separate; border-spacing: 0;
-            margin: 25px 0; border-radius: 14px; overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .premium-table thead th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 16px 20px; text-align: left;
-            font-weight: 600; font-size: 14px;
-        }
-        .premium-table tbody td {
-            padding: 14px 20px; border-bottom: 1px solid #f0f0f0;
-            font-size: 14px; color: #555;
-        }
-        .premium-table tbody tr:nth-child(even) { background: #f8f9fc; }
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
-        .tool-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            border: 2px solid #e8ecf1; border-radius: 16px;
-            padding: 25px; text-align: center; text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .tool-card:hover {
-            border-color: #667eea; transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
-        }
+        .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
+        .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
         .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
         .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
         .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
-        .footer {
-            background: rgba(255,255,255,0.98); padding: 30px;
-            border-radius: 20px; text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
+        .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-        .footer-links a {
-            color: #667eea; text-decoration: none; font-size: 14px;
-            font-weight: 500; padding: 6px 14px; border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+        .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
         .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
         .footer p { color: #aaa; font-size: 13px; }
-        @media (max-width: 768px) {
-            .form-grid, .result-grid, .tools-grid { grid-template-columns: 1fr; }
-            .hero-header h1 { font-size: 28px; }
-            .navbar { flex-direction: column; gap: 12px; }
-        }
+        @media (max-width: 768px) { .form-grid, .result-grid, .tools-grid { grid-template-columns: 1fr; } .hero-header h1 { font-size: 28px; } .navbar { flex-direction: column; gap: 12px; } .navbar .nav-links { justify-content: center; width: 100%; } .dropdown { width: 100%; } .dropdown .dropbtn { width: 100%; text-align: center; } .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); } .dropdown-content a { text-align: center; } }
     </style>
 </head>
 <body>
@@ -199,10 +67,37 @@
         <nav class="navbar">
             <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
             <div class="nav-links">
-                <a href="index.html">BMI</a>
-                <a href="kalkulator-kalori.html">Kalori</a>
-                <a href="kalkulator-ppn.html">PPN</a>
-                <a href="faq.html">FAQ</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan </a>
+                    <div class="dropdown-content">
+                        <a href="index.html">⚖️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html">📖 Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
                 <a href="about.html">Tentang</a>
             </div>
         </nav>
@@ -211,166 +106,44 @@
             <div class="hero-header">
                 <div class="badge">🧾 Pajak Indonesia</div>
                 <h1>Kalkulator PPN</h1>
-                <p class="subtitle">Hitung Pajak Pertambahan Nilai 11% dengan Mudah</p>
+                <p class="subtitle">Hitung Pajak Pertambahan Nilai 11%</p>
             </div>
 
-            <!-- Kalkulator 1: Tambah PPN -->
-            <div class="calc-section">
-                <h3> Tambah PPN ke Harga</h3>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Harga Sebelum PPN (Rp)</label>
-                        <input type="number" id="harga-dasar" placeholder="Contoh: 1000000" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label>Tarif PPN (%)</label>
-                        <select id="tarif-ppn">
-                            <option value="11" selected>11% (Standar 2025)</option>
-                            <option value="12">12% (Rencana 2026)</option>
-                            <option value="5">5%</option>
-                            <option value="10">10%</option>
-                        </select>
-                    </div>
-                </div>
-                <button class="calc-btn" onclick="hitungTambahPPN()">🧾 Hitung PPN</button>
-                <div class="result-box" id="r1-box">
-                    <div class="result-label">Total Harga + PPN</div>
-                    <div class="result-value" id="r1-total">Rp 0</div>
-                    <div class="result-grid">
-                        <div class="mini-card">
-                            <div class="mini-value" id="r1-dasar">Rp 0</div>
-                            <div class="mini-label">Harga Dasar</div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-value" id="r1-ppn">Rp 0</div>
-                            <div class="mini-label">Jumlah PPN</div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-value" id="r1-tarif">11%</div>
-                            <div class="mini-label">Tarif PPN</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Harga Sebelum PPN (Rp)</label><input type="number" id="harga" placeholder="Contoh: 1000000" min="0"></div>
+                <div class="form-group"><label>Tarif PPN (%)</label><select id="tarif"><option value="11" selected>11% (Standar)</option><option value="12">12% (Rencana 2026)</option></select></div>
             </div>
 
-            <!-- Kalkulator 2: Hitung Harga Sebelum PPN -->
-            <div class="calc-section">
-                <h3>➖ Hitung Harga Sebelum PPN</h3>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Harga Termasuk PPN (Rp)</label>
-                        <input type="number" id="harga-total" placeholder="Contoh: 1110000" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label>Tarif PPN (%)</label>
-                        <select id="tarif-ppn-2">
-                            <option value="11" selected>11% (Standar 2025)</option>
-                            <option value="12">12% (Rencana 2026)</option>
-                            <option value="5">5%</option>
-                            <option value="10">10%</option>
-                        </select>
-                    </div>
-                </div>
-                <button class="calc-btn" onclick="hitungSebelumPPN()"> Hitung Harga Dasar</button>
-                <div class="result-box" id="r2-box">
-                    <div class="result-label">Harga Sebelum PPN</div>
-                    <div class="result-value" id="r2-dasar">Rp 0</div>
-                    <div class="result-grid">
-                        <div class="mini-card">
-                            <div class="mini-value" id="r2-total">Rp 0</div>
-                            <div class="mini-label">Harga Total</div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-value" id="r2-ppn">Rp 0</div>
-                            <div class="mini-label">Jumlah PPN</div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-value" id="r2-tarif">11%</div>
-                            <div class="mini-label">Tarif PPN</div>
-                        </div>
-                    </div>
+            <button class="calculate-btn" onclick="hitungPPN()">🧾 Hitung PPN</button>
+
+            <div class="result" id="result">
+                <h2>📊 Hasil Perhitungan</h2>
+                <div class="result-grid">
+                    <div class="result-card"><div class="label">Harga Dasar</div><div class="value" id="r-dasar">Rp 0</div></div>
+                    <div class="result-card"><div class="label">Jumlah PPN</div><div class="value" id="r-ppn">Rp 0</div></div>
+                    <div class="result-card"><div class="label">Total Harga</div><div class="value" id="r-total">Rp 0</div></div>
                 </div>
             </div>
         </div>
 
         <div class="card article">
             <h2>📚 Apa Itu PPN?</h2>
-            <p>PPN (Pajak Pertambahan Nilai) adalah pajak yang dikenakan atas konsumsi barang dan jasa di dalam Daerah Pabean. PPN di Indonesia saat ini menggunakan tarif <strong>11%</strong> (berlaku sejak April 2022), dan direncanakan naik menjadi <strong>12%</strong> pada tahun 2026.</p>
-            
-            <h3>📋 Rumus PPN</h3>
-            <ul>
-                <li><strong>PPN = Harga Dasar × Tarif PPN</strong></li>
-                <li><strong>Harga Total = Harga Dasar + PPN</strong></li>
-                <li><strong>Harga Dasar = Harga Total ÷ (1 + Tarif PPN)</strong></li>
-            </ul>
-
-            <h3>💡 Contoh Perhitungan</h3>
-            <p>Jika Anda membeli laptop seharga Rp 10.000.000 (belum termasuk PPN 11%):</p>
-            <ul>
-                <li>PPN = 10.000.000 × 11% = <strong>Rp 1.100.000</strong></li>
-                <li>Total yang harus dibayar = 10.000.000 + 1.100.000 = <strong>Rp 11.100.000</strong></li>
-            </ul>
-
-            <h3>📊 Tarif PPN di Indonesia</h3>
-            <table class="premium-table">
-                <thead>
-                    <tr>
-                        <th>Tahun</th>
-                        <th>Tarif PPN</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>2022 - 2025</td><td>11%</td><td>Tarif saat ini (berlaku)</td></tr>
-                    <tr><td>2026</td><td>12%</td><td>Rencana kenaikan (UU HPP)</td></tr>
-                </tbody>
-            </table>
-
-            <h3> Tools Lainnya</h3>
+            <p>PPN (Pajak Pertambahan Nilai) adalah pajak konsumsi yang dikenakan atas barang dan jasa. Tarif standar saat ini adalah 11%.</p>
+            <h3>🔗 Tools Lainnya</h3>
             <div class="tools-grid">
-                <a href="index.html" class="tool-card">
-                    <div class="tool-icon">⚖️</div>
-                    <div class="tool-name">Kalkulator BMI</div>
-                    <div class="tool-desc">Hitung indeks massa tubuh</div>
-                </a>
-                <a href="kalkulator-diskon.html" class="tool-card">
-                    <div class="tool-icon">💸</div>
-                    <div class="tool-name">Kalkulator Diskon</div>
-                    <div class="tool-desc">Hitung potongan harga</div>
-                </a>
-                <a href="kalkulator-persen.html" class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <div class="tool-name">Kalkulator Persentase</div>
-                    <div class="tool-desc">Hitung persentase</div>
-                </a>
-                <a href="kalkulator-umur.html" class="tool-card">
-                    <div class="tool-icon">🎂</div>
-                    <div class="tool-name">Kalkulator Umur</div>
-                    <div class="tool-desc">Hitung usia tepat</div>
-                </a>
-                <a href="kalkulator-bmr.html" class="tool-card">
-                    <div class="tool-icon">❤️</div>
-                    <div class="tool-name">Kalkulator BMR</div>
-                    <div class="tool-desc">Metabolisme basal</div>
-                </a>
-                <a href="kalkulator-kalori.html" class="tool-card">
-                    <div class="tool-icon">🔥</div>
-                    <div class="tool-name">Kalkulator Kalori</div>
-                    <div class="tool-desc">Kebutuhan kalori harian</div>
-                </a>
+                <a href="kalkulator-diskon.html" class="tool-card"><div class="tool-icon">💸</div><div class="tool-name">Kalkulator Diskon</div><div class="tool-desc">Hitung potongan harga</div></a>
+                <a href="kalkulator-persen.html" class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Kalkulator Persentase</div><div class="tool-desc">Hitung persentase</div></a>
+                <a href="kalkulator-cicilan.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-name">Kalkulator Cicilan</div><div class="tool-desc">Simulasi KPR & Kredit</div></a>
+                <a href="kalkulator-umur.html" class="tool-card"><div class="tool-icon">🎂</div><div class="tool-name">Kalkulator Umur</div><div class="tool-desc">Hitung usia tepat</div></a>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-links">
                 <a href="index.html">BMI</a>
-                <a href="kalkulator-kalori.html">Kalori</a>
-                <a href="kalkulator-bmr.html">BMR</a>
                 <a href="kalkulator-diskon.html">Diskon</a>
-                <a href="kalkulator-persen.html">Persentase</a>
                 <a href="kalkulator-ppn.html">PPN</a>
                 <a href="faq.html">FAQ</a>
-                <a href="privacy.html">Privacy</a>
                 <a href="about.html">Tentang</a>
             </div>
             <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
@@ -378,48 +151,18 @@
     </div>
 
     <script>
-        function formatRupiah(angka) {
-            return 'Rp ' + Math.round(angka).toLocaleString('id-ID');
-        }
-        
-        function hitungTambahPPN() {
-            const hargaDasar = parseFloat(document.getElementById('harga-dasar').value);
-            const tarif = parseFloat(document.getElementById('tarif-ppn').value);
-            
-            if (!hargaDasar || hargaDasar <= 0) {
-                alert('Mohon isi harga dengan benar!');
-                return;
-            }
-            
-            const ppn = hargaDasar * (tarif / 100);
-            const total = hargaDasar + ppn;
-            
-            document.getElementById('r1-dasar').innerText = formatRupiah(hargaDasar);
-            document.getElementById('r1-ppn').innerText = formatRupiah(ppn);
-            document.getElementById('r1-tarif').innerText = tarif + '%';
-            document.getElementById('r1-total').innerText = formatRupiah(total);
-            document.getElementById('r1-box').style.display = 'block';
-            document.getElementById('r1-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        function hitungSebelumPPN() {
-            const hargaTotal = parseFloat(document.getElementById('harga-total').value);
-            const tarif = parseFloat(document.getElementById('tarif-ppn-2').value);
-            
-            if (!hargaTotal || hargaTotal <= 0) {
-                alert('Mohon isi harga dengan benar!');
-                return;
-            }
-            
-            const hargaDasar = hargaTotal / (1 + (tarif / 100));
-            const ppn = hargaTotal - hargaDasar;
-            
-            document.getElementById('r2-dasar').innerText = formatRupiah(hargaDasar);
-            document.getElementById('r2-ppn').innerText = formatRupiah(ppn);
-            document.getElementById('r2-tarif').innerText = tarif + '%';
-            document.getElementById('r2-total').innerText = formatRupiah(hargaTotal);
-            document.getElementById('r2-box').style.display = 'block';
-            document.getElementById('r2-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        function formatRupiah(angka) { return 'Rp ' + Math.round(angka).toLocaleString('id-ID'); }
+        function hitungPPN() {
+            const harga = parseFloat(document.getElementById('harga').value);
+            const tarif = parseFloat(document.getElementById('tarif').value);
+            if (!harga) { alert('Mohon isi harga!'); return; }
+            const ppn = harga * (tarif / 100);
+            const total = harga + ppn;
+            document.getElementById('r-dasar').innerText = formatRupiah(harga);
+            document.getElementById('r-ppn').innerText = formatRupiah(ppn);
+            document.getElementById('r-total').innerText = formatRupiah(total);
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     </script>
 </body>

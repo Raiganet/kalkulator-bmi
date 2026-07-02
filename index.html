@@ -1,308 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- Favicon Lengkap -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator BMI Online Gratis - Hitung Indeks Massa Tubuh | KalkulatorOnline.my.id</title>
-    <meta name="description" content="Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight, plus tahu berapa kg berat idealmu.">
-    <meta name="keywords" content="kalkulator BMI, hitung BMI, indeks massa tubuh, berat badan ideal, kalkulator kesehatan, BMI calculator Indonesia">
-    <meta name="author" content="KalkulatorOnline.my.id">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.kalkulatoronline.my.id/">
-    
-    <!-- Schema.org: WebSite -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "KalkulatorOnline.my.id",
-      "url": "https://www.kalkulatoronline.my.id",
-      "description": "Kalkulator online gratis untuk kesehatan, keuangan, dan pendidikan",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.kalkulatoronline.my.id/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
-    <!-- Schema.org: BreadcrumbList -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.kalkulatoronline.my.id/"
-      }]
-    }
-    </script>
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.kalkulatoronline.my.id/">
-    <meta property="og:title" content="Kalkulator BMI Online Gratis - Hitung Indeks Massa Tubuh & Berat Ideal">
-    <meta property="og:description" content="Hitung BMI dan berat badan ideal kamu secara gratis.">
-    <meta property="og:image" content="https://www.kalkulatoronline.my.id/og-image.svg">
-    <meta property="og:locale" content="id_ID">
-    <meta property="og:site_name" content="KalkulatorOnline.my.id">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kalkulator BMI Online Gratis">
-    <meta name="twitter:description" content="Hitung BMI dan berat badan ideal kamu secara gratis.">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7747788833891823" crossorigin="anonymous"></script>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-24G7H4QNBD');
-    </script>
-    
+    <meta name="description" content="Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .wrapper { max-width: 900px; margin: 0 auto; }
         
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 25px; background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px;
-        }
-        .navbar .logo {
-            font-size: 20px; font-weight: 800; color: white;
-            text-decoration: none; display: flex; align-items: center; gap: 8px;
-        }
-        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; }
-        .navbar .nav-links a {
-            color: rgba(255,255,255,0.85); text-decoration: none;
-            font-size: 13px; font-weight: 500; padding: 8px 14px;
-            border-radius: 10px; transition: all 0.3s ease;
-        }
+        /* NAVBAR & DROPDOWN */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
+        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
         .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
 
-        .card {
-            background: rgba(255, 255, 255, 0.98); border-radius: 24px;
-            padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px; animation: slideUp 0.6s ease-out;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-header { text-align: center; margin-bottom: 35px; }
-        .hero-header .badge {
-            display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 6px 18px; border-radius: 50px;
-            font-size: 12px; font-weight: 600; margin-bottom: 15px;
-        }
-        .hero-header h1 {
-            font-size: 38px; font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px; line-height: 1.2;
-        }
+        .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
         .hero-header .subtitle { color: #888; font-size: 16px; }
-
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
-        .form-group { position: relative; }
         .form-group label { display: block; margin-bottom: 8px; color: #444; font-weight: 600; font-size: 14px; }
         .form-group .input-wrapper { position: relative; }
         .form-group .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; z-index: 2; }
-        .form-group input {
-            width: 100%; padding: 16px 18px 16px 50px; border: 2px solid #e8ecf1; border-radius: 14px;
-            font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500;
-            transition: all 0.3s ease; background: #f8f9fc;
-        }
-        .form-group input:focus {
-            outline: none; border-color: #667eea; background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
-        }
-        
-        .calculate-btn {
-            width: 100%; padding: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; border: none; border-radius: 14px;
-            font-size: 18px; font-weight: 700; font-family: 'Poppins', sans-serif;
-            cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-        }
-        .calculate-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
-        }
-
+        .form-group input { width: 100%; padding: 16px 18px 16px 50px; border: 2px solid #e8ecf1; border-radius: 14px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500; transition: all 0.3s ease; background: #f8f9fc; }
+        .form-group input:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12); }
+        .calculate-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 14px; font-size: 18px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4); }
+        .calculate-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5); }
         .result { margin-top: 30px; display: none; animation: fadeInUp 0.5s ease; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .result-header { text-align: center; margin-bottom: 20px; }
         .result-header h2 { color: #333; font-size: 20px; font-weight: 700; }
-        
-        .bmi-circle {
-            width: 160px; height: 160px; border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            margin: 0 auto 20px; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
-        }
+        .bmi-circle { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4); }
         .bmi-circle .bmi-number { font-size: 42px; font-weight: 800; color: white; line-height: 1; }
-        .bmi-circle .bmi-label {
-            font-size: 12px; color: rgba(255,255,255,0.8);
-            font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
-        }
-        
+        .bmi-circle .bmi-label { font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
         .result-details { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-        .detail-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            padding: 20px; border-radius: 14px; text-align: center;
-            border: 1px solid #e8ecf1; transition: all 0.3s ease;
-        }
-        .detail-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .detail-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 20px; border-radius: 14px; text-align: center; border: 1px solid #e8ecf1; }
         .detail-card .detail-icon { font-size: 28px; margin-bottom: 8px; }
         .detail-card .detail-value { font-size: 22px; font-weight: 700; color: #333; }
         .detail-card .detail-label { font-size: 12px; color: #888; font-weight: 500; margin-top: 4px; }
-        
-        .ideal-weight-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px; border-radius: 20px; margin: 25px 0;
-            color: white; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
-        }
-        .ideal-weight-title {
-            font-size: 20px; font-weight: 700; margin-bottom: 20px;
-            text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
+        .ideal-weight-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 20px; margin: 25px 0; color: white; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3); }
+        .ideal-weight-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .ideal-weight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-        .ideal-weight-card {
-            background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
-            padding: 20px; border-radius: 14px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .ideal-weight-card .iw-label {
-            font-size: 12px; opacity: 0.9; margin-bottom: 8px;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
+        .ideal-weight-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 20px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.2); }
+        .ideal-weight-card .iw-label { font-size: 12px; opacity: 0.9; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
         .ideal-weight-card .iw-value { font-size: 28px; font-weight: 800; }
         .ideal-weight-card .iw-unit { font-size: 14px; opacity: 0.8; margin-top: 4px; }
-        .ideal-weight-card.highlight {
-            background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.4);
-        }
-        
-        .progress-container {
-            background: rgba(255,255,255,0.15); padding: 20px; border-radius: 14px; margin-top: 15px;
-        }
-        .progress-label {
-            display: flex; justify-content: space-between;
-            margin-bottom: 10px; font-size: 13px; opacity: 0.9;
-        }
-        .progress-bar {
-            height: 12px; background: rgba(255,255,255,0.2);
-            border-radius: 10px; position: relative; overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%; border-radius: 10px; transition: width 1s ease;
-            background: linear-gradient(90deg, #ffd700, #28a745, #ffc107, #dc3545);
-        }
-        .progress-marker {
-            position: absolute; top: -8px; width: 4px; height: 28px;
-            background: white; border-radius: 2px;
-            box-shadow: 0 0 10px rgba(255,255,255,0.8);
-            transition: left 1s ease;
-        }
-        
-        .weight-diff {
-            background: rgba(255,255,255,0.95); padding: 20px;
-            border-radius: 14px; margin-top: 15px; text-align: center; color: #333;
-        }
+        .ideal-weight-card.highlight { background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.4); }
+        .progress-container { background: rgba(255,255,255,0.15); padding: 20px; border-radius: 14px; margin-top: 15px; }
+        .progress-label { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; opacity: 0.9; }
+        .progress-bar { height: 12px; background: rgba(255,255,255,0.2); border-radius: 10px; position: relative; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 10px; transition: width 1s ease; background: linear-gradient(90deg, #ffd700, #28a745, #ffc107, #dc3545); }
+        .progress-marker { position: absolute; top: -8px; width: 4px; height: 28px; background: white; border-radius: 2px; box-shadow: 0 0 10px rgba(255,255,255,0.8); transition: left 1s ease; }
+        .weight-diff { background: rgba(255,255,255,0.95); padding: 20px; border-radius: 14px; margin-top: 15px; text-align: center; color: #333; }
         .weight-diff .diff-value { font-size: 32px; font-weight: 800; margin: 10px 0; }
         .weight-diff .diff-value.positive { color: #28a745; }
         .weight-diff .diff-value.negative { color: #dc3545; }
         .weight-diff .diff-value.neutral { color: #667eea; }
         .weight-diff .diff-message { font-size: 14px; color: #666; line-height: 1.6; }
-        
-        .kategori-badge {
-            display: block; text-align: center; margin-top: 20px;
-            padding: 14px; border-radius: 14px; font-weight: 700; font-size: 18px;
-        }
+        .kategori-badge { display: block; text-align: center; margin-top: 20px; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 18px; }
         .kategori-normal { background: linear-gradient(135deg, #d4edda, #c3e6cb); color: #155724; }
         .kategori-kurus { background: linear-gradient(135deg, #fff3cd, #ffeaa7); color: #856404; }
         .kategori-gemuk { background: linear-gradient(135deg, #ffeaa7, #fdcb6e); color: #856404; }
         .kategori-obesitas { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; }
-
         .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
         .article h3 { font-size: 20px; font-weight: 600; color: #667eea; margin: 30px 0 15px; }
         .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
         .article ul, .article ol { margin-left: 20px; margin-bottom: 20px; }
         .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
-        
-        .premium-table {
-            width: 100%; border-collapse: separate; border-spacing: 0;
-            margin: 25px 0; border-radius: 14px; overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .premium-table thead th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 16px 20px; text-align: left;
-            font-weight: 600; font-size: 14px;
-        }
-        .premium-table tbody td {
-            padding: 14px 20px; border-bottom: 1px solid #f0f0f0;
-            font-size: 14px; color: #555;
-        }
+        .premium-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 25px 0; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .premium-table thead th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px 20px; text-align: left; font-weight: 600; font-size: 14px; }
+        .premium-table tbody td { padding: 14px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #555; }
         .premium-table tbody tr:nth-child(even) { background: #f8f9fc; }
-        .premium-table tbody tr:hover { background: #eef1ff; }
-
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
-        .tool-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            border: 2px solid #e8ecf1; border-radius: 16px;
-            padding: 25px; text-align: center; text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .tool-card:hover {
-            border-color: #667eea; transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
-        }
+        .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
+        .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
         .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
         .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
         .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
-
-        .footer {
-            background: rgba(255,255,255,0.98); padding: 30px;
-            border-radius: 20px; text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
+        .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-        .footer-links a {
-            color: #667eea; text-decoration: none; font-size: 14px;
-            font-weight: 500; padding: 6px 14px; border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+        .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
         .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
         .footer p { color: #aaa; font-size: 13px; }
-
+        
         @media (max-width: 768px) {
             body { padding: 12px; }
             .card { padding: 25px; border-radius: 18px; }
@@ -312,248 +110,108 @@
             .ideal-weight-grid { grid-template-columns: 1fr; }
             .tools-grid { grid-template-columns: 1fr; }
             .navbar { flex-direction: column; gap: 12px; }
-            .navbar .nav-links { justify-content: center; }
-            .bmi-circle { width: 130px; height: 130px; }
-            .bmi-circle .bmi-number { font-size: 34px; }
+            .navbar .nav-links { justify-content: center; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown .dropbtn { width: 100%; text-align: center; }
+            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .dropdown-content a { text-align: center; }
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <nav class="navbar">
-            <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
+            <a href="index.html" class="logo"> KalkulatorOnline</a>
             <div class="nav-links">
-                <a href="index.html">BMI</a>
-                <a href="kalkulator-kalori.html">Kalori</a>
-                <a href="kalkulator-bmr.html">BMR</a>
-                <a href="kalkulator-cicilan.html">Cicilan</a>
-                <a href="faq.html">FAQ</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="index.html">️⚖️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html"> Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
             </div>
         </nav>
 
+        <!-- KONTEN KALKULATOR BMI (SAMA SEPERTI SEBELUMNYA) -->
         <div class="card">
             <div class="hero-header">
                 <div class="badge">✨ Gratis & Akurat</div>
                 <h1>Kalkulator BMI</h1>
                 <p class="subtitle">Hitung BMI & Berat Badan Idealmu dalam Hitungan Detik</p>
             </div>
-
             <div class="form-grid">
-                <div class="form-group">
-                    <label>Berat Badan</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">⚖️</span>
-                        <input type="number" id="berat" placeholder="Contoh: 65" min="1">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Tinggi Badan</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📏</span>
-                        <input type="number" id="tinggi" placeholder="Contoh: 170" min="1">
-                    </div>
-                </div>
+                <div class="form-group"><label>Berat Badan</label><div class="input-wrapper"><span class="input-icon">⚖️</span><input type="number" id="berat" placeholder="Contoh: 65" min="1"></div></div>
+                <div class="form-group"><label>Tinggi Badan</label><div class="input-wrapper"><span class="input-icon"></span><input type="number" id="tinggi" placeholder="Contoh: 170" min="1"></div></div>
             </div>
-
             <button class="calculate-btn" onclick="hitungBMI()">🚀 Hitung BMI & Berat Ideal</button>
-
             <div class="result" id="result">
-                <div class="result-header">
-                    <h2>📊 Hasil Perhitungan Kamu</h2>
-                </div>
-                
-                <div class="bmi-circle">
-                    <span class="bmi-label">BMI</span>
-                    <span class="bmi-number" id="r-bmi">0</span>
-                </div>
-
+                <div class="result-header"><h2>📊 Hasil Perhitungan Kamu</h2></div>
+                <div class="bmi-circle"><span class="bmi-label">BMI</span><span class="bmi-number" id="r-bmi">0</span></div>
                 <div class="result-details">
-                    <div class="detail-card">
-                        <div class="detail-icon">⚖️</div>
-                        <div class="detail-value" id="r-berat">0</div>
-                        <div class="detail-label">Berat Sekarang (kg)</div>
-                    </div>
-                    <div class="detail-card">
-                        <div class="detail-icon">📏</div>
-                        <div class="detail-value" id="r-tinggi">0</div>
-                        <div class="detail-label">Tinggi Badan (cm)</div>
-                    </div>
-                    <div class="detail-card">
-                        <div class="detail-icon"></div>
-                        <div class="detail-value" id="r-tanggal">-</div>
-                        <div class="detail-label">Tanggal Cek</div>
-                    </div>
+                    <div class="detail-card"><div class="detail-icon">⚖️</div><div class="detail-value" id="r-berat">0</div><div class="detail-label">Berat Sekarang (kg)</div></div>
+                    <div class="detail-card"><div class="detail-icon">📏</div><div class="detail-value" id="r-tinggi">0</div><div class="detail-label">Tinggi Badan (cm)</div></div>
+                    <div class="detail-card"><div class="detail-icon"></div><div class="detail-value" id="r-tanggal">-</div><div class="detail-label">Tanggal Cek</div></div>
                 </div>
-
                 <div class="ideal-weight-section">
                     <div class="ideal-weight-content">
-                        <div class="ideal-weight-title">
-                            <span></span>
-                            <span>Berat Badan Ideal Untukmu</span>
-                        </div>
-                        
+                        <div class="ideal-weight-title"><span></span><span>Berat Badan Ideal Untukmu</span></div>
                         <div class="ideal-weight-grid">
-                            <div class="ideal-weight-card highlight">
-                                <div class="iw-label">Range Ideal (WHO)</div>
-                                <div class="iw-value" id="r-range-ideal">-</div>
-                                <div class="iw-unit">kilogram</div>
-                            </div>
-                            <div class="ideal-weight-card">
-                                <div class="iw-label">Rumus Broca</div>
-                                <div class="iw-value" id="r-broca">-</div>
-                                <div class="iw-unit">kilogram</div>
-                            </div>
+                            <div class="ideal-weight-card highlight"><div class="iw-label">Range Ideal (WHO)</div><div class="iw-value" id="r-range-ideal">-</div><div class="iw-unit">kilogram</div></div>
+                            <div class="ideal-weight-card"><div class="iw-label">Rumus Broca</div><div class="iw-value" id="r-broca">-</div><div class="iw-unit">kilogram</div></div>
                         </div>
-
-                        <div class="progress-container">
-                            <div class="progress-label">
-                                <span>Kurus</span>
-                                <span>Normal</span>
-                                <span>Gemuk</span>
-                                <span>Obesitas</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-                                <div class="progress-marker" id="progress-marker" style="left: 0%"></div>
-                            </div>
-                        </div>
-
-                        <div class="weight-diff">
-                            <div style="font-size: 14px; color: #888; margin-bottom: 5px;">Selisih dengan Berat Ideal</div>
-                            <div class="diff-value" id="r-diff">0 kg</div>
-                            <div class="diff-message" id="r-diff-message">-</div>
-                        </div>
+                        <div class="progress-container"><div class="progress-label"><span>Kurus</span><span>Normal</span><span>Gemuk</span><span>Obesitas</span></div><div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div><div class="progress-marker" id="progress-marker" style="left: 0%"></div></div></div>
+                        <div class="weight-diff"><div style="font-size: 14px; color: #888; margin-bottom: 5px;">Selisih dengan Berat Ideal</div><div class="diff-value" id="r-diff">0 kg</div><div class="diff-message" id="r-diff-message">-</div></div>
                     </div>
                 </div>
-
                 <div class="kategori-badge" id="r-kategori-badge">Kategori: -</div>
             </div>
         </div>
 
         <div class="card article">
-            <h2>📚 Apa Itu BMI (Body Mass Index)?</h2>
-            <p>BMI (Body Mass Index) atau Indeks Massa Tubuh (IMT) adalah alat ukur yang digunakan untuk menentukan apakah berat badan seseorang berada dalam kategori sehat atau tidak berdasarkan tinggi badannya. BMI dikembangkan oleh matematikawan Belgia, Adolphe Quetelet, pada tahun 1830-an dan kini menjadi standar internasional yang digunakan oleh WHO (World Health Organization).</p>
-            <p>BMI dihitung dengan rumus sederhana: <strong>Berat Badan (kg)  Tinggi Badan (m)²</strong>. Misalnya, jika berat Anda 65 kg dan tinggi 170 cm (1.7 m), maka BMI = 65 ÷ (1.7 × 1.7) = <strong>22.5</strong>.</p>
-
-            <h3>📋 Kategori BMI Menurut WHO</h3>
+            <h2>📚 Apa Itu BMI?</h2>
+            <p>BMI (Body Mass Index) atau Indeks Massa Tubuh (IMT) adalah alat ukur yang digunakan untuk menentukan apakah berat badan seseorang berada dalam kategori sehat atau tidak berdasarkan tinggi badannya.</p>
+            <h3> Kategori BMI Menurut WHO</h3>
             <table class="premium-table">
-                <thead>
-                    <tr>
-                        <th>Kategori</th>
-                        <th>Rentang BMI</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Kategori</th><th>Rentang BMI</th><th>Keterangan</th></tr></thead>
                 <tbody>
-                    <tr><td>⚠️ Kurus (Underweight)</td><td>&lt; 18.5</td><td>Berat badan kurang, risiko malnutrisi</td></tr>
-                    <tr><td>✅ Normal (Ideal)</td><td>18.5 - 24.9</td><td>Berat badan sehat, risiko penyakit rendah</td></tr>
-                    <tr><td>️ Gemuk (Overweight)</td><td>25 - 29.9</td><td>Kelebihan berat badan, perlu perhatian</td></tr>
+                    <tr><td>⚠️ Kurus (Underweight)</td><td>&lt; 18.5</td><td>Berat badan kurang</td></tr>
+                    <tr><td>✅ Normal (Ideal)</td><td>18.5 - 24.9</td><td>Berat badan sehat</td></tr>
+                    <tr><td>️ Gemuk (Overweight)</td><td>25 - 29.9</td><td>Kelebihan berat badan</td></tr>
                     <tr><td>❌ Obesitas</td><td>≥ 30</td><td>Risiko tinggi penyakit kronis</td></tr>
                 </tbody>
             </table>
-
-            <h3>💡 Tips Menjaga Berat Badan Ideal</h3>
-            <ol>
-                <li><strong>Olahraga teratur:</strong> Minimal 30 menit sehari, 5 kali seminggu (jalan cepat, lari, renang, bersepeda)</li>
-                <li><strong>Makan bergizi seimbang:</strong> Konsumsi karbohidrat kompleks, protein, lemak sehat, sayur, dan buah</li>
-                <li><strong>Perbanyak air putih:</strong> Minimal 8 gelas (2 liter) per hari untuk metabolisme optimal</li>
-                <li><strong>Tidur cukup:</strong> 7-8 jam per hari, kurang tidur bisa meningkatkan hormon lapar</li>
-                <li><strong>Hindari makanan cepat saji:</strong> Kurangi gorengan, makanan olahan, dan tinggi gula</li>
-                <li><strong>Kelola stres:</strong> Stres bisa memicu makan berlebihan (emotional eating)</li>
-                <li><strong>Pantau berat badan rutin:</strong> Timbang badan 1-2 kali seminggu di waktu yang sama</li>
-            </ol>
-
-            <h3>⚠️ Mengapa BMI Penting?</h3>
-            <p>Mengetahui BMI Anda sangat penting karena berat badan yang tidak ideal dapat meningkatkan risiko berbagai penyakit serius seperti <strong>diabetes tipe 2, penyakit jantung, hipertensi, stroke, kanker, dan sleep apnea</strong>. Dengan memantau BMI secara rutin, Anda dapat mengambil langkah preventif untuk menjaga kesehatan jangka panjang.</p>
-            <p>Namun, perlu diingat bahwa BMI bukan satu-satunya indikator kesehatan. Faktor lain seperti komposisi tubuh (otot vs lemak), distribusi lemak, usia, jenis kelamin, dan aktivitas fisik juga perlu dipertimbangkan.</p>
-
             <h3>🔗 Tools Lainnya</h3>
             <div class="tools-grid">
-                <!-- KESEHATAN -->
-                <a href="index.html" class="tool-card">
-                    <div class="tool-icon">⚖️</div>
-                    <div class="tool-name">Kalkulator BMI</div>
-                    <div class="tool-desc">Hitung indeks massa tubuh</div>
-                </a>
-                <a href="kalkulator-kalori.html" class="tool-card">
-                    <div class="tool-icon">🔥</div>
-                    <div class="tool-name">Kalkulator Kalori</div>
-                    <div class="tool-desc">Kebutuhan kalori harian</div>
-                </a>
-                <a href="kalkulator-bmr.html" class="tool-card">
-                    <div class="tool-icon">❤️</div>
-                    <div class="tool-name">Kalkulator BMR</div>
-                    <div class="tool-desc">Metabolisme basal</div>
-                </a>
-                <a href="kalkulator-air.html" class="tool-card">
-                    <div class="tool-icon">💧</div>
-                    <div class="tool-name">Kalkulator Air</div>
-                    <div class="tool-desc">Kebutuhan air minum</div>
-                </a>
-                <a href="kalkulator-masa-subur.html" class="tool-card">
-                    <div class="tool-icon">🌸</div>
-                    <div class="tool-name">Masa Subur</div>
-                    <div class="tool-desc">Program kehamilan</div>
-                </a>
-                <a href="kalkulator-kehamilan.html" class="tool-card">
-                    <div class="tool-icon">🤰</div>
-                    <div class="tool-name">Kalkulator Kehamilan</div>
-                    <div class="tool-desc">Hitung HPL & usia janin</div>
-                </a>
-                <a href="kalkulator-body-fat.html" class="tool-card">
-                    <div class="tool-icon">🧍</div>
-                    <div class="tool-name">Body Fat %</div>
-                    <div class="tool-desc">Persentase lemak tubuh</div>
-                </a>
-                <a href="kalkulator-whtr.html" class="tool-card">
-                    <div class="tool-icon">📏</div>
-                    <div class="tool-name">Kalkulator WHtR</div>
-                    <div class="tool-desc">Rasio pinggang-tinggi</div>
-                </a>
-
-                <!-- KEUANGAN -->
-                <a href="kalkulator-cicilan.html" class="tool-card">
-                    <div class="tool-icon">💰</div>
-                    <div class="tool-name">Kalkulator Cicilan</div>
-                    <div class="tool-desc">Simulasi KPR & Kredit</div>
-                </a>
-                <a href="kalkulator-diskon.html" class="tool-card">
-                    <div class="tool-icon">💸</div>
-                    <div class="tool-name">Kalkulator Diskon</div>
-                    <div class="tool-desc">Hitung potongan harga</div>
-                </a>
-                <a href="kalkulator-ppn.html" class="tool-card">
-                    <div class="tool-icon">🧾</div>
-                    <div class="tool-name">Kalkulator PPN</div>
-                    <div class="tool-desc">Hitung pajak PPN 11%</div>
-                </a>
-                <a href="kalkulator-persen.html" class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <div class="tool-name">Kalkulator Persentase</div>
-                    <div class="tool-desc">Hitung persen dengan mudah</div>
-                </a>
-
-                <!-- UMUM & PENDIDIKAN -->
-                <a href="kalkulator-umur.html" class="tool-card">
-                    <div class="tool-icon">🎂</div>
-                    <div class="tool-name">Kalkulator Umur</div>
-                    <div class="tool-desc">Hitung usia tepat</div>
-                </a>
-                <a href="konversi-satuan.html" class="tool-card">
-                    <div class="tool-icon">🔄</div>
-                    <div class="tool-name">Konversi Satuan</div>
-                    <div class="tool-desc">Ubah satuan ukuran</div>
-                </a>
-                <a href="cara-menghitung-bmi.html" class="tool-card">
-                    <div class="tool-icon">📖</div>
-                    <div class="tool-name">Panduan BMI</div>
-                    <div class="tool-desc">Cara menghitung manual</div>
-                </a>
-                <a href="faq.html" class="tool-card">
-                    <div class="tool-icon">❓</div>
-                    <div class="tool-name">FAQ</div>
-                    <div class="tool-desc">Pertanyaan umum</div>
-                </a>
+                <a href="kalkulator-kalori.html" class="tool-card"><div class="tool-icon">🔥</div><div class="tool-name">Kalkulator Kalori</div><div class="tool-desc">Kebutuhan kalori harian</div></a>
+                <a href="kalkulator-bmr.html" class="tool-card"><div class="tool-icon">❤️</div><div class="tool-name">Kalkulator BMR</div><div class="tool-desc">Metabolisme basal</div></a>
+                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Program kehamilan</div></a>
+                <a href="kalkulator-cicilan.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-name">Kalkulator Cicilan</div><div class="tool-desc">Simulasi KPR & Kredit</div></a>
             </div>
         </div>
 
@@ -563,107 +221,55 @@
                 <a href="kalkulator-kalori.html">Kalori</a>
                 <a href="kalkulator-bmr.html">BMR</a>
                 <a href="kalkulator-cicilan.html">Cicilan</a>
-                <a href="kalkulator-diskon.html">Diskon</a>
-                <a href="kalkulator-ppn.html">PPN</a>
-                <a href="kalkulator-umur.html">Umur</a>
-                <a href="konversi-satuan.html">Konversi</a>
                 <a href="faq.html">FAQ</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
                 <a href="about.html">Tentang</a>
             </div>
             <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
         </div>
     </div>
 
-    <!-- Cookie Consent & Social Share -->
-    <script src="cookie-consent.js"></script>
-    <script src="social-share.js"></script>
-
     <script>
         function hitungBMI() {
             const berat = parseFloat(document.getElementById('berat').value);
             const tinggi = parseFloat(document.getElementById('tinggi').value);
-
-            if (!berat || !tinggi) {
-                alert('Mohon isi berat dan tinggi badan dulu ya!');
-                return;
-            }
-
+            if (!berat || !tinggi) { alert('Mohon isi berat dan tinggi badan dulu ya!'); return; }
             const tinggiM = tinggi / 100;
             const bmi = (berat / (tinggiM * tinggiM)).toFixed(1);
-            
             const today = new Date();
             const tanggal = today.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-
             document.getElementById('r-berat').innerText = berat;
             document.getElementById('r-tinggi').innerText = tinggi;
             document.getElementById('r-bmi').innerText = bmi;
             document.getElementById('r-tanggal').innerText = tanggal;
-
             const beratIdealMin = (18.5 * tinggiM * tinggiM).toFixed(1);
             const beratIdealMax = (24.9 * tinggiM * tinggiM).toFixed(1);
             document.getElementById('r-range-ideal').innerText = `${beratIdealMin} - ${beratIdealMax}`;
-            
             const beratBroca = ((tinggi - 100) - (0.1 * (tinggi - 100))).toFixed(1);
             document.getElementById('r-broca').innerText = beratBroca;
-            
             const selisih = (berat - beratBroca).toFixed(1);
             const selisihAbs = Math.abs(selisih);
             const diffElement = document.getElementById('r-diff');
             const diffMessage = document.getElementById('r-diff-message');
-            
             diffElement.className = 'diff-value';
-            
-            if (selisih > 0.5) {
-                diffElement.classList.add('negative');
-                diffElement.innerText = `+${selisihAbs} kg`;
-                diffMessage.innerHTML = `Kamu perlu <strong>menurunkan ${selisihAbs} kg</strong> untuk mencapai berat ideal.<br>Mulai dengan defisit kalori 500 kkal/hari + olahraga rutin! 💪`;
-            } else if (selisih < -0.5) {
-                diffElement.classList.add('positive');
-                diffElement.innerText = `-${selisihAbs} kg`;
-                diffMessage.innerHTML = `Kamu perlu <strong>menaikan ${selisihAbs} kg</strong> untuk mencapai berat ideal.<br>Perbanyak asupan protein dan latihan kekuatan! 🥗`;
-            } else {
-                diffElement.classList.add('neutral');
-                diffElement.innerText = `✨ Perfect!`;
-                diffMessage.innerHTML = `Selamat! Berat badanmu sudah <strong>IDEAL</strong>! <br>Pertahankan dengan pola hidup sehat ya!`;
-            }
-            
+            if (selisih > 0.5) { diffElement.classList.add('negative'); diffElement.innerText = `+${selisihAbs} kg`; diffMessage.innerHTML = `Kamu perlu <strong>menurunkan ${selisihAbs} kg</strong> untuk mencapai berat ideal.`; }
+            else if (selisih < -0.5) { diffElement.classList.add('positive'); diffElement.innerText = `-${selisihAbs} kg`; diffMessage.innerHTML = `Kamu perlu <strong>menaikan ${selisihAbs} kg</strong> untuk mencapai berat ideal.`; }
+            else { diffElement.classList.add('neutral'); diffElement.innerText = `✨ Perfect!`; diffMessage.innerHTML = `Selamat! Berat badanmu sudah <strong>IDEAL</strong>!`; }
             const bmiValue = parseFloat(bmi);
             let progressPercent = 0;
-            if (bmiValue < 18.5) {
-                progressPercent = (bmiValue / 18.5) * 25;
-            } else if (bmiValue <= 24.9) {
-                progressPercent = 25 + ((bmiValue - 18.5) / 6.4) * 25;
-            } else if (bmiValue <= 29.9) {
-                progressPercent = 50 + ((bmiValue - 24.9) / 5) * 25;
-            } else {
-                progressPercent = Math.min(75 + ((bmiValue - 29.9) / 10) * 25, 100);
-            }
-            
+            if (bmiValue < 18.5) progressPercent = (bmiValue / 18.5) * 25;
+            else if (bmiValue <= 24.9) progressPercent = 25 + ((bmiValue - 18.5) / 6.4) * 25;
+            else if (bmiValue <= 29.9) progressPercent = 50 + ((bmiValue - 24.9) / 5) * 25;
+            else progressPercent = Math.min(75 + ((bmiValue - 29.9) / 10) * 25, 100);
             document.getElementById('progress-fill').style.width = progressPercent + '%';
             document.getElementById('progress-marker').style.left = progressPercent + '%';
-
             const badge = document.getElementById('r-kategori-badge');
             let kategori = '';
             badge.className = 'kategori-badge';
-            
-            if (bmiValue < 18.5) {
-                kategori = 'Kurus (Underweight)';
-                badge.classList.add('kategori-kurus');
-            } else if (bmiValue <= 24.9) {
-                kategori = 'Normal (Ideal)';
-                badge.classList.add('kategori-normal');
-            } else if (bmiValue <= 29.9) {
-                kategori = 'Gemuk (Overweight)';
-                badge.classList.add('kategori-gemuk');
-            } else {
-                kategori = 'Obesitas';
-                badge.classList.add('kategori-obesitas');
-            }
-            
+            if (bmiValue < 18.5) { kategori = 'Kurus (Underweight)'; badge.classList.add('kategori-kurus'); }
+            else if (bmiValue <= 24.9) { kategori = 'Normal (Ideal)'; badge.classList.add('kategori-normal'); }
+            else if (bmiValue <= 29.9) { kategori = 'Gemuk (Overweight)'; badge.classList.add('kategori-gemuk'); }
+            else { kategori = 'Obesitas'; badge.classList.add('kategori-obesitas'); }
             badge.innerText = `Kategori: ${kategori}`;
-
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }

@@ -4,42 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konversi Satuan Online - Panjang, Berat, Suhu | KalkulatorOnline.my.id</title>
-    <meta name="description" content="Konversi satuan online gratis. Ubah satuan panjang, berat, suhu, dan lainnya dengan cepat dan akurat.">
-    <meta name="keywords" content="konversi satuan, ubah satuan, konversi panjang, konversi berat, konversi suhu, kalkulator satuan">
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="description" content="Konversi satuan online gratis. Ubah satuan panjang, berat, suhu, dan lainnya.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Konversi Satuan",
-      "url": "https://www.kalkulatoronline.my.id/konversi-satuan.html",
-      "description": "Konversi satuan panjang, berat, dan suhu"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://www.kalkulatoronline.my.id/"},{"@type": "ListItem","position": 2,"name": "Konversi Satuan","item": "https://www.kalkulatoronline.my.id/konversi-satuan.html"}]
-    }
-    </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS SAMA PERSIS DENGAN FILE SEBELUMNYA */
+        /* CSS SAMA PERSIS DENGAN CICILAN DI ATAS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .wrapper { max-width: 900px; margin: 0 auto; }
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
         .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
         .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
         .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
         .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-header { text-align: center; margin-bottom: 35px; }
@@ -70,7 +56,16 @@
         .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
         .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
         .footer p { color: #aaa; font-size: 13px; }
-        @media (max-width: 768px) { .form-grid, .tools-grid { grid-template-columns: 1fr; } .hero-header h1 { font-size: 28px; } .navbar { flex-direction: column; gap: 12px; } }
+        @media (max-width: 768px) {
+            .form-grid, .tools-grid { grid-template-columns: 1fr; }
+            .hero-header h1 { font-size: 28px; }
+            .navbar { flex-direction: column; gap: 12px; }
+            .navbar .nav-links { justify-content: center; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown .dropbtn { width: 100%; text-align: center; }
+            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .dropdown-content a { text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -78,10 +73,38 @@
         <nav class="navbar">
             <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
             <div class="nav-links">
-                <a href="index.html">BMI</a>
-                <a href="konversi-satuan.html">Konversi</a>
-                <a href="kalkulator-cicilan.html">Cicilan</a>
-                <a href="faq.html">FAQ</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan </a>
+                    <div class="dropdown-content">
+                        <a href="index.html">️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn"> Keuangan </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html"> Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
             </div>
         </nav>
 
@@ -91,32 +114,13 @@
                 <h1>Konversi Satuan</h1>
                 <p class="subtitle">Ubah Satuan Panjang, Berat, dan Suhu dengan Cepat</p>
             </div>
-
             <div class="form-grid">
-                <div class="form-group">
-                    <label>Kategori</label>
-                    <select id="kategori" onchange="updateSatuan()">
-                        <option value="panjang">Panjang</option>
-                        <option value="berat">Berat</option>
-                        <option value="suhu">Suhu</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Nilai</label>
-                    <input type="number" id="nilai" placeholder="Masukkan angka" step="any">
-                </div>
-                <div class="form-group">
-                    <label>Dari Satuan</label>
-                    <select id="dari"></select>
-                </div>
-                <div class="form-group">
-                    <label>Ke Satuan</label>
-                    <select id="ke"></select>
-                </div>
+                <div class="form-group"><label>Kategori</label><select id="kategori" onchange="updateSatuan()"><option value="panjang">Panjang</option><option value="berat">Berat</option><option value="suhu">Suhu</option></select></div>
+                <div class="form-group"><label>Nilai</label><input type="number" id="nilai" placeholder="Masukkan angka" step="any"></div>
+                <div class="form-group"><label>Dari Satuan</label><select id="dari"></select></div>
+                <div class="form-group"><label>Ke Satuan</label><select id="ke"></select></div>
             </div>
-
             <button class="calculate-btn" onclick="konversi()">🔄 Konversi Sekarang</button>
-
             <div class="result" id="result">
                 <h2>Hasil Konversi</h2>
                 <div class="big-value" id="r-hasil">0</div>
@@ -127,18 +131,12 @@
         <div class="card article">
             <h2>📚 Tentang Konversi Satuan</h2>
             <p>Konversi satuan adalah proses mengubah nilai dari satu satuan pengukuran ke satuan lainnya. Ini sangat penting dalam sains, teknik, dan kehidupan sehari-hari.</p>
-            <ul>
-                <li><strong>Panjang:</strong> Meter (m), Kilometer (km), Centimeter (cm), Mil, Inci, Kaki.</li>
-                <li><strong>Berat:</strong> Kilogram (kg), Gram (g), Miligram (mg), Pon (lbs), Ons.</li>
-                <li><strong>Suhu:</strong> Celcius (°C), Fahrenheit (°F), Kelvin (K).</li>
-            </ul>
-
             <h3>🔗 Tools Lainnya</h3>
             <div class="tools-grid">
-                <a href="index.html" class="tool-card"><div class="tool-icon">⚖️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
+                <a href="index.html" class="tool-card"><div class="tool-icon">️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
                 <a href="kalkulator-cicilan.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-name">Kalkulator Cicilan</div><div class="tool-desc">Simulasi KPR & Kredit</div></a>
-                <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon"></div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & Usia Janin</div></a>
-                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Hitung masa subur wanita</div></a>
+                <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon">👶</div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & Usia Janin</div></a>
+                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon"></div><div class="tool-name">Masa Subur</div><div class="tool-desc">Hitung masa subur wanita</div></a>
             </div>
         </div>
 
@@ -155,67 +153,41 @@
     </div>
 
     <script>
-        const dataSatuan = {
-            panjang: ['Meter', 'Kilometer', 'Centimeter', 'Milimeter', 'Mil', 'Yard', 'Kaki', 'Inci'],
-            berat: ['Kilogram', 'Gram', 'Miligram', 'Pon (lbs)', 'Ons', 'Ton'],
-            suhu: ['Celcius', 'Fahrenheit', 'Kelvin']
-        };
-
+        const dataSatuan = { panjang: ['Meter', 'Kilometer', 'Centimeter', 'Milimeter', 'Mil', 'Yard', 'Kaki', 'Inci'], berat: ['Kilogram', 'Gram', 'Miligram', 'Pon (lbs)', 'Ons', 'Ton'], suhu: ['Celcius', 'Fahrenheit', 'Kelvin'] };
         function updateSatuan() {
             const kategori = document.getElementById('kategori').value;
             const dari = document.getElementById('dari');
             const ke = document.getElementById('ke');
-            
-            dari.innerHTML = '';
-            ke.innerHTML = '';
-            
-            dataSatuan[kategori].forEach(s => {
-                dari.add(new Option(s, s));
-                ke.add(new Option(s, s));
-            });
-            
+            dari.innerHTML = ''; ke.innerHTML = '';
+            dataSatuan[kategori].forEach(s => { dari.add(new Option(s, s)); ke.add(new Option(s, s)); });
             if(dataSatuan[kategori].length > 1) ke.selectedIndex = 1;
         }
-
         function konversi() {
             const kategori = document.getElementById('kategori').value;
             const nilai = parseFloat(document.getElementById('nilai').value);
             const dari = document.getElementById('dari').value;
             const ke = document.getElementById('ke').value;
-            
             if (isNaN(nilai)) { alert('Masukkan nilai yang valid!'); return; }
-            
             let hasil = 0;
-            
-            // Konversi ke satuan dasar dulu (Meter, Gram, Celcius)
-            let dasar = 0;
-            
             if (kategori === 'panjang') {
                 const toMeter = { 'Meter': 1, 'Kilometer': 1000, 'Centimeter': 0.01, 'Milimeter': 0.001, 'Mil': 1609.34, 'Yard': 0.9144, 'Kaki': 0.3048, 'Inci': 0.0254 };
-                dasar = nilai * toMeter[dari];
-                hasil = dasar / toMeter[ke];
+                hasil = (nilai * toMeter[dari]) / toMeter[ke];
             } else if (kategori === 'berat') {
                 const toGram = { 'Gram': 1, 'Kilogram': 1000, 'Miligram': 0.001, 'Pon (lbs)': 453.592, 'Ons': 100, 'Ton': 1000000 };
-                dasar = nilai * toGram[dari];
-                hasil = dasar / toGram[ke];
+                hasil = (nilai * toGram[dari]) / toGram[ke];
             } else if (kategori === 'suhu') {
                 let celcius = nilai;
                 if (dari === 'Fahrenheit') celcius = (nilai - 32) * 5/9;
                 else if (dari === 'Kelvin') celcius = nilai - 273.15;
-                
                 if (ke === 'Celcius') hasil = celcius;
                 else if (ke === 'Fahrenheit') hasil = (celcius * 9/5) + 32;
                 else if (ke === 'Kelvin') hasil = celcius + 273.15;
             }
-            
             document.getElementById('r-hasil').innerText = `${hasil.toLocaleString('id-ID', {maximumFractionDigits: 4})} ${ke}`;
             document.getElementById('r-rumus').innerText = `${nilai} ${dari} = ${hasil.toLocaleString('id-ID', {maximumFractionDigits: 4})} ${ke}`;
-            
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-
-        // Init
         updateSatuan();
     </script>
 </body>
