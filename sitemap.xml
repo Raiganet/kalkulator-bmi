@@ -99,4 +99,24 @@
     <priority>0.3</priority>
   </url>
   
+  <url>
+  <loc>https://www.kalkulatoronline.my.id/kalkulator-ukuran-janin.html</loc>
+  <lastmod>2026-07-21</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+  <url>
+  <loc>https://kalkulatoronline.my.id/kalkulator-kontraksi.html</loc>
+  <lastmod>2026-07-21</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://kalkulatoronline.my.id/kalkulator-tendangan.html</loc>
+  <lastmod>2026-07-21</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+  
 </urlset>
