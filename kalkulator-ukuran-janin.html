@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Ukuran Janin - Seberapa Besar Bayi Anda? | KalkulatorOnline.my.id</title>
+    <meta name="description" content="Lihat ukuran janin per minggu kehamilan dengan analogi buah, berat, panjang, dan perkembangan bayi. Gratis & akurat.">
+    <meta name="keywords" content="ukuran janin, sebesar apa bayi, perkembangan janin per minggu, berat janin, panjang janin, kalkulator kehamilan">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Kalkulator Ukuran Janin",
+      "url": "https://www.kalkulatoronline.my.id/kalkulator-ukuran-janin.html",
+      "description": "Lihat ukuran, berat, panjang & perkembangan janin per minggu kehamilan",
+      "applicationCategory": "HealthApplication",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "IDR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://www.kalkulatoronline.my.id/"},{"@type": "ListItem","position": 2,"name": "Kalkulator Ukuran Janin","item": "https://www.kalkulatoronline.my.id/kalkulator-ukuran-janin.html"}]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .wrapper { max-width: 900px; margin: 0 auto; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
+        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
+        .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 220px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-header { text-align: center; margin-bottom: 35px; }
+        .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .hero-header .subtitle { color: #888; font-size: 16px; }
+        .hpht-box { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px dashed #c5cae9; border-radius: 16px; padding: 20px; margin-bottom: 25px; text-align: center; }
+        .hpht-box label { display: block; color: #667eea; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+        .hpht-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .hpht-row input { padding: 12px 16px; border: 2px solid #e8ecf1; border-radius: 12px; font-size: 15px; font-family: 'Poppins', sans-serif; }
+        .hpht-row button { padding: 12px 22px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; }
+        .hpht-result { margin-top: 12px; font-size: 14px; color: #555; font-weight: 600; }
+        .week-control { margin-bottom: 25px; }
+        .week-control .wc-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .week-control .wc-label span { color: #444; font-weight: 600; font-size: 14px; }
+        .week-control .wc-value { font-size: 22px; font-weight: 800; color: #667eea; }
+        .slider-row { display: flex; align-items: center; gap: 12px; }
+        .nav-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 20px; font-weight: 700; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease; }
+        .nav-btn:hover { transform: scale(1.1); }
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        input[type=range] { flex: 1; -webkit-appearance: none; height: 8px; border-radius: 5px; background: #e8ecf1; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); cursor: pointer; box-shadow: 0 4px 12px rgba(102,126,234,0.4); }
+        input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); cursor: pointer; }
+        .fruit-display { text-align: center; margin: 30px 0; }
+        .fruit-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, #f5f7fa 0%, #eef1ff 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; box-shadow: 0 10px 40px rgba(102,126,234,0.2); border: 3px solid #e8ecf1; }
+        .fruit-circle .fruit-emoji { font-size: 90px; line-height: 1; }
+        .fruit-name { font-size: 26px; font-weight: 800; color: #333; }
+        .fruit-compare { font-size: 14px; color: #888; margin-top: 4px; }
+        .measure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .measure-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 18px; text-align: center; color: white; box-shadow: 0 10px 30px rgba(102,126,234,0.3); }
+        .measure-card .m-icon { font-size: 30px; margin-bottom: 8px; }
+        .measure-card .m-value { font-size: 34px; font-weight: 800; line-height: 1; }
+        .measure-card .m-unit { font-size: 14px; opacity: 0.9; }
+        .measure-card .m-label { font-size: 12px; opacity: 0.85; margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .progress-week { margin: 25px 0; }
+        .progress-week .pw-label { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 8px; }
+        .progress-week .pw-bar { height: 12px; background: #e8ecf1; border-radius: 10px; overflow: hidden; }
+        .progress-week .pw-fill { height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; transition: width 0.5s ease; }
+        .dev-box { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border-left: 5px solid #667eea; border-radius: 14px; padding: 22px; margin-top: 20px; }
+        .dev-box .dev-title { font-size: 16px; font-weight: 700; color: #667eea; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .dev-box .dev-text { line-height: 1.8; color: #555; font-size: 15px; }
+        .trimester-badge { display: inline-block; padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; margin-top: 12px; }
+        .tri-1 { background: #d1ecf1; color: #0c5460; }
+        .tri-2 { background: #d4edda; color: #155724; }
+        .tri-3 { background: #fff3cd; color: #856404; }
+        .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
+        .article h3 { font-size: 20px; font-weight: 600; color: #667eea; margin: 30px 0 15px; }
+        .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
+        .article ul, .article ol { margin-left: 20px; margin-bottom: 20px; }
+        .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
+        .premium-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 25px 0; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .premium-table thead th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 18px; text-align: left; font-weight: 600; font-size: 13px; }
+        .premium-table tbody td { padding: 12px 18px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #555; }
+        .premium-table tbody tr:nth-child(even) { background: #f8f9fc; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
+        .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
+        .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
+        .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
+        .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
+        .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
+        .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
+        .footer p { color: #aaa; font-size: 13px; }
+        @media (max-width: 768px) {
+            .measure-grid, .tools-grid { grid-template-columns: 1fr; }
+            .hero-header h1 { font-size: 28px; }
+            .fruit-circle { width: 150px; height: 150px; }
+            .fruit-circle .fruit-emoji { font-size: 72px; }
+            .navbar { flex-direction: column; gap: 12px; }
+            .navbar .nav-links { justify-content: center; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown .dropbtn { width: 100%; text-align: center; }
+            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .dropdown-content a { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan </a>
+                    <div class="dropdown-content">
+                        <a href="index.html">⚖️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                        <a href="kalkulator-kontraksi.html">⏱️ Timer Kontraksi</a>
+                        <a href="kalkulator-tendangan.html">👶 Penghitung Tendangan</a>
+                        <a href="kalkulator-ukuran-janin.html">🍉 Ukuran Janin</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html">📖 Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
+            </div>
+        </nav>
+
+        <div class="card">
+            <div class="hero-header">
+                <div class="badge">🍉 Seberapa Besar Bayi Anda?</div>
+                <h1>Kalkulator Ukuran Janin</h1>
+                <p class="subtitle">Lihat Ukuran, Berat & Perkembangan Bayi per Minggu</p>
+            </div>
+
+            <div class="hpht-box">
+                <label>📅 Atau hitung otomatis dari HPHT</label>
+                <div class="hpht-row">
+                    <input type="date" id="hpht">
+                    <button onclick="hitungDariHPHT()">Hitung Minggu</button>
+                </div>
+                <div class="hpht-result" id="hphtResult"></div>
+            </div>
+
+            <div class="week-control">
+                <div class="wc-label">
+                    <span>Usia Kehamilan</span>
+                    <span class="wc-value" id="weekValue">Minggu 20</span>
+                </div>
+                <div class="slider-row">
+                    <button class="nav-btn" id="btnPrev" onclick="ubahMinggu(-1)">−</button>
+                    <input type="range" id="weekSlider" min="4" max="40" value="20" oninput="render(this.value)">
+                    <button class="nav-btn" id="btnNext" onclick="ubahMinggu(1)">+</button>
+                </div>
+            </div>
+
+            <div class="fruit-display">
+                <div class="fruit-circle"><span class="fruit-emoji" id="fruitEmoji">🍌</span></div>
+                <div class="fruit-name" id="fruitName">Pisang</div>
+                <div class="fruit-compare" id="fruitCompare">Bayi Anda seukuran pisang minggu ini</div>
+                <div><span class="trimester-badge" id="triBadge">Trimester 2</span></div>
+            </div>
+
+            <div class="measure-grid">
+                <div class="measure-card">
+                    <div class="m-icon">⚖️</div>
+                    <div class="m-value" id="mBerat">300</div>
+                    <div class="m-unit">gram</div>
+                    <div class="m-label">Berat Janin</div>
+                </div>
+                <div class="measure-card">
+                    <div class="m-icon">📏</div>
+                    <div class="m-value" id="mPanjang">25</div>
+                    <div class="m-unit">cm</div>
+                    <div class="m-label">Panjang Janin</div>
+                </div>
+            </div>
+
+            <div class="progress-week">
+                <div class="pw-label"><span>Minggu 4</span><span id="pwPercent">50%</span><span>Minggu 40 (HPL)</span></div>
+                <div class="pw-bar"><div class="pw-fill" id="pwFill" style="width:50%"></div></div>
+            </div>
+
+            <div class="dev-box">
+                <div class="dev-title">🌱 Perkembangan Minggu Ini</div>
+                <div class="dev-text" id="devText">-</div>
+            </div>
+        </div>
+
+        <div class="card article">
+            <h2>📚 Tentang Ukuran Janin</h2>
+            <p>Setiap minggu, janin dalam kandungan tumbuh dengan pesat. Kalkulator ini menampilkan <strong>perkiraan ukuran, berat, dan panjang</strong> bayi berdasarkan usia kehamilan, lengkap dengan analogi buah agar lebih mudah dibayangkan.</p>
+            <p>Data di atas merupakan <strong>nilai rata-rata</strong> menurut standar medis. Setiap bayi unik, jadi ukuran sebenarnya bisa sedikit berbeda — dan itu normal!</p>
+
+            <h3>📏 Bagaimana Dokter Mengukur Janin?</h3>
+            <ul>
+                <li><strong>Sebelum 20 minggu:</strong> Diukur <em>Crown-Rump Length (CRL)</em> — dari kepala sampai bokong.</li>
+                <li><strong>Setelah 20 minggu:</strong> Diukur <em>Crown-Heel Length</em> — dari kepala sampai tumit (panjang total).</li>
+                <li><strong>USG</strong> adalah cara paling akurat untuk mengukur berat & panjang janin.</li>
+            </ul>
+
+            <h3>📊 Tabel Ringkas Ukuran per Trimester</h3>
+            <table class="premium-table">
+                <thead><tr><th>Trimester</th><th>Minggu</th><th>Kira-kira Seukuran</th><th>Berat</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>4 – 13</td><td>Biji poppy → Lemon</td><td>0 – 23 g</td></tr>
+                    <tr><td>2</td><td>14 – 27</td><td>Apel → Bawang bombay</td><td>43 g – 875 g</td></tr>
+                    <tr><td>3</td><td>28 – 40</td><td>Kentang → Semangka</td><td>1 kg – 3,5 kg</td></tr>
+                </tbody>
+            </table>
+
+            <h3>💡 Tips untuk Ibu Hamil</h3>
+            <ol>
+                <li><strong>Makan bergizi seimbang</strong> — protein, zat besi, kalsium, dan asam folat sangat penting.</li>
+                <li><strong>Rutin kontrol & USG</strong> untuk memantau pertumbuhan janin sesuai grafik.</li>
+                <li><strong>Hitung tendangan bayi</strong> mulai minggu ke-28 untuk pantau kesehatannya.</li>
+                <li><strong>Istirahat cukup</strong> dan kelola stres agar bayi berkembang optimal.</li>
+            </ol>
+            <p><em>⚕️ Disclaimer: Kalkulator ini hanya alat bantu informasi dan bukan pengganti konsultasi medis. Selalu ikuti arahan dokter atau bidan Anda.</em></p>
+
+            <h3>🔗 Tools Kehamilan Lainnya</h3>
+            <div class="tools-grid">
+                <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon">🤰</div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & usia janin</div></a>
+                <a href="kalkulator-tendangan.html" class="tool-card"><div class="tool-icon">👶</div><div class="tool-name">Penghitung Tendangan</div><div class="tool-desc">Pantau gerakan bayi</div></a>
+                <a href="kalkulator-kontraksi.html" class="tool-card"><div class="tool-icon">⏱️</div><div class="tool-name">Timer Kontraksi</div><div class="tool-desc">Pantau tanda persalinan</div></a>
+                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Program kehamilan</div></a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="index.html">BMI</a>
+                <a href="kalkulator-kehamilan.html">Kehamilan</a>
+                <a href="kalkulator-ukuran-janin.html">Ukuran Janin</a>
+                <a href="kalkulator-tendangan.html">Tendangan</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">Tentang</a>
+            </div>
+            <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+        </div>
+    </div>
+
+    <script>
+        const DATA = [
+            {w:4,  berat:0,    panjang:0.1, emoji:'🫘', buah:'Biji Poppy',     dev:'Embrio seukuran biji kecil. Tabung saraf — calon otak & tulang belakang — mulai terbentuk.'},
+            {w:5,  berat:0.1,  panjang:0.2, emoji:'🌰', buah:'Biji Wijen',     dev:'Jantung mungil mulai berdetak untuk pertama kalinya. Luar biasa!'},
+            {w:6,  berat:0.1,  panjang:0.4, emoji:'🫛', buah:'Kacang Polong',  dev:'Wajah mulai terbentuk, dan tunas tangan serta kaki muncul seperti dayung kecil.'},
+            {w:7,  berat:0.8,  panjang:1.3, emoji:'🫐', buah:'Blueberry',      dev:'Otak berkembang pesat, ukuran embrio hampir dua kali lipat dari minggu lalu.'},
+            {w:8,  berat:1,    panjang:1.6, emoji:'🍒', buah:'Raspberry',      dev:'Semua organ utama sudah ada. Bayi mulai melakukan gerakan kecil pertama.'},
+            {w:9,  berat:2,    panjang:2.3, emoji:'🫒', buah:'Zaitun',         dev:'Jari tangan & kaki mulai terbentuk, dan "ekor" embrio perlahan menghilang.'},
+            {w:10, berat:4,    panjang:3.1, emoji:'🍓', buah:'Stroberi',       dev:'Organ vital mulai berfungsi. Kuku mungil mulai tumbuh di ujung jari.'},
+            {w:11, berat:7,    panjang:4.1, emoji:'🍅', buah:'Tomat Cherry',   dev:'Bayi mulai menendang & meregang, meski gerakannya belum bisa Anda rasakan.'},
+            {w:12, berat:14,   panjang:5.4, emoji:'🍋', buah:'Jeruk Limau',    dev:'Refleks berkembang — jari bisa membuka & menutup. Risiko keguguran menurun.'},
+            {w:13, berat:23,   panjang:7.4, emoji:'🍋', buah:'Lemon',          dev:'Sidik jari unik terbentuk, dan usus mulai berlatih bekerja.'},
+            {w:14, berat:43,   panjang:8.7, emoji:'🍏', buah:'Apel Hijau',     dev:'Bayi bisa membuat ekspresi wajah. Bulu halus (lanugo) mulai menutupi tubuh.'},
+            {w:15, berat:70,   panjang:10.1,emoji:'🥑', buah:'Alpukat',        dev:'Bayi bisa merasakan cahaya, dan tulang-tulangnya mulai mengeras.'},
+            {w:16, berat:100,  panjang:11.6,emoji:'🍐', buah:'Pir',            dev:'Bayi mulai mendengar suara! Otot wajah makin aktif berekspresi.'},
+            {w:17, berat:140,  panjang:13,  emoji:'🥕', buah:'Wortel',         dev:'Lemak mulai menumpuk di bawah kulit, dan kerangka mengeras dari tulang rawan.'},
+            {w:18, berat:190,  panjang:14.2,emoji:'🫑', buah:'Paprika',        dev:'Bayi mulai menguap & cegukan. Pendengarannya makin tajam.'},
+            {w:19, berat:240,  panjang:15.3,emoji:'🥭', buah:'Mangga',         dev:'Indra perasa berkembang, dan lapisan pelindung (vernix) terbentuk di kulit.'},
+            {w:20, berat:300,  panjang:25,  emoji:'🍌', buah:'Pisang',         dev:'🎉 Setengah jalan! Bayi bisa menelan & bergerak aktif. Anda mulai merasakan gerakannya.'},
+            {w:21, berat:360,  panjang:26.7,emoji:'🥒', buah:'Mentimun',       dev:'Gerakan bayi makin kuat. Alis & kelopak mata sudah terbentuk sempurna.'},
+            {w:22, berat:430,  panjang:27.8,emoji:'🍆', buah:'Terong',         dev:'Indra peraba berkembang — bayi bisa merasakan sentuhan di kulitnya.'},
+            {w:23, berat:501,  panjang:28.9,emoji:'🍊', buah:'Jeruk',          dev:'Bayi berlatih bernapas, dan wajahnya makin mirip bayi baru lahir.'},
+            {w:24, berat:600,  panjang:30,  emoji:'🌽', buah:'Jagung',         dev:'Paru-paru berkembang pesat, dan pola tidur-bangun mulai terbentuk.'},
+            {w:25, berat:660,  panjang:34.6,emoji:'🥦', buah:'Brokoli',        dev:'Bayi mulai merespons suara, dan lemak tubuh terus bertambah.'},
+            {w:26, berat:760,  panjang:35.6,emoji:'🥬', buah:'Selada',         dev:'Mata mulai terbuka! Bayi sudah bisa mengenali suara ibu & ayah.'},
+            {w:27, berat:875,  panjang:36.6,emoji:'🧅', buah:'Bawang Bombay',  dev:'Otak berkembang sangat aktif. Bayi bahkan bisa bermimpi (fase REM).'},
+            {w:28, berat:1005, panjang:37.6,emoji:'🥔', buah:'Kentang',        dev:'Bayi bisa berkedip & bermimpi. Posisinya mulai kepala di bawah.'},
+            {w:29, berat:1153, panjang:38.6,emoji:'🎃', buah:'Labu',           dev:'Tulang mengeras, bayi menumpuk kalsium, zat besi, & fosfor.'},
+            {w:30, berat:1319, panjang:39.9,emoji:'🥥', buah:'Kelapa',         dev:'Otak berkembang pesat, dan rambut kepala mulai tumbuh lebat.'},
+            {w:31, berat:1502, panjang:41.1,emoji:'🍍', buah:'Nanas',          dev:'Bayi bisa mengikuti cahaya, dan paru-parunya hampir matang.'},
+            {w:32, berat:1702, panjang:42.4,emoji:'🍈', buah:'Melon',          dev:'Bayi berlatih bernapas & menelan. Kuku jari sudah tumbuh penuh.'},
+            {w:33, berat:1918, panjang:43.7,emoji:'🍈', buah:'Melon Besar',    dev:'Tulang mengeras, kecuali tengkorak — agar fleksibel saat persalinan.'},
+            {w:34, berat:2146, panjang:45,  emoji:'🍈', buah:'Melon Honeydew', dev:'Sistem saraf & paru-paru matang. Lemak terus bertambah untuk hangat.'},
+            {w:35, berat:2383, panjang:46.2,emoji:'🍈', buah:'Melon Besar',    dev:'Ginjal & hati berfungsi penuh. Ruang di rahim mulai terasa sempit.'},
+            {w:36, berat:2622, panjang:47.4,emoji:'🥬', buah:'Selada Romaine', dev:'Bayi mulai turun ke panggul, bersiap untuk lahir. Lemak terus nambah.'},
+            {w:37, berat:2859, panjang:48.6,emoji:'🍉', buah:'Semangka Kecil', dev:'🎉 Bayi cukup bulan! Semua organ sudah siap untuk kehidupan di luar rahim.'},
+            {w:38, berat:3083, panjang:49.9,emoji:'🍉', buah:'Semangka',       dev:'Bayi terus menambah berat, dan cengkeraman tangannya sudah kuat.'},
+            {w:39, berat:3288, panjang:50.7,emoji:'🍉', buah:'Semangka Besar', dev:'Antibodi ibu ditransfer ke bayi untuk perlindungan awal. Siap lahir!'},
+            {w:40, berat:3462, panjang:51.2,emoji:'🎃', buah:'Labu Besar',     dev:'🎊 Selamat, ini HPL! Bayi Anda sudah siap bertemu dunia. Semangat!'}
+        ];
+
+        let currentWeek = 20;
+
+        function render(week) {
+            week = parseInt(week);
+            if (week < 4) week = 4;
+            if (week > 40) week = 40;
+            currentWeek = week;
+
+            const d = DATA[week - 4];
+            document.getElementById('weekSlider').value = week;
+            document.getElementById('weekValue').innerText = 'Minggu ' + week;
+            document.getElementById('fruitEmoji').innerText = d.emoji;
+            document.getElementById('fruitName').innerText = d.buah;
+            document.getElementById('fruitCompare').innerText = 'Bayi Anda seukuran ' + d.buah.toLowerCase() + ' minggu ini';
+            document.getElementById('mBerat').innerText = d.berat < 1 ? d.berat : d.berat.toLocaleString('id-ID');
+            document.getElementById('mPanjang').innerText = d.panjang;
+            document.getElementById('devText').innerText = d.dev;
+
+            // progress
+            const percent = Math.round(((week - 4) / (40 - 4)) * 100);
+            document.getElementById('pwFill').style.width = percent + '%';
+            document.getElementById('pwPercent').innerText = percent + '%';
+
+            // trimester
+            const tri = document.getElementById('triBadge');
+            tri.className = 'trimester-badge';
+            if (week <= 13) { tri.classList.add('tri-1'); tri.innerText = 'Trimester 1'; }
+            else if (week <= 27) { tri.classList.add('tri-2'); tri.innerText = 'Trimester 2'; }
+            else { tri.classList.add('tri-3'); tri.innerText = 'Trimester 3'; }
+
+            // tombol nav
+            document.getElementById('btnPrev').disabled = (week <= 4);
+            document.getElementById('btnNext').disabled = (week >= 40);
+        }
+
+        function ubahMinggu(delta) {
+            render(currentWeek + delta);
+        }
+
+        function hitungDariHPHT() {
+            const hphtVal = document.getElementById('hpht').value;
+            const res = document.getElementById('hphtResult');
+            if (!hphtVal) { res.innerHTML = '⚠️ Silakan pilih tanggal HPHT dulu.'; return; }
+            const hpht = new Date(hphtVal);
+            const today = new Date();
+            if (hpht > today) { res.innerHTML = '⚠️ Tanggal HPHT tidak boleh di masa depan.'; return; }
+            const diffHari = Math.floor((today - hpht) / (1000 * 60 * 60 * 24));
+            const minggu = Math.floor(diffHari / 7);
+            const hari = diffHari % 7;
+            if (minggu < 4) {
+                res.innerHTML = '🌱 Usia kehamilan masih ' + diffHari + ' hari (belum 4 minggu). Embrio masih sangat awal.';
+                render(4);
+                return;
+            }
+            if (minggu > 40) {
+                res.innerHTML = '🎊 Usia kehamilan sudah lewat 40 minggu (' + minggu + ' minggu ' + hari + ' hari). Segera konsultasi ke dokter/bidan!';
+                render(40);
+                return;
+            }
+            res.innerHTML = '✅ Usia kehamilan Anda: <strong>' + minggu + ' minggu ' + hari + ' hari</strong>';
+            render(minggu);
+        }
+
+        // init
+        render(20);
+    </script>
+</body>
+</html>
