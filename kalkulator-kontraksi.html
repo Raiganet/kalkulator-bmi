@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kontraksi - Timer Persalinan | KalkulatorOnline.my.id</title>
+    <meta name="description" content="Timer kontraksi gratis untuk ibu hamil. Hitung durasi & jarak kontraksi, ketahui kapan waktunya ke rumah sakit.">
+    <meta name="keywords" content="kalkulator kontraksi, timer kontraksi, tanda persalinan, kontraksi palsu, braxton hicks, kapan ke rumah sakit">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Kalkulator Kontraksi",
+      "url": "https://www.kalkulatoronline.my.id/kalkulator-kontraksi.html",
+      "description": "Timer kontraksi untuk memantau tanda persalinan",
+      "applicationCategory": "HealthApplication",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "IDR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://www.kalkulatoronline.my.id/"},{"@type": "ListItem","position": 2,"name": "Kalkulator Kontraksi","item": "https://www.kalkulatoronline.my.id/kalkulator-kontraksi.html"}]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .wrapper { max-width: 900px; margin: 0 auto; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
+        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
+        .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-header { text-align: center; margin-bottom: 35px; }
+        .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .hero-header .subtitle { color: #888; font-size: 16px; }
+        .timer-display { text-align: center; margin-bottom: 25px; }
+        .timer-display .timer-label { font-size: 14px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .timer-display .timer-value { font-size: 56px; font-weight: 800; color: #333; font-variant-numeric: tabular-nums; line-height: 1; }
+        .timer-display .timer-sub { font-size: 13px; color: #aaa; margin-top: 8px; }
+        .timer-display.active .timer-value { color: #dc3545; }
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .btn-start { padding: 20px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 14px; font-size: 17px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4); }
+        .btn-start:hover { transform: translateY(-3px); }
+        .btn-start.recording { background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4); animation: pulse 1s infinite; }
+        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+        .btn-reset { padding: 20px; background: #f0f0f0; color: #666; border: none; border-radius: 14px; font-size: 17px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; }
+        .btn-reset:hover { background: #e0e0e0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 25px; }
+        .stat-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 18px 12px; border-radius: 14px; text-align: center; border: 1px solid #e8ecf1; }
+        .stat-card .stat-value { font-size: 24px; font-weight: 800; color: #667eea; }
+        .stat-card .stat-label { font-size: 11px; color: #888; font-weight: 500; margin-top: 4px; }
+        .status-box { padding: 20px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 16px; margin-bottom: 25px; }
+        .status-awal { background: linear-gradient(135deg, #d1ecf1, #bee5eb); color: #0c5460; }
+        .status-pantau { background: linear-gradient(135deg, #fff3cd, #ffeaa7); color: #856404; }
+        .status-rs { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; animation: pulse 1.5s infinite; }
+        .history-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .history-table th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; text-align: left; font-size: 13px; border-radius: 8px 8px 0 0; }
+        .history-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #555; }
+        .history-table tr:nth-child(even) { background: #f8f9fc; }
+        .empty-state { text-align: center; padding: 30px; color: #aaa; font-size: 14px; }
+        .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
+        .article h3 { font-size: 20px; font-weight: 600; color: #667eea; margin: 30px 0 15px; }
+        .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
+        .article ul, .article ol { margin-left: 20px; margin-bottom: 20px; }
+        .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
+        .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
+        .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
+        .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
+        .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
+        .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
+        .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
+        .footer p { color: #aaa; font-size: 13px; }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .hero-header h1 { font-size: 28px; }
+            .timer-display .timer-value { font-size: 44px; }
+            .navbar { flex-direction: column; gap: 12px; }
+            .navbar .nav-links { justify-content: center; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown .dropbtn { width: 100%; text-align: center; }
+            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .dropdown-content a { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan </a>
+                    <div class="dropdown-content">
+                        <a href="index.html">⚖️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                        <a href="kalkulator-kontraksi.html">⏱️ Timer Kontraksi</a>
+                        <a href="kalkulator-tendangan.html">👶 Penghitung Tendangan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html">📖 Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
+            </div>
+        </nav>
+
+        <div class="card">
+            <div class="hero-header">
+                <div class="badge">⏱️ Timer Persalinan</div>
+                <h1>Kalkulator Kontraksi</h1>
+                <p class="subtitle">Pantau Kontraksi & Ketahui Kapan ke Rumah Sakit</p>
+            </div>
+
+            <div class="timer-display" id="timerDisplay">
+                <div class="timer-label" id="timerLabel">Siap Mencatat</div>
+                <div class="timer-value" id="timerValue">00:00</div>
+                <div class="timer-sub" id="timerSub">Tekan "Mulai Kontraksi" saat kontraksi datang</div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-start" id="btnStart" onclick="toggleKontraksi()">▶️ Mulai Kontraksi</button>
+                <button class="btn-reset" onclick="resetAll()">🔄 Reset Semua</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value" id="s-total">0</div><div class="stat-label">Total Kontraksi</div></div>
+                <div class="stat-card"><div class="stat-value" id="s-durasi">0s</div><div class="stat-label">Rata-rata Durasi</div></div>
+                <div class="stat-card"><div class="stat-value" id="s-interval">-</div><div class="stat-label">Rata-rata Jeda</div></div>
+                <div class="stat-card"><div class="stat-value" id="s-terakhir">-</div><div class="stat-label">Jeda Terakhir</div></div>
+            </div>
+
+            <div class="status-box status-awal" id="statusBox">
+                ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.
+            </div>
+
+            <h3 style="color:#333; font-size:18px; margin-bottom:10px;">📋 Riwayat Kontraksi</h3>
+            <div id="historyContainer">
+                <div class="empty-state">Belum ada kontraksi tercatat</div>
+            </div>
+        </div>
+
+        <div class="card article">
+            <h2>📚 Cara Menggunakan Timer Kontraksi</h2>
+            <p>Timer ini membantu Anda memantau pola kontraksi untuk menentukan apakah sudah waktunya menuju rumah sakit atau bidan.</p>
+            <ol>
+                <li><strong>Saat kontraksi MULAI:</strong> Tekan tombol hijau "Mulai Kontraksi". Timer akan menghitung durasi kontraksi.</li>
+                <li><strong>Saat kontraksi SELESAI:</strong> Tekan tombol merah "Akhiri Kontraksi". Durasi & jeda otomatis tercatat.</li>
+                <li><strong>Ulangi</strong> untuk setiap kontraksi berikutnya.</li>
+                <li><strong>Perhatikan status</strong> di atas - sistem akan memberi tahu kapan harus ke RS.</li>
+            </ol>
+
+            <h3>🏥 Aturan 5-1-1 (Kapan ke Rumah Sakit?)</h3>
+            <p>Dokter umumnya menyarankan ke rumah sakit jika kontraksi memenuhi pola <strong>5-1-1</strong>:</p>
+            <ul>
+                <li><strong>5</strong> = Kontraksi datang setiap <strong>5 menit</strong> (atau lebih sering)</li>
+                <li><strong>1</strong> = Masing-masing berlangsung <strong>1 menit</strong> (60 detik)</li>
+                <li><strong>1</strong> = Pola ini berlangsung selama <strong>1 jam</strong> berturut-turut</li>
+            </ul>
+
+            <h3>⚠️ Segera ke RS Jika:</h3>
+            <ul>
+                <li>Ketuban pecah (air keluar)</li>
+                <li>Perdarahan hebat</li>
+                <li>Gerakan bayi berkurang drastis</li>
+                <li>Sakit kepala hebat atau gangguan penglihatan</li>
+                <li>Kontraksi sangat sakit & tidak tertahankan</li>
+            </ul>
+            <p><em>⚕️ Disclaimer: Tool ini hanya alat bantu. Selalu konsultasikan dengan dokter/bidan Anda. Jika ragu, segera hubungi tenaga medis.</em></p>
+
+            <h3>🔗 Tools Kehamilan Lainnya</h3>
+            <div class="tools-grid">
+                <a href="kalkulator-tendangan.html" class="tool-card"><div class="tool-icon">👶</div><div class="tool-name">Penghitung Tendangan</div><div class="tool-desc">Pantau gerakan bayi</div></a>
+                <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon">🤰</div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & usia janin</div></a>
+                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Program kehamilan</div></a>
+                <a href="index.html" class="tool-card"><div class="tool-icon">⚖️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="index.html">BMI</a>
+                <a href="kalkulator-kehamilan.html">Kehamilan</a>
+                <a href="kalkulator-kontraksi.html">Kontraksi</a>
+                <a href="kalkulator-tendangan.html">Tendangan</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">Tentang</a>
+            </div>
+            <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+        </div>
+    </div>
+
+    <script>
+        let isRecording = false;
+        let kontraksiStart = null;
+        let lastEnd = null;
+        let timerInterval = null;
+        let history = [];
+
+        function formatTime(ms) {
+            const totalSec = Math.floor(ms / 1000);
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        }
+
+        function formatTimeFull(ms) {
+            const totalSec = Math.floor(ms / 1000);
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            if (m > 0) return m + 'm ' + s + 's';
+            return s + 's';
+        }
+
+        function toggleKontraksi() {
+            const btn = document.getElementById('btnStart');
+            const display = document.getElementById('timerDisplay');
+            const label = document.getElementById('timerLabel');
+            const value = document.getElementById('timerValue');
+            const sub = document.getElementById('timerSub');
+
+            if (!isRecording) {
+                // MULAI kontraksi
+                isRecording = true;
+                kontraksiStart = Date.now();
+                btn.innerHTML = '⏹️ Akhiri Kontraksi';
+                btn.classList.add('recording');
+                display.classList.add('active');
+                label.innerText = '🔴 Kontraksi Sedang Berlangsung';
+                sub.innerText = 'Tekan "Akhiri" saat kontraksi selesai';
+                timerInterval = setInterval(() => {
+                    value.innerText = formatTime(Date.now() - kontraksiStart);
+                }, 200);
+            } else {
+                // AKHIRI kontraksi
+                isRecording = false;
+                clearInterval(timerInterval);
+                const durasi = Date.now() - kontraksiStart;
+                const now = Date.now();
+                let jeda = null;
+                if (lastEnd !== null) jeda = now - lastEnd;
+
+                history.unshift({
+                    no: history.length + 1,
+                    waktu: new Date(now).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'}),
+                    durasi: durasi,
+                    jeda: jeda
+                });
+                lastEnd = now;
+
+                btn.innerHTML = '▶️ Mulai Kontraksi';
+                btn.classList.remove('recording');
+                display.classList.remove('active');
+                label.innerText = 'Jeda Antar Kontraksi';
+                value.innerText = '00:00';
+                sub.innerText = 'Menunggu kontraksi berikutnya...';
+
+                // Timer jeda
+                timerInterval = setInterval(() => {
+                    if (!isRecording) value.innerText = formatTime(Date.now() - lastEnd);
+                }, 200);
+
+                updateStats();
+                renderHistory();
+                updateStatus();
+            }
+        }
+
+        function updateStats() {
+            const total = history.length;
+            document.getElementById('s-total').innerText = total;
+
+            if (total > 0) {
+                const avgDur = history.reduce((a,b) => a + b.durasi, 0) / total;
+                document.getElementById('s-durasi').innerText = formatTimeFull(avgDur);
+            }
+
+            const denganJeda = history.filter(h => h.jeda !== null);
+            if (denganJeda.length > 0) {
+                const avgJeda = denganJeda.reduce((a,b) => a + b.jeda, 0) / denganJeda.length;
+                document.getElementById('s-interval').innerText = formatTimeFull(avgJeda);
+                document.getElementById('s-terakhir').innerText = formatTimeFull(denganJeda[0].jeda);
+            }
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyContainer');
+            if (history.length === 0) {
+                container.innerHTML = '<div class="empty-state">Belum ada kontraksi tercatat</div>';
+                return;
+            }
+            let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Durasi</th><th>Jeda</th></tr></thead><tbody>';
+            history.forEach((h, i) => {
+                html += '<tr><td>' + (history.length - i) + '</td><td>' + h.waktu + '</td><td>' + formatTimeFull(h.durasi) + '</td><td>' + (h.jeda !== null ? formatTimeFull(h.jeda) : '-') + '</td></tr>';
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function updateStatus() {
+            const box = document.getElementById('statusBox');
+            const denganJeda = history.filter(h => h.jeda !== null);
+            if (history.length < 3) {
+                box.className = 'status-box status-awal';
+                box.innerHTML = 'ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.';
+                return;
+            }
+            const avgJedaMenit = (denganJeda.reduce((a,b) => a + b.jeda, 0) / denganJeda.length) / 60000;
+            const avgDurDetik = (history.reduce((a,b) => a + b.durasi, 0) / history.length) / 1000;
+
+            if (avgJedaMenit <= 5 && avgDurDetik >= 30) {
+                box.className = 'status-box status-rs';
+                box.innerHTML = '🚨 WAKTUNYA KE RUMAH SAKIT! Kontraksi teratur tiap ' + avgJedaMenit.toFixed(1) + ' menit dengan durasi ' + Math.round(avgDurDetik) + ' detik. Segera hubungi bidan/dokter!';
+            } else if (avgJedaMenit <= 10) {
+                box.className = 'status-box status-pantau';
+                box.innerHTML = '⚠️ Kontraksi mulai teratur (tiap ' + avgJedaMenit.toFixed(1) + ' menit). Pantau terus & siapkan perlengkapan persalinan.';
+            } else {
+                box.className = 'status-box status-awal';
+                box.innerHTML = '✅ Kontraksi masih jarang (tiap ' + avgJedaMenit.toFixed(1) + ' menit). Kemungkinan fase awal / Braxton Hicks. Istirahat & tetap pantau.';
+            }
+        }
+
+        function resetAll() {
+            if (history.length > 0 && !confirm('Hapus semua data kontraksi?')) return;
+            isRecording = false;
+            clearInterval(timerInterval);
+            kontraksiStart = null;
+            lastEnd = null;
+            history = [];
+            const btn = document.getElementById('btnStart');
+            btn.innerHTML = '▶️ Mulai Kontraksi';
+            btn.classList.remove('recording');
+            document.getElementById('timerDisplay').classList.remove('active');
+            document.getElementById('timerLabel').innerText = 'Siap Mencatat';
+            document.getElementById('timerValue').innerText = '00:00';
+            document.getElementById('timerSub').innerText = 'Tekan "Mulai Kontraksi" saat kontraksi datang';
+            document.getElementById('s-total').innerText = '0';
+            document.getElementById('s-durasi').innerText = '0s';
+            document.getElementById('s-interval').innerText = '-';
+            document.getElementById('s-terakhir').innerText = '-';
+            document.getElementById('statusBox').className = 'status-box status-awal';
+            document.getElementById('statusBox').innerHTML = 'ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.';
+            renderHistory();
+        }
+    </script>
+</body>
+</html>
