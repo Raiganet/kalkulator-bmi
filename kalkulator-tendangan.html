@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghitung Tendangan Bayi - Kick Counter | KalkulatorOnline.my.id</title>
+    <meta name="description" content="Hitung gerakan & tendangan bayi dalam kandungan. Pantau kesehatan janin dengan metode hitung sampai 10.">
+    <meta name="keywords" content="penghitung tendangan, kick counter, gerakan bayi, hitung tendangan janin, pantau kehamilan">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Penghitung Tendangan Bayi",
+      "url": "https://www.kalkulatoronline.my.id/kalkulator-tendangan.html",
+      "description": "Hitung gerakan & tendangan janin untuk pantau kesehatan bayi",
+      "applicationCategory": "HealthApplication",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "IDR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://www.kalkulatoronline.my.id/"},{"@type": "ListItem","position": 2,"name": "Penghitung Tendangan","item": "https://www.kalkulatoronline.my.id/kalkulator-tendangan.html"}]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-24G7H4QNBD');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .wrapper { max-width: 900px; margin: 0 auto; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; }
+        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
+        .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-header { text-align: center; margin-bottom: 35px; }
+        .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .hero-header .subtitle { color: #888; font-size: 16px; }
+        .count-display { text-align: center; margin-bottom: 25px; }
+        .count-display .count-label { font-size: 14px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .count-display .count-value { font-size: 80px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+        .count-display .count-target { font-size: 16px; color: #aaa; margin-top: 5px; }
+        .progress-wrap { margin-bottom: 25px; }
+        .progress-bar { height: 14px; background: #e8ecf1; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; transition: width 0.4s ease; width: 0%; }
+        .progress-text { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-top: 6px; }
+        .btn-kick { width: 100%; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 20px; font-size: 22px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 10px 35px rgba(102, 126, 234, 0.4); margin-bottom: 15px; }
+        .btn-kick:hover { transform: translateY(-3px); box-shadow: 0 14px 45px rgba(102, 126, 234, 0.5); }
+        .btn-kick:active { transform: scale(0.97); }
+        .btn-kick.done { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); box-shadow: 0 10px 35px rgba(40, 167, 69, 0.4); }
+        .btn-undo { width: 100%; padding: 12px; background: #f0f0f0; color: #666; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; margin-bottom: 20px; }
+        .btn-undo:hover { background: #e0e0e0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px; }
+        .stat-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 18px 12px; border-radius: 14px; text-align: center; border: 1px solid #e8ecf1; }
+        .stat-card .stat-value { font-size: 22px; font-weight: 800; color: #667eea; }
+        .stat-card .stat-label { font-size: 11px; color: #888; font-weight: 500; margin-top: 4px; }
+        .status-box { padding: 20px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 16px; margin-bottom: 25px; }
+        .status-normal { background: linear-gradient(135deg, #d4edda, #c3e6cb); color: #155724; }
+        .status-aktif { background: linear-gradient(135deg, #d1ecf1, #bee5eb); color: #0c5460; }
+        .status-waspada { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; }
+        .history-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .history-table th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; text-align: left; font-size: 13px; border-radius: 8px 8px 0 0; }
+        .history-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #555; }
+        .history-table tr:nth-child(even) { background: #f8f9fc; }
+        .empty-state { text-align: center; padding: 30px; color: #aaa; font-size: 14px; }
+        .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
+        .article h3 { font-size: 20px; font-weight: 600; color: #667eea; margin: 30px 0 15px; }
+        .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
+        .article ul, .article ol { margin-left: 20px; margin-bottom: 20px; }
+        .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
+        .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
+        .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
+        .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
+        .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
+        .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
+        .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
+        .footer p { color: #aaa; font-size: 13px; }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .hero-header h1 { font-size: 28px; }
+            .count-display .count-value { font-size: 64px; }
+            .navbar { flex-direction: column; gap: 12px; }
+            .navbar .nav-links { justify-content: center; width: 100%; }
+            .dropdown { width: 100%; }
+            .dropdown .dropbtn { width: 100%; text-align: center; }
+            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .dropdown-content a { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="index.html">⚖️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                        <a href="kalkulator-kontraksi.html">⏱️ Timer Kontraksi</a>
+                        <a href="kalkulator-tendangan.html">👶 Penghitung Tendangan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum </a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html">📖 Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
+            </div>
+        </nav>
+
+        <div class="card">
+            <div class="hero-header">
+                <div class="badge">👶 Pantau Gerakan Bayi</div>
+                <h1>Penghitung Tendangan</h1>
+                <p class="subtitle">Hitung Gerakan Bayi dengan Metode "Hitung sampai 10"</p>
+            </div>
+
+            <div class="count-display">
+                <div class="count-label">Jumlah Tendangan</div>
+                <div class="count-value" id="countValue">0</div>
+                <div class="count-target">dari target 10 gerakan</div>
+            </div>
+
+            <div class="progress-wrap">
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-text"><span>0</span><span id="progressPercent">0%</span><span>10</span></div>
+            </div>
+
+            <button class="btn-kick" id="btnKick" onclick="catatTendangan()">👶 Catat Tendangan / Gerakan</button>
+            <button class="btn-undo" onclick="undoTendangan()">↩️ Batalkan Tendangan Terakhir</button>
+
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value" id="s-waktu">00:00</div><div class="stat-label">Waktu Sesi</div></div>
+                <div class="stat-card"><div class="stat-value" id="s-rata">-</div><div class="stat-label">Rata-rata Jeda</div></div>
+                <div class="stat-card"><div class="stat-value" id="s-perjam">0</div><div class="stat-label">Perkiraan / Jam</div></div>
+            </div>
+
+            <div class="status-box status-aktif" id="statusBox">
+                ℹ️ Mulai menghitung! Duduk/berbaring tenang, fokus rasakan gerakan bayi.
+            </div>
+
+            <h3 style="color:#333; font-size:18px; margin-bottom:10px;">📋 Riwayat Tendangan</h3>
+            <div id="historyContainer">
+                <div class="empty-state">Belum ada tendangan tercatat</div>
+            </div>
+        </div>
+
+        <div class="card article">
+            <h2>📚 Cara Menghitung Tendangan Bayi</h2>
+            <p>Menghitung gerakan bayi (kick counting) adalah cara sederhana untuk memantau kesehatan janin, terutama mulai <strong>usia kehamilan 28 minggu</strong>.</p>
+            <ol>
+                <li><strong>Pilih waktu</strong> saat bayi biasanya aktif (setelah makan/minum manis).</li>
+                <li><strong>Duduk atau berbaring</strong> miring ke kiri dalam posisi tenang.</li>
+                <li><strong>Tekan tombol</strong> setiap kali merasakan gerakan (tendangan, gulungan, atau dorongan).</li>
+                <li><strong>Target:</strong> rasakan <strong>10 gerakan dalam 2 jam</strong> (biasanya tercapai dalam 30 menit).</li>
+            </ol>
+
+            <h3>✅ Apa yang Normal?</h3>
+            <ul>
+                <li><strong>10 gerakan dalam &lt; 2 jam</strong> = Bayi sehat & aktif ✅</li>
+                <li>Rata-rata ibu merasakan 10 gerakan dalam <strong>30 menit</strong></li>
+                <li>Bayi punya siklus tidur 20-40 menit (normal jika sebentar tidak bergerak)</li>
+            </ul>
+
+            <h3>⚠️ Kapan Harus Waspada?</h3>
+            <ul>
+                <li>Kurang dari 10 gerakan dalam 2 jam</li>
+                <li>Gerakan berkurang drastis dari biasanya</li>
+                <li>Tidak ada gerakan sama sekali selama beberapa jam</li>
+            </ul>
+            <p><strong>Jika waspada:</strong> Minum air dingin/manis, berbaring miring kiri, hitung ulang 1 jam. Jika masih kurang, <strong>segera hubungi dokter/bidan</strong>.</p>
+            <p><em>⚕️ Disclaimer: Tool ini hanya alat bantu pemantauan. Kepercayaan pada insting Anda penting - jika merasa ada yang tidak beres, segera konsultasi ke tenaga medis.</em></p>
+
+            <h3>🔗 Tools Kehamilan Lainnya</h3>
+            <div class="tools-grid">
+                <a href="kalkulator-kontraksi.html" class="tool-card"><div class="tool-icon">⏱️</div><div class="tool-name">Timer Kontraksi</div><div class="tool-desc">Pantau tanda persalinan</div></a>
+                <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon">🤰</div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & usia janin</div></a>
+                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Program kehamilan</div></a>
+                <a href="kalkulator-kalori.html" class="tool-card"><div class="tool-icon">🔥</div><div class="tool-name">Kalkulator Kalori</div><div class="tool-desc">Nutrisi ibu hamil</div></a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="index.html">BMI</a>
+                <a href="kalkulator-kehamilan.html">Kehamilan</a>
+                <a href="kalkulator-kontraksi.html">Kontraksi</a>
+                <a href="kalkulator-tendangan.html">Tendangan</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">Tentang</a>
+            </div>
+            <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
+        </div>
+    </div>
+
+    <script>
+        const TARGET = 10;
+        const WARN_MS = 2 * 60 * 60 * 1000; // 2 jam
+        let count = 0;
+        let sessionStart = null;
+        let kicks = []; // timestamp tiap tendangan
+        let sessionInterval = null;
+
+        function formatTime(ms) {
+            const totalSec = Math.floor(ms / 1000);
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        }
+        function formatTimeFull(ms) {
+            const totalSec = Math.floor(ms / 1000);
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            if (m > 0) return m + 'm ' + s + 's';
+            return s + 's';
+        }
+
+        function catatTendangan() {
+            const now = Date.now();
+            if (sessionStart === null) {
+                sessionStart = now;
+                startSessionTimer();
+            }
+            count++;
+            kicks.push(now);
+            updateUI();
+            renderHistory();
+            updateStatus();
+
+            if (count >= TARGET) {
+                clearInterval(sessionInterval);
+                const btn = document.getElementById('btnKick');
+                btn.classList.add('done');
+                btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
+                btn.onclick = resetSession;
+            }
+        }
+
+        function undoTendangan() {
+            if (count === 0) return;
+            count--;
+            kicks.pop();
+            if (count < TARGET) {
+                const btn = document.getElementById('btnKick');
+                btn.classList.remove('done');
+                btn.innerHTML = '👶 Catat Tendangan / Gerakan';
+                btn.onclick = catatTendangan;
+                if (sessionStart !== null && !sessionInterval) startSessionTimer();
+            }
+            updateUI();
+            renderHistory();
+            updateStatus();
+        }
+
+        function startSessionTimer() {
+            if (sessionInterval) clearInterval(sessionInterval);
+            sessionInterval = setInterval(() => {
+                if (sessionStart !== null) {
+                    document.getElementById('s-waktu').innerText = formatTime(Date.now() - sessionStart);
+                    updateStatus();
+                }
+            }, 1000);
+        }
+
+        function updateUI() {
+            document.getElementById('countValue').innerText = count;
+            const percent = Math.min((count / TARGET) * 100, 100);
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressPercent').innerText = Math.round(percent) + '%';
+
+            if (kicks.length >= 2) {
+                let totalJeda = 0;
+                for (let i = 1; i < kicks.length; i++) totalJeda += kicks[i] - kicks[i-1];
+                const avg = totalJeda / (kicks.length - 1);
+                document.getElementById('s-rata').innerText = formatTimeFull(avg);
+            } else {
+                document.getElementById('s-rata').innerText = '-';
+            }
+
+            if (sessionStart !== null && count > 0) {
+                const elapsedJam = (Date.now() - sessionStart) / 3600000;
+                const perJam = elapsedJam > 0 ? Math.round(count / elapsedJam) : 0;
+                document.getElementById('s-perjam').innerText = perJam;
+            }
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyContainer');
+            if (kicks.length === 0) {
+                container.innerHTML = '<div class="empty-state">Belum ada tendangan tercatat</div>';
+                return;
+            }
+            let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Jeda dari sebelumnya</th></tr></thead><tbody>';
+            kicks.forEach((t, i) => {
+                const waktu = new Date(t).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+                const jeda = i > 0 ? formatTimeFull(t - kicks[i-1]) : '-';
+                html += '<tr><td>' + (i+1) + '</td><td>' + waktu + '</td><td>' + jeda + '</td></tr>';
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function updateStatus() {
+            const box = document.getElementById('statusBox');
+            if (count >= TARGET) {
+                const elapsed = Date.now() - sessionStart;
+                box.className = 'status-box status-normal';
+                box.innerHTML = '🎉 HEBAT! Bayi Anda aktif & sehat. 10 gerakan tercapai dalam ' + formatTimeFull(elapsed) + '.';
+                return;
+            }
+            if (sessionStart !== null && (Date.now() - sessionStart) > WARN_MS && count < TARGET) {
+                box.className = 'status-box status-waspada';
+                box.innerHTML = '⚠️ PERHATIAN: Sudah 2 jam tapi belum 10 gerakan. Minum air manis, berbaring miring kiri. Jika masih kurang, hubungi dokter/bidan!';
+                return;
+            }
+            if (count === 0) {
+                box.className = 'status-box status-aktif';
+                box.innerHTML = 'ℹ️ Mulai menghitung! Duduk/berbaring tenang, fokus rasakan gerakan bayi.';
+                return;
+            }
+            box.className = 'status-box status-aktif';
+            box.innerHTML = '👶 Terus menghitung... ' + count + ' dari 10 gerakan. Tetap tenang & fokus.';
+        }
+
+        function resetSession() {
+            count = 0;
+            kicks = [];
+            sessionStart = null;
+            clearInterval(sessionInterval);
+            sessionInterval = null;
+            const btn = document.getElementById('btnKick');
+            btn.classList.remove('done');
+            btn.innerHTML = '👶 Catat Tendangan / Gerakan';
+            btn.onclick = catatTendangan;
+            document.getElementById('s-waktu').innerText = '00:00';
+            document.getElementById('s-rata').innerText = '-';
+            document.getElementById('s-perjam').innerText = '0';
+            updateUI();
+            renderHistory();
+            updateStatus();
+        }
+    </script>
+</body>
+</html>
