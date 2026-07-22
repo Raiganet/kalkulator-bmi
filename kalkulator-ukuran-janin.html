@@ -294,14 +294,7 @@
     <ul class="fz-list" id="devMom"></ul>
   </section>
 
-  <section class="fz-card">
-    <h2><i data-lucide="line-chart"></i> Grafik Pertumbuhan</h2>
-    <div class="fz-charts">
-      <!-- [FIX-GRAFIK] sekarang <div>, bukan <svg> -->
-      <div class="fz-chart"><div class="ct"><span>Berat Janin (gram)</span><span id="gWval">300 g</span></div><div id="chartW" class="fz-svgwrap" role="img" aria-label="Grafik berat janin per minggu"></div></div>
-      <div class="fz-chart"><div class="ct"><span>Panjang Janin (cm)</span><span id="gLval">25 cm</span></div><div id="chartL" class="fz-svgwrap" role="img" aria-label="Grafik panjang janin per minggu"></div></div>
-    </div>
-  </section>
+  
 
   <section class="fz-card">
     <h2><i data-lucide="apple"></i> Nutrisi Penting <span class="fz-h2sub" id="nutriTri">Trimester 2</span></h2>
@@ -552,8 +545,8 @@ function renderRich(w,d,percent){
   $('factsList').innerHTML=fc.map(x=>'<div class="fc">'+icon('sparkles')+'<span>'+x+'</span></div>').join('');
 
   /* [FIX-GRAFIK] gambar ke <div> sebagai string <svg> lengkap */
-  drawChart('chartW', w, x=>D[x-4].b, 'gWval', ' g');
-  drawChart('chartL', w, x=>D[x-4].l, 'gLval', ' cm');
+  /* drawChart chartW dihapus */
+  /* drawChart chartL dihapus */
 
   document.querySelectorAll('#timeline button').forEach(b=>{ const on=+b.dataset.w===w; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); if(on) b.scrollIntoView({inline:'center',block:'nearest'}); });
 
@@ -629,8 +622,8 @@ render(currentWeek);
 if(window.__hpht){ const r=$('hphtResult'); if(r){ const t=new Date(), dh=Math.floor((t-window.__hpht)/864e5), mg=Math.floor(dh/7), hr=dh%7; r.innerHTML='✅ HPHT tersimpan. Usia kehamilan: <strong>'+mg+' minggu '+hr+' hari</strong>'; } }
 const _rb=$('fzReset'); if(_rb) _rb.addEventListener('click', resetView);
 /* redraw grafik saat lebar berubah (biar marker tetap bulat) */
-addEventListener('resize', ()=>{ clearTimeout(window.__rz); window.__rz=setTimeout(()=>{ drawChart('chartW',currentWeek,x=>D[x-4].b,'gWval',' g'); drawChart('chartL',currentWeek,x=>D[x-4].l,'gLval',' cm'); },150); });
-addEventListener('load', ()=>{ window.lucide&&lucide.createIcons(); drawChart('chartW',currentWeek,x=>D[x-4].b,'gWval',' g'); drawChart('chartL',currentWeek,x=>D[x-4].l,'gLval',' cm'); });
+addEventListener('resize', ()=>{ clearTimeout(window.__rz); window.__rz=setTimeout(()=>{ /* drawChart chartW dihapus */ /* drawChart chartL dihapus */ },150); });
+addEventListener('load', ()=>{ window.lucide&&lucide.createIcons(); /* drawChart chartW dihapus */ /* drawChart chartL dihapus */ });
 </script>
 
 <script src="/app.js" defer></script>
