@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#6C63FF">
+<title>Cara Install Aplikasi KalkulatorOnline - PWA Offline | KalkulatorOnline.my.id</title>
+<meta name="description" content="Panduan memasang KalkulatorOnline sebagai aplikasi di HP & laptop (Android, iPhone, Desktop). Gratis, bisa offline, tampil penuh seperti aplikasi asli.">
+<meta name="keywords" content="install aplikasi kalkulator, PWA, add to home screen, aplikasi offline, kalkulator kehamilan, kalkulator BMI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.kalkulatoronline.my.id/cara-install-aplikasi.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.kalkulatoronline.my.id/cara-install-aplikasi.html">
+<meta property="og:title" content="Cara Install Aplikasi KalkulatorOnline (PWA)">
+<meta property="og:description" content="Pasang KalkulatorOnline di HP & laptop seperti aplikasi asli — gratis & bisa offline.">
+<meta property="og:image" content="https://www.kalkulatoronline.my.id/og-image.svg">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kalkulator">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="/app.css">
+
+<!-- Schema: HowTo + FAQ -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.kalkulatoronline.my.id/"},{"@type":"ListItem","position":2,"name":"Cara Install Aplikasi","item":"https://www.kalkulatoronline.my.id/cara-install-aplikasi.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Cara Install Aplikasi KalkulatorOnline","description":"Memasang KalkulatorOnline sebagai aplikasi (PWA) di perangkat Anda.","step":[{"@type":"HowToStep","position":1,"name":"Buka situs","text":"Buka kalkulatoronline.my.id di browser (Chrome/Edge di Android & Desktop, Safari di iPhone)."},{"@type":"HowToStep","position":2,"name":"Pilih Install","text":"Ketuk menu browser lalu pilih 'Install aplikasi' / 'Tambahkan ke Layar Utama', atau ketuk tombol Install yang muncul di situs."},{"@type":"HowToStep","position":3,"name":"Buka dari icon","text":"Konfirmasi pemasangan, lalu buka aplikasi dari icon di layar utama — tampil penuh & bisa offline."}]}</script>
+<script type="application/ld+json" id="faqSchema"></script>
+
+<style>
+/* ===== scoped: halaman panduan install (tidak menyentuh logika apa pun) ===== */
+.pi-hero{text-align:center;padding:26px 0 6px}
+.pi-hero .ic{width:66px;height:66px;border-radius:20px;background:var(--grad-brand);display:grid;place-items:center;margin:0 auto 14px;box-shadow:var(--sh-float)}
+.pi-hero .ic svg{width:32px;height:32px;color:#fff}
+.pi-hero h1{font-size:clamp(26px,6vw,42px);font-weight:800;margin:0 0 8px}
+.pi-hero p{color:var(--text-2);max-width:640px;margin:0 auto;font-size:clamp(14px,2.4vw,17px)}
+.pi-status{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:700;border:1px solid var(--border);background:var(--surface-solid);color:var(--text-2)}
+.pi-status svg{width:16px;height:16px}
+.pi-status.ok{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.4);color:#15803d}
+.pi-status.ok svg{color:var(--c-success)}
+[data-theme="dark"] .pi-status.ok{color:#86efac}
+.pi-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.pi-cta .btn-inst{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;background:var(--grad-brand);color:#fff;font-weight:700;font-size:15px;box-shadow:var(--sh-float);transition:transform .2s}
+.pi-cta .btn-inst svg{width:18px;height:18px}
+.pi-cta .btn-inst:hover{transform:translateY(-2px)}
+.pi-cta .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--border);color:var(--text-2);font-weight:600;font-size:14px}
+.pi-cta .btn-ghost svg{width:17px;height:17px}
+/* platform tabs */
+.pi-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.pi-tab{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface-solid);font-weight:700;font-size:14px;color:var(--text-2);cursor:pointer;transition:.25s}
+.pi-tab svg{width:18px;height:18px}
+.pi-tab.on{background:var(--grad-brand);color:#fff;border-color:transparent;box-shadow:var(--sh-float)}
+.pi-tab .rec{font-size:10px;background:rgba(255,255,255,.25);padding:2px 7px;border-radius:999px;font-weight:700}
+.pi-tab:not(.on) .rec{background:var(--grad-soft);color:var(--c-primary)}
+.pi-panel{display:none;animation:pifade .35s ease}
+.pi-panel.on{display:block}
+@keyframes pifade{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* steps */
+.pi-steps{list-style:none;display:grid;gap:12px;counter-reset:st}
+.pi-step{display:flex;gap:14px;align-items:flex-start;background:var(--surface-solid);border:1px solid var(--border);border-radius:16px;padding:16px}
+.pi-step .n{counter-increment:st;flex:none;width:34px;height:34px;border-radius:11px;background:var(--grad-brand);color:#fff;font-weight:800;display:grid;place-items:center;font-size:15px}
+.pi-step .n::before{content:counter(st)}
+.pi-step .t{font-size:14px;line-height:1.65;color:var(--text-2)}
+.pi-step .t b{color:var(--text)}
+.pi-step .t .key{display:inline-flex;align-items:center;gap:5px;background:var(--grad-soft);color:var(--c-primary);font-weight:700;padding:2px 9px;border-radius:8px;font-size:12px}
+.pi-note{margin-top:14px;display:flex;gap:10px;background:var(--grad-soft);border:1px solid var(--border);border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.6;color:var(--text-2)}
+.pi-note svg{width:18px;height:18px;color:var(--c-primary);flex:none;margin-top:1px}
+/* why grid */
+.pi-why{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.pi-why{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.pi-why{grid-template-columns:repeat(3,1fr)}}
+.pi-why .w{display:flex;gap:12px;background:var(--surface-solid);border:1px solid var(--border);border-radius:16px;padding:16px}
+.pi-why .w .wi{width:42px;height:42px;border-radius:12px;background:var(--grad-soft);color:var(--c-primary);display:grid;place-items:center;flex:none}
+.pi-why .w .wi svg{width:21px;height:21px}
+.pi-why .w b{display:block;font-size:14px;margin-bottom:3px}
+.pi-why .w span{font-size:13px;color:var(--text-3);line-height:1.5}
+/* accordion (trouble + faq) */
+.acc-q{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 16px;background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;font-weight:600;font-size:14px;color:var(--text);margin-bottom:8px;cursor:pointer}
+.acc-q svg{width:18px;height:18px;flex:none;transition:transform .3s;color:var(--c-primary)}
+.acc-q[aria-expanded="true"] svg{transform:rotate(180deg)}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--text-2);font-size:13.5px;line-height:1.7}
+.acc-a .in{padding:2px 16px 16px}
+.acc-a .in code{background:var(--grad-soft);color:var(--c-primary);padding:1px 6px;border-radius:6px;font-size:12px}
+.pi-disc{font-size:12px;color:var(--text-3);line-height:1.7;border-left:3px solid var(--border);padding-left:14px}
+</style>
+</head>
+<body data-ko="redesign">
+<a class="skip" href="#main">Lewati ke konten</a>
+
+<!-- ===== NAVBAR ===== -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda"><span class="logo-mark"><i data-lucide="calculator"></i></span><span>Kalkulator<span class="grad-text">Online</span></span></a>
+    <div class="nav-spacer"></div>
+    <div class="search" role="search"><i class="s-ico" data-lucide="search"></i><input id="searchDesktop" type="search" placeholder="Cari kalkulator… (cth: BMI)" aria-label="Cari kalkulator" autocomplete="off"><div class="search-results" id="searchDesktopRes" role="listbox"></div></div>
+    <nav aria-label="Menu utama"><ul class="menu">
+      <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a><div class="dropdown-content">
+        <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a><a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a><a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a><a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a><a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a><a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a><a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a><a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a><a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a><a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a><a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a></div></li>
+      <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a><div class="dropdown-content">
+        <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a><a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a><a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a><a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a></div></li>
+      <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a><div class="dropdown-content">
+        <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a><a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a><a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a><a href="cara-install-aplikasi.html"><i data-lucide="download"></i> Install Aplikasi</a><a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a></div></li>
+      <li><a href="about.html">Tentang</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="icon-btn js-theme" aria-label="Ganti tema"><svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg></button>
+      <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
+      <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true"><div class="scrim"></div><aside class="panel">
+  <div class="dhead"><strong>Menu</strong><button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button></div>
+  <div class="search" role="search"><i class="s-ico" data-lucide="search"></i><input id="searchDrawer" type="search" placeholder="Cari kalkulator…" aria-label="Cari kalkulator" autocomplete="off"><div class="search-results" id="searchDrawerRes"></div></div>
+  <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub"><a href="index.html"><i data-lucide="scale"></i> BMI</a><a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalori</a><a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> BMR</a><a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a><a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a><a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat</a><a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a><a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a><a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Kontraksi</a><a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a><a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a></div></details>
+  <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub"><a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a><a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a><a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a><a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a></div></details>
+  <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub"><a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a><a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a><a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a><a href="cara-install-aplikasi.html"><i data-lucide="download"></i> Install Aplikasi</a><a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a></div></details>
+  <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
+</aside></div>
+
+<main id="main" class="wrap">
+  <!-- HERO -->
+  <section class="card">
+    <div class="pi-hero">
+      <div class="ic"><i data-lucide="smartphone"></i></div>
+      <h1 class="grad-text">Install Seperti Aplikasi</h1>
+      <p>Pasang KalkulatorOnline di HP atau laptop Anda — tampil <strong>penuh tanpa address bar</strong>, punya icon sendiri di layar utama, dan <strong>tetap bisa dipakai offline</strong>. 100% gratis, tanpa Play Store / App Store.</p>
+      <div class="pi-status" id="piStatus"><i data-lucide="info"></i><span>Mendeteksi perangkat…</span></div>
+      <div class="pi-cta">
+        <button class="btn-inst js-install" id="piInstallBtn"><i data-lucide="download"></i> Install Sekarang</button>
+        <a class="btn-ghost" href="#panduan"><i data-lucide="book-open"></i> Lihat Panduan Manual</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANDUAN PER PLATFORM -->
+  <section class="card" id="panduan">
+    <h2 style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><i data-lucide="list-checks"></i> Panduan Install</h2>
+    <p style="color:var(--text-2);font-size:14px;margin-bottom:18px">Pilih perangkat Anda (otomatis terdeteksi, tapi bisa diganti manual):</p>
+
+    <div class="pi-tabs" role="tablist" aria-label="Pilih platform">
+      <button class="pi-tab" data-p="android" role="tab"><i data-lucide="smartphone"></i> Android <span class="rec" id="recAndroid" style="display:none">TERDETEKSI</span></button>
+      <button class="pi-tab" data-p="ios" role="tab"><i data-lucide="apple"></i> iPhone / iPad <span class="rec" id="recIos" style="display:none">TERDETEKSI</span></button>
+      <button class="pi-tab" data-p="desktop" role="tab"><i data-lucide="monitor"></i> Laptop / PC <span class="rec" id="recDesktop" style="display:none">TERDETEKSI</span></button>
+    </div>
+
+    <!-- ANDROID -->
+    <div class="pi-panel" id="panel-android" role="tabpanel">
+      <ol class="pi-steps">
+        <li class="pi-step"><span class="n"></span><span class="t">Buka situs ini di <b>Chrome</b> (atau Samsung Internet / Edge).</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Ketuk menu <span class="key"><i data-lucide="more-vertical" style="width:13px;height:13px"></i> ⋮</span> di kanan atas browser.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Pilih <b>“Install aplikasi”</b> atau <b>“Tambahkan ke Layar utama”</b>.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Ketuk <b>“Install”</b> / <b>“Tambahkan”</b> pada popup yang muncul.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Selesai! Icon <b>Kalkulator</b> muncul di layar utama & laci aplikasi — buka seperti aplikasi biasa.</span></li>
+      </ol>
+      <div class="pi-note"><i data-lucide="sparkles"></i><span><b>Lebih cepat:</b> kalau muncul banner atau tombol <em>“Install”</em> otomatis di situs ini, ketuk itu saja — langsung terpasang.</span></div>
+    </div>
+
+    <!-- iOS -->
+    <div class="pi-panel" id="panel-ios" role="tabpanel">
+      <ol class="pi-steps">
+        <li class="pi-step"><span class="n"></span><span class="t">Buka situs ini di <b>Safari</b> (bukan Chrome — di iPhone, fitur ini paling baik di Safari).</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Ketuk tombol <b>Bagikan</b> <span class="key"><i data-lucide="share" style="width:13px;height:13px"></i></span> (ikon kotak ber‑panah ke atas) di bar bawah.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Gulir ke bawah, ketuk <b>“Tambahkan ke Layar Utama”</b> (Add to Home Screen).</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Ketuk <b>“Tambah”</b> (Add) di kanan atas.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Selesai! Icon muncul di layar utama; membukanya = tampilan penuh seperti aplikasi.</span></li>
+      </ol>
+      <div class="pi-note"><i data-lucide="info"></i><span>Di iPhone, tombol <em>“Install Sekarang”</em> di atas tidak muncul (batasan iOS) — gunakan langkah Safari ini. Hasil akhirnya sama: aplikasi berdiri sendiri di layar utama.</span></div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div class="pi-panel" id="panel-desktop" role="tabpanel">
+      <ol class="pi-steps">
+        <li class="pi-step"><span class="n"></span><span class="t">Buka situs ini di <b>Chrome</b> atau <b>Edge</b>.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Klik ikon install <span class="key"><i data-lucide="monitor-down" style="width:13px;height:13px"></i></span> di kanan address bar, <b>atau</b> menu <span class="key">⋮</span> → <b>“Install KalkulatorOnline…”</b>.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Klik <b>“Install”</b> pada popup.</span></li>
+        <li class="pi-step"><span class="n"></span><span class="t">Aplikasi terbuka di jendela sendiri & muncul di menu Start / Launchpad / taskbar.</span></li>
+      </ol>
+      <div class="pi-note"><i data-lucide="sparkles"></i><span>Di desktop, tombol <em>“Install Sekarang”</em> di atas biasanya langsung berfungsi — cara paling cepat.</span></div>
+    </div>
+  </section>
+
+  <!-- KENAPA INSTALL -->
+  <section class="card">
+    <h2 style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><i data-lucide="badge-check"></i> Kenapa Perlu Install?</h2>
+    <div class="pi-why">
+      <div class="w"><span class="wi"><i data-lucide="zap"></i></span><div><b>Akses 1 ketuk</b><span>Buka langsung dari layar utama, tanpa mengetik alamat web.</span></div></div>
+      <div class="w"><span class="wi"><i data-lucide="maximize"></i></span><div><b>Tampilan penuh</b><span>Tanpa address bar & tab browser — terasa seperti aplikasi asli.</span></div></div>
+      <div class="w"><span class="wi"><i data-lucide="wifi-off"></i></span><div><b>Bisa offline</b><span>Halaman yang pernah dibuka tetap jalan tanpa internet.</span></div></div>
+      <div class="w"><span class="wi"><i data-lucide="gauge"></i></span><div><b>Lebih cepat</b><span>Dimuat dari cache perangkat, bukan unduh ulang.</span></div></div>
+      <div class="w"><span class="wi"><i data-lucide="battery-charging"></i></span><div><b>Hemat baterai</b><span>Lebih ringan dibanding menjaga banyak tab browser.</span></div></div>
+      <div class="w"><span class="wi"><i data-lucide="refresh-cw"></i></span><div><b>Update otomatis</b><span>Versi terbaru terpasang sendiri saat Anda online.</span></div></div>
+    </div>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="card">
+    <h2 style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><i data-lucide="wrench"></i> Solusi Jika Bermasalah</h2>
+    <div id="troubleWrap"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="card">
+    <h2 style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><i data-lucide="circle-help"></i> Pertanyaan Umum</h2>
+    <div id="faqWrap"></div>
+    <p class="pi-disc" style="margin-top:16px">⚕️ Aplikasi ini adalah <strong>Progressive Web App (PWA)</strong> — dipasang langsung dari browser, bukan dari toko aplikasi. Seluruh data kalkulator (riwayat, catatan) tersimpan <strong>lokal di perangkat Anda</strong> dan tidak dikirim ke server mana pun. Kalkulator bersifat alat bantu edukasi; untuk keputusan medis tetap konsultasikan dengan dokter atau bidan.</p>
+  </section>
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottomnav" aria-label="Navigasi bawah">
+  <a href="index.html"><i data-lucide="home"></i>Beranda</a>
+  <a href="#" onclick="var s=document.getElementById('searchDesktop');if(s){s.focus();}return false"><i data-lucide="search"></i>Cari</a>
+  <a href="cara-install-aplikasi.html"><i data-lucide="download"></i>Install</a>
+  <a href="faq.html"><i data-lucide="circle-help"></i>FAQ</a>
+  <a href="#" class="js-theme"><i data-lucide="moon"></i>Tema</a>
+</nav>
+
+<footer class="foot"><div class="wrap">
+  <div><a class="brand" href="index.html" style="margin-bottom:12px"><span class="logo-mark"><i data-lucide="calculator"></i></span>KalkulatorOnline</a><p style="color:var(--text-2);font-size:14px;max-width:34ch">Kalkulator kesehatan, keuangan & kehamilan gratis — bisa di‑install & offline.</p></div>
+  <div><h4>Kehamilan</h4><a href="kalkulator-kehamilan.html">HPL</a><a href="kalkulator-ukuran-janin.html">Ukuran Janin</a><a href="kalkulator-tendangan.html">Tendangan</a><a href="kalkulator-kontraksi.html">Kontraksi</a></div>
+  <div><h4>Kesehatan</h4><a href="index.html">BMI</a><a href="kalkulator-kalori.html">Kalori</a><a href="kalkulator-masa-subur.html">Masa Subur</a></div>
+  <div><h4>Bantuan</h4><a href="cara-install-aplikasi.html">Install Aplikasi</a><a href="faq.html">FAQ</a><a href="about.html">Tentang</a></div>
+</div><div class="wrap foot-bottom"><span>© 2026 KalkulatorOnline.my.id</span><span>PWA · v1</span></div></footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+</svg>
+
+<script>
+/* ===== perilaku halaman panduan (UI saja, tanpa logika kalkulator) ===== */
+(function(){
+  var $=function(id){return document.getElementById(id);};
+
+  /* deteksi platform */
+  function detect(){
+    var ua=(navigator.userAgent||''), p=(navigator.platform||'');
+    if(/iphone|ipad|ipod/i.test(ua)||(/mac/i.test(p)&&('ontouchend' in document))) return 'ios';
+    if(/android/i.test(ua)) return 'android';
+    return 'desktop';
+  }
+  function setPanel(name){
+    document.querySelectorAll('.pi-tab').forEach(function(t){t.classList.toggle('on',t.dataset.p===name);t.setAttribute('aria-selected',t.dataset.p===name);});
+    document.querySelectorAll('.pi-panel').forEach(function(pn){pn.classList.toggle('on',pn.id==='panel-'+name);});
+  }
+  var plat=detect();
+  setPanel(plat);
+  ({android:'recAndroid',ios:'recIos',desktop:'recDesktop'})[plat] && (function(){var e=$(({android:'recAndroid',ios:'recIos',desktop:'recDesktop'})[plat]); if(e)e.style.display='inline-block';})();
+  document.querySelectorAll('.pi-tab').forEach(function(t){t.addEventListener('click',function(){setPanel(t.dataset.p);});});
+
+  /* status: sudah terinstall / belum */
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || !!navigator.standalone;
+  var st=$('piStatus');
+  if(standalone){
+    st.className='pi-status ok';
+    st.innerHTML='<i data-lucide="check-circle-2"></i><span>Anda sudah menjalankan ini sebagai aplikasi 🎉</span>';
+    var b=$('piInstallBtn'); if(b){b.style.display='none';}
+  } else {
+    var label={android:'Android terdeteksi',ios:'iPhone/iPad terdeteksi — pakai Safari',desktop:'Laptop/PC terdeteksi'}[plat];
+    st.innerHTML='<i data-lucide="smartphone"></i><span>'+label+' · ikuti panduan di bawah</span>';
+  }
+
+  /* accordion builder */
+  function buildAcc(wrapId, items){
+    var w=$(wrapId); if(!w) return; var h='';
+    items.forEach(function(it,i){
+      h+='<button class="acc-q" aria-expanded="false" aria-controls="'+wrapId+'a'+i+'">'+it.q+'<i data-lucide="chevron-down"></i></button>'+
+         '<div class="acc-a" id="'+wrapId+'a'+i+'" role="region"><div class="in">'+it.a+'</div></div>';
+    });
+    w.innerHTML=h;
+    w.querySelectorAll('.acc-q').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var open=btn.getAttribute('aria-expanded')==='true';
+        var panel=$(btn.getAttribute('aria-controls'));
+        btn.setAttribute('aria-expanded',!open);
+        panel.style.maxHeight=open?null:panel.scrollHeight+'px';
+      });
+    });
+  }
+
+  buildAcc('troubleWrap',[
+    {q:'Tombol “Install” / menu install tidak muncul?',a:'Pastikan: (1) Anda memakai browser terbaru; (2) situs dibuka lewat <b>https</b> (sudah); (3) aplikasi belum pernah terinstall; (4) di iPhone, pakai <b>Safari</b>. Kalau baru saja menyiapkan PWA, tunggu deploy selesai lalu <b>hard‑refresh</b> (Ctrl+Shift+R). Di beberapa browser, opsi install baru muncul setelah Anda sebentar menjelajah situs.'},
+    {q:'Sudah install, tapi tampilannya masih seperti browser biasa?',a:'Buka aplikasi dari <b>icon di layar utama</b>, bukan dari tab browser. Kalau masih salah, hapus pemasangan lalu install ulang dari icon/panduan di atas.'},
+    {q:'Kok tidak bisa offline?',a:'Halaman perlu dibuka <b>minimal sekali saat online</b> agar tersimpan ke cache. Kalau service worker lama sempat rusak, buka DevTools → <b>Application → Service Workers → Unregister</b>, lalu reload saat online.'},
+    {q:'Bagaimana cara menghapus / uninstall?',a:'<b>Android:</b> tekan lama icon → Hapus/Uninstall. <b>iPhone:</b> tekan lama icon → Hapus Bookmark. <b>Desktop:</b> pada jendela aplikasi, menu → Uninstall (atau lewat pengaturan aplikasi browser).'},
+    {q:'Apakah install memakai kuota / ruang penyimpanan besar?',a:'Sangat kecil (hanya file web + cache), jauh lebih ringan daripada aplikasi native. Tidak ada unduhan dari toko aplikasi.'}
+  ]);
+
+  var faqs=[
+    {q:'Apakah install-nya gratis?',a:'Ya, 100% gratis. Tidak ada biaya, langganan, atau pembelian di dalam aplikasi.'},
+    {q:'Apakah data saya aman?',a:'Ya. Semua data kalkulator (riwayat, catatan) tersimpan <b>lokal di perangkat Anda</b> dan tidak dikirim ke server mana pun.'},
+    {q:'Apakah butuh internet?',a:'Untuk install pertama & memuat halaman baru, ya. Tapi halaman yang pernah Anda buka bisa dipakai <b>offline</b>.'},
+    {q:'Bedanya dengan bookmark biasa?',a:'PWA tampil <b>penuh</b> (tanpa browser chrome), punya <b>icon & splash screen</b> sendiri, serta bisa <b>offline</b> — bookmark tidak.'},
+    {q:'Kenapa tidak ada di Play Store / App Store?',a:'Karena ini <b>Progressive Web App</b> — dipasang langsung dari browser, tanpa toko aplikasi. Lebih cepat & tanpa proses review store.'},
+    {q:'Apakah otomatis update?',a:'Ya. Saat Anda online, versi terbaru terpasang sendiri di latar belakang.'},
+    {q:'Perangkat apa saja yang didukung?',a:'Android (Chrome/Edge/Samsung Internet), iPhone & iPad (Safari), serta Desktop (Chrome/Edge/Brave).'},
+    {q:'Kalau uninstall, apakah data hilang?',a:'Ya, data lokal ikut terhapus. Gunakan fitur <b>Backup (JSON)</b> di halaman yang menyediakannya jika ingin menyimpan cadangan.'}
+  ];
+  buildAcc('faqWrap', faqs);
+
+  /* schema FAQ */
+  var sch=faqs.map(function(f){return {"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a.replace(/<[^>]+>/g,'')};});
+  var fs=$('faqSchema'); if(fs) fs.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":sch});
+
+  if(window.lucide) lucide.createIcons();
+})();
+</script>
+<script src="/app.js" defer></script>
+</body>
+</html>
