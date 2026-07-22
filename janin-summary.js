@@ -1,13 +1,15 @@
-/* janin-summary.js — Kartu "Ringkasan Minggu" MANDIRI & anti-salah-sinkron.
-   TIDAK membungkus logika apa pun. Hanya membaca apa yang TERLIHAT di layar
-   (sumber tunggal) lalu menyalin ke kartu, dan selalu menulis TERAKHIR.
-   Jadi berapa pun patch inline lama yang bersarang, hasil akhir PASTI = slider. */
+/* janin-summary.js  (v-RINGAN — anti hang)
+   Kartu "Ringkasan Minggu" yang membaca LANGSUNG dari tampilan (sumber tunggal)
+   dan hanya memperbarui lewat listener + debounce.
+   - TIDAK pakai MutationObserver
+   - TIDAK memanggil lucide.createIcons() saat memperbarui (hanya 1x saat buat kartu)
+   - TIDAK membungkus logika kalkulator apa pun
+   => mustahil menyebabkan hang; angka selalu = slider. */
 (function(){
   function $(id){return document.getElementById(id);}
-  function txt(id){var e=$(id);return e?(e.textContent||'').trim():'';}
   function clean(s){return (s||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();}
 
-  /* ---- CSS (idempoten) ---- */
+  /* ---- CSS disuntik 1x via JS (idempoten) ---- */
   var CSS='.fm-sumcard{display:none}.fm-sumcard.show{display:block;animation:fzfade .4s ease}'
    +'.jsum-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 14px}'
    +'.jsum-nm{background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;min-width:0}'
@@ -25,7 +27,7 @@
    +'@media(max-width:420px){.jsum-nums{grid-template-columns:1fr}}@media print{.jsum-act{display:none}}';
   if(!document.getElementById('jsumExtCss')){var st=document.createElement('style');st.id='jsumExtCss';st.textContent=CSS;document.head.appendChild(st);}
 
-  var CARD_HTML='<section class="fz-card fm-sumcard" id="jsumCard" aria-live="polite" aria-label="Ringkasan minggu kehamilan">'
+  var CARD='<section class="fz-card fm-sumcard" id="jsumCard" aria-live="polite" aria-label="Ringkasan minggu kehamilan">'
    +'<h2><i data-lucide="sparkles"></i> Ringkasan Minggu Ini <span class="fz-h2sub" id="jsumWeek">Minggu 20</span></h2>'
    +'<div class="jsum-nums"><div class="jsum-nm"><div class="v grad" id="jsumBerat">-</div><div class="l">Berat</div></div>'
    +'<div class="jsum-nm"><div class="v" id="jsumPanjang">-</div><div class="l">Panjang</div></div>'
@@ -37,53 +39,54 @@
    +'<button type="button" id="jsumClose"><i data-lucide="x"></i> Sembunyikan</button></div></section>';
 
   function ensureCard(){
-    if($('jsumCard')) return;
-    var anchor=$('fzReset'); var sec=anchor; while(sec && sec.tagName!=='SECTION') sec=sec.parentElement;
-    if(sec){ sec.insertAdjacentHTML('afterend', CARD_HTML); }
-    else { var main=document.querySelector('main')||document.body; main.insertAdjacentHTML('beforeend', CARD_HTML); }
+    if($('jsumCard')) return false;
+    var sec=$('fzReset'); while(sec && sec.tagName!=='SECTION') sec=sec.parentElement;
+    if(sec) sec.insertAdjacentHTML('afterend', CARD);
+    else (document.querySelector('main')||document.body).insertAdjacentHTML('beforeend', CARD);
+    return true; // baru dibuat -> perlu lucide 1x
   }
 
   var VKEY='ko-janin-autovoice';
   function getV(){try{return localStorage.getItem(VKEY)==='1';}catch(e){return false;}}
   function setV(v){try{localStorage.setItem(VKEY,v?'1':'0');}catch(e){}}
 
-  /* BACA SEMUA DARI DOM TAMPILAN (sumber tunggal) -> mustahil campur-aduk */
+  /* baca SEMUA dari layar (sumber tunggal) */
   function readAll(){
-    var wEl=$('weekValue'); var w = wEl? parseInt((wEl.textContent||'').replace(/\D+/g,''),10) : NaN;
-    var dv = document.querySelectorAll('#detailGrid .fz-d .dv');
-    var liNow = document.querySelector('#devBaby li.now span');
-    var tipEl = document.querySelector('#tipsList li span');
-    return {
-      w: w,
-      buah: txt('fruitName'),
-      tri: txt('triBadge'),
-      berat: dv[0]? dv[0].textContent.trim():'-',
-      panjang: dv[1]? dv[1].textContent.trim():'-',
-      milestone: liNow? clean(liNow.textContent).replace('Minggu ini','').trim():'',
-      tip: tipEl? clean(tipEl.textContent):''
-    };
+    var wEl=$('weekValue'); var w=wEl?parseInt((wEl.textContent||'').replace(/\D+/g,''),10):NaN;
+    var dv=document.querySelectorAll('#detailGrid .fz-d .dv');
+    var liNow=document.querySelector('#devBaby li.now span');
+    var tipEl=document.querySelector('#tipsList li span');
+    return { w:w, buah:($('fruitName')||{}).textContent?$('fruitName').textContent.trim():'',
+      tri:($('triBadge')||{}).textContent?$('triBadge').textContent.trim():'',
+      berat:dv[0]?dv[0].textContent.trim():'-', panjang:dv[1]?dv[1].textContent.trim():'-',
+      milestone:liNow?clean(liNow.textContent).replace('Minggu ini','').trim():'',
+      tip:tipEl?clean(tipEl.textContent):'' };
   }
 
-  var lastText='', spT=null;
+  var lastSig='', lastText='', spT=null, rafPending=false;
   function paint(){
+    rafPending=false;
     var card=$('jsumCard'); if(!card) return;
-    var d=readAll(); if(!d.w) return;            // tunggu sampai layar punya minggu valid
-    $('jsumWeek').textContent='Minggu '+d.w;
-    $('jsumBerat').textContent=d.berat;
-    $('jsumPanjang').textContent=d.panjang;
-    $('jsumTri').textContent=d.tri||('-');
-    var p=[];
-    p.push('Pada minggu ke-'+d.w+' ('+(d.tri||'-')+'), bayi Anda seukuran <strong>'+d.buah+'</strong>, dengan perkiraan berat <strong>'+d.berat+'</strong> dan panjang <strong>'+d.panjang+'</strong>.');
-    if(d.milestone) p.push('Perkembangan utama minggu ini: <em>'+d.milestone+'.</em>');
-    if(d.tip) p.push('<span class="tip">Tips minggu ini: '+d.tip+'</span>');
-    p.push('<span class="disc">Angka ini estimasi atau median referensi berdasarkan usia kehamilan; pertumbuhan tiap ibu bisa berbeda. Gunakan hasil USG dan konsultasi dokter atau bidan sebagai acuan utama.</span>');
-    $('jsumNarr').innerHTML=p.map(function(x){return '<p>'+x+'</p>';}).join('');
-    lastText='Pada minggu ke '+d.w+', '+(d.tri||'')+', bayi Anda seukuran '+d.buah+', perkiraan berat '+d.berat+', panjang '+d.panjang+'.'+(d.milestone?' Perkembangan utama: '+d.milestone+'.':'')+(d.tip?' Tips: '+d.tip+'.':'')+' Ingat, ini estimasi; gunakan USG dan dokter sebagai acuan.';
-    card.classList.add('show');
-    var nb=$('jsumNarr'); if(nb){ nb.classList.remove('fm-flash'); void nb.offsetWidth; nb.classList.add('fm-flash'); }
-    if(window.lucide) lucide.createIcons();
+    var d=readAll(); if(!d.w) return;
+    var sig=d.w+'|'+d.berat+'|'+d.panjang+'|'+d.tri+'|'+d.milestone+'|'+d.tip;
+    if(sig!==lastSig){
+      lastSig=sig;
+      $('jsumWeek').textContent='Minggu '+d.w;
+      $('jsumBerat').textContent=d.berat;
+      $('jsumPanjang').textContent=d.panjang;
+      $('jsumTri').textContent=d.tri||'-';
+      var p=[];
+      p.push('Pada minggu ke-'+d.w+' ('+(d.tri||'-')+'), bayi Anda seukuran <strong>'+d.buah+'</strong>, dengan perkiraan berat <strong>'+d.berat+'</strong> dan panjang <strong>'+d.panjang+'</strong>.');
+      if(d.milestone) p.push('Perkembangan utama minggu ini: <em>'+d.milestone+'.</em>');
+      if(d.tip) p.push('<span class="tip">Tips minggu ini: '+d.tip+'</span>');
+      p.push('<span class="disc">Angka ini estimasi atau median referensi berdasarkan usia kehamilan; pertumbuhan tiap ibu bisa berbeda. Gunakan hasil USG dan konsultasi dokter atau bidan sebagai acuan utama.</span>');
+      $('jsumNarr').innerHTML=p.map(function(x){return '<p>'+x+'</p>';}).join('');
+      lastText='Pada minggu ke '+d.w+', '+(d.tri||'')+', bayi Anda seukuran '+d.buah+', perkiraan berat '+d.berat+', panjang '+d.panjang+'.'+(d.milestone?' Perkembangan utama: '+d.milestone+'.':'')+(d.tip?' Tips: '+d.tip+'.':'')+' Ingat, ini estimasi; gunakan USG dan dokter sebagai acuan.';
+    }
+    if(!card.classList.contains('show')) card.classList.add('show');
     if(getV()){ clearTimeout(spT); spT=setTimeout(speak,700); }
   }
+  function schedule(){ if(rafPending) return; rafPending=true; requestAnimationFrame(paint); }
 
   function canSpeak(){return ('speechSynthesis' in window);}
   function speak(){if(!canSpeak()||!lastText)return;try{window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(lastText);u.lang='id-ID';u.rate=1;window.speechSynthesis.speak(u);}catch(e){}}
@@ -95,21 +98,21 @@
     if(cl)cl.onclick=function(){var c=$('jsumCard');if(c)c.classList.remove('show');stopSpeak();};
     if(av){av.checked=getV();av.onchange=function(){setV(av.checked);if(av.checked&&canSpeak())speak();};}
     if(!canSpeak()){[sp,s2].forEach(function(b){if(b)b.style.display='none';});if(av&&av.parentNode)av.parentNode.style.display='none';}
-  }
-
-  /* amati perubahan minggu di layar; catat ULANG setelah DOM settle (selalu terakhir) */
-  function observe(){
-    var wEl=$('weekValue');
-    if(wEl && 'MutationObserver' in window){
-      var mo=new MutationObserver(function(){ requestAnimationFrame(paint); });
-      mo.observe(wEl,{childList:true,characterData:true,subtree:true});
-    }
-    ['fruitName','triBadge','detailGrid','devBaby','tipsList'].forEach(function(id){
-      var e=$(id); if(e && 'MutationObserver' in window){ var m=new MutationObserver(function(){ requestAnimationFrame(paint); }); m.observe(e,{childList:true,characterData:true,subtree:true}); }
+    /* listener pada KONTROL (bukan observer) -> render inline jalan dulu, baru kita baca layar */
+    var sl=$('weekSlider'); if(sl){ sl.addEventListener('input',schedule); sl.addEventListener('change',schedule); }
+    var se=$('fzSearch'); if(se) se.addEventListener('input',schedule);
+    var hp=$('hpht'); if(hp) hp.addEventListener('change',schedule);
+    document.addEventListener('click',function(e){
+      if(e.target.closest('#btnPrev,#btnNext,#fzReset,.fz-quick button,#timeline button,.fz-hpht button')) schedule();
     });
   }
 
-  function sync(){ ensureCard(); wire(); observe(); paint(); }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', sync); else sync();
-  addEventListener('load', function(){ sync(); setTimeout(paint,250); setTimeout(paint,800); }); // koreksi akhir atas patch inline lama
+  function init(){
+    var made=ensureCard();
+    wire();
+    if(made && window.lucide) lucide.createIcons(); // 1x saja untuk ikon kartu
+    paint();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+  addEventListener('load',function(){ if(!($('jsumCard'))) init(); else { wire(); paint(); } });
 })();
