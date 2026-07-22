@@ -28,7 +28,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
 <script defer src="https://unpkg.com/lucide@latest"></script>
 
-<!-- ===== SCHEMA: Breadcrumb + WebApplication + MedicalWebPage + FAQ ===== -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.kalkulatoronline.my.id/"},{"@type":"ListItem","position":2,"name":"Kalkulator Ukuran Janin","item":"https://www.kalkulatoronline.my.id/kalkulator-ukuran-janin.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kalkulator Ukuran Janin","url":"https://www.kalkulatoronline.my.id/kalkulator-ukuran-janin.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"Kalkulator Ukuran Janin per Minggu","about":{"@type":"MedicalCondition","name":"Kehamilan"},"audience":{"@type":"PeopleAudience","audienceType":"Ibu hamil"},"reviewAspect":"Perkembangan janin per minggu","lastReviewed":"2026-07-22"}</script>
@@ -36,10 +35,6 @@
 
 <link rel="stylesheet" href="/app.css">
 <style>
-/* =====================================================================
-   kalkulator-ukuran-janin — komponen premium (scoped .fz / .pg)
-   Mengandalkan token & navbar dari app.css. TIDAK menyentuh logika.
-   ===================================================================== */
 .pg{max-width:1120px;margin:0 auto;padding:16px}
 @media(min-width:640px){.pg{padding:24px}}
 .pg .fz-hero{text-align:center;padding:28px 0 8px}
@@ -55,31 +50,23 @@
 .pg .fz-quick button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--border);font-weight:600;font-size:13px;color:var(--text-2);transition:.3s}
 .pg .fz-quick button svg{width:15px;height:15px}
 .pg .fz-quick button:hover{background:var(--grad-brand);color:#fff;border-color:transparent}
-
-/* glass card umum */
 .fz-card{background:var(--surface);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:24px;box-shadow:var(--sh-glass);padding:20px;margin:18px 0;transition:transform .3s,box-shadow .3s}
 @media(min-width:640px){.fz-card{padding:26px}}
 .fz-card:hover{box-shadow:var(--sh-float)}
 .fz-card h2{font-size:clamp(17px,3vw,21px);display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .fz-card h2 svg{width:22px;height:22px;color:var(--c-primary);flex:none}
 .fz-card h2 .fz-h2sub{font-size:12px;font-weight:500;color:var(--text-3);margin-left:auto}
-
-/* header info (5 stat) */
 .fz-info{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(min-width:768px){.fz-info{grid-template-columns:repeat(5,1fr)}}
 .fz-stat{background:var(--surface-solid);border:1px solid var(--border);border-radius:18px;padding:16px;text-align:center;min-width:0}
 .fz-stat .v{font-size:clamp(18px,4vw,26px);font-weight:800;line-height:1.1;word-break:break-word}
 .fz-stat .v.grad{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
 .fz-stat .l{font-size:11px;color:var(--text-3);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
-
-/* progress premium */
 .fz-prog{margin-top:6px}
 .fz-prog .top{display:flex;justify-content:space-between;font-size:12px;color:var(--text-2);margin-bottom:8px;font-weight:600}
 .fz-prog .bar{height:14px;background:var(--bg-2);border-radius:999px;overflow:hidden;position:relative}
 .fz-prog .fill{height:100%;border-radius:999px;background:var(--grad-brand);transition:width .6s cubic-bezier(.22,.61,.36,1)}
 .fz-prog .ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--text-3);margin-top:6px}
-
-/* kontrol: HPHT + slider */
 .fz-ctrl{display:grid;gap:16px}
 .fz-hpht{background:var(--grad-soft);border:1px dashed var(--border);border-radius:18px;padding:16px;text-align:center}
 .fz-hpht label{display:block;font-weight:700;color:var(--c-primary);font-size:13px;margin-bottom:10px}
@@ -96,8 +83,6 @@
 .fz-slider input[type=range]{flex:1;-webkit-appearance:none;height:8px;border-radius:999px;background:var(--bg-2);min-width:0}
 .fz-slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--grad-brand);cursor:pointer;box-shadow:0 4px 12px var(--ring)}
 .fz-slider input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-radius:50%;background:var(--grad-brand);cursor:pointer}
-
-/* visual janin */
 .fz-visual{display:grid;gap:18px;align-items:center}
 @media(min-width:768px){.fz-visual{grid-template-columns:280px 1fr}}
 .fz-baby{position:relative;display:grid;place-items:center;min-height:240px;border-radius:24px;background:var(--grad-soft);border:1px solid var(--border);overflow:hidden}
@@ -113,8 +98,6 @@
 .fz-tri.t2{background:rgba(34,197,94,.16);color:#15803d}
 .fz-tri.t3{background:rgba(245,158,11,.16);color:#b45309}
 [data-theme="dark"] .fz-tri.t1{color:#7dd3fc}[data-theme="dark"] .fz-tri.t2{color:#86efac}[data-theme="dark"] .fz-tri.t3{color:#fcd34d}
-
-/* mode perbandingan */
 .fz-cmp .modes{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
 .fz-cmp .modes button{padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-solid);font-weight:600;font-size:13px;color:var(--text-2)}
 .fz-cmp .modes button.on{background:var(--grad-brand);color:#fff;border-color:transparent}
@@ -125,8 +108,6 @@
 .fz-cmp .brow .bf{height:100%;border-radius:999px;background:var(--grad-brand);transition:width .6s cubic-bezier(.22,.61,.36,1)}
 .fz-cmp .brow.me .bf{background:linear-gradient(90deg,#22C55E,#16a34a)}
 .fz-cmp .brow .bv{color:var(--text-3);font-variant-numeric:tabular-nums}
-
-/* detail grid 12 field */
 .fz-detail{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(min-width:640px){.fz-detail{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1024px){.fz-detail{grid-template-columns:repeat(4,1fr)}}
@@ -134,46 +115,33 @@
 .fz-d svg{width:20px;height:20px;color:var(--c-secondary);flex:none;margin-top:2px}
 .fz-d .dv{font-size:15px;font-weight:700;line-height:1.25;word-break:break-word}
 .fz-d .dl{font-size:11px;color:var(--text-3);font-weight:600;margin-top:2px}
-
-/* list perkembangan / tips / nutrisi / fakta */
 .fz-list{list-style:none;display:grid;gap:10px}
 .fz-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2);line-height:1.6}
 .fz-list li svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--c-success)}
 .fz-list li.now svg{color:var(--c-accent)}
 .fz-list li.now{color:var(--text);font-weight:600}
-.fz-list li.now::before{content:"";display:none}
 .fz-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--grad-soft);color:var(--c-primary);margin-left:6px;vertical-align:middle}
-
 .fz-nutri{display:grid;grid-template-columns:1fr;gap:10px}
 @media(min-width:640px){.fz-nutri{grid-template-columns:1fr 1fr}}
 .fz-nutri .ni{display:flex;gap:10px;background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;padding:12px}
 .fz-nutri .ni svg{width:18px;height:18px;color:var(--c-primary);flex:none;margin-top:2px}
 .fz-nutri .ni b{display:block;font-size:14px}
 .fz-nutri .ni span{font-size:12px;color:var(--text-3)}
-
 .fz-tips{display:grid;grid-template-columns:1fr;gap:10px}
 @media(min-width:768px){.fz-tips{grid-template-columns:1fr 1fr}}
 .fz-tips li{background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
-
 .fz-facts{display:grid;gap:10px}
 .fz-facts .fc{display:flex;gap:10px;background:var(--grad-soft);border:1px solid var(--border);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--text-2);line-height:1.55}
 .fz-facts .fc svg{width:18px;height:18px;color:var(--c-accent);flex:none;margin-top:1px}
-
 .fz-checks{display:flex;flex-wrap:wrap;gap:8px}
 .fz-checks .ck{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:12px;background:var(--surface-solid);border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text-2)}
 .fz-checks .ck svg{width:16px;height:16px;color:var(--c-primary)}
 .fz-checks .ck.hot{border-color:var(--c-accent);color:var(--c-accent);background:var(--grad-soft)}
-
-/* grafik */
 .fz-charts{display:grid;gap:16px}
 @media(min-width:768px){.fz-charts{grid-template-columns:1fr 1fr}}
 .fz-chart{background:var(--surface-solid);border:1px solid var(--border);border-radius:16px;padding:14px}
 .fz-chart .ct{font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:8px;display:flex;justify-content:space-between}
-.fz-chart svg{width:100%;height:140px;display:block}
-.fz-chart .dot{transition:cx .5s,cy .5s}
-
-/* timeline */
-.fz-tl{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:thin;-ms-overflow-style:none}
+.fz-tl{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:thin}
 .fz-tl::-webkit-scrollbar{height:6px}
 .fz-tl::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
 .fz-tl button{flex:0 0 auto;width:42px;height:46px;border-radius:12px;border:1px solid var(--border);background:var(--surface-solid);font-weight:700;font-size:12px;color:var(--text-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:.2s}
@@ -181,8 +149,6 @@
 .fz-tl button:hover{border-color:var(--c-primary);color:var(--c-primary)}
 .fz-tl button.on{background:var(--grad-brand);color:#fff;border-color:transparent;box-shadow:var(--sh-float);transform:translateY(-2px)}
 .fz-tl button.on small{color:rgba(255,255,255,.85)}
-
-/* warning & disclaimer */
 .fz-warn{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);border-radius:18px;padding:18px}
 [data-theme="dark"] .fz-warn{background:rgba(239,68,68,.12)}
 .fz-warn h2{color:var(--c-danger)}
@@ -191,24 +157,28 @@
 .fz-warn li{display:flex;gap:10px;font-size:14px;color:var(--text);font-weight:500}
 .fz-warn li svg{width:18px;height:18px;color:var(--c-danger);flex:none;margin-top:2px}
 .fz-disc{font-size:12px;color:var(--text-3);line-height:1.7;border-left:3px solid var(--border);padding-left:14px}
-
-/* FAQ accordion */
 .fz-faq .q{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px;background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;font-weight:600;font-size:14px;color:var(--text);margin-bottom:8px}
 .fz-faq .q svg{width:18px;height:18px;flex:none;transition:transform .3s;color:var(--c-primary)}
 .fz-faq .q[aria-expanded="true"] svg{transform:rotate(180deg)}
 .fz-faq .a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--text-2);font-size:14px;line-height:1.7}
 .fz-faq .a .in{padding:0 16px 16px}
-
-/* animasi fade saat ganti minggu */
 .fz-flash{animation:fzfade .4s ease}
 @keyframes fzfade{from{opacity:.25;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* [FIX-GRAFIK] wrapper SVG (innerHTML via parent HTML = namespace aman) */
+.fz-svgwrap svg{width:100%;height:150px;display:block}
+/* [RESET] tombol reset tampilan */
+.fz-resetrow{display:flex;justify-content:flex-end;margin-top:14px}
+.fz-resetbtn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;font-weight:600;font-size:13px;font-family:inherit;cursor:pointer;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);color:#b91c1c;transition:.3s}
+.fz-resetbtn:hover{background:rgba(239,68,68,.16)}
+.fz-resetbtn:active{transform:scale(.98)}
+.fz-resetbtn svg{width:15px;height:15px}
+[data-theme="dark"] .fz-resetbtn{color:#fca5a5;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4)}
 @media(prefers-reduced-motion:reduce){.fz-baby svg.sil,.fz-fruit .emo{animation:none}.fz-flash{animation:none}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Lewati ke konten</a>
 
-<!-- ============ NAVBAR (lengkap, marker idempoten) ============ -->
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda"><span class="logo-mark"><i data-lucide="calculator"></i></span><span>Kalkulator<span class="grad-text">Online</span></span></a>
@@ -240,7 +210,6 @@
 </aside></div>
 
 <main id="main" class="pg">
-  <!-- HERO -->
   <section class="fz-hero">
     <span class="fz-eyebrow"><i data-lucide="cherry"></i> Seberapa Besar Bayi Anda?</span>
     <h1 class="grad-text">Kalkulator Ukuran Janin</h1>
@@ -254,7 +223,6 @@
     </div>
   </section>
 
-  <!-- HEADER INFO -->
   <section class="fz-card" aria-label="Ringkasan kehamilan">
     <div class="fz-info">
       <div class="fz-stat"><div class="v grad" id="iUsia">20 mg 0 hr</div><div class="l">Usia Kehamilan</div></div>
@@ -270,7 +238,6 @@
     </div>
   </section>
 
-  <!-- KONTROL -->
   <section class="fz-card" aria-label="Pilih minggu kehamilan">
     <div class="fz-ctrl">
       <div class="fz-hpht">
@@ -287,9 +254,10 @@
         </div>
       </div>
     </div>
+    <!-- [RESET] -->
+    <div class="fz-resetrow"><button type="button" class="fz-resetbtn" id="fzReset" aria-label="Reset tampilan ke minggu 20 dan hapus HPHT tersimpan"><i data-lucide="rotate-ccw"></i> Reset ke Minggu 20</button></div>
   </section>
 
-  <!-- VISUAL JANIN + PERBANDINGAN -->
   <section class="fz-card">
     <h2><i data-lucide="baby"></i> Visual & Perbandingan Ukuran <span class="fz-h2sub" id="vWeek">Minggu 20</span></h2>
     <div class="fz-visual">
@@ -311,64 +279,55 @@
     </div>
   </section>
 
-  <!-- DETAIL JANIN -->
   <section class="fz-card">
     <h2><i data-lucide="stethoscope"></i> Detail Janin Minggu Ini</h2>
     <div class="fz-detail" id="detailGrid"></div>
   </section>
 
-  <!-- PERKEMBANGAN JANIN -->
   <section class="fz-card">
     <h2><i data-lucide="sprout"></i> Perkembangan Janin</h2>
     <ul class="fz-list" id="devBaby"></ul>
   </section>
 
-  <!-- PERKEMBANGAN IBU -->
   <section class="fz-card">
     <h2><i data-lucide="heart-handshake"></i> Perubahan pada Ibu</h2>
     <ul class="fz-list" id="devMom"></ul>
   </section>
 
-  <!-- GRAFIK -->
   <section class="fz-card">
     <h2><i data-lucide="line-chart"></i> Grafik Pertumbuhan</h2>
     <div class="fz-charts">
-      <div class="fz-chart"><div class="ct"><span>Berat Janin (gram)</span><span id="gWval">300 g</span></div><svg id="chartW" viewBox="0 0 320 140" preserveAspectRatio="none" role="img" aria-label="Grafik berat janin per minggu"></svg></div>
-      <div class="fz-chart"><div class="ct"><span>Panjang Janin (cm)</span><span id="gLval">25 cm</span></div><svg id="chartL" viewBox="0 0 320 140" preserveAspectRatio="none" role="img" aria-label="Grafik panjang janin per minggu"></svg></div>
+      <!-- [FIX-GRAFIK] sekarang <div>, bukan <svg> -->
+      <div class="fz-chart"><div class="ct"><span>Berat Janin (gram)</span><span id="gWval">300 g</span></div><div id="chartW" class="fz-svgwrap" role="img" aria-label="Grafik berat janin per minggu"></div></div>
+      <div class="fz-chart"><div class="ct"><span>Panjang Janin (cm)</span><span id="gLval">25 cm</span></div><div id="chartL" class="fz-svgwrap" role="img" aria-label="Grafik panjang janin per minggu"></div></div>
     </div>
   </section>
 
-  <!-- NUTRISI -->
   <section class="fz-card">
     <h2><i data-lucide="apple"></i> Nutrisi Penting <span class="fz-h2sub" id="nutriTri">Trimester 2</span></h2>
     <div class="fz-nutri" id="nutriGrid"></div>
   </section>
 
-  <!-- TIPS -->
   <section class="fz-card">
     <h2><i data-lucide="lightbulb"></i> Tips Minggu Ini</h2>
     <ul class="fz-list fz-tips" id="tipsList"></ul>
   </section>
 
-  <!-- PEMERIKSAAN -->
   <section class="fz-card">
     <h2><i data-lucide="clipboard-check"></i> Pemeriksaan yang Disarankan</h2>
     <div class="fz-checks" id="checksList"></div>
   </section>
 
-  <!-- FAKTA -->
   <section class="fz-card">
     <h2><i data-lucide="sparkles"></i> Tahukah Anda?</h2>
     <div class="fz-facts" id="factsList"></div>
   </section>
 
-  <!-- TIMELINE -->
   <section class="fz-card">
     <h2><i data-lucide="milestone"></i> Timeline Kehamilan (klik untuk lompat)</h2>
     <div class="fz-tl" id="timeline" role="tablist" aria-label="Pilih minggu pada timeline"></div>
   </section>
 
-  <!-- WARNING -->
   <section class="fz-card fz-warn">
     <h2><i data-lucide="triangle-alert"></i> Segera ke Dokter / IGD Jika</h2>
     <ul>
@@ -381,17 +340,14 @@
     </ul>
   </section>
 
-  <!-- DISCLAIMER -->
   <section class="fz-card"><p class="fz-disc">⚕️ <strong>Disclaimer medis.</strong> Seluruh angka & informasi di halaman ini merupakan <strong>estimasi / median referensi</strong> berdasarkan usia kehamilan (merujuk panduan WHO, ACOG, & NHS). Pertumbuhan janin setiap ibu dapat berbeda. Biometri (HC/AC/FL) adalah nilai median — gunakan hasil <strong>USG</strong> dan konsultasi <strong>dokter kandungan / bidan</strong> sebagai acuan utama. Halaman ini bukan pengganti nasihat medis profesional.</p></section>
 
-  <!-- FAQ -->
   <section class="fz-card fz-faq">
     <h2><i data-lucide="circle-help"></i> Pertanyaan Umum</h2>
     <div id="faqWrap"></div>
   </section>
 </main>
 
-<!-- BOTTOM NAV -->
 <nav class="bottomnav" aria-label="Navigasi bawah">
   <a href="index.html"><i data-lucide="home"></i>Beranda</a>
   <a href="#" onclick="var s=document.getElementById('searchDesktop');if(s)s.focus();return false"><i data-lucide="search"></i>Cari</a>
@@ -414,10 +370,7 @@
 
 <script>
 /* =====================================================================
-   DATA MEDIS  (konten/informasi — BUKAN logika kalkulator)
-   - berat/panjang: dipertahankan dari versi asli
-   - biometri HC/AC/FL/BPD = MEDIAN referensi (konfirmasi USG)
-   - perkembangan/fakta = berbasis tonggak (milestone) + basis per-trimester
+   DATA MEDIS (konten — BUKAN logika kalkulator)
    ===================================================================== */
 const D={
 4:{b:0,l:0.1,fr:'Biji Poppy',em:'🫘'},5:{b:0.1,l:0.2,fr:'Biji Wijen',em:'🌰'},6:{b:0.1,l:0.4,fr:'Kacang Polong',em:'🫛'},
@@ -434,35 +387,24 @@ const D={
 37:{b:2859,l:48.6,fr:'Semangka Kecil',em:'🍉'},38:{b:3083,l:49.9,fr:'Semangka',em:'🍉'},39:{b:3288,l:50.7,fr:'Semangka Besar',em:'🍉'},
 40:{b:3462,l:51.2,fr:'Labu Besar',em:'🎃'}
 };
-/* biometri median (mm) per minggu 12-40: [HC, AC, FL, BPD] */
 const BIO={12:[70,60,9,53],13:[84,72,12,62],14:[95,85,15,70],15:[108,98,18,78],16:[120,110,21,86],17:[133,122,24,93],18:[145,132,27,100],19:[158,142,30,107],20:[170,152,33,114],21:[183,164,36,120],22:[195,175,39,126],23:[207,186,42,132],24:[218,197,44,138],25:[228,208,47,143],26:[238,219,49,148],27:[248,230,51,153],28:[258,242,53,158],29:[268,253,55,163],30:[278,264,58,168],31:[287,274,60,172],32:[296,284,62,176],33:[304,294,64,180],34:[312,303,66,183],35:[319,312,68,186],36:[325,320,69,189],37:[330,328,71,191],38:[335,336,72,193],39:[339,342,73,195],40:[343,348,74,197]};
-/* milestone janin (tonggak mapan) */
 const MB={4:"Embrio seukuran biji; tabung saraf (calon otak & sumsum tulang) mulai terbentuk.",5:"Jantung primitif mulai berdetak untuk pertama kalinya.",6:"Tunas lengan & kaki muncul; struktur wajah mulai terbentuk.",7:"Otak berkembang pesat; ukuran hampir dua kali minggu lalu.",8:"Jari tangan & kaki mulai terbentuk; gerakan refleks pertama.",9:"Kelopak mata & telinga luar terbentuk; ‘ekor’ embrio menghilang.",10:"Organ vital mulai berfungsi; kuku mungil mulai tumbuh.",11:"Janin menendang & meregang (belum terasa oleh ibu).",12:"Refleks berkembang; risiko keguguran menurun signifikan.",13:"Sidik jari unik telah terbentuk.",14:"Janin membuat ekspresi wajah; lanugo (bulu halus) mulai tumbuh.",15:"Janin merespons cahaya; tulang mulai mengeras.",16:"Janin mulai mendengar suara dari luar.",17:"Lemak mulai menumpuk di bawah kulit.",18:"Janin menguap & cegukan; pendengaran makin tajam.",19:"Indra perasa berkembang; vernix (lapisan pelindung) terbentuk.",20:"Gerakan mulai terasa ibu (quickening); janin aktif menelan.",21:"Gerakan makin kuat; alis & kelopak mata sempurna.",22:"Indra peraba berkembang — janin merasakan sentuhan.",23:"Janin berlatih bernapas; wajah makin mirip bayi.",24:"Paru mulai memproduksi surfaktan; pola tidur‑bangun terbentuk.",25:"Janin merespons suara; lemak tubuh terus bertambah.",26:"Mata mulai terbuka; janin mengenali suara ibu & ayah.",27:"Otak sangat aktif; muncul fase tidur REM (bermimpi).",28:"Janin berkedip & bermimpi; posisi mulai kepala di bawah.",29:"Janin menumpuk kalsium, zat besi & fosfor.",30:"Rambut kepala tumbuh; otak berkembang pesat.",31:"Janin mengikuti cahaya; paru hampir matang.",32:"Janin berlatih bernapas & menelan; kuku tumbuh penuh.",33:"Tengkorak tetap lunak & fleksibel untuk proses lahir.",34:"Sistem saraf & paru matang; lemak menambah kehangatan.",35:"Ginjal & hati berfungsi penuh; ruang rahim terasa sempit.",36:"Janin mulai turun ke panggul (lightening).",37:"Cukup bulan — seluruh organ siap untuk kehidupan luar rahim.",38:"Cengkeraman tangan janin sudah kuat.",39:"Antibodi ibu ditransfer untuk perlindungan awal bayi.",40:"Siap lahir — selamat, ini HPL Anda!"};
-/* milestone ibu */
 const MM={12:"Rahim mulai keluar dari panggul; mual sering mereda.",16:"Perut mulai terlihat membesar.",20:"Puncak rahim kira‑kira setinggi pusar.",24:"Rahim berada di atas pusar; kulit perut meregang.",28:"Rahim ~3–4 jari di atas pusar; kontrol jadi 2×/bulan.",32:"Sesak napas & sering pipis makin terasa.",36:"Perut ‘turun’ (lightening) — napas terasa lebih lega.",40:"Tanda persalinan bisa muncul kapan saja."};
-/* basis perkembangan janin per trimester (floor, medis benar) */
 const DBB={1:["Organ‑organ utama mulai terbentuk.","Jantung & pembuluh darah berkembang.","Tabung saraf (otak & sumsum tulang) menutup.","Wajah & leher mulai terbentuk.","Plasenta mulai mengambil alih nutrisi.","Pertumbuhan sangat cepat — ukuran berlipat tiap minggu."],
 2:["Tulang & rangka mengeras dari tulang rawan.","Otot & sistem saraf berkembang; gerakan muncul.","Indra (dengar, rasa, sentuh) makin matang.","Lemak mulai menumpuk; kulit menebal.","Paru berlatih bernapas dengan air ketuban.","Janin menelan & mengeluarkan air ketuban secara rutin."],
 3:["Lemak bertambah pesat untuk mengatur suhu.","Otak berkembang sangat aktif.","Paru mematangkan surfaktan untuk bernapas.","Sistem imun menerima antibodi dari ibu.","Posisi umumnya kepala di bawah menjelang lahir.","Organ telah siap untuk kehidupan di luar rahim."]};
-/* basis perubahan ibu per trimester */
 const DMB={1:["Mual & muntah (morning sickness).","Payudara nyeri, membesar & lebih sensitif.","Sering buang air kecil.","Kelelahan & perubahan suasana hati."],
 2:["Perut membesar & gerakan janin terasa.","Energi umumnya kembali meningkat.","Kulit bisa lebih cerah (pregnancy glow).","Nyeri ligamen perut saat bergerak tiba‑tiba."],
 3:["Sesak napas karena rahim menekan diafragma.","Sering pipis & nyeri panggul.","Kontraksi palsu (Braxton Hicks).","Sulit tidur, nyeri pinggang & kram kaki."]};
-/* bank fakta umum (semua benar, valid lintas minggu) */
 const FG=["Janin rutin menelan & mengeluarkan air ketuban.","Janin bisa cegukan — terasa seperti hentakan ritmis.","Tali pusat rata‑rata sepanjang 50–60 cm.","Air ketuban melindungi janin & menjaga suhu stabil.","Janin tidur sekitar 14–18 jam per hari.","Vernix (lapisan putih) melindungi kulit janin.","Lanugo (bulu halus) membantu mengatur suhu.","Janin mengalami fase mimpi (tidur REM).","Mekonium (feses pertama) terbentuk di usus.","Detak jantung janin rata‑rata ~2× detak ibu."];
-/* fakta spesifik minggu tertentu */
 const FS={8:"Semua organ utama sudah ada dalam bentuk dasar.",12:"Sidik jari unik sudah terbentuk sepenuhnya.",16:"Janin mulai berlatih ‘bernapas’ dengan air ketuban.",20:"Indera perasa sudah bekerja — janin mengecap air ketuban.",24:"Paru mulai memproduksi surfaktan (zat pengembang paru).",28:"Mata dapat terbuka & menutup serta merespons cahaya.",32:"Kuku jari tangan & kaki telah tumbuh penuh.",37:"Paru dianggap matang — bayi aman lahir secara medis."};
-/* nutrisi per trimester [nama, manfaat] */
 const NUT={1:[["Asam Folat","Mencegah cacat tabung saraf"],["Zat Besi","Membentuk sel darah & cegah anemia"],["Vitamin B6","Membantu meredakan mual"],["Protein","Bahan pembangun jaringan janin"],["Vitamin C","Daya tahan & bantu serap zat besi"],["Kalsium","Pembentukan tulang & gigi"],["Iodium","Mendukung perkembangan otak"],["Cairan","Menjaga volume darah & air ketuban"]],
 2:[["Protein","Pertumbuhan otot & organ janin"],["Kalsium","Pembentukan tulang & gigi janin"],["Vitamin D","Membantu penyerapan kalsium"],["Zat Besi","Mencegah anemia & suplai oksigen"],["Omega‑3 (DHA)","Perkembangan otak & mata"],["Vitamin C","Pembentukan kolagen & imun"],["Seng (Zinc)","Pertumbuhan sel & daya tahan"],["Serat","Mencegah sembelit"]],
 3:[["Protein","Mendukung pertambahan berat janin"],["Zat Besi","Cadangan darah untuk persalinan"],["Kalsium","Pematangan tulang janin"],["Vitamin D","Imun & kesehatan tulang"],["Omega‑3 (DHA)","Pematangan otak tahap akhir"],["Vitamin K","Mendukung pembekuan darah"],["Magnesium","Mengurangi kram kaki"],["Cairan","Hidrasi & menjaga air ketuban"]]};
-/* tips per trimester (8, medis benar) */
 const TIPS={1:["Konsumsi asam folat 400–800 mcg setiap hari.","Hindari alkohol, rokok & obat tanpa resep dokter.","Makan porsi kecil tapi sering untuk atasi mual.","Istirahat cukup & kelola stres.","Hindari makanan mentah / setengah matang.","Minum air 8–10 gelas per hari.","Mulai kontrol kehamilan secara rutin.","Hindari paparan panas berlebih (sauna / hot tub)."],
 2:["Tambah asupan zat besi & kalsium.","Olahraga ringan: jalan kaki / yoga prenatal.","Tidur miring ke kiri untuk aliran darah optimal.","Pantau kenaikan berat badan sesuai anjuran.","Mulai biasakan hitung gerakan janin (~mg 28).","Jaga postur untuk kurangi nyeri pinggang.","Konsumsi omega‑3 (DHA) untuk otak janin.","Lakukan USG anatomi (~18–22 minggu)."],
 3:["Siapkan tas persalinan & rencana melahirkan.","Tidur miring kiri, gunakan bantal penyangga.","Kenali tanda‑tanda persalinan.","Hindari berdiri / duduk terlalu lama.","Latihan pernapasan & senam hamil.","Pantau gerakan janin setiap hari.","Kontrol lebih sering (mingguan setelah 36 mg).","Kelola kecemasan & cukup istirahat."]};
-/* perbandingan benda sehari-hari (cm, konstan) */
 const OBJ=[["Smartphone",15],["Kaleng minuman",12],["Buku",23],["Sepatu bayi",11],["Telapak tangan",18],["Boneka",30]];
-
 const FAQ=[
 ["Kapan saya mulai merasakan gerakan janin?","Umumnya antara minggu ke‑18–25. Ibu yang pernah hamil atau plasenta di depan bisa merasakannya sedikit lebih lambat. Setelah 28 minggu, pantau gerakan janin setiap hari."],
 ["Apakah ukuran janin di sini pasti sama dengan bayi saya?","Tidak. Angka di sini adalah rata‑rata / median referensi. Ukuran sebenarnya dipengaruhi genetika, nutrisi, dan kondisi ibu. USG adalah acuan paling akurat."],
@@ -495,16 +437,14 @@ function render(week){
   document.getElementById('fruitEmoji').innerText = d.em;
   document.getElementById('fruitName').innerText = d.fr;
   document.getElementById('fruitCompare').innerText = 'Bayi Anda seukuran ' + d.fr.toLowerCase() + ' minggu ini';
-  document.getElementById('mBerat') && (document.getElementById('mBerat').innerText = d.b < 1 ? d.b : d.b.toLocaleString('id-ID'));
-  document.getElementById('mPanjang') && (document.getElementById('mPanjang').innerText = d.panjang || d.l);
   const percent = Math.round(((week - 4) / (40 - 4)) * 100);
   document.getElementById('pwFill') && (document.getElementById('pwFill').style.width = percent + '%');
   document.getElementById('pwPercent') && (document.getElementById('pwPercent').innerText = percent + '%');
   const t = document.getElementById('triBadge'); if(t){ t.className='fz-tri t'+tri(week); t.innerText='Trimester '+tri(week); }
   document.getElementById('btnPrev').disabled = (week <= 4);
   document.getElementById('btnNext').disabled = (week >= 40);
-  /* === akhir logika asli; presentasi premium di bawah === */
   renderRich(week, d, percent);
+  saveState();   /* [PERSIST] simpan posisi setelah render */
 }
 function ubahMinggu(delta){ render(currentWeek + delta); }
 function hitungDariHPHT(){
@@ -523,39 +463,47 @@ function hitungDariHPHT(){
 }
 /* ===================== /LOGIKA ASLI ===================== */
 
-/* ===================== PRESENTASI PREMIUM (tidak mengubah perhitungan) ===================== */
+/* ===================== PRESENTASI PREMIUM ===================== */
 let cmpMode = 'fruit';
 const $=id=>document.getElementById(id);
 function flash(el){ if(!el)return; el.classList.remove('fz-flash'); void el.offsetWidth; el.classList.add('fz-flash'); }
-function countUp(el,to,suf,dur){ if(!el)return; const from=parseFloat((el.textContent||'0').replace(/[^\d.]/g,''))||0; const t0=performance.now();
-  (function step(t){ const p=Math.min((t-t0)/(dur||500),1); const v=from+(to-from)*(1-Math.pow(1-p,3)); el.textContent=(to%1? v.toFixed(1):Math.round(v).toLocaleString('id-ID'))+(suf||''); if(p<1)requestAnimationFrame(step); })(t0); }
 function icon(n){return '<i data-lucide="'+n+'"></i>';}
+
+/* [PERSIST] simpan / baca / reset */
+const STORE='ko-ukuranjanin-v1';
+function saveState(){ try{ localStorage.setItem(STORE, JSON.stringify({ week:currentWeek, hpht: window.__hpht? window.__hpht.toISOString():null, cmp:cmpMode })); }catch(e){} }
+function loadState(){ try{ const r=localStorage.getItem(STORE); return r? JSON.parse(r):null; }catch(e){ return null; } }
+function resetView(){
+  try{ localStorage.removeItem(STORE); }catch(e){}
+  window.__hpht=null;
+  const h=$('hpht'); if(h) h.value='';
+  const res=$('hphtResult'); if(res) res.innerHTML='';
+  cmpMode='fruit';
+  document.querySelectorAll('.fz-cmp .modes button').forEach(x=>x.classList.toggle('on', x.dataset.mode==='fruit'));
+  render(20);
+  if(window.KO&&KO.toast) KO.toast('Tampilan direset ke Minggu 20.');
+}
 
 function renderRich(w,d,percent){
   const t=tri(w);
-  /* header info */
   const hpht = window.__hpht || null;
   let hpl=null, sisa=null, usiaTxt='—';
   if(hpht){ hpl=new Date(hpht); hpl.setDate(hpht.getDate()+280);
     const today=new Date(); sisa=Math.ceil((hpl-today)/(864e5));
     const dh=Math.floor((today-hpht)/864e5), mg=Math.floor(dh/7), hr=dh%7; usiaTxt=mg+' mg '+hr+' hr'; }
-  else { /* estimasi usia dari slider: tampilkan mg + 0 hr (tanpa klaim HPL pasti) */
-    usiaTxt=w+' mg 0 hr'; }
+  else { usiaTxt=w+' mg 0 hr'; }
   $('iUsia').textContent=usiaTxt; $('iTri').textContent='Trimester '+t;
   $('iHpl').textContent = hpl? hpl.toLocaleDateString('id-ID',{day:'numeric',month:'short'}):'Isi HPHT ↑';
-  if(sisa!==null){ $('iSisa').textContent = sisa>0? sisa+' hr':'HPL!'; } else $('iSisa').textContent='—';
+  $('iSisa').textContent = sisa!==null? (sisa>0? sisa+' hr':'HPL!') : '—';
   $('iPct').textContent=percent+'%';
   $('pLab').textContent='Minggu '+w+' dari 40'; $('pPct2').textContent=percent+'%'; $('pFill').style.width=percent+'%';
   flash($('iUsia'));
 
-  /* visual: scale siluet + trimester tint */
   const sil=$('babySil'); const sc=0.55+0.45*((w-4)/36); sil.style.transform='scale('+sc.toFixed(3)+')';
   $('vWeek').textContent='Minggu '+w;
 
-  /* perbandingan */
   renderCmp(w,d);
 
-  /* detail 12 field */
   const bio=BIO[w]; const bpm = w<5?'—':w<10?'100–170':'110–160';
   const pos = w<32?'Bebas bergerak':w<36?'Mulai kepala di bawah':'Umumnya kepala di bawah';
   const sex = 'Ditentukan saat pembuahan (USG ~18–20 mg)';
@@ -576,25 +524,18 @@ function renderRich(w,d,percent){
   ];
   $('detailGrid').innerHTML=fields.map(f=>'<div class="fz-d">'+icon(f[0])+'<div><div class="dv">'+f[2]+'</div><div class="dl">'+f[1]+'</div></div></div>').join('');
 
-  /* perkembangan janin: milestone minggu ini + basis trimester (≥6) */
   let db=[]; if(MB[w]) db.push({now:true,t:MB[w]});
-  DBB[t].forEach(x=>db.push({now:false,t:x}));
-  db=db.slice(0,8);
+  DBB[t].forEach(x=>db.push({now:false,t:x})); db=db.slice(0,8);
   $('devBaby').innerHTML=db.map(x=>'<li class="'+(x.now?'now':'')+'">'+icon(x.now?'sparkles':'check')+'<span>'+x.t+(x.now?'<span class="fz-tag">Minggu ini</span>':'')+'</span></li>').join('');
 
-  /* perkembangan ibu */
   let dm=[]; if(MM[w]) dm.push({now:true,t:MM[w]});
   DMB[t].forEach(x=>dm.push({now:false,t:x}));
   $('devMom').innerHTML=dm.map(x=>'<li class="'+(x.now?'now':'')+'">'+icon(x.now?'sparkles':'check')+'<span>'+x.t+(x.now?'<span class="fz-tag">Minggu ini</span>':'')+'</span></li>').join('');
 
-  /* nutrisi */
   $('nutriTri').textContent='Trimester '+t;
   $('nutriGrid').innerHTML=NUT[t].map(n=>'<div class="ni">'+icon('leaf')+'<div><b>'+n[0]+'</b><span>'+n[1]+'</span></div></div>').join('');
-
-  /* tips (8) */
   $('tipsList').innerHTML=TIPS[t].map(x=>'<li>'+icon('check')+'<span>'+x+'</span></li>').join('');
 
-  /* pemeriksaan (jadwal ACOG/NHS) */
   let ck=[['Tekanan darah',0],['Berat badan',0],['Urine (protein & gula)',0],['Tinggi fundus & detak jantung janin',0]];
   if(w>=11&&w<=13) ck.push(['Skrining trimester 1 (NT + darah)',1]);
   if(w>=18&&w<=22) ck.push(['USG anatomi (morphology)',1]);
@@ -606,16 +547,14 @@ function renderRich(w,d,percent){
   if(w>=36) ck.push(['Kontrol mingguan',1]);
   $('checksList').innerHTML=ck.map(c=>'<span class="ck'+(c[1]?' hot':'')+'">'+icon(c[1]?'star':'stethoscope')+c[0]+'</span>').join('');
 
-  /* fakta (≥5): spesifik + bank umum */
   let fc=[]; if(FS[w]) fc.push(FS[w]);
   const start=(w*3)%FG.length; for(let i=0;fc.length<5;i++) fc.push(FG[(start+i)%FG.length]);
   $('factsList').innerHTML=fc.map(x=>'<div class="fc">'+icon('sparkles')+'<span>'+x+'</span></div>').join('');
 
-  /* grafik */
+  /* [FIX-GRAFIK] gambar ke <div> sebagai string <svg> lengkap */
   drawChart('chartW', w, x=>D[x-4].b, 'gWval', ' g');
   drawChart('chartL', w, x=>D[x-4].l, 'gLval', ' cm');
 
-  /* timeline highlight */
   document.querySelectorAll('#timeline button').forEach(b=>{ const on=+b.dataset.w===w; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); if(on) b.scrollIntoView({inline:'center',block:'nearest'}); });
 
   window.lucide && lucide.createIcons();
@@ -635,22 +574,29 @@ function renderCmp(w,d){
   }
 }
 
-function drawChart(svgId, w, valFn, labId, suf){
-  const svg=$(svgId); const W=320,H=140,pad=10; const xs=[]; for(let i=4;i<=40;i++)xs.push(i);
-  const vals=xs.map(valFn); const max=Math.max(...vals,1);
-  const X=i=>pad+(i/(xs.length-1))*(W-2*pad); const Y=v=>H-pad-(v/max)*(H-2*pad);
-  let path=''; xs.forEach((x,i)=>{ path+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(vals[i]).toFixed(1)+' '; });
-  const area=path+'L'+X(xs.length-1)+' '+(H-pad)+' L'+X(0)+' '+(H-pad)+' Z';
-  const idx=w-4; const cx=X(idx), cy=Y(vals[idx]);
-  svg.innerHTML='<defs><linearGradient id="g_'+svgId+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".35"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></linearGradient></defs>'+
-    '<path d="'+area+'" fill="url(#g_'+svgId+')"/>'+
-    '<path d="'+path+'" fill="none" stroke="#6C63FF" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>'+
-    '<line x1="'+cx+'" y1="'+pad+'" x2="'+cx+'" y2="'+(H-pad)+'" stroke="#A855F7" stroke-width="1" stroke-dasharray="3 3" opacity=".6"/>'+
-    '<circle class="dot" cx="'+cx+'" cy="'+cy+'" r="5" fill="#fff" stroke="#6C63FF" stroke-width="3"/>';
+/* [FIX-GRAFIK] lebar = lebar kolom (marker bulat), ditulis ke DIV (namespace aman) */
+function drawChart(elId, w, valFn, labId, suf){
+  const host=$(elId); if(!host) return;
+  const W = host.clientWidth || 320, H=150, pad=14;
+  const xs=[]; for(let i=4;i<=40;i++) xs.push(i);
+  const vals=xs.map(valFn); const max=Math.max(...vals,1)||1;
+  const X=i=>pad+(i/(xs.length-1))*(W-2*pad);
+  const Y=v=>H-pad-(v/max)*(H-2*pad);
+  let line=''; xs.forEach((x,i)=>{ line+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(vals[i]).toFixed(1)+' '; });
+  const area=line+'L'+X(xs.length-1).toFixed(1)+' '+(H-pad)+' L'+X(0).toFixed(1)+' '+(H-pad)+' Z';
+  const idx=Math.max(0,Math.min(xs.length-1,w-4));
+  const cx=X(idx).toFixed(1), cy=Y(vals[idx]).toFixed(1);
+  host.innerHTML =
+    '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">'+
+    '<defs><linearGradient id="gg_'+elId+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".35"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></linearGradient></defs>'+
+    '<path d="'+area+'" fill="url(#gg_'+elId+')"/>'+
+    '<path d="'+line.trim()+'" fill="none" stroke="#6C63FF" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>'+
+    '<line x1="'+cx+'" y1="'+pad+'" x2="'+cx+'" y2="'+(H-pad)+'" stroke="#A855F7" stroke-width="1" stroke-dasharray="3 3" opacity=".6" vector-effect="non-scaling-stroke"/>'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="4.5" fill="#fff" stroke="#6C63FF" stroke-width="3" vector-effect="non-scaling-stroke"/>'+
+    '</svg>';
   $(labId).textContent=(vals[idx]<1?vals[idx]:Math.round(vals[idx]).toLocaleString('id-ID'))+suf;
 }
 
-/* build timeline + faq + mode buttons + search + quicknav (sekali) */
 function buildStatic(){
   const tl=$('timeline'); let h='';
   for(let w=4;w<=40;w++){ h+='<button data-w="'+w+'" role="tab" aria-label="Minggu '+w+'" onclick="render('+w+')">'+w+'<small>mg</small></button>'; }
@@ -661,7 +607,7 @@ function buildStatic(){
   fw.innerHTML=fh;
   $('faqSchema').textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":schema});
   document.querySelectorAll('.fz-cmp .modes button').forEach(b=>b.addEventListener('click',()=>{
-    document.querySelectorAll('.fz-cmp .modes button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); cmpMode=b.dataset.mode; renderCmp(currentWeek,D[currentWeek-4]); }));
+    document.querySelectorAll('.fz-cmp .modes button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); cmpMode=b.dataset.mode; renderCmp(currentWeek,D[currentWeek-4]); saveState(); }));
   $('fzSearch').addEventListener('input',e=>{ const n=parseInt(e.target.value); if(n>=4&&n<=40) render(n); });
   document.querySelectorAll('.fz-quick button').forEach(b=>b.addEventListener('click',()=>render(+b.dataset.w)));
 }
@@ -670,10 +616,21 @@ function toggleFaq(btn){
   btn.setAttribute('aria-expanded',!open); panel.style.maxHeight=open?null:panel.scrollHeight+'px';
 }
 
-/* init */
+/* ===================== INIT (dengan PERSIST) ===================== */
 buildStatic();
-render(20);
-window.addEventListener('load',()=>{ window.lucide && lucide.createIcons(); });
+const _st = loadState();
+if(_st){
+  if(_st.cmp==='fruit'||_st.cmp==='obj') cmpMode=_st.cmp;
+  if(_st.hpht){ try{ window.__hpht=new Date(_st.hpht); const hi=$('hpht'); if(hi) hi.value=_st.hpht.slice(0,10); }catch(e){} }
+  if(typeof _st.week==='number' && _st.week>=4 && _st.week<=40) currentWeek=_st.week;
+}
+document.querySelectorAll('.fz-cmp .modes button').forEach(x=>x.classList.toggle('on', x.dataset.mode===cmpMode));
+render(currentWeek);
+if(window.__hpht){ const r=$('hphtResult'); if(r){ const t=new Date(), dh=Math.floor((t-window.__hpht)/864e5), mg=Math.floor(dh/7), hr=dh%7; r.innerHTML='✅ HPHT tersimpan. Usia kehamilan: <strong>'+mg+' minggu '+hr+' hari</strong>'; } }
+const _rb=$('fzReset'); if(_rb) _rb.addEventListener('click', resetView);
+/* redraw grafik saat lebar berubah (biar marker tetap bulat) */
+addEventListener('resize', ()=>{ clearTimeout(window.__rz); window.__rz=setTimeout(()=>{ drawChart('chartW',currentWeek,x=>D[x-4].b,'gWval',' g'); drawChart('chartL',currentWeek,x=>D[x-4].l,'gLval',' cm'); },150); });
+addEventListener('load', ()=>{ window.lucide&&lucide.createIcons(); drawChart('chartW',currentWeek,x=>D[x-4].b,'gWval',' g'); drawChart('chartL',currentWeek,x=>D[x-4].l,'gLval',' cm'); });
 </script>
 <script src="/app.js" defer></script>
 </body>
