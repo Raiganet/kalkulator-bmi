@@ -378,152 +378,201 @@
     </div>
 
     <script>
-        const TARGET = 10;
-        const WARN_MS = 2 * 60 * 60 * 1000; // 2 jam
-        let count = 0;
-        let sessionStart = null;
-        let kicks = []; // timestamp tiap tendangan
-        let sessionInterval = null;
+/* =========================================================
+   Penghitung Tendangan  —  dengan PERSISTENSI (localStorage)
+   Logika/aturan perhitungan TIDAK diubah; hanya ditambah
+   simpan & pulihkan rekaman supaya TIDAK hilang saat reload.
+   ========================================================= */
+const TARGET  = 10;
+const WARN_MS = 2 * 60 * 60 * 1000;        // 2 jam
+const STORE   = 'ko-tendangan-v1';         // kunci penyimpanan
 
-        function formatTime(ms) {
-            const totalSec = Math.floor(ms / 1000);
-            const m = Math.floor(totalSec / 60);
-            const s = totalSec % 60;
-            return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-        }
-        function formatTimeFull(ms) {
-            const totalSec = Math.floor(ms / 1000);
-            const m = Math.floor(totalSec / 60);
-            const s = totalSec % 60;
-            if (m > 0) return m + 'm ' + s + 's';
-            return s + 's';
-        }
+let count        = 0;
+let sessionStart = null;
+let kicks        = [];                     // timestamp tiap tendangan
+let sessionInterval = null;
 
-        function catatTendangan() {
-            const now = Date.now();
-            if (sessionStart === null) {
-                sessionStart = now;
-                startSessionTimer();
-            }
-            count++;
-            kicks.push(now);
-            updateUI();
-            renderHistory();
-            updateStatus();
+/* ---------- simpan / baca (aman: kalau storage diblokir, tetap jalan) ---------- */
+function save(){
+  try { localStorage.setItem(STORE, JSON.stringify({ count:count, sessionStart:sessionStart, kicks:kicks })); } catch(e){}
+}
+function load(){
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (typeof d.count === 'number')        count = d.count;
+    if (typeof d.sessionStart === 'number') sessionStart = d.sessionStart;
+    if (Array.isArray(d.kicks))             kicks = d.kicks;
+  } catch(e){}
+}
 
-            if (count >= TARGET) {
-                clearInterval(sessionInterval);
-                const btn = document.getElementById('btnKick');
-                btn.classList.add('done');
-                btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
-                btn.onclick = resetSession;
-            }
-        }
+/* ---------- format waktu (sama seperti semula) ---------- */
+function formatTime(ms) {
+  const totalSec = Math.floor(ms / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+function formatTimeFull(ms) {
+  const totalSec = Math.floor(ms / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  if (m > 0) return m + 'm ' + s + 's';
+  return s + 's';
+}
 
-        function undoTendangan() {
-            if (count === 0) return;
-            count--;
-            kicks.pop();
-            if (count < TARGET) {
-                const btn = document.getElementById('btnKick');
-                btn.classList.remove('done');
-                btn.innerHTML = '👶 Catat Tendangan / Gerakan';
-                btn.onclick = catatTendangan;
-                if (sessionStart !== null && !sessionInterval) startSessionTimer();
-            }
-            updateUI();
-            renderHistory();
-            updateStatus();
-        }
+/* ---------- catat tendangan (logika sama + save) ---------- */
+function catatTendangan() {
+  const now = Date.now();
+  if (sessionStart === null) {
+    sessionStart = now;
+    startSessionTimer();
+  }
+  count++;
+  kicks.push(now);
+  updateUI();
+  renderHistory();
+  updateStatus();
 
-        function startSessionTimer() {
-            if (sessionInterval) clearInterval(sessionInterval);
-            sessionInterval = setInterval(() => {
-                if (sessionStart !== null) {
-                    document.getElementById('s-waktu').innerText = formatTime(Date.now() - sessionStart);
-                    updateStatus();
-                }
-            }, 1000);
-        }
+  if (count >= TARGET) {
+    clearInterval(sessionInterval);
+    sessionInterval = null;
+    const btn = document.getElementById('btnKick');
+    btn.classList.add('done');
+    btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
+    btn.onclick = resetSession;
+  }
+  save();   // <-- simpan setiap perubahan
+}
 
-        function updateUI() {
-            document.getElementById('countValue').innerText = count;
-            const percent = Math.min((count / TARGET) * 100, 100);
-            document.getElementById('progressFill').style.width = percent + '%';
-            document.getElementById('progressPercent').innerText = Math.round(percent) + '%';
+/* ---------- batalkan tendangan terakhir (logika sama + save) ---------- */
+function undoTendangan() {
+  if (count === 0) return;
+  count--;
+  kicks.pop();
+  if (count < TARGET) {
+    const btn = document.getElementById('btnKick');
+    btn.classList.remove('done');
+    btn.innerHTML = '👶 Catat Tendangan / Gerakan';
+    btn.onclick = catatTendangan;
+    if (sessionStart !== null && !sessionInterval) startSessionTimer();
+  }
+  updateUI();
+  renderHistory();
+  updateStatus();
+  save();   // <-- simpan
+}
 
-            if (kicks.length >= 2) {
-                let totalJeda = 0;
-                for (let i = 1; i < kicks.length; i++) totalJeda += kicks[i] - kicks[i-1];
-                const avg = totalJeda / (kicks.length - 1);
-                document.getElementById('s-rata').innerText = formatTimeFull(avg);
-            } else {
-                document.getElementById('s-rata').innerText = '-';
-            }
+/* ---------- timer sesi ---------- */
+function startSessionTimer() {
+  if (sessionInterval) clearInterval(sessionInterval);
+  sessionInterval = setInterval(() => {
+    if (sessionStart !== null) {
+      document.getElementById('s-waktu').innerText = formatTime(Date.now() - sessionStart);
+      updateStatus();
+    }
+  }, 1000);
+}
 
-            if (sessionStart !== null && count > 0) {
-                const elapsedJam = (Date.now() - sessionStart) / 3600000;
-                const perJam = elapsedJam > 0 ? Math.round(count / elapsedJam) : 0;
-                document.getElementById('s-perjam').innerText = perJam;
-            }
-        }
+/* ---------- tampilan angka (sama seperti semula) ---------- */
+function updateUI() {
+  document.getElementById('countValue').innerText = count;
+  const percent = Math.min((count / TARGET) * 100, 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressPercent').innerText = Math.round(percent) + '%';
 
-        function renderHistory() {
-            const container = document.getElementById('historyContainer');
-            if (kicks.length === 0) {
-                container.innerHTML = '<div class="empty-state">Belum ada tendangan tercatat</div>';
-                return;
-            }
-            let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Jeda dari sebelumnya</th></tr></thead><tbody>';
-            kicks.forEach((t, i) => {
-                const waktu = new Date(t).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-                const jeda = i > 0 ? formatTimeFull(t - kicks[i-1]) : '-';
-                html += '<tr><td>' + (i+1) + '</td><td>' + waktu + '</td><td>' + jeda + '</td></tr>';
-            });
-            html += '</tbody></table>';
-            container.innerHTML = html;
-        }
+  if (kicks.length >= 2) {
+    let totalJeda = 0;
+    for (let i = 1; i < kicks.length; i++) totalJeda += kicks[i] - kicks[i-1];
+    const avg = totalJeda / (kicks.length - 1);
+    document.getElementById('s-rata').innerText = formatTimeFull(avg);
+  } else {
+    document.getElementById('s-rata').innerText = '-';
+  }
 
-        function updateStatus() {
-            const box = document.getElementById('statusBox');
-            if (count >= TARGET) {
-                const elapsed = Date.now() - sessionStart;
-                box.className = 'status-box status-normal';
-                box.innerHTML = '🎉 HEBAT! Bayi Anda aktif & sehat. 10 gerakan tercapai dalam ' + formatTimeFull(elapsed) + '.';
-                return;
-            }
-            if (sessionStart !== null && (Date.now() - sessionStart) > WARN_MS && count < TARGET) {
-                box.className = 'status-box status-waspada';
-                box.innerHTML = '⚠️ PERHATIAN: Sudah 2 jam tapi belum 10 gerakan. Minum air manis, berbaring miring kiri. Jika masih kurang, hubungi dokter/bidan!';
-                return;
-            }
-            if (count === 0) {
-                box.className = 'status-box status-aktif';
-                box.innerHTML = 'ℹ️ Mulai menghitung! Duduk/berbaring tenang, fokus rasakan gerakan bayi.';
-                return;
-            }
-            box.className = 'status-box status-aktif';
-            box.innerHTML = '👶 Terus menghitung... ' + count + ' dari 10 gerakan. Tetap tenang & fokus.';
-        }
+  if (sessionStart !== null && count > 0) {
+    const elapsedJam = (Date.now() - sessionStart) / 3600000;
+    const perJam = elapsedJam > 0 ? Math.round(count / elapsedJam) : 0;
+    document.getElementById('s-perjam').innerText = perJam;
+  }
+}
 
-        function resetSession() {
-            count = 0;
-            kicks = [];
-            sessionStart = null;
-            clearInterval(sessionInterval);
-            sessionInterval = null;
-            const btn = document.getElementById('btnKick');
-            btn.classList.remove('done');
-            btn.innerHTML = '👶 Catat Tendangan / Gerakan';
-            btn.onclick = catatTendangan;
-            document.getElementById('s-waktu').innerText = '00:00';
-            document.getElementById('s-rata').innerText = '-';
-            document.getElementById('s-perjam').innerText = '0';
-            updateUI();
-            renderHistory();
-            updateStatus();
-        }
-    </script>
+/* ---------- tabel riwayat (sama seperti semula) ---------- */
+function renderHistory() {
+  const container = document.getElementById('historyContainer');
+  if (kicks.length === 0) {
+    container.innerHTML = '<div class="empty-state">Belum ada tendangan tercatat</div>';
+    return;
+  }
+  let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Jeda dari sebelumnya</th></tr></thead><tbody>';
+  kicks.forEach((t, i) => {
+    const waktu = new Date(t).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    const jeda = i > 0 ? formatTimeFull(t - kicks[i-1]) : '-';
+    html += '<tr><td>' + (i+1) + '</td><td>' + waktu + '</td><td>' + jeda + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+/* ---------- status / peringatan (sama seperti semula) ---------- */
+function updateStatus() {
+  const box = document.getElementById('statusBox');
+  if (count >= TARGET) {
+    const elapsed = Date.now() - sessionStart;
+    box.className = 'status-box status-normal';
+    box.innerHTML = '🎉 HEBAT! Bayi Anda aktif & sehat. 10 gerakan tercapai dalam ' + formatTimeFull(elapsed) + '.';
+    return;
+  }
+  if (sessionStart !== null && (Date.now() - sessionStart) > WARN_MS && count < TARGET) {
+    box.className = 'status-box status-waspada';
+    box.innerHTML = '⚠️ PERHATIAN: Sudah 2 jam tapi belum 10 gerakan. Minum air manis, berbaring miring kiri. Jika masih kurang, hubungi dokter/bidan!';
+    return;
+  }
+  if (count === 0) {
+    box.className = 'status-box status-aktif';
+    box.innerHTML = 'ℹ️ Mulai menghitung! Duduk/berbaring tenang, fokus rasakan gerakan bayi.';
+    return;
+  }
+  box.className = 'status-box status-aktif';
+  box.innerHTML = '👶 Terus menghitung... ' + count + ' dari 10 gerakan. Tetap tenang & fokus.';
+}
+
+/* ---------- reset sesi baru ---------- */
+function resetSession() {
+  count = 0;
+  kicks = [];
+  sessionStart = null;
+  clearInterval(sessionInterval);
+  sessionInterval = null;
+  const btn = document.getElementById('btnKick');
+  btn.classList.remove('done');
+  btn.innerHTML = '👶 Catat Tendangan / Gerakan';
+  btn.onclick = catatTendangan;
+  document.getElementById('s-waktu').innerText = '00:00';
+  document.getElementById('s-rata').innerText = '-';
+  document.getElementById('s-perjam').innerText = '0';
+  updateUI();
+  renderHistory();
+  updateStatus();
+  try { localStorage.removeItem(STORE); } catch(e){}   // <-- hapus catatan
+}
+
+/* =========================================================
+   INIT: pulihkan rekaman sebelumnya (kalau ada)
+   ========================================================= */
+load();
+updateUI();
+renderHistory();
+updateStatus();
+if (sessionStart !== null && count < TARGET) startSessionTimer();   // lanjutkan timer sesi
+if (count >= TARGET) {                                              // pulihkan tombol "selesai"
+  const btn = document.getElementById('btnKick');
+  btn.classList.add('done');
+  btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
+  btn.onclick = resetSession;
+}
+</script>
 
 <script src="/app.js" defer></script>
 </body>
