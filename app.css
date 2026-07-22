@@ -405,3 +405,11 @@ h1,h2,h3,h4{line-height:1.2;margin:0;font-weight:700;letter-spacing:-.02em}
 @supports(padding:max(0px)){
   .nav .wrap{padding-inline:max(var(--s-4),env(safe-area-inset-left),env(safe-area-inset-right))}
 }
+
+/* ko-body-fix : full-bleed navbar + padding konten (auto-injected) */
+body{padding:0}
+.wrapper{padding:16px}
+.container{padding-inline:16px}
+/* pengaman: kalau suatu halaman lolos tanpa navbar baru, tampilkan navbar lama */
+body:not(:has(.nav)) .navbar{display:flex !important}
+/* /ko-body-fix */

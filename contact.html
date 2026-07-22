@@ -187,6 +187,125 @@
 <!-- ===== /redesign ===== -->
 </head>
 <body data-ko="redesign">
+<!-- ko-nav-injected : navbar baru (auto-injected oleh restore-navbar.js) -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda">
+      <span class="logo-mark"><i data-lucide="calculator"></i></span>
+      <span>Kalkulator<span class="grad-text">Online</span></span>
+    </a>
+    <div class="nav-spacer"></div>
+
+    <div class="search" role="search">
+      <i class="s-ico" data-lucide="search"></i>
+      <input id="searchDesktop" type="search" placeholder="Cari kalkulator… (cth: BMI)" aria-label="Cari kalkulator" autocomplete="off">
+      <div class="search-results" id="searchDesktopRes" role="listbox"></div>
+    </div>
+
+    <nav aria-label="Menu utama">
+      <ul class="menu">
+        <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
+            <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
+            <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
+            <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a>
+            <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a>
+            <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
+            <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
+            <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a>
+            <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
+            <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a>
+            <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
+          </div>
+        </li>
+        <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a>
+            <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a>
+            <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a>
+            <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a>
+          </div>
+        </li>
+        <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a>
+            <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a>
+            <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
+            <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
+          </div>
+        </li>
+        <li><a href="about.html">Tentang</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn js-theme" aria-label="Ganti tema (terang / gelap / otomatis)">
+        <svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg>
+      </button>
+      <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
+      <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="scrim"></div>
+  <aside class="panel">
+    <div class="dhead"><strong>Menu</strong>
+      <button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button>
+    </div>
+    <div class="search" role="search">
+      <i class="s-ico" data-lucide="search"></i>
+      <input id="searchDrawer" type="search" placeholder="Cari kalkulator…" aria-label="Cari kalkulator" autocomplete="off">
+      <div class="search-results" id="searchDrawerRes"></div>
+    </div>
+    <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary>
+      <div class="sub">
+        <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
+        <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
+        <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
+        <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a>
+        <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a>
+        <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
+        <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
+        <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a>
+        <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
+        <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a>
+        <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
+      </div></details>
+    <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary>
+      <div class="sub">
+        <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a>
+        <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a>
+        <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a>
+        <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
+      </div></details>
+    <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary>
+      <div class="sub">
+        <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a>
+        <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a>
+        <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
+        <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
+      </div></details>
+    <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
+  </aside>
+</div>
+
+<nav class="bottomnav" aria-label="Navigasi bawah">
+  <a href="index.html"><i data-lucide="home"></i>Beranda</a>
+  <a href="#" onclick="var s=document.getElementById('searchDesktop');if(s){s.focus();}return false"><i data-lucide="search"></i>Cari</a>
+  <a href="kalkulator-kalori.html"><i data-lucide="flame"></i>Kalori</a>
+  <a href="kalkulator-cicilan.html"><i data-lucide="wallet"></i>Keuangan</a>
+  <a href="#" class="js-theme"><i data-lucide="moon"></i>Tema</a>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+</svg>
+<!-- /ko-nav-injected -->
+
     <div class="container">
         <a href="index.html" class="back-link">← Kembali ke Beranda</a>
         <h1>Hubungi Kami</h1>
