@@ -34,6 +34,7 @@
 <script type="application/ld+json" id="faqSchema"></script>
 
 <link rel="stylesheet" href="/app.css">
+<script src="/baby-illustration.js"></script>
 <style>
 .pg{max-width:1120px;margin:0 auto;padding:16px}
 @media(min-width:640px){.pg{padding:24px}}
@@ -86,7 +87,7 @@
 .fz-visual{display:grid;gap:18px;align-items:center}
 @media(min-width:768px){.fz-visual{grid-template-columns:280px 1fr}}
 .fz-baby{position:relative;display:grid;place-items:center;min-height:240px;border-radius:24px;background:var(--grad-soft);border:1px solid var(--border);overflow:hidden}
-.fz-baby svg.sil{width:62%;height:auto;transition:transform .6s cubic-bezier(.22,.61,.36,1);animation:fzfloat 4s ease-in-out infinite}
+.fz-baby .sil3d{width:80%;max-width:210px;aspect-ratio:120/150;display:grid;place-items:center;animation:fzfloat 4s ease-in-out infinite}.fz-baby .sil3d svg{width:100%;height:100%;display:block;filter:drop-shadow(0 10px 16px rgba(124,58,237,.28))}.fz-baby .sil3d.pop{animation:fzfloat 4s ease-in-out infinite,fzbabyfade .45s ease}@keyframes fzbabyfade{from{opacity:.2}to{opacity:1}}
 @keyframes fzfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .fz-baby .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(168,85,247,.25),transparent 60%)}
 .fz-fruit{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:14px}
@@ -173,7 +174,7 @@
 .fz-resetbtn:active{transform:scale(.98)}
 .fz-resetbtn svg{width:15px;height:15px}
 [data-theme="dark"] .fz-resetbtn{color:#fca5a5;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4)}
-@media(prefers-reduced-motion:reduce){.fz-baby svg.sil,.fz-fruit .emo{animation:none}.fz-flash{animation:none}}
+@media(prefers-reduced-motion:reduce){.fz-baby .sil3d,.fz-fruit .emo{animation:none}.fz-flash{animation:none}}
 </style>
 </head>
 <body>
@@ -263,9 +264,7 @@
     <div class="fz-visual">
       <div>
         <div class="fz-baby"><div class="glow"></div>
-          <svg class="sil" id="babySil" viewBox="0 0 100 120" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#A855F7"/></linearGradient></defs>
-            <g fill="url(#bg1)"><circle cx="50" cy="30" r="20"/><path d="M50 48 C30 48 26 70 30 92 C33 108 42 114 50 114 C58 114 67 108 70 92 C74 70 70 48 50 48 Z"/><path d="M34 70 C24 74 22 86 26 92" stroke="url(#bg1)" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M66 70 C76 74 78 86 74 92" stroke="url(#bg1)" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M40 108 C38 116 40 118 44 118" stroke="url(#bg1)" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M60 108 C62 116 60 118 56 118" stroke="url(#bg1)" stroke-width="7" fill="none" stroke-linecap="round"/></g>
-            <circle cx="44" cy="28" r="2.4" fill="#fff"/><circle cx="56" cy="28" r="2.4" fill="#fff"/></svg>
+          <div class="sil3d" id="babySil" aria-hidden="true"></div>
         </div>
         <div class="fz-fruit"><div class="emo" id="fruitEmoji">🍌</div><div class="nm grad-text" id="fruitName">Pisang</div><div class="cp" id="fruitCompare">Bayi Anda seukuran pisang minggu ini</div><span class="fz-tri t2" id="triBadge">Trimester 2</span></div>
       </div>
@@ -499,7 +498,7 @@ function renderRich(w,d,percent){
   $('pLab').textContent='Minggu '+w+' dari 40'; $('pPct2').textContent=percent+'%'; $('pFill').style.width=percent+'%';
   flash($('iUsia'));
 
-  const sil=$('babySil'); const sc=0.55+0.45*((w-4)/36); sil.style.transform='scale('+sc.toFixed(3)+')';
+  $('babySil').innerHTML=(typeof babySVG==='function'?babySVG(w):'');var _ns=(typeof babyStage==='function'?babyStage(w):0);if(window.__bstage&&window.__bstage!==_ns){var _be=$('babySil');_be.classList.remove('pop');void _be.offsetWidth;_be.classList.add('pop');}window.__bstage=_ns;
   $('vWeek').textContent='Minggu '+w;
 
   renderCmp(w,d);
