@@ -89,6 +89,77 @@
   font-weight: 500 !important;
 }
 
+
+/* ===== FIX TEKS KARTU KEHAMILAN ===== */
+/* Pastikan kartu memiliki background yang tepat */
+.kalkulator-kehamilan .info-card,
+.kalkulator-kehamilan .result-card,
+.kalkulator-kehamilan [class*="card"] {
+  background: #ffffff !important;
+  border: 2px solid #e5e7eb !important;
+}
+
+/* Teks harus gelap di light mode */
+.kalkulator-kehamilan .info-card *,
+.kalkulator-kehamilan .result-card *,
+.kalkulator-kehamilan .info-card div,
+.kalkulator-kehamilan .result-card div {
+  color: #1f2937 !important;
+}
+
+/* Judul kartu - ungu gelap */
+.kalkulator-kehamilan .info-card h3,
+.kalkulator-kehamilan .result-card h3,
+.kalkulator-kehamilan h2,
+.kalkulator-kehamilan .judul-info {
+  color: #6d28d9 !important;
+  font-weight: 700 !important;
+}
+
+/* Nilai besar - ungu tua agar kontras */
+.kalkulator-kehamilan .nilai-besar,
+.kalkulator-kehamilan .hasil-nilai {
+  color: #5b21b6 !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  margin: 10px 0 !important;
+}
+
+/* Label - abu-abu gelap */
+.kalkulator-kehamilan .label-info,
+.kalkulator-kehamilan .label {
+  color: #4b5563 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* Dark mode - tetap pertahankan kontras baik */
+@media (prefers-color-scheme: dark) {
+  .kalkulator-kehamilan .info-card,
+  .kalkulator-kehamilan .result-card {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+  
+  .kalkulator-kehamilan .info-card *,
+  .kalkulator-kehamilan .result-card * {
+    color: #f9fafb !important;
+  }
+  
+  .kalkulator-kehamilan .nilai-besar {
+    color: #a78bfa !important;
+  }
+  
+  .kalkulator-kehamilan .label-info {
+    color: #d1d5db !important;
+  }
+}
+
+/* Fallback untuk semua elemen teks */
+.kalkulator-kehamilan div:not([style*="color"]) {
+  color: #1f2937;
+}
+
 </style>
 
 <!-- ===== redesign: shared assets (auto-injected) ===== -->
