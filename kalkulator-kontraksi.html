@@ -376,158 +376,230 @@
     </div>
 
     <script>
-        let isRecording = false;
-        let kontraksiStart = null;
-        let lastEnd = null;
-        let timerInterval = null;
-        let history = [];
+/* =========================================================
+   Timer Kontraksi  —  dengan PERSISTENSI (localStorage)
+   Logika/aturan (5-1-1, rata-rata, status) TIDAK diubah;
+   hanya ditambah simpan & pulihkan supaya TIDAK hilang saat reload.
+   ========================================================= */
+const STORE = 'ko-kontraksi-v1';   // kunci penyimpanan
 
-        function formatTime(ms) {
-            const totalSec = Math.floor(ms / 1000);
-            const m = Math.floor(totalSec / 60);
-            const s = totalSec % 60;
-            return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-        }
+let isRecording    = false;
+let kontraksiStart = null;
+let lastEnd        = null;
+let timerInterval  = null;
+let history        = [];
 
-        function formatTimeFull(ms) {
-            const totalSec = Math.floor(ms / 1000);
-            const m = Math.floor(totalSec / 60);
-            const s = totalSec % 60;
-            if (m > 0) return m + 'm ' + s + 's';
-            return s + 's';
-        }
+/* ---------- simpan / baca (aman kalau storage diblokir) ---------- */
+function save(){
+  try { localStorage.setItem(STORE, JSON.stringify({
+    isRecording:isRecording, kontraksiStart:kontraksiStart, lastEnd:lastEnd, history:history
+  })); } catch(e){}
+}
+function load(){
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (typeof d.isRecording === 'boolean')        isRecording = d.isRecording;
+    if (typeof d.kontraksiStart === 'number')      kontraksiStart = d.kontraksiStart;
+    if (typeof d.lastEnd === 'number')             lastEnd = d.lastEnd;
+    if (Array.isArray(d.history))                  history = d.history;
+    // pengaman data korup: "sedang mencatat" tapi tanpa waktu mulai -> anggap batal
+    if (isRecording && typeof kontraksiStart !== 'number') isRecording = false;
+  } catch(e){}
+}
 
-        function toggleKontraksi() {
-            const btn = document.getElementById('btnStart');
-            const display = document.getElementById('timerDisplay');
-            const label = document.getElementById('timerLabel');
-            const value = document.getElementById('timerValue');
-            const sub = document.getElementById('timerSub');
+/* ---------- format waktu (sama seperti semula) ---------- */
+function formatTime(ms) {
+  const totalSec = Math.floor(ms / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+function formatTimeFull(ms) {
+  const totalSec = Math.floor(ms / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  if (m > 0) return m + 'm ' + s + 's';
+  return s + 's';
+}
 
-            if (!isRecording) {
-                // MULAI kontraksi
-                isRecording = true;
-                kontraksiStart = Date.now();
-                btn.innerHTML = '⏹️ Akhiri Kontraksi';
-                btn.classList.add('recording');
-                display.classList.add('active');
-                label.innerText = '🔴 Kontraksi Sedang Berlangsung';
-                sub.innerText = 'Tekan "Akhiri" saat kontraksi selesai';
-                timerInterval = setInterval(() => {
-                    value.innerText = formatTime(Date.now() - kontraksiStart);
-                }, 200);
-            } else {
-                // AKHIRI kontraksi
-                isRecording = false;
-                clearInterval(timerInterval);
-                const durasi = Date.now() - kontraksiStart;
-                const now = Date.now();
-                let jeda = null;
-                if (lastEnd !== null) jeda = now - lastEnd;
+/* ---------- mulai / akhiri kontraksi (logika sama + save) ---------- */
+function toggleKontraksi() {
+  const btn     = document.getElementById('btnStart');
+  const display = document.getElementById('timerDisplay');
+  const label   = document.getElementById('timerLabel');
+  const value   = document.getElementById('timerValue');
+  const sub     = document.getElementById('timerSub');
 
-                history.unshift({
-                    no: history.length + 1,
-                    waktu: new Date(now).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'}),
-                    durasi: durasi,
-                    jeda: jeda
-                });
-                lastEnd = now;
+  if (!isRecording) {
+    // MULAI kontraksi
+    isRecording = true;
+    kontraksiStart = Date.now();
+    btn.innerHTML = '⏹️ Akhiri Kontraksi';
+    btn.classList.add('recording');
+    display.classList.add('active');
+    label.innerText = '🔴 Kontraksi Sedang Berlangsung';
+    sub.innerText = 'Tekan "Akhiri" saat kontraksi selesai';
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      value.innerText = formatTime(Date.now() - kontraksiStart);
+    }, 200);
+  } else {
+    // AKHIRI kontraksi
+    isRecording = false;
+    clearInterval(timerInterval);
+    const durasi = Date.now() - kontraksiStart;
+    const now = Date.now();
+    let jeda = null;
+    if (lastEnd !== null) jeda = now - lastEnd;
 
-                btn.innerHTML = '▶️ Mulai Kontraksi';
-                btn.classList.remove('recording');
-                display.classList.remove('active');
-                label.innerText = 'Jeda Antar Kontraksi';
-                value.innerText = '00:00';
-                sub.innerText = 'Menunggu kontraksi berikutnya...';
+    history.unshift({
+      no: history.length + 1,
+      waktu: new Date(now).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'}),
+      durasi: durasi,
+      jeda: jeda
+    });
+    lastEnd = now;
 
-                // Timer jeda
-                timerInterval = setInterval(() => {
-                    if (!isRecording) value.innerText = formatTime(Date.now() - lastEnd);
-                }, 200);
+    btn.innerHTML = '▶️ Mulai Kontraksi';
+    btn.classList.remove('recording');
+    display.classList.remove('active');
+    label.innerText = 'Jeda Antar Kontraksi';
+    value.innerText = '00:00';
+    sub.innerText = 'Menunggu kontraksi berikutnya...';
 
-                updateStats();
-                renderHistory();
-                updateStatus();
-            }
-        }
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      if (!isRecording) value.innerText = formatTime(Date.now() - lastEnd);
+    }, 200);
 
-        function updateStats() {
-            const total = history.length;
-            document.getElementById('s-total').innerText = total;
+    updateStats();
+    renderHistory();
+    updateStatus();
+  }
+  save();   // <-- simpan setiap perubahan
+}
 
-            if (total > 0) {
-                const avgDur = history.reduce((a,b) => a + b.durasi, 0) / total;
-                document.getElementById('s-durasi').innerText = formatTimeFull(avgDur);
-            }
+/* ---------- statistik (sama seperti semula) ---------- */
+function updateStats() {
+  const total = history.length;
+  document.getElementById('s-total').innerText = total;
 
-            const denganJeda = history.filter(h => h.jeda !== null);
-            if (denganJeda.length > 0) {
-                const avgJeda = denganJeda.reduce((a,b) => a + b.jeda, 0) / denganJeda.length;
-                document.getElementById('s-interval').innerText = formatTimeFull(avgJeda);
-                document.getElementById('s-terakhir').innerText = formatTimeFull(denganJeda[0].jeda);
-            }
-        }
+  if (total > 0) {
+    const avgDur = history.reduce((a,b) => a + b.durasi, 0) / total;
+    document.getElementById('s-durasi').innerText = formatTimeFull(avgDur);
+  }
 
-        function renderHistory() {
-            const container = document.getElementById('historyContainer');
-            if (history.length === 0) {
-                container.innerHTML = '<div class="empty-state">Belum ada kontraksi tercatat</div>';
-                return;
-            }
-            let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Durasi</th><th>Jeda</th></tr></thead><tbody>';
-            history.forEach((h, i) => {
-                html += '<tr><td>' + (history.length - i) + '</td><td>' + h.waktu + '</td><td>' + formatTimeFull(h.durasi) + '</td><td>' + (h.jeda !== null ? formatTimeFull(h.jeda) : '-') + '</td></tr>';
-            });
-            html += '</tbody></table>';
-            container.innerHTML = html;
-        }
+  const denganJeda = history.filter(h => h.jeda !== null);
+  if (denganJeda.length > 0) {
+    const avgJeda = denganJeda.reduce((a,b) => a + b.jeda, 0) / denganJeda.length;
+    document.getElementById('s-interval').innerText = formatTimeFull(avgJeda);
+    document.getElementById('s-terakhir').innerText = formatTimeFull(denganJeda[0].jeda);
+  }
+}
 
-        function updateStatus() {
-            const box = document.getElementById('statusBox');
-            const denganJeda = history.filter(h => h.jeda !== null);
-            if (history.length < 3) {
-                box.className = 'status-box status-awal';
-                box.innerHTML = 'ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.';
-                return;
-            }
-            const avgJedaMenit = (denganJeda.reduce((a,b) => a + b.jeda, 0) / denganJeda.length) / 60000;
-            const avgDurDetik = (history.reduce((a,b) => a + b.durasi, 0) / history.length) / 1000;
+/* ---------- tabel riwayat (sama seperti semula) ---------- */
+function renderHistory() {
+  const container = document.getElementById('historyContainer');
+  if (history.length === 0) {
+    container.innerHTML = '<div class="empty-state">Belum ada kontraksi tercatat</div>';
+    return;
+  }
+  let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Durasi</th><th>Jeda</th></tr></thead><tbody>';
+  history.forEach((h, i) => {
+    html += '<tr><td>' + (history.length - i) + '</td><td>' + h.waktu + '</td><td>' + formatTimeFull(h.durasi) + '</td><td>' + (h.jeda !== null ? formatTimeFull(h.jeda) : '-') + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
 
-            if (avgJedaMenit <= 5 && avgDurDetik >= 30) {
-                box.className = 'status-box status-rs';
-                box.innerHTML = '🚨 WAKTUNYA KE RUMAH SAKIT! Kontraksi teratur tiap ' + avgJedaMenit.toFixed(1) + ' menit dengan durasi ' + Math.round(avgDurDetik) + ' detik. Segera hubungi bidan/dokter!';
-            } else if (avgJedaMenit <= 10) {
-                box.className = 'status-box status-pantau';
-                box.innerHTML = '⚠️ Kontraksi mulai teratur (tiap ' + avgJedaMenit.toFixed(1) + ' menit). Pantau terus & siapkan perlengkapan persalinan.';
-            } else {
-                box.className = 'status-box status-awal';
-                box.innerHTML = '✅ Kontraksi masih jarang (tiap ' + avgJedaMenit.toFixed(1) + ' menit). Kemungkinan fase awal / Braxton Hicks. Istirahat & tetap pantau.';
-            }
-        }
+/* ---------- status / rekomendasi 5-1-1 (sama seperti semula) ---------- */
+function updateStatus() {
+  const box = document.getElementById('statusBox');
+  const denganJeda = history.filter(h => h.jeda !== null);
+  if (history.length < 3) {
+    box.className = 'status-box status-awal';
+    box.innerHTML = 'ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.';
+    return;
+  }
+  const avgJedaMenit = (denganJeda.reduce((a,b) => a + b.jeda, 0) / denganJeda.length) / 60000;
+  const avgDurDetik  = (history.reduce((a,b) => a + b.durasi, 0) / history.length) / 1000;
 
-        function resetAll() {
-            if (history.length > 0 && !confirm('Hapus semua data kontraksi?')) return;
-            isRecording = false;
-            clearInterval(timerInterval);
-            kontraksiStart = null;
-            lastEnd = null;
-            history = [];
-            const btn = document.getElementById('btnStart');
-            btn.innerHTML = '▶️ Mulai Kontraksi';
-            btn.classList.remove('recording');
-            document.getElementById('timerDisplay').classList.remove('active');
-            document.getElementById('timerLabel').innerText = 'Siap Mencatat';
-            document.getElementById('timerValue').innerText = '00:00';
-            document.getElementById('timerSub').innerText = 'Tekan "Mulai Kontraksi" saat kontraksi datang';
-            document.getElementById('s-total').innerText = '0';
-            document.getElementById('s-durasi').innerText = '0s';
-            document.getElementById('s-interval').innerText = '-';
-            document.getElementById('s-terakhir').innerText = '-';
-            document.getElementById('statusBox').className = 'status-box status-awal';
-            document.getElementById('statusBox').innerHTML = 'ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.';
-            renderHistory();
-        }
-    </script>
+  if (avgJedaMenit <= 5 && avgDurDetik >= 30) {
+    box.className = 'status-box status-rs';
+    box.innerHTML = '🚨 WAKTUNYA KE RUMAH SAKIT! Kontraksi teratur tiap ' + avgJedaMenit.toFixed(1) + ' menit dengan durasi ' + Math.round(avgDurDetik) + ' detik. Segera hubungi bidan/dokter!';
+  } else if (avgJedaMenit <= 10) {
+    box.className = 'status-box status-pantau';
+    box.innerHTML = '⚠️ Kontraksi mulai teratur (tiap ' + avgJedaMenit.toFixed(1) + ' menit). Pantau terus & siapkan perlengkapan persalinan.';
+  } else {
+    box.className = 'status-box status-awal';
+    box.innerHTML = '✅ Kontraksi masih jarang (tiap ' + avgJedaMenit.toFixed(1) + ' menit). Kemungkinan fase awal / Braxton Hicks. Istirahat & tetap pantau.';
+  }
+}
+
+/* ---------- reset semua (logika sama + bersihkan simpanan) ---------- */
+function resetAll() {
+  if (history.length > 0 && !confirm('Hapus semua data kontraksi?')) return;
+  isRecording = false;
+  clearInterval(timerInterval);
+  timerInterval = null;
+  kontraksiStart = null;
+  lastEnd = null;
+  history = [];
+
+  const btn = document.getElementById('btnStart');
+  btn.innerHTML = '▶️ Mulai Kontraksi';
+  btn.classList.remove('recording');
+  document.getElementById('timerDisplay').classList.remove('active');
+  document.getElementById('timerLabel').innerText = 'Siap Mencatat';
+  document.getElementById('timerValue').innerText = '00:00';
+  document.getElementById('timerSub').innerText = 'Tekan "Mulai Kontraksi" saat kontraksi datang';
+  document.getElementById('s-total').innerText = '0';
+  document.getElementById('s-durasi').innerText = '0s';
+  document.getElementById('s-interval').innerText = '-';
+  document.getElementById('s-terakhir').innerText = '-';
+  document.getElementById('statusBox').className = 'status-box status-awal';
+  document.getElementById('statusBox').innerHTML = 'ℹ️ Belum ada data. Catat minimal 3 kontraksi untuk mendapat rekomendasi.';
+  renderHistory();
+  save();   // <-- simpan keadaan kosong
+}
+
+/* =========================================================
+   INIT: pulihkan rekaman sebelumnya (kalau ada)
+   ========================================================= */
+load();
+
+// pulihkan tampilan tombol & stopwatch sesuai keadaan terakhir
+(function restoreUI(){
+  const btn     = document.getElementById('btnStart');
+  const display = document.getElementById('timerDisplay');
+  const label   = document.getElementById('timerLabel');
+  const value   = document.getElementById('timerValue');
+  const sub     = document.getElementById('timerSub');
+
+  if (isRecording) {
+    // tadi sedang di tengah kontraksi -> lanjutkan stopwatch durasi
+    btn.innerHTML = '⏹️ Akhiri Kontraksi';
+    btn.classList.add('recording');
+    display.classList.add('active');
+    label.innerText = '🔴 Kontraksi Sedang Berlangsung';
+    sub.innerText = 'Tekan "Akhiri" saat kontraksi selesai';
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => { value.innerText = formatTime(Date.now() - kontraksiStart); }, 200);
+  } else if (lastEnd !== null) {
+    // ada kontraksi selesai -> tampilkan penghitung jeda
+    label.innerText = 'Jeda Antar Kontraksi';
+    sub.innerText = 'Menunggu kontraksi berikutnya...';
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => { if (!isRecording) value.innerText = formatTime(Date.now() - lastEnd); }, 200);
+  }
+})();
+
+updateStats();
+renderHistory();
+updateStatus();
+</script>
 
 <script src="/app.js" defer></script>
 </body>
