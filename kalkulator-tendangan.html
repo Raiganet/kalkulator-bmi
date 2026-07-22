@@ -379,9 +379,9 @@
 
     <script>
 /* =========================================================
-   Penghitung Tendangan  —  dengan PERSISTENSI (localStorage)
-   Logika/aturan perhitungan TIDAK diubah; hanya ditambah
-   simpan & pulihkan rekaman supaya TIDAK hilang saat reload.
+   Penghitung Tendangan  —  persisten + tombol RESET manual
+   Logika/aturan TIDAK diubah; hanya ditambah: simpan/pulihkan
+   (tahan reload) + tombol "Reset Sesi" kapan saja.
    ========================================================= */
 const TARGET  = 10;
 const WARN_MS = 2 * 60 * 60 * 1000;        // 2 jam
@@ -392,7 +392,7 @@ let sessionStart = null;
 let kicks        = [];                     // timestamp tiap tendangan
 let sessionInterval = null;
 
-/* ---------- simpan / baca (aman: kalau storage diblokir, tetap jalan) ---------- */
+/* ---------- simpan / baca ---------- */
 function save(){
   try { localStorage.setItem(STORE, JSON.stringify({ count:count, sessionStart:sessionStart, kicks:kicks })); } catch(e){}
 }
@@ -407,7 +407,7 @@ function load(){
   } catch(e){}
 }
 
-/* ---------- format waktu (sama seperti semula) ---------- */
+/* ---------- format waktu ---------- */
 function formatTime(ms) {
   const totalSec = Math.floor(ms / 1000);
   const m = Math.floor(totalSec / 60);
@@ -422,7 +422,7 @@ function formatTimeFull(ms) {
   return s + 's';
 }
 
-/* ---------- catat tendangan (logika sama + save) ---------- */
+/* ---------- catat tendangan ---------- */
 function catatTendangan() {
   const now = Date.now();
   if (sessionStart === null) {
@@ -443,10 +443,10 @@ function catatTendangan() {
     btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
     btn.onclick = resetSession;
   }
-  save();   // <-- simpan setiap perubahan
+  save();
 }
 
-/* ---------- batalkan tendangan terakhir (logika sama + save) ---------- */
+/* ---------- batalkan tendangan terakhir ---------- */
 function undoTendangan() {
   if (count === 0) return;
   count--;
@@ -461,7 +461,7 @@ function undoTendangan() {
   updateUI();
   renderHistory();
   updateStatus();
-  save();   // <-- simpan
+  save();
 }
 
 /* ---------- timer sesi ---------- */
@@ -475,7 +475,7 @@ function startSessionTimer() {
   }, 1000);
 }
 
-/* ---------- tampilan angka (sama seperti semula) ---------- */
+/* ---------- tampilan angka ---------- */
 function updateUI() {
   document.getElementById('countValue').innerText = count;
   const percent = Math.min((count / TARGET) * 100, 100);
@@ -498,7 +498,7 @@ function updateUI() {
   }
 }
 
-/* ---------- tabel riwayat (sama seperti semula) ---------- */
+/* ---------- tabel riwayat ---------- */
 function renderHistory() {
   const container = document.getElementById('historyContainer');
   if (kicks.length === 0) {
@@ -515,7 +515,7 @@ function renderHistory() {
   container.innerHTML = html;
 }
 
-/* ---------- status / peringatan (sama seperti semula) ---------- */
+/* ---------- status / peringatan ---------- */
 function updateStatus() {
   const box = document.getElementById('statusBox');
   if (count >= TARGET) {
@@ -538,7 +538,7 @@ function updateStatus() {
   box.innerHTML = '👶 Terus menghitung... ' + count + ' dari 10 gerakan. Tetap tenang & fokus.';
 }
 
-/* ---------- reset sesi baru ---------- */
+/* ---------- reset sesi (dipakai tombol "target tercapai" & tombol reset manual) ---------- */
 function resetSession() {
   count = 0;
   kicks = [];
@@ -555,23 +555,62 @@ function resetSession() {
   updateUI();
   renderHistory();
   updateStatus();
-  try { localStorage.removeItem(STORE); } catch(e){}   // <-- hapus catatan
+  try { localStorage.removeItem(STORE); } catch(e){}
+}
+
+/* ---------- RESET MANUAL (dengan konfirmasi) ---------- */
+function resetManual() {
+  if (count === 0 && kicks.length === 0) return;          // sudah kosong
+  if (confirm('Hapus semua hitungan tendangan & mulai sesi baru dari 0?')) {
+    resetSession();
+    if (window.KO && KO.toast) KO.toast('Sesi tendangan direset.');
+  }
+}
+
+/* ---------- buat tombol Reset otomatis (tanpa edit HTML) + stylenya ---------- */
+function addResetButton() {
+  // stylenya (sekali saja, ramah light & dark)
+  if (!document.getElementById('ko-reset-style')) {
+    const st = document.createElement('style');
+    st.id = 'ko-reset-style';
+    st.textContent =
+      '.btn-reset-sesi{margin-top:10px;width:100%;padding:12px;border-radius:12px;font-weight:600;' +
+      'font-family:inherit;cursor:pointer;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);' +
+      'color:#b91c1c;transition:background .3s,transform .3s}' +
+      '.btn-reset-sesi:hover{background:rgba(239,68,68,.16)}' +
+      '.btn-reset-sesi:active{transform:scale(.98)}' +
+      '[data-theme="dark"] .btn-reset-sesi{color:#fca5a5;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4)}' +
+      '[data-theme="dark"] .btn-reset-sesi:hover{background:rgba(239,68,68,.2)}';
+    document.head.appendChild(st);
+  }
+  // tombolnya (idempoten: kalau sudah ada, jangan dobel)
+  const undo = document.querySelector('.btn-undo');
+  if (!undo || document.getElementById('btnResetSesi')) return;
+  const b = document.createElement('button');
+  b.id = 'btnResetSesi';
+  b.type = 'button';
+  b.className = 'btn-reset-sesi';
+  b.setAttribute('aria-label', 'Reset sesi tendangan dari nol');
+  b.innerHTML = '🗑️ Reset Sesi (Mulai dari 0)';
+  b.addEventListener('click', resetManual);
+  undo.insertAdjacentElement('afterend', b);   // taruh tepat di bawah "Batalkan"
 }
 
 /* =========================================================
-   INIT: pulihkan rekaman sebelumnya (kalau ada)
+   INIT: pulihkan rekaman + pasang tombol reset
    ========================================================= */
 load();
 updateUI();
 renderHistory();
 updateStatus();
-if (sessionStart !== null && count < TARGET) startSessionTimer();   // lanjutkan timer sesi
-if (count >= TARGET) {                                              // pulihkan tombol "selesai"
+if (sessionStart !== null && count < TARGET) startSessionTimer();
+if (count >= TARGET) {
   const btn = document.getElementById('btnKick');
   btn.classList.add('done');
   btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
   btn.onclick = resetSession;
 }
+addResetButton();
 </script>
 
 <script src="/app.js" defer></script>
