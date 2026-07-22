@@ -433,3 +433,51 @@ body:not(:has(.nav)) .navbar{display:flex !important}
 .nav .menu li:hover::after{ content:""; position:absolute; left:0; right:0; top:100%; height:12px; }
 .drawer .sub{ display:block; }
 /* /ko-dropdown-fix */
+/* ================================
+   LIGHT MODE FIX
+================================ */
+
+:root:not([data-theme="dark"]) .card,
+:root:not([data-theme="dark"]) .article,
+:root:not([data-theme="dark"]) .footer{
+    color: var(--text) !important;
+}
+
+:root:not([data-theme="dark"]) h1,
+:root:not([data-theme="dark"]) h2,
+:root:not([data-theme="dark"]) h3,
+:root:not([data-theme="dark"]) h4,
+:root:not([data-theme="dark"]) h5,
+:root:not([data-theme="dark"]) h6{
+    color: var(--text) !important;
+}
+
+:root:not([data-theme="dark"]) p,
+:root:not([data-theme="dark"]) span,
+:root:not([data-theme="dark"]) label,
+:root:not([data-theme="dark"]) li,
+:root:not([data-theme="dark"]) strong{
+    color: var(--text-2) !important;
+}
+
+:root:not([data-theme="dark"]) input,
+:root:not([data-theme="dark"]) textarea,
+:root:not([data-theme="dark"]) select{
+    background: var(--surface-solid) !important;
+    color: var(--text) !important;
+    border:1px solid var(--border) !important;
+}
+
+:root:not([data-theme="dark"]) input::placeholder{
+    color: var(--text-3) !important;
+}
+
+:root:not([data-theme="dark"]) .tool-name{
+    color: var(--text) !important;
+}
+
+:root:not([data-theme="dark"]) .tool-desc,
+:root:not([data-theme="dark"]) .subtitle,
+:root:not([data-theme="dark"]) .footer p{
+    color: var(--text-2) !important;
+}
