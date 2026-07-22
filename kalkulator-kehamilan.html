@@ -11,215 +11,436 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .wrapper { max-width: 900px; margin: 0 auto; }
-        .navbar { display: none; } /* Navbar lama disembunyikan */
-        
-        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; }
-        @media (prefers-color-scheme: dark) { .card { background: rgba(31, 41, 55, 0.98); } }
-        
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; position: relative; z-index: 100; }
+        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
+        .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown:hover::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; }
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-header { text-align: center; margin-bottom: 35px; }
         .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
         .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
         .hero-header .subtitle { color: #888; font-size: 16px; }
-        @media (prefers-color-scheme: dark) { .hero-header .subtitle { color: #9ca3af; } }
-        
         .form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 25px; max-width: 500px; margin-left: auto; margin-right: auto; }
         .form-group label { display: block; margin-bottom: 8px; color: #444; font-weight: 600; font-size: 14px; }
-        @media (prefers-color-scheme: dark) { .form-group label { color: #e5e7eb; } }
         .form-group input { width: 100%; padding: 16px 18px; border: 2px solid #e8ecf1; border-radius: 14px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 500; transition: all 0.3s ease; background: #f8f9fc; }
-        @media (prefers-color-scheme: dark) { .form-group input { background: #374151; border-color: #4b5563; color: white; } }
         .form-group input:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12); }
-        @media (prefers-color-scheme: dark) { .form-group input:focus { background: #1f2937; } }
-        
         .calculate-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 14px; font-size: 18px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4); }
         .calculate-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5); }
-        
         .result { margin-top: 30px; display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 20px; color: white; }
         .result h2 { text-align: center; margin-bottom: 20px; font-size: 24px; }
         .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .result-card { background: rgba(255,255,255,0.15); padding: 20px; border-radius: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.2); }
-        .result-card .value { font-size: 24px; font-weight: 800; margin: 10px 0; color: white !important; }
-        .result-card .label { font-size: 13px; opacity: 0.9; color: rgba(255,255,255,0.9) !important; }
-        
+        .result-card { background: rgba(255,255,255,0.15); padding: 20px; border-radius: 14px; text-align: center; }
+        .result-card .value { font-size: 28px; font-weight: 800; margin: 10px 0; }
+        .result-card .label { font-size: 13px; opacity: 0.9; }
         .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
-        @media (prefers-color-scheme: dark) { .article h2 { color: #f9fafb; } }
         .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
-        @media (prefers-color-scheme: dark) { .article p { color: #d1d5db; } }
         .article ul { margin-left: 20px; margin-bottom: 20px; }
         .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
-        @media (prefers-color-scheme: dark) { .article li { color: #d1d5db; } }
-        
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
         .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
-        @media (prefers-color-scheme: dark) { .tool-card { background: #1f2937; border-color: #374151; } }
         .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
         .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
         .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
-        @media (prefers-color-scheme: dark) { .tool-card .tool-name { color: #f9fafb; } }
         .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
-        @media (prefers-color-scheme: dark) { .tool-card .tool-desc { color: #9ca3af; } }
-        
         .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
-        @media (prefers-color-scheme: dark) { .footer { background: #1f2937; } }
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
         .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
         .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
         .footer p { color: #aaa; font-size: 13px; }
-        @media (prefers-color-scheme: dark) { .footer p { color: #6b7280; } }
-        
-        @media (max-width: 768px) { 
-            .form-grid, .result-grid, .tools-grid { grid-template-columns: 1fr; } 
-            .hero-header h1 { font-size: 28px; } 
-        }
-    </style>
+        @media (max-width: 768px) { .form-grid, .result-grid, .tools-grid { grid-template-columns: 1fr; } .hero-header h1 { font-size: 28px; } .navbar { flex-direction: column; gap: 12px; } .navbar .nav-links { justify-content: center; width: 100%; } .dropdown { width: 100%; } .dropdown .dropbtn { width: 100%; text-align: center; } .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); } .dropdown-content a { text-align: center; } }
+    
+/* Fix tampilan kartu kehamilan - pastikan teks terlihat */
+.kalkulator-kehamilan .info-card,
+.kalkulator-kehamilan .result-card,
+.kalkulator-kehamilan [class*="card"] {
+  color: #1f2937 !important;
+  background: #ffffff !important;
+}
+.kalkulator-kehamilan .info-card *,
+.kalkulator-kehamilan .result-card * {
+  color: #1f2937 !important;
+}
+.kalkulator-kehamilan .info-card h3,
+.kalkulator-kehamilan .result-card h3 {
+  color: #6d28d9 !important;
+  font-weight: 700 !important;
+}
+.kalkulator-kehamilan .nilai-besar {
+  color: #6d28d9 !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  margin: 10px 0 !important;
+}
+.kalkulator-kehamilan .label-info {
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
 
-    <!-- Shared assets -->
-    <meta name="theme-color" content="#6C63FF">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="apple-touch-icon" href="/icons/icon-192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-    <script defer src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="/app.css">
+
+/* ===== FIX TEKS KARTU KEHAMILAN ===== */
+/* Pastikan kartu memiliki background yang tepat */
+.kalkulator-kehamilan .info-card,
+.kalkulator-kehamilan .result-card,
+.kalkulator-kehamilan [class*="card"] {
+  background: #ffffff !important;
+  border: 2px solid #e5e7eb !important;
+}
+
+/* Teks harus gelap di light mode */
+.kalkulator-kehamilan .info-card *,
+.kalkulator-kehamilan .result-card *,
+.kalkulator-kehamilan .info-card div,
+.kalkulator-kehamilan .result-card div {
+  color: #1f2937 !important;
+}
+
+/* Judul kartu - ungu gelap */
+.kalkulator-kehamilan .info-card h3,
+.kalkulator-kehamilan .result-card h3,
+.kalkulator-kehamilan h2,
+.kalkulator-kehamilan .judul-info {
+  color: #6d28d9 !important;
+  font-weight: 700 !important;
+}
+
+/* Nilai besar - ungu tua agar kontras */
+.kalkulator-kehamilan .nilai-besar,
+.kalkulator-kehamilan .hasil-nilai {
+  color: #5b21b6 !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  margin: 10px 0 !important;
+}
+
+/* Label - abu-abu gelap */
+.kalkulator-kehamilan .label-info,
+.kalkulator-kehamilan .label {
+  color: #4b5563 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* Dark mode - tetap pertahankan kontras baik */
+@media (prefers-color-scheme: dark) {
+  .kalkulator-kehamilan .info-card,
+  .kalkulator-kehamilan .result-card {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+  
+  .kalkulator-kehamilan .info-card *,
+  .kalkulator-kehamilan .result-card * {
+    color: #f9fafb !important;
+  }
+  
+  .kalkulator-kehamilan .nilai-besar {
+    color: #a78bfa !important;
+  }
+  
+  .kalkulator-kehamilan .label-info {
+    color: #d1d5db !important;
+  }
+}
+
+/* Fallback untuk semua elemen teks */
+.kalkulator-kehamilan div:not([style*="color"]) {
+  color: #1f2937;
+}
+
+
+/* ===== PERBAIKI WARNA TEKS MODE LIGHT/DARK ===== */
+
+/* Default (Light Mode) - Teks Gelap */
+.result-card {
+  background: #f9fafb !important;
+  border: 2px solid #e5e7eb !important;
+}
+
+.result-card .value,
+.result-card .label {
+  color: #1f2937 !important; /* Abu gelap */
+}
+
+.result-card .value {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+}
+
+/* Dark Mode - Teks Putih */
+[data-theme="dark"] .result-card,
+body.dark-mode .result-card {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+[data-theme="dark"] .result-card .value,
+[data-theme="dark"] .result-card .label,
+body.dark-mode .result-card .value,
+body.dark-mode .result-card .label {
+  color: #f9fafb !important; /* Putih */
+}
+
+/* Fallback untuk elemen lain */
+.result h2 {
+  color: #6d28d9 !important; /* Ungu */
+}
+
+[data-theme="dark"] .result h2,
+body.dark-mode .result h2 {
+  color: white !important;
+}
+
+
+/* ===== PERBAIKI MODE LIGHT ===== */
+/* Default (tanpa dark mode) - teks harus gelap */
+.result-card .value {
+  color: #1f2937 !important; /* Abu gelap */
+  font-size: 24px !important;
+  font-weight: 800 !important;
+}
+
+.result-card .label {
+  color: #4b5563 !important; /* Abu sedang */
+  font-size: 13px !important;
+}
+
+.result h2 {
+  color: #6d28d9 !important; /* Ungu */
+}
+
+/* Dark mode - teks putih */
+[data-theme="dark"] .result-card .value,
+body.dark-mode .result-card .value {
+  color: #f9fafb !important; /* Putih */
+}
+
+[data-theme="dark"] .result-card .label,
+body.dark-mode .result-card .label {
+  color: #d1d5db !important; /* Abu terang */
+}
+
+[data-theme="dark"] .result h2,
+body.dark-mode .result h2 {
+  color: white !important;
+}
+
+</style>
+
+<!-- ===== redesign: shared assets (auto-injected) ===== -->
+<meta name="theme-color" content="#6C63FF">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="/app.css">
+<!-- ===== /redesign ===== -->
 </head>
 <body data-ko="redesign">
+<!-- ko-nav-injected : navbar baru (auto-injected oleh restore-navbar.js) -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda">
+      <span class="logo-mark"><i data-lucide="calculator"></i></span>
+      <span>Kalkulator<span class="grad-text">Online</span></span>
+    </a>
+    <div class="nav-spacer"></div>
 
-    <!-- Navbar Baru -->
-    <header class="nav" id="nav">
-      <div class="wrap">
-        <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda">
-          <span class="logo-mark"><i data-lucide="calculator"></i></span>
-          <span>Kalkulator<span class="grad-text">Online</span></span>
-        </a>
-        <div class="nav-spacer"></div>
-        <nav aria-label="Menu utama">
-          <ul class="menu">
-            <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a>
-              <div class="dropdown-content">
-                <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
-                <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
-                <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
-                <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a>
-                <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a>
-                <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
-                <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
-                <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a>
-                <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
-                <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a>
-                <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
-              </div>
-            </li>
-            <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a>
-              <div class="dropdown-content">
-                <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a>
-                <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a>
-                <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a>
-                <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a>
-              </div>
-            </li>
-            <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a>
-              <div class="dropdown-content">
-                <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a>
-                <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a>
-                <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
-                <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
-              </div>
-            </li>
-            <li><a href="about.html">Tentang</a></li>
-          </ul>
-        </nav>
-        <div class="nav-actions">
-          <button class="icon-btn js-theme" aria-label="Ganti tema"><svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg></button>
-          <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
-          <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
-        </div>
-      </div>
-    </header>
-
-    <div class="drawer" id="drawer" aria-hidden="true">
-      <div class="scrim"></div>
-      <aside class="panel">
-        <div class="dhead"><strong>Menu</strong><button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button></div>
-        <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub">
-          <a href="index.html"><i data-lucide="scale"></i> BMI</a>
-          <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalori</a>
-          <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> BMR</a>
-          <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a>
-          <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a>
-          <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat</a>
-          <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
-          <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a>
-          <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Kontraksi</a>
-          <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a>
-          <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
-        </div></details>
-        <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub">
-          <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a>
-          <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a>
-          <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a>
-          <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
-        </div></details>
-        <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub">
-          <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a>
-          <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a>
-          <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
-          <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
-        </div></details>
-        <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
-      </aside>
+    <div class="search" role="search">
+      <i class="s-ico" data-lucide="search"></i>
+      <input id="searchDesktop" type="search" placeholder="Cari kalkulator… (cth: BMI)" aria-label="Cari kalkulator" autocomplete="off">
+      <div class="search-results" id="searchDesktopRes" role="listbox"></div>
     </div>
 
-    <nav class="bottomnav" aria-label="Navigasi bawah">
-      <a href="index.html"><i data-lucide="home"></i>Beranda</a>
-      <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i>Kehamilan</a>
-      <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i>Tendangan</a>
-      <a href="#" class="js-theme"><i data-lucide="moon"></i>Tema</a>
+    <nav aria-label="Menu utama">
+      <ul class="menu">
+        <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
+            <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
+            <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
+            <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a>
+            <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a>
+            <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
+            <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
+            <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a>
+            <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
+            <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a>
+            <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
+          </div>
+        </li>
+        <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a>
+            <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a>
+            <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a>
+            <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a>
+          </div>
+        </li>
+        <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a>
+            <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a>
+            <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
+            <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
+          </div>
+        </li>
+        <li><a href="about.html">Tentang</a></li>
+      </ul>
     </nav>
 
-    <!-- Konten Utama -->
-    <main class="wrapper">
+    <div class="nav-actions">
+      <button class="icon-btn js-theme" aria-label="Ganti tema (terang / gelap / otomatis)">
+        <svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg>
+      </button>
+      <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
+      <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="scrim"></div>
+  <aside class="panel">
+    <div class="dhead"><strong>Menu</strong>
+      <button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button>
+    </div>
+    <div class="search" role="search">
+      <i class="s-ico" data-lucide="search"></i>
+      <input id="searchDrawer" type="search" placeholder="Cari kalkulator…" aria-label="Cari kalkulator" autocomplete="off">
+      <div class="search-results" id="searchDrawerRes"></div>
+    </div>
+    <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary>
+      <div class="sub">
+        <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
+        <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
+        <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
+        <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a>
+        <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a>
+        <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
+        <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
+        <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a>
+        <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
+        <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a>
+        <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
+      </div></details>
+    <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary>
+      <div class="sub">
+        <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a>
+        <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a>
+        <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a>
+        <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
+      </div></details>
+    <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary>
+      <div class="sub">
+        <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a>
+        <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a>
+        <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
+        <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
+      </div></details>
+    <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
+  </aside>
+</div>
+
+<nav class="bottomnav" aria-label="Navigasi bawah">
+  <a href="index.html"><i data-lucide="home"></i>Beranda</a>
+  <a href="#" onclick="var s=document.getElementById('searchDesktop');if(s){s.focus();}return false"><i data-lucide="search"></i>Cari</a>
+  <a href="kalkulator-kalori.html"><i data-lucide="flame"></i>Kalori</a>
+  <a href="kalkulator-cicilan.html"><i data-lucide="wallet"></i>Keuangan</a>
+  <a href="#" class="js-theme"><i data-lucide="moon"></i>Tema</a>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+</svg>
+<!-- /ko-nav-injected -->
+
+    <div class="wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">🏥 Kesehatan </a>
+                    <div class="dropdown-content">
+                        <a href="index.html">⚖️️ Kalkulator BMI</a>
+                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
+                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
+                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
+                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
+                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
+                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
+                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
+                        <a href="kalkulator-kontraksi.html">⏱️ Timer Kontraksi</a>
+                        <a href="kalkulator-tendangan.html">👶 Penghitung Tendangan</a>
+                        <a href="kalkulator-ukuran-janin.html">🍉 Ukuran Janin</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">💰 Keuangan ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
+                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
+                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
+                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">📚 Umum ▾</a>
+                    <div class="dropdown-content">
+                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
+                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
+                        <a href="cara-menghitung-bmi.html">📖 Panduan BMI</a>
+                        <a href="faq.html">❓ FAQ</a>
+                    </div>
+                </div>
+                <a href="about.html">Tentang</a>
+            </div>
+        </nav>
+
         <div class="card">
             <div class="hero-header">
-                <div class="badge"> Cek Kehamilan</div>
+                <div class="badge">👶 Cek Kehamilan</div>
                 <h1>Kalkulator Kehamilan</h1>
                 <p class="subtitle">Hitung Hari Perkiraan Lahir (HPL) & Usia Janin</p>
             </div>
 
             <div class="form-grid">
-                <div class="form-group">
-                    <label>📅 Hari Pertama Haid Terakhir (HPHT)</label>
-                    <input type="date" id="hpht">
-                </div>
+                <div class="form-group"><label>📅 Hari Pertama Haid Terakhir (HPHT)</label><input type="date" id="hpht"></div>
             </div>
 
-            <button class="calculate-btn" onclick="hitungHamil()"> Hitung Kehamilan</button>
+            <button class="calculate-btn" onclick="hitungHamil()">👶 Hitung Kehamilan</button>
 
             <div class="result" id="result">
                 <h2>📊 Informasi Kehamilan</h2>
                 <div class="result-grid">
-                    <div class="result-card">
-                        <div class="label">Hari Perkiraan Lahir (HPL)</div>
-                        <div class="value" id="r-hpl">-</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="label">Usia Kehamilan Saat Ini</div>
-                        <div class="value" id="r-usia">-</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="label">Trimester</div>
-                        <div class="value" id="r-trimester">-</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="label">Sisa Waktu Lahir</div>
-                        <div class="value" id="r-sisa">-</div>
-                    </div>
+                    <div class="result-card"><div class="label">Hari Perkiraan Lahir (HPL)</div><div class="value" id="r-hpl" style="font-size: 22px;">-</div></div>
+                    <div class="result-card"><div class="label">Usia Kehamilan Saat Ini</div><div id="usiaMinggu" style="font-size:28px;font-weight:800;margin-top:10px">18 minggu 0 hari</div><div class="value" id="r-usia">-</div></div>
+                    <div class="result-card"><div class="label">Trimester</div><div class="value" id="r-trimester">-</div></div>
+                    <div class="result-card"><div class="label">Sisa Waktu Lahir</div><div class="value" id="r-sisa">-</div></div>
                 </div>
             </div>
         </div>
 
         <div class="card article">
-            <h2>📚 Tentang Perhitungan Kehamilan</h2>
+            <h2> Tentang Perhitungan Kehamilan</h2>
             <p>Kalkulator ini menggunakan <strong>Aturan Naegele</strong>, metode standar medis untuk memperkirakan tanggal persalinan. Perhitungan didasarkan pada siklus haid 28 hari.</p>
             <ul>
                 <li><strong>Rumus HPL:</strong> HPHT + 280 hari (40 minggu)</li>
@@ -229,75 +450,108 @@
             </ul>
             <h3>🔗 Tools Lainnya</h3>
             <div class="tools-grid">
-                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon"></div><div class="tool-name">Masa Subur</div><div class="tool-desc">Hitung masa subur wanita</div></a>
-                <a href="kalkulator-ukuran-janin.html" class="tool-card"><div class="tool-icon">🍉</div><div class="tool-name">Ukuran Janin</div><div class="tool-desc">Pantau perkembangan janin</div></a>
-                <a href="kalkulator-tendangan.html" class="tool-card"><div class="tool-icon">👶</div><div class="tool-name">Penghitung Tendangan</div><div class="tool-desc">Pantau gerakan bayi</div></a>
-                <a href="kalkulator-kontraksi.html" class="tool-card"><div class="tool-icon">⏱️</div><div class="tool-name">Timer Kontraksi</div><div class="tool-desc">Pantau tanda persalinan</div></a>
+                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Hitung masa subur wanita</div></a>
+                <a href="index.html" class="tool-card"><div class="tool-icon">⚖️</div><div class="tool-name">Kalkulator BMI</div><div class="tool-desc">Hitung indeks massa tubuh</div></a>
+                <a href="kalkulator-cicilan.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-name">Kalkulator Cicilan</div><div class="tool-desc">Simulasi KPR & Kredit</div></a>
+                <a href="konversi-satuan.html" class="tool-card"><div class="tool-icon">📏</div><div class="tool-name">Konversi Satuan</div><div class="tool-desc">Ubah satuan ukuran</div></a>
             </div>
         </div>
 
         <div class="footer">
             <div class="footer-links">
                 <a href="index.html">BMI</a>
+                <a href="kalkulator-cicilan.html">Cicilan</a>
                 <a href="kalkulator-kehamilan.html">Kehamilan</a>
                 <a href="faq.html">FAQ</a>
                 <a href="about.html">Tentang</a>
             </div>
             <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
         </div>
-    </main>
+    </div>
 
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
-      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
-    </svg>
-
-    <!-- Script Perhitungan - HANYA SATU FUNGSI -->
     <script>
-        function formatTanggal(date) { 
-            const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
-            return date.toLocaleDateString('id-ID', options); 
-        }
-        
+        function formatTanggal(date) { const options = { year: 'numeric', month: 'long', day: 'numeric' }; return date.toLocaleDateString('id-ID', options); }
         function hitungHamil() {
             const hphtInput = document.getElementById('hpht').value;
             if (!hphtInput) { alert('Mohon pilih tanggal HPHT!'); return; }
-            
             const hpht = new Date(hphtInput);
             const today = new Date();
-            
             if (hpht > today) { alert('Tanggal HPHT tidak boleh di masa depan!'); return; }
-            
-            // Hitung HPL (HPHT + 280 hari)
-            const hpl = new Date(hpht); 
-            hpl.setDate(hpht.getDate() + 280);
-            
-            // Hitung usia kehamilan
+            const hpl = new Date(hpht); hpl.setDate(hpht.getDate() + 280);
             const diffTime = Math.abs(today - hpht);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             const minggu = Math.floor(diffDays / 7);
             const hari = diffDays % 7;
-            
-            // Tentukan trimester
             let trimester = 1;
             if (minggu >= 13 && minggu <= 27) trimester = 2;
             else if (minggu >= 28) trimester = 3;
-            
-            // Hitung sisa hari
             const sisaTime = hpl - today;
             const sisaHari = Math.ceil(sisaTime / (1000 * 60 * 60 * 24));
-            
-            // Tampilkan hasil - FORMAT: "X minggu Y hari"
             document.getElementById('r-hpl').innerText = formatTanggal(hpl);
-            document.getElementById('r-usia').innerText = minggu + ' minggu ' + hari + ' hari';
-            document.getElementById('r-trimester').innerText = 'Trimester ' + trimester;
-            document.getElementById('r-sisa').innerText = sisaHari > 0 ? sisaHari + ' Hari' : 'Sudah Lewat';
-            
+            document.getElementById('r-usia').innerText = `${minggu} M ${hari} H`;
+            document.getElementById('r-trimester').innerText = `Trimester ${trimester}`;
+            document.getElementById('r-sisa').innerText = sisaHari > 0 ? `${sisaHari} Hari` : "Sudah Lewat";
             document.getElementById('result').style.display = 'block';
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     </script>
-    
-    <script src="/app.js" defer></script>
+
+<script src="/app.js" defer></script>
+<script>
+
+function hitungKehamilan() {
+  const hphtInput = document.getElementById('hpht').value;
+  if (!hphtInput) {
+    alert('Silakan masukkan tanggal HPHT terlebih dahulu!');
+    return;
+  }
+  
+  const hpht = new Date(hphtInput);
+  const today = new Date();
+  
+  // Hitung HPL (HPHT + 280 hari)
+  const hpl = new Date(hpht);
+  hpl.setDate(hpl.getDate() + 280);
+  
+  // Hitung usia kehamilan dalam hari
+  const diffTime = Math.abs(today - hpht);
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const minggu = Math.floor(diffDays / 7);
+  const hari = diffDays % 7;
+  
+  // Hitung sisa hari
+  const sisaTime = hpl - today;
+  const sisaHari = Math.ceil(sisaTime / (1000 * 60 * 60 * 24));
+  
+  // Tentukan trimester
+  let trimester = '';
+  if (minggu < 14) trimester = 'Trimester 1';
+  else if (minggu < 28) trimester = 'Trimester 2';
+  else trimester = 'Trimester 3';
+  
+  // Tampilkan hasil
+  document.getElementById('usiaKehamilan').textContent = minggu + ' minggu ' + hari + ' hari';
+  document.getElementById('trimesterInfo').textContent = trimester;
+  document.getElementById('hplInfo').textContent = hpl.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'});
+  document.getElementById('sisaHari').textContent = sisaHari + ' hari';
+  
+  document.getElementById('hasilKehamilan').style.display = 'block';
+  
+  // Scroll ke hasil
+  document.getElementById('hasilKehamilan').scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+// Tambahkan event listener
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.querySelector('button[type="submit"], button[onclick*="hitung"]');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      hitungKehamilan();
+    });
+  }
+});
+
+</script>
 </body>
-</html>
+</html>S
