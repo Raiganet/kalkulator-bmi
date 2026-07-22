@@ -1,24 +1,22 @@
 {
-  "name":"KalkulatorOnline — Kalkulator Gratis",
-  "short_name":"Kalkulator",
-  "description":"Kalkulator kesehatan, keuangan & umum gratis: BMI, kalori, cicilan, kehamilan, dan lainnya.",
-  "lang":"id",
-  "dir":"ltr",
-  "start_url":"/?source=pwa",
-  "scope":"/",
-  "display":"standalone",
-  "orientation":"portrait",
-  "background_color":"#F6F7FB",
-  "theme_color":"#6C63FF",
-  "categories":["health","finance","utilities","education"],
-  "icons":[
-    {"src":"/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
-    {"src":"/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
-    {"src":"/icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  "name": "KalkulatorOnline — Kalkulator Gratis",
+  "short_name": "Kalkulator",
+  "description": "Kalkulator kesehatan, keuangan, kehamilan & umum gratis. Bisa offline, bisa di-install seperti aplikasi.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#6C63FF",
+  "categories": ["health", "finance", "utilities", "education"],
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
   ],
-  "shortcuts":[
-    {"name":"Kalkulator BMI","url":"/index.html","icons":[{"src":"/icons/icon-192.png","sizes":"192x192"}]},
-    {"name":"Kalkulator Kalori","url":"/kalkulator-kalori.html","icons":[{"src":"/icons/icon-192.png","sizes":"192x192"}]},
-    {"name":"Kalkulator Cicilan","url":"/kalkulator-cicilan.html","icons":[{"src":"/icons/icon-192.png","sizes":"192x192"}]}
+  "shortcuts": [
+    { "name": "Kalkulator BMI", "url": "/index.html", "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }] },
+    { "name": "Kalkulator Kalori", "url": "/kalkulator-kalori.html", "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }] },
+    { "name": "Kalkulator Kehamilan", "url": "/kalkulator-kehamilan.html", "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }] }
   ]
 }
