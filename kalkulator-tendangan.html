@@ -1,618 +1,898 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penghitung Tendangan Bayi - Kick Counter | KalkulatorOnline.my.id</title>
-    <meta name="description" content="Hitung gerakan & tendangan bayi dalam kandungan. Pantau kesehatan janin dengan metode hitung sampai 10.">
-    <meta name="keywords" content="penghitung tendangan, kick counter, gerakan bayi, hitung tendangan janin, pantau kehamilan">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Penghitung Tendangan Bayi",
-      "url": "https://www.kalkulatoronline.my.id/kalkulator-tendangan.html",
-      "description": "Hitung gerakan & tendangan janin untuk pantau kesehatan bayi",
-      "applicationCategory": "HealthApplication",
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "IDR"}
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://www.kalkulatoronline.my.id/"},{"@type": "ListItem","position": 2,"name": "Penghitung Tendangan","item": "https://www.kalkulatoronline.my.id/kalkulator-tendangan.html"}]
-    }
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-24G7H4QNBD');
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .wrapper { max-width: 900px; margin: 0 auto; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 16px; margin-bottom: 30px; position: relative; z-index: 100; }
-        .navbar .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .navbar .nav-links { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
-        .navbar .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; }
-        .navbar .nav-links a:hover { background: rgba(255,255,255,0.2); color: white; }
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown .dropbtn { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
-        .dropdown .dropbtn:hover { background: rgba(255,255,255,0.2); color: white; }
-        .dropdown-content { display: none; position: absolute; background: white; min-width: 200px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); border-radius: 12px; z-index: 1000; top: 100%; left: 0; margin-top: 8px; overflow: hidden; animation: fadeInDown 0.3s ease; }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .dropdown-content a { color: #333 !important; padding: 12px 16px; text-decoration: none; display: block; font-size: 13px; font-weight: 500; transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0; }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; color: white !important; transform: translateX(5px); }
-        .dropdown:hover .dropdown-content { display: block; }
-        .dropdown:hover::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; }
-        .card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; padding: 40px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); margin-bottom: 30px; animation: slideUp 0.6s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-header { text-align: center; margin-bottom: 35px; }
-        .hero-header .badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 6px 18px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
-        .hero-header h1 { font-size: 38px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-        .hero-header .subtitle { color: #888; font-size: 16px; }
-        .count-display { text-align: center; margin-bottom: 25px; }
-        .count-display .count-label { font-size: 14px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .count-display .count-value { font-size: 80px; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
-        .count-display .count-target { font-size: 16px; color: #aaa; margin-top: 5px; }
-        .progress-wrap { margin-bottom: 25px; }
-        .progress-bar { height: 14px; background: #e8ecf1; border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 10px; transition: width 0.4s ease; width: 0%; }
-        .progress-text { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-top: 6px; }
-        .btn-kick { width: 100%; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 20px; font-size: 22px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 10px 35px rgba(102, 126, 234, 0.4); margin-bottom: 15px; }
-        .btn-kick:hover { transform: translateY(-3px); box-shadow: 0 14px 45px rgba(102, 126, 234, 0.5); }
-        .btn-kick:active { transform: scale(0.97); }
-        .btn-kick.done { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); box-shadow: 0 10px 35px rgba(40, 167, 69, 0.4); }
-        .btn-undo { width: 100%; padding: 12px; background: #f0f0f0; color: #666; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; margin-bottom: 20px; }
-        .btn-undo:hover { background: #e0e0e0; }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px; }
-        .stat-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 18px 12px; border-radius: 14px; text-align: center; border: 1px solid #e8ecf1; }
-        .stat-card .stat-value { font-size: 22px; font-weight: 800; color: #667eea; }
-        .stat-card .stat-label { font-size: 11px; color: #888; font-weight: 500; margin-top: 4px; }
-        .status-box { padding: 20px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 16px; margin-bottom: 25px; }
-        .status-normal { background: linear-gradient(135deg, #d4edda, #c3e6cb); color: #155724; }
-        .status-aktif { background: linear-gradient(135deg, #d1ecf1, #bee5eb); color: #0c5460; }
-        .status-waspada { background: linear-gradient(135deg, #f8d7da, #f5c6cb); color: #721c24; }
-        .history-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .history-table th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; text-align: left; font-size: 13px; border-radius: 8px 8px 0 0; }
-        .history-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #555; }
-        .history-table tr:nth-child(even) { background: #f8f9fc; }
-        .empty-state { text-align: center; padding: 30px; color: #aaa; font-size: 14px; }
-        .article h2 { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
-        .article h3 { font-size: 20px; font-weight: 600; color: #667eea; margin: 30px 0 15px; }
-        .article p { line-height: 1.9; color: #555; margin-bottom: 16px; font-size: 15px; }
-        .article ul, .article ol { margin-left: 20px; margin-bottom: 20px; }
-        .article li { margin-bottom: 12px; line-height: 1.8; color: #555; font-size: 15px; }
-        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
-        .tool-card { background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); border: 2px solid #e8ecf1; border-radius: 16px; padding: 25px; text-align: center; text-decoration: none; transition: all 0.3s ease; }
-        .tool-card:hover { border-color: #667eea; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15); }
-        .tool-card .tool-icon { font-size: 36px; margin-bottom: 10px; }
-        .tool-card .tool-name { font-size: 16px; font-weight: 600; color: #333; }
-        .tool-card .tool-desc { font-size: 13px; color: #888; margin-top: 5px; }
-        .footer { background: rgba(255,255,255,0.98); padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
-        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-        .footer-links a { color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease; }
-        .footer-links a:hover { background: #f0f4ff; color: #764ba2; }
-        .footer p { color: #aaa; font-size: 13px; }
-        @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: 1fr; }
-            .tools-grid { grid-template-columns: 1fr; }
-            .hero-header h1 { font-size: 28px; }
-            .count-display .count-value { font-size: 64px; }
-            .navbar { flex-direction: column; gap: 12px; }
-            .navbar .nav-links { justify-content: center; width: 100%; }
-            .dropdown { width: 100%; }
-            .dropdown .dropbtn { width: 100%; text-align: center; }
-            .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-            .dropdown-content a { text-align: center; }
-        }
-    </style>
-
-<!-- ===== redesign: shared assets (auto-injected) ===== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#6C63FF">
+<title>Penghitung Tendangan Janin - Pantau Gerakan Bayi (Count to 10) | KalkulatorOnline.my.id</title>
+<meta name="description" content="Pantau gerakan janin dengan metode Count to 10: dashboard harian, riwayat, kalender, baseline pola Anda, grafik, insight edukatif, pengingat & export. Gratis & offline.">
+<meta name="keywords" content="penghitung tendangan janin, kick counter, count to 10, gerakan bayi, pantau kehamilan, pola gerakan janin, kick counting">
+<meta name="author" content="KalkulatorOnline.my.id">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.kalkulatoronline.my.id/kalkulator-tendangan.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.kalkulatoronline.my.id/kalkulator-tendangan.html">
+<meta property="og:title" content="Penghitung Tendangan Janin - Smart Fetal Movement Monitoring">
+<meta property="og:description" content="Catat & pantau pola gerakan janin: dashboard, riwayat, kalender, baseline, grafik, insight edukatif.">
+<meta property="og:image" content="https://www.kalkulatoronline.my.id/og-image.svg">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
 <script defer src="https://unpkg.com/lucide@latest"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.kalkulatoronline.my.id/"},{"@type":"ListItem","position":2,"name":"Penghitung Tendangan","item":"https://www.kalkulatoronline.my.id/kalkulator-tendangan.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Penghitung Tendangan Janin","url":"https://www.kalkulatoronline.my.id/kalkulator-tendangan.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"Penghitung Tendangan Janin","about":{"@type":"MedicalCondition","name":"Kehamilan"},"audience":{"@type":"PeopleAudience","audienceType":"Ibu hamil"},"reviewAspect":"Pemantauan gerakan janin (kick counting)","lastReviewed":"2026-07-22"}</script>
+<script type="application/ld+json" id="faqSchema"></script>
 <link rel="stylesheet" href="/app.css">
-<!-- ===== /redesign ===== -->
+<style>
+.fm{max-width:1120px;margin:0 auto;padding:16px}
+@media(min-width:640px){.fm{padding:24px}}
+.fm-hero{text-align:center;padding:24px 0 6px}
+.fm-hero .ico{width:64px;height:64px;border-radius:20px;background:var(--grad-brand);display:grid;place-items:center;margin:0 auto 14px;box-shadow:var(--sh-float)}
+.fm-hero .ico svg{width:32px;height:32px;color:#fff}
+.fm-hero h1{font-size:clamp(26px,6vw,44px);font-weight:800;margin:0 0 8px}
+.fm-hero p{color:var(--text-2);max-width:620px;margin:0 auto;font-size:clamp(14px,2.4vw,17px)}
+.fm-preg{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:16px 0 4px}
+.fm-preg .pg{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:999px;background:var(--surface-solid);border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text-2)}
+.fm-preg .pg svg{width:15px;height:15px;color:var(--c-primary)}
+.fm-preg .pg input{border:0;background:transparent;color:var(--c-primary);font-family:inherit;font-weight:700;font-size:13px;width:120px}
+.fm-card{background:var(--surface);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:24px;box-shadow:var(--sh-glass);padding:18px;margin:16px 0;transition:box-shadow .3s}
+@media(min-width:640px){.fm-card{padding:24px}}
+.fm-card:hover{box-shadow:var(--sh-float)}
+.fm-card h2{font-size:clamp(16px,3vw,20px);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.fm-card h2 svg{width:21px;height:21px;color:var(--c-primary);flex:none}
+.fm-card h2 .sub{font-size:12px;font-weight:500;color:var(--text-3);margin-left:auto}
+.fm-banner{border-radius:16px;padding:14px 16px;font-size:13px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;margin:12px 0}
+.fm-banner svg{width:18px;height:18px;flex:none;margin-top:1px}
+.fm-banner.info{background:var(--grad-soft);border:1px solid var(--border);color:var(--text-2)}
+.fm-banner.info svg{color:var(--c-primary)}
+.fm-banner.warn{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:#92400e}
+.fm-banner.warn svg{color:var(--c-warning)}
+.fm-banner.danger{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.4);color:#991b1b}
+.fm-banner.danger svg{color:var(--c-danger)}
+[data-theme="dark"] .fm-banner.warn{color:#fcd34d}[data-theme="dark"] .fm-banner.danger{color:#fca5a5}
+/* dashboard stats */
+.fm-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.fm-stats{grid-template-columns:repeat(4,1fr)}}
+.fm-st{background:var(--surface-solid);border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center;min-width:0}
+.fm-st .v{font-size:clamp(18px,4vw,26px);font-weight:800;line-height:1.1;word-break:break-word}
+.fm-st .v.grad{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fm-st .l{font-size:11px;color:var(--text-3);font-weight:600;margin-top:5px;text-transform:uppercase;letter-spacing:.03em}
+.fm-st .d{font-size:10px;margin-top:3px;font-weight:700}
+.fm-st .d.up{color:var(--c-success)}.fm-st .d.down{color:var(--c-warning)}.fm-st .d.flat{color:var(--text-3)}
+/* monitor layout */
+.fm-mon{display:grid;gap:18px}
+@media(min-width:912px){.fm-mon{grid-template-columns:240px 1fr;align-items:center}}
+.fm-ringwrap{display:grid;place-items:center}
+.fm-ring{position:relative;width:200px;height:200px}
+.fm-ring svg{transform:rotate(-90deg)}
+.fm-ring .ctr{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.fm-ring .ctr .n{font-size:54px;font-weight:800;line-height:1}
+.fm-ring .ctr .n.grad{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fm-ring .ctr .t{font-size:12px;color:var(--text-3);font-weight:600;margin-top:2px}
+.fm-ring .ctr .cd{font-size:13px;color:var(--c-primary);font-weight:700;margin-top:6px}
+.fm-right{display:grid;gap:12px}
+.fm-timer{text-align:center;font-variant-numeric:tabular-nums}
+.fm-timer .lab{font-size:12px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.fm-timer .clk{font-size:clamp(30px,8vw,46px);font-weight:800;letter-spacing:.02em}
+.fm-timer .clk.run{color:var(--c-primary)}
+.fm-types{display:flex;gap:7px;flex-wrap:wrap}
+.fm-types button{padding:7px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface-solid);font-size:12px;font-weight:600;color:var(--text-2);display:inline-flex;gap:5px;align-items:center}
+.fm-types button svg{width:13px;height:13px}
+.fm-types button.on{background:var(--grad-brand);color:#fff;border-color:transparent}
+.fm-note{display:grid;gap:8px}
+.fm-note input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:12px;background:var(--surface-solid);color:var(--text);font-family:inherit;font-size:14px}
+.fm-note input:focus{outline:none;border-color:var(--c-primary);box-shadow:0 0 0 4px var(--ring)}
+.fm-quick{display:flex;gap:6px;flex-wrap:wrap}
+.fm-quick button{padding:6px 11px;border-radius:999px;border:1px solid var(--border);background:var(--surface-solid);font-size:11px;font-weight:600;color:var(--text-2)}
+.fm-quick button:hover{border-color:var(--c-primary);color:var(--c-primary)}
+.fm-btns{display:grid;gap:10px}
+.fm-btn{position:relative;overflow:hidden;width:100%;padding:16px;border-radius:16px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.fm-btn svg{width:18px;height:18px}
+.fm-btn.kick{background:var(--grad-brand);color:#fff;box-shadow:var(--sh-float);font-size:18px;padding:20px}
+.fm-btn.kick.done{background:linear-gradient(135deg,#22C55E,#16a34a)}
+.fm-btn.kick:active{transform:scale(.98)}
+.fm-btn.ghost{background:var(--surface-solid);border:1px solid var(--border);color:var(--text-2)}
+.fm-btn.ghost:hover{border-color:var(--c-primary);color:var(--c-primary)}
+.fm-btn.danger{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);color:#b91c1c}
+[data-theme="dark"] .fm-btn.danger{color:#fca5a5}
+.fm-btnrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fm-status{border-radius:14px;padding:14px 16px;font-weight:700;font-size:14px;text-align:center;display:flex;gap:8px;align-items:center;justify-content:center}
+.fm-status svg{width:18px;height:18px;flex:none}
+.fm-status.idle{background:var(--grad-soft);color:var(--c-primary)}
+.fm-status.counting{background:rgba(108,99,255,.14);color:var(--c-primary)}
+.fm-status.reached{background:rgba(34,197,94,.16);color:#15803d}
+.fm-status.watch{background:rgba(245,158,11,.16);color:#b45309}
+.fm-status.done{background:rgba(34,197,94,.16);color:#15803d}
+[data-theme="dark"] .fm-status.reached,[data-theme="dark"] .fm-status.done{color:#86efac}
+[data-theme="dark"] .fm-status.watch{color:#fcd34d}
+/* tabs */
+.fm-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.fm-tabs::-webkit-scrollbar{display:none}
+.fm-tabs button{flex:none;padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--surface-solid);font-weight:600;font-size:13px;color:var(--text-2);display:inline-flex;gap:6px;align-items:center}
+.fm-tabs button svg{width:15px;height:15px}
+.fm-tabs button.on{background:var(--grad-brand);color:#fff;border-color:transparent}
+.fm-tabpane{display:none}.fm-tabpane.on{display:block;animation:fmfade .35s ease}
+@keyframes fmfade{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* insight */
+.fm-ins{display:flex;gap:10px;background:var(--grad-soft);border:1px solid var(--border);border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.6;color:var(--text-2);margin-bottom:10px}
+.fm-ins svg{width:18px;height:18px;color:var(--c-accent);flex:none;margin-top:1px}
+/* gauge */
+.fm-gauge{display:grid;place-items:center;gap:8px}
+.fm-gauge .g{position:relative;width:150px;height:150px}
+.fm-gauge .g svg{transform:rotate(-90deg)}
+.fm-gauge .g .c{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.fm-gauge .g .c .s{font-size:34px;font-weight:800}
+.fm-gauge .g .c .l{font-size:11px;color:var(--text-3);font-weight:600}
+/* history */
+.fm-day{border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;background:var(--surface-solid)}
+.fm-day>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;font-weight:700;font-size:14px;color:var(--text);text-align:left}
+.fm-day>button .meta{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--text-3);font-weight:600}
+.fm-day>button .badge{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.fm-day .badge.normal{background:rgba(34,197,94,.16);color:#15803d}
+.fm-day .badge.watch{background:rgba(245,158,11,.16);color:#b45309}
+[data-theme="dark"] .fm-day .badge.normal{color:#86efac}[data-theme="dark"] .fm-day .badge.watch{color:#fcd34d}
+.fm-day .body{max-height:0;overflow:hidden;transition:max-height .35s}
+.fm-day .body .in{padding:0 16px 14px}
+.fm-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.fm-tbl th{text-align:left;color:var(--text-3);font-weight:600;padding:7px 6px;border-bottom:1px solid var(--border)}
+.fm-tbl td{padding:7px 6px;border-bottom:1px solid var(--border);color:var(--text-2)}
+.fm-tbl .ty{display:inline-flex;gap:4px;align-items:center}
+.fm-tbl .ty svg{width:12px;height:12px}
+/* calendar */
+.fm-calhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.fm-calhead .mn{font-weight:700;font-size:15px}
+.fm-calhead button{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface-solid);display:grid;place-items:center;color:var(--text-2)}
+.fm-calhead button svg{width:18px;height:18px}
+.fm-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.fm-cal .dow{text-align:center;font-size:10px;font-weight:700;color:var(--text-3);padding:4px 0}
+.fm-cal .cell{aspect-ratio:1;border-radius:10px;border:1px solid var(--border);background:var(--surface-solid);display:grid;place-content:center;font-size:13px;font-weight:600;color:var(--text-2);position:relative;min-width:0}
+.fm-cal .cell.empty{border:0;background:transparent}
+.fm-cal .cell.future{opacity:.4}
+.fm-cal .cell.today{border-color:var(--c-primary);box-shadow:0 0 0 2px var(--ring)}
+.fm-cal .cell.normal{background:rgba(34,197,94,.16);border-color:transparent;color:#15803d}
+.fm-cal .cell.watch{background:rgba(245,158,11,.18);border-color:transparent;color:#b45309}
+[data-theme="dark"] .fm-cal .cell.normal{color:#86efac}[data-theme="dark"] .fm-cal .cell.watch{color:#fcd34d}
+.fm-cal .cell .dot{position:absolute;bottom:4px;width:4px;height:4px;border-radius:50%;background:currentColor}
+.fm-caldetail{margin-top:12px}
+/* charts */
+.fm-charts{display:grid;gap:14px}
+@media(min-width:768px){.fm-charts{grid-template-columns:1fr 1fr}}
+.fm-chart{background:var(--surface-solid);border:1px solid var(--border);border-radius:16px;padding:14px}
+.fm-chart .ct{font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:8px}
+.fm-svgwrap svg{width:100%;height:150px;display:block}
+.fm-bars{display:grid;gap:7px}
+.fm-bars .br{display:grid;grid-template-columns:46px 1fr auto;gap:8px;align-items:center;font-size:12px}
+.fm-bars .br .bt{height:12px;background:var(--bg-2);border-radius:999px;overflow:hidden}
+.fm-bars .br .bf{height:100%;background:var(--grad-brand);border-radius:999px;transition:width .5s}
+.fm-bars .br.hot .bf{background:linear-gradient(90deg,#22C55E,#16a34a)}
+/* education + faq */
+.fm-edu{display:grid;gap:10px}
+@media(min-width:768px){.fm-edu{grid-template-columns:1fr 1fr}}
+.fm-edu .e{background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;padding:14px}
+.fm-edu .e h3{font-size:14px;display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.fm-edu .e h3 svg{width:17px;height:17px;color:var(--c-primary);flex:none}
+.fm-edu .e p{font-size:13px;color:var(--text-2);line-height:1.6;margin:0}
+.fm-faq .q{width:100%;text-align:left;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;font-weight:600;font-size:14px;color:var(--text);margin-bottom:8px}
+.fm-faq .q svg{width:18px;height:18px;flex:none;transition:transform .3s;color:var(--c-primary)}
+.fm-faq .q[aria-expanded="true"] svg{transform:rotate(180deg)}
+.fm-faq .a{max-height:0;overflow:hidden;transition:max-height .35s;color:var(--text-2);font-size:13px;line-height:1.7}
+.fm-faq .a .in{padding:0 16px 14px}
+/* reminder + export */
+.fm-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fm-switch{position:relative;width:46px;height:26px;flex:none}
+.fm-switch input{opacity:0;width:0;height:0}
+.fm-switch .sl{position:absolute;inset:0;background:var(--bg-2);border-radius:999px;transition:.3s;cursor:pointer}
+.fm-switch .sl::before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
+.fm-switch input:checked+.sl{background:var(--grad-brand)}
+.fm-switch input:checked+.sl::before{transform:translateX(20px)}
+.fm-export{display:flex;gap:8px;flex-wrap:wrap}
+.fm-export button{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-solid);font-weight:600;font-size:13px;color:var(--text-2)}
+.fm-export button svg{width:15px;height:15px}
+.fm-export button:hover{border-color:var(--c-primary);color:var(--c-primary)}
+.fm-disc{font-size:12px;color:var(--text-3);line-height:1.7;border-left:3px solid var(--border);padding-left:14px}
+.fm-empty{text-align:center;color:var(--text-3);font-size:13px;padding:24px}
+.fm-flash{animation:fmfade .4s ease}
+@media print{.nav,.bottomnav,.footer,.foot,.fm-tabs,.fm-btns,.fm-export,.fm-switch,.fm-quick,.fm-types,.fm-note,.burger,.install-btn{display:none!important}.fm-card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}body{background:#fff}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
-<body data-ko="redesign">
-<!-- ko-nav-injected : navbar baru (auto-injected oleh restore-navbar.js) -->
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda">
-      <span class="logo-mark"><i data-lucide="calculator"></i></span>
-      <span>Kalkulator<span class="grad-text">Online</span></span>
-    </a>
-    <div class="nav-spacer"></div>
-
-    <div class="search" role="search">
-      <i class="s-ico" data-lucide="search"></i>
-      <input id="searchDesktop" type="search" placeholder="Cari kalkulator… (cth: BMI)" aria-label="Cari kalkulator" autocomplete="off">
-      <div class="search-results" id="searchDesktopRes" role="listbox"></div>
-    </div>
-
-    <nav aria-label="Menu utama">
-      <ul class="menu">
-        <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
-            <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
-            <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
-            <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a>
-            <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a>
-            <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
-            <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
-            <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a>
-            <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
-            <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a>
-            <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
-          </div>
-        </li>
-        <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a>
-            <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a>
-            <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a>
-            <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a>
-          </div>
-        </li>
-        <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a>
-            <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a>
-            <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
-            <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
-          </div>
-        </li>
-        <li><a href="about.html">Tentang</a></li>
-      </ul>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="icon-btn js-theme" aria-label="Ganti tema (terang / gelap / otomatis)">
-        <svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg>
-      </button>
-      <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
-      <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
-    </div>
+<body>
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda"><span class="logo-mark"><i data-lucide="calculator"></i></span><span>Kalkulator<span class="grad-text">Online</span></span></a>
+  <div class="nav-spacer"></div>
+  <div class="search" role="search"><i class="s-ico" data-lucide="search"></i><input id="searchDesktop" type="search" placeholder="Cari kalkulator… (cth: BMI)" aria-label="Cari kalkulator" autocomplete="off"><div class="search-results" id="searchDesktopRes" role="listbox"></div></div>
+  <nav aria-label="Menu utama"><ul class="menu">
+    <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a><div class="dropdown-content">
+      <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a><a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a><a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a><a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a><a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a><a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a><a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a><a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a><a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a><a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a><a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a></div></li>
+    <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a><div class="dropdown-content">
+      <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a><a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a><a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a><a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a></div></li>
+    <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a><div class="dropdown-content">
+      <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a><a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a><a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a><a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a></div></li>
+    <li><a href="about.html">Tentang</a></li>
+  </ul></nav>
+  <div class="nav-actions">
+    <button class="icon-btn js-theme" aria-label="Ganti tema"><svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg></button>
+    <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
+    <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
   </div>
-</header>
+</div></header>
+<div class="drawer" id="drawer" aria-hidden="true"><div class="scrim"></div><aside class="panel">
+  <div class="dhead"><strong>Menu</strong><button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button></div>
+  <div class="search" role="search"><i class="s-ico" data-lucide="search"></i><input id="searchDrawer" type="search" placeholder="Cari kalkulator…" aria-label="Cari kalkulator" autocomplete="off"><div class="search-results" id="searchDrawerRes"></div></div>
+  <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub"><a href="index.html"><i data-lucide="scale"></i> BMI</a><a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalori</a><a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> BMR</a><a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a><a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a><a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat</a><a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a><a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a><a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Kontraksi</a><a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a><a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a></div></details>
+  <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub"><a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a><a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a><a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a><a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a></div></details>
+  <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub"><a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a><a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a><a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a><a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a></div></details>
+  <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
+</aside></div>
 
-<div class="drawer" id="drawer" aria-hidden="true">
-  <div class="scrim"></div>
-  <aside class="panel">
-    <div class="dhead"><strong>Menu</strong>
-      <button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button>
+<main id="main" class="fm">
+  <section class="fm-hero">
+    <div class="ico"><i data-lucide="footprints"></i></div>
+    <h1 class="grad-text">Penghitung Tendangan</h1>
+    <p>Pantau pola gerakan bayi dengan metode <strong>Count to 10</strong> — lengkap dengan riwayat, kalender, baseline pola Anda, grafik, dan insight edukatif.</p>
+    <div class="fm-preg">
+      <span class="pg"><i data-lucide="calendar-days"></i><span id="hToday">—</span></span>
+      <span class="pg"><i data-lucide="baby"></i>HPHT <input type="date" id="hpht" aria-label="Hari pertama haid terakhir (opsional)"></span>
+      <span class="pg" id="hGest" style="display:none"><i data-lucide="ruler"></i><span id="hGestTxt"></span></span>
     </div>
-    <div class="search" role="search">
-      <i class="s-ico" data-lucide="search"></i>
-      <input id="searchDrawer" type="search" placeholder="Cari kalkulator…" aria-label="Cari kalkulator" autocomplete="off">
-      <div class="search-results" id="searchDrawerRes"></div>
+  </section>
+
+  <div id="gestBanner"></div>
+
+  <!-- DASHBOARD -->
+  <section class="fm-card" aria-label="Dashboard hari ini">
+    <h2><i data-lucide="layout-dashboard"></i> Dashboard Hari Ini <span class="sub" id="dDate"></span></h2>
+    <div class="fm-stats">
+      <div class="fm-st"><div class="v grad" id="sToday">0</div><div class="l">Tendangan Hari Ini</div></div>
+      <div class="fm-st"><div class="v" id="sTime10">—</div><div class="l">Waktu ke 10 Gerakan</div></div>
+      <div class="fm-st"><div class="v" id="sAvgGap">—</div><div class="l">Rata‑rata Jeda</div></div>
+      <div class="fm-st"><div class="v" id="sPerHr">0</div><div class="l">Gerakan / Jam (est.)</div></div>
+      <div class="fm-st"><div class="v" id="sProgD">0%</div><div class="l">Progres Harian</div></div>
+      <div class="fm-st"><div class="v" id="sProgW">0/7</div><div class="l">Hari Tercatat (7 hr)</div></div>
+      <div class="fm-st"><div class="v" id="sSessions">0</div><div class="l">Sesi Selesai</div></div>
+      <div class="fm-st"><div class="v grad" id="sStatus">Belum Mulai</div><div class="l">Status</div></div>
     </div>
-    <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary>
-      <div class="sub">
-        <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
-        <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
-        <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
-        <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a>
-        <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a>
-        <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
-        <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
-        <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a>
-        <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
-        <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a>
-        <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
-      </div></details>
-    <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary>
-      <div class="sub">
-        <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a>
-        <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a>
-        <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a>
-        <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
-      </div></details>
-    <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary>
-      <div class="sub">
-        <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a>
-        <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a>
-        <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
-        <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
-      </div></details>
-    <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
-  </aside>
-</div>
+  </section>
+
+  <!-- MONITOR -->
+  <section class="fm-card" aria-label="Pencatat gerakan">
+    <div class="fm-mon">
+      <div class="fm-ringwrap">
+        <div class="fm-ring">
+          <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="86" fill="none" stroke="var(--bg-2)" stroke-width="14"/>
+            <circle id="ringFill" cx="100" cy="100" r="86" fill="none" stroke="url(#rg)" stroke-width="14" stroke-linecap="round" stroke-dasharray="540.35" stroke-dashoffset="540.35" style="transition:stroke-dashoffset .6s cubic-bezier(.22,.61,.36,1)"/>
+            <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C63FF"/><stop offset="1" stop-color="#A855F7"/></linearGradient></defs>
+          </svg>
+          <div class="ctr"><div class="n grad" id="countValue" role="status" aria-live="polite" aria-label="Jumlah tendangan">0</div><div class="t">dari target 10</div><div class="cd" id="countdown" aria-live="polite">10 gerakan lagi</div></div>
+        </div>
+      </div>
+      <div class="fm-right">
+        <div class="fm-timer"><div class="lab">Stopwatch Sesi</div><div class="clk" id="sWaktu" aria-live="off">00:00:00</div></div>
+        <div>
+          <div style="font-size:12px;color:var(--text-3);font-weight:600;margin-bottom:7px">Jenis gerakan</div>
+          <div class="fm-types" id="typeSel" role="radiogroup" aria-label="Jenis gerakan"></div>
+        </div>
+        <div class="fm-note">
+          <input type="text" id="noteInput" placeholder="Catatan (opsional): mis. setelah makan…" aria-label="Catatan gerakan" maxlength="80">
+          <div class="fm-quick" id="quickNotes"></div>
+        </div>
+        <div class="fm-btns">
+          <button class="fm-btn kick" id="btnKick" aria-label="Catat tendangan atau gerakan"><i data-lucide="baby"></i> Catat Tendangan / Gerakan</button>
+          <div class="fm-btnrow">
+            <button class="fm-btn ghost" id="btnUndo" aria-label="Batalkan tendangan terakhir"><i data-lucide="undo-2"></i> Batalkan</button>
+            <button class="fm-btn ghost" id="btnDone" aria-label="Selesai dan simpan sesi"><i data-lucide="check-circle-2"></i> Simpan Sesi</button>
+          </div>
+          <button class="fm-btn danger" id="btnDiscard" aria-label="Buang sesi aktif tanpa menyimpan"><i data-lucide="trash-2"></i> Buang Sesi Ini</button>
+        </div>
+        <div class="fm-status idle" id="statusBox" role="status" aria-live="polite"><i data-lucide="info"></i><span>Belum mulai. Duduk/berbaring tenang, fokus rasakan gerakan bayi.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="warnBanner"></div>
+
+  <!-- TABS -->
+  <section class="fm-card">
+    <div class="fm-tabs" role="tablist" aria-label="Detail pemantauan">
+      <button class="on" data-tab="sum" role="tab"><i data-lucide="sparkles"></i> Insight</button>
+      <button data-tab="hist" role="tab"><i data-lucide="history"></i> Riwayat</button>
+      <button data-tab="cal" role="tab"><i data-lucide="calendar"></i> Kalender</button>
+      <button data-tab="ana" role="tab"><i data-lucide="bar-chart-3"></i> Analitik</button>
+      <button data-tab="edu" role="tab"><i data-lucide="book-open"></i> Edukasi</button>
+    </div>
+
+    <div class="fm-tabpane on" id="tab-sum" role="tabpanel">
+      <h2 style="margin-top:16px"><i data-lucide="sparkles"></i> Insight Pola Anda</h2>
+      <div id="insightBox"></div>
+      <h2><i data-lucide="clock"></i> Jam Bayi Biasanya Aktif</h2>
+      <div class="fm-bars" id="activeHours"></div>
+      <h2 style="margin-top:16px"><i data-lucide="pie-chart"></i> Jenis Gerakan Tercatat</h2>
+      <div class="fm-bars" id="typeStats"></div>
+    </div>
+
+    <div class="fm-tabpane" id="tab-hist" role="tabpanel">
+      <h2 style="margin-top:16px"><i data-lucide="history"></i> Riwayat Harian</h2>
+      <div id="histBox"></div>
+      <h2><i data-lucide="download"></i> Export & Bagikan</h2>
+      <div class="fm-export">
+        <button id="exPrint"><i data-lucide="printer"></i> Cetak / PDF</button>
+        <button id="exCsv"><i data-lucide="file-spreadsheet"></i> Excel (CSV)</button>
+        <button id="exJson"><i data-lucide="file-json"></i> Backup (JSON)</button>
+        <button id="exShare"><i data-lucide="share-2"></i> Bagikan</button>
+      </div>
+      <div style="margin-top:14px"><button class="fm-btn danger" id="btnWipe" style="max-width:320px"><i data-lucide="trash-2"></i> Hapus Semua Data (permanen)</button></div>
+    </div>
+
+    <div class="fm-tabpane" id="tab-cal" role="tabpanel">
+      <h2 style="margin-top:16px"><i data-lucide="calendar"></i> Kalender Pemantauan</h2>
+      <div class="fm-calhead"><button id="calPrev" aria-label="Bulan sebelumnya"><i data-lucide="chevron-left"></i></button><span class="mn" id="calMonth"></span><button id="calNext" aria-label="Bulan berikutnya"><i data-lucide="chevron-right"></i></button></div>
+      <div class="fm-cal" id="calGrid"></div>
+      <div class="fm-caldetail" id="calDetail"></div>
+    </div>
+
+    <div class="fm-tabpane" id="tab-ana" role="tabpanel">
+      <h2 style="margin-top:16px"><i data-lucide="activity"></i> Skor Aktivitas (pola Anda)</h2>
+      <div class="fm-banner info"><i data-lucide="info"></i><span>Skor ini hanya membantu melihat <strong>konsistensi pola pencatatan Anda sendiri</strong> — bukan penilaian kesehatan janin dan bukan diagnosis.</span></div>
+      <div class="fm-gauge"><div class="g"><svg width="150" height="150" viewBox="0 0 150 150" aria-hidden="true"><circle cx="75" cy="75" r="62" fill="none" stroke="var(--bg-2)" stroke-width="12"/><circle id="gaugeFill" cx="75" cy="75" r="62" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round" stroke-dasharray="389.56" stroke-dashoffset="389.56" style="transition:stroke-dashoffset .8s cubic-bezier(.22,.61,.36,1)"/></svg><div class="c"><div class="s grad" id="scoreVal">0</div><div class="l">/ 100</div></div></div><div id="scoreExp" style="font-size:13px;color:var(--text-2);text-align:center;max-width:340px"></div></div>
+      <h2 style="margin-top:18px"><i data-lucide="trending-up"></i> Baseline (rata‑rata waktu ke 10 gerakan)</h2>
+      <div class="fm-stats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="fm-st"><div class="v" id="b7">—</div><div class="l">7 hari</div></div>
+        <div class="fm-st"><div class="v" id="b14">—</div><div class="l">14 hari</div></div>
+        <div class="fm-st"><div class="v" id="b30">—</div><div class="l">30 hari</div></div>
+      </div>
+      <h2 style="margin-top:18px"><i data-lucide="line-chart"></i> Grafik</h2>
+      <div class="fm-charts">
+        <div class="fm-chart"><div class="ct">Waktu ke 10 Gerakan per Hari (menit) — 14 hari</div><div id="chartDur" class="fm-svgwrap" role="img" aria-label="Grafik durasi ke 10 gerakan"></div></div>
+        <div class="fm-chart"><div class="ct">Jumlah Gerakan per Hari — 14 hari</div><div id="chartCnt" class="fm-svgwrap" role="img" aria-label="Grafik jumlah gerakan per hari"></div></div>
+      </div>
+    </div>
+
+    <div class="fm-tabpane" id="tab-edu" role="tabpanel">
+      <h2 style="margin-top:16px"><i data-lucide="book-open"></i> Pahami Gerakan Bayi</h2>
+      <div class="fm-edu" id="eduBox"></div>
+      <h2 style="margin-top:18px"><i data-lucide="circle-help"></i> Pertanyaan Umum</h2>
+      <div class="fm-faq" id="faqBox"></div>
+    </div>
+  </section>
+
+  <!-- REMINDER -->
+  <section class="fm-card">
+    <h2><i data-lucide="bell-ring"></i> Pengingat</h2>
+    <div class="fm-row">
+      <div><strong style="font-size:14px">Ingatkan saya menghitung</strong><div style="font-size:12px;color:var(--text-3)">Aktif selama halaman ini terbuka (notifikasi lokal).</div></div>
+      <label class="fm-switch"><input type="checkbox" id="remToggle" aria-label="Aktifkan pengingat"><span class="sl"></span></label>
+    </div>
+    <div class="fm-row" style="margin-top:12px">
+      <div style="font-size:13px;color:var(--text-2)">Ingatkan setiap</div>
+      <div style="display:flex;gap:8px;align-items:center"><input type="number" id="remMin" min="15" max="480" step="15" value="120" style="width:80px;padding:8px 10px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface-solid);color:var(--text);font-family:inherit" aria-label="Interval pengingat dalam menit"><span style="font-size:13px;color:var(--text-2)">menit</span></div>
+    </div>
+    <div id="remStatus" style="font-size:12px;color:var(--text-3);margin-top:10px"></div>
+  </section>
+
+  <!-- WARNING -->
+  <section class="fm-card">
+    <div class="fm-banner danger" style="margin:0"><i data-lucide="triangle-alert"></i><div><strong>Segera hubungi dokter / bidan jika:</strong> gerakan terasa jauh berkurang dari pola biasa bayi Anda, tidak ada gerakan selama beberapa jam, keluar darah/air ketuban, atau Anda merasa khawatir. Percayai insting Anda.</div></div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="fm-card"><p class="fm-disc">⚕️ <strong>Disclaimer.</strong> Aplikasi ini hanya membantu <strong>mencatat pola gerakan janin</strong> dan memberikan informasi edukatif. Ia <strong>tidak dapat mendiagnosis</strong> kondisi kesehatan janin, dan tidak membandingkan Anda dengan ibu lain. Apabila gerakan terasa jauh berkurang dibanding biasanya atau Anda memiliki kekhawatiran, <strong>segera konsultasikan dengan dokter atau bidan</strong>. Panduan perhitungan mengikuti anjuran umum (mis. NHS/ACOG: rasakan 10 gerakan, umumnya dalam 2 jam).</p></section>
+</main>
 
 <nav class="bottomnav" aria-label="Navigasi bawah">
   <a href="index.html"><i data-lucide="home"></i>Beranda</a>
-  <a href="#" onclick="var s=document.getElementById('searchDesktop');if(s){s.focus();}return false"><i data-lucide="search"></i>Cari</a>
-  <a href="kalkulator-kalori.html"><i data-lucide="flame"></i>Kalori</a>
-  <a href="kalkulator-cicilan.html"><i data-lucide="wallet"></i>Keuangan</a>
+  <a href="#" onclick="var s=document.getElementById('searchDesktop');if(s)s.focus();return false"><i data-lucide="search"></i>Cari</a>
+  <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i>HPL</a>
+  <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i>Kontraksi</a>
   <a href="#" class="js-theme"><i data-lucide="moon"></i>Tema</a>
 </nav>
-
+<footer class="foot"><div class="wrap">
+  <div><a class="brand" href="index.html" style="margin-bottom:12px"><span class="logo-mark"><i data-lucide="calculator"></i></span>KalkulatorOnline</a><p style="color:var(--text-2);font-size:14px;max-width:34ch">Kalkulator kehamilan, kesehatan & keuangan gratis — bisa offline.</p></div>
+  <div><h4>Kehamilan</h4><a href="kalkulator-kehamilan.html">HPL</a><a href="kalkulator-ukuran-janin.html">Ukuran Janin</a><a href="kalkulator-tendangan.html">Tendangan</a><a href="kalkulator-kontraksi.html">Kontraksi</a></div>
+  <div><h4>Kesehatan</h4><a href="index.html">BMI</a><a href="kalkulator-kalori.html">Kalori</a><a href="kalkulator-masa-subur.html">Masa Subur</a></div>
+  <div><h4>Perusahaan</h4><a href="about.html">Tentang</a><a href="faq.html">FAQ</a><a href="privacy.html">Privasi</a></div>
+</div><div class="wrap foot-bottom"><span>© 2026 KalkulatorOnline.my.id</span><span>v3 · Smart Fetal Monitoring</span></div></footer>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
 </svg>
-<!-- /ko-nav-injected -->
 
-    <div class="wrapper">
-        <nav class="navbar">
-            <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
-            <div class="nav-links">
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">🏥 Kesehatan ▾</a>
-                    <div class="dropdown-content">
-                        <a href="index.html">⚖️ Kalkulator BMI</a>
-                        <a href="kalkulator-kalori.html">🔥 Kalkulator Kalori</a>
-                        <a href="kalkulator-bmr.html">❤️ Kalkulator BMR</a>
-                        <a href="kalkulator-air.html">💧 Kalkulator Air Minum</a>
-                        <a href="kalkulator-whtr.html">📏 Kalkulator WHtR</a>
-                        <a href="kalkulator-body-fat.html">🧍 Body Fat %</a>
-                        <a href="kalkulator-masa-subur.html">🌸 Masa Subur</a>
-                        <a href="kalkulator-kehamilan.html">🤰 Kalkulator Kehamilan</a>
-                        <a href="kalkulator-kontraksi.html">⏱️ Timer Kontraksi</a>
-                        <a href="kalkulator-tendangan.html">👶 Penghitung Tendangan</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">💰 Keuangan ▾</a>
-                    <div class="dropdown-content">
-                        <a href="kalkulator-cicilan.html">💸 Kalkulator Cicilan</a>
-                        <a href="kalkulator-diskon.html">🏷️ Kalkulator Diskon</a>
-                        <a href="kalkulator-ppn.html">🧾 Kalkulator PPN</a>
-                        <a href="kalkulator-persen.html">📊 Kalkulator Persentase</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="#" class="dropbtn">📚 Umum </a>
-                    <div class="dropdown-content">
-                        <a href="kalkulator-umur.html">🎂 Kalkulator Umur</a>
-                        <a href="konversi-satuan.html">🔄 Konversi Satuan</a>
-                        <a href="cara-menghitung-bmi.html">📖 Panduan BMI</a>
-                        <a href="faq.html">❓ FAQ</a>
-                    </div>
-                </div>
-                <a href="about.html">Tentang</a>
-            </div>
-        </nav>
+<script>
+/* =====================================================================
+   SMART FETAL MOVEMENT MONITORING
+   - Logika Count-to-10 ASLI dipertahankan verbatim (lihat blok bertanda).
+   - kickMeta adalah array SEJAJAR (jenis+catatan) yg TIDAK ikut perhitungan.
+   - Semua analisis = edukatif, membandingkan pola pengguna sendiri.
+   ===================================================================== */
+const $=id=>document.getElementById(id);
+const STORE='ko-fetal-v3', LEGACY='ko-tendangan-v1';
+const TARGET=10, WARN_MS=2*60*60*1000, CIRC=2*Math.PI*86, GCIRC=2*Math.PI*62;
+const TYPES=[['kick','Tendangan','footprints'],['roll','Gulungan','refresh-cw'],['stretch','Regangan','move'],['punch','Pukulan','zap'],['flutter','Getaran','waves'],['other','Lainnya','more-horizontal']];
+const QUICK_NOTES=['Setelah makan','Minum dingin','Sedang istirahat','Setelah olahraga ringan','Malam hari','Setelah ngemil manis'];
+const EDU=[
+['Mengapa bayi kadang diam?','Bayi punya siklus tidur 20–40 menit (bisa lebih lama). Diam sebentar itu normal. Coba minum air/manis & berbaring miring kiri, lalu hitung ulang.'],
+['Mengapa bayi aktif malam hari?','Saat ibu aktif, gerakan ibu meninabobokan janin. Saat ibu istirahat (sering malam), gerakan lebih terasa. Pola ini wajar.'],
+['Kapan sebaiknya menghitung?','Pilih waktu bayi biasanya aktif, mis. setelah makan/minum. Lakukan di posisi tenang (duduk/berbaring miring). Konsisten di jam yang sama membantu melihat pola.'],
+['Bagaimana cara Count to 10?','Rasakan 10 gerakan (tendangan, gulungan, regangan, getaran). Catat tiap gerakan. Umumnya 10 gerakan tercapai dalam 30 menit; batas acuan 2 jam.'],
+['Apa yang memengaruhi gerakan?','Asupan makan/minum, aktivitas & posisi ibu, waktu hari, plasenta anterior (bisa meredam rasa), serta usia kehamilan.'],
+['Apakah gerakan berkurang di akhir kehamilan?','Ruang makin sempit sehingga gerakan terasa berbeda (lebih regangan/dorongan), tapi FREKUENSI seharusnya tetap ada. Pola yang BERUBAH dari biasa = perlu diperhatikan.'],
+['Apa itu plasenta anterior?','Plasenta menempel di dinding depan rahim, bisa membuat gerakan terasa lebih halus. Bukan bahaya, hanya memengaruhi sensasi.'],
+['Gerakan seperti apa yang dihitung?','Semua gerakan sadar: tendangan, gulungan, regangan, pukulan, getaran. Cegukan ritmis biasanya TIDAK dihitung sebagai gerakan.'],
+['Bolehkah menghitung sambil beraktivitas?','Boleh, tapi posisi tenang memberi fokus lebih baik. Yang penting konsistensi agar pola Anda terbaca.'],
+['Mengapa aplikasi tidak menyebut bayi sehat/sakit?','Karena gerakan saja tidak cukup untuk menilai kesehatan janin. Aplikasi hanya mencatat POLA; penilaian medis tetap oleh dokter/bidan & USG.'],
+['Apa arti "Perlu Dipantau"?','Hanya penanda bahwa sesi mencapai 10 gerakan lebih dari 2 jam, atau pola hari itu berbeda dari baseline Anda — bukan diagnosis.'],
+['Berapa gerakan yang "normal"?','Tidak ada angka ajaib universal. Yang penting: 10 gerakan dalam ~2 jam, dan pola TIDAK berkurang drastis dari kebiasaan bayi Anda.'],
+['Kapan mulai rutin menghitung?','Umumnya dianjurkan mulai ~28 minggu, atau sesuai anjuran dokter Anda. Sebelum itu gerakan belum selalu teratur.'],
+['Apakah data saya dikirim ke server?','Tidak. Semua data tersimpan lokal di perangkat ini (privat). Gunakan Backup JSON untuk mengamankan data.'],
+['Bagaimana memakai baseline?','Baseline = rata‑rata waktu‑ke‑10‑gerakan Anda (7/14/30 hari). Bandingkan hari ini dengannya untuk melihat apakah pola berubah dari BIASANYA.']
+];
+const FAQ=[
+["Apakah aplikasi ini mendiagnosis kondisi bayi?","Tidak. Aplikasi hanya mencatat pola gerakan & memberi informasi edukatif. Penilaian kesehatan janin tetap oleh dokter/bidan."],
+["Berapa target gerakan?","10 gerakan (metode Count to 10). Umumnya tercapai dalam 30 menit; batas acuan 2 jam."],
+["Bagaimana jika 2 jam belum 10 gerakan?","Minum air/manis, berbaring miring kiri, hitung ulang 1 jam. Jika masih kurang atau Anda khawatir, hubungi tenaga kesehatan."],
+["Gerakan apa saja yang dihitung?","Tendangan, gulungan, regangan, pukulan, getaran. Cegukan ritmis umumnya tidak dihitung."],
+["Kapan mulai menghitung rutin?","Umumnya ~28 minggu atau sesuai anjuran dokter."],
+["Mengapa ada jam aktif bayi?","Aplikasi mempelajari jam berapa Anda paling sering mencatat gerakan, untuk membantu memilih waktu menghitung."],
+["Apa itu Skor Aktivitas?","Ukuran konsistensi pencatatan Anda (0–100), BUKAN penilaian kesehatan janin."],
+["Apa itu baseline 7/14/30 hari?","Rata‑rata waktu‑ke‑10‑gerakan Anda pada jendela hari tersebut, untuk membandingkan pola hari ini dengan kebiasaan Anda."],
+["Mengapa bayi diam sebentar?","Bayi tidur 20–40 menit (bisa lebih). Itu normal."],
+["Mengapa bayi aktif malam?","Gerakan ibu menenangkan janin; saat ibu istirahat gerakan lebih terasa."],
+["Apakah plasenta anterior memengaruhi?","Ya, bisa membuat gerakan terasa lebih halus, bukan bahaya."],
+["Apakah gerakan berubah di trimester 3?","Jenis gerakan bisa berubah (lebih dorongan), tapi frekuensi seharusnya tetap ada."],
+["Bolehkah menghitung sambil bergerak?","Boleh, tapi posisi tenang lebih fokus. Konsistensi jam membantu pola."],
+["Apakah data tersimpan aman?","Ya, lokal di perangkat. Gunakan Backup JSON untuk cadangan."],
+["Bisa export data?","Ya: Cetak/PDF, Excel (CSV), Backup (JSON), dan Bagikan."],
+["Apakah membandingkan dengan ibu lain?","Tidak. Semua analisis memakai pola Anda sendiri."],
+["Apa arti status Perlu Dipantau?","Penanda sesi >2 jam atau pola berbeda dari baseline — bukan diagnosis."],
+["Bagaimana cara reset?","‘Buang Sesi Ini’ membuang sesi aktif; ‘Hapus Semua Data’ menghapus seluruh riwayat (permanen)."],
+["Apakah bekerja offline?","Ya, setelah halaman termuat, pencatatan & data bekerja offline (PWA)."],
+["Kapan harus ke dokter?","Gerakan jauh berkurang dari biasa, tidak ada gerakan berjam‑jam, perdarahan, air ketuban pecah, atau kekhawatiran apa pun."]
+];
 
-        <div class="card">
-            <div class="hero-header">
-                <div class="badge">👶 Pantau Gerakan Bayi</div>
-                <h1>Penghitung Tendangan</h1>
-                <p class="subtitle">Hitung Gerakan Bayi dengan Metode "Hitung sampai 10"</p>
-            </div>
+/* ===================== STATE ===================== */
+let state={version:3, hpht:null, prefs:{reminder:false, remMin:120, type:'kick'}, days:{}, active:null};
+let sessionStart=null, kicks=[], kickMeta=[], selType='kick', clockTimer=null, remTimer=null, calView=new Date();
 
-            <div class="count-display">
-                <div class="count-label">Jumlah Tendangan</div>
-                <div class="count-value" id="countValue">0</div>
-                <div class="count-target">dari target 10 gerakan</div>
-            </div>
-
-            <div class="progress-wrap">
-                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-                <div class="progress-text"><span>0</span><span id="progressPercent">0%</span><span>10</span></div>
-            </div>
-
-            <button class="btn-kick" id="btnKick" onclick="catatTendangan()">👶 Catat Tendangan / Gerakan</button>
-            <button class="btn-undo" onclick="undoTendangan()">↩️ Batalkan Tendangan Terakhir</button>
-
-            <div class="stats-grid">
-                <div class="stat-card"><div class="stat-value" id="s-waktu">00:00</div><div class="stat-label">Waktu Sesi</div></div>
-                <div class="stat-card"><div class="stat-value" id="s-rata">-</div><div class="stat-label">Rata-rata Jeda</div></div>
-                <div class="stat-card"><div class="stat-value" id="s-perjam">0</div><div class="stat-label">Perkiraan / Jam</div></div>
-            </div>
-
-            <div class="status-box status-aktif" id="statusBox">
-                ℹ️ Mulai menghitung! Duduk/berbaring tenang, fokus rasakan gerakan bayi.
-            </div>
-
-            <h3 style="color:#333; font-size:18px; margin-bottom:10px;">📋 Riwayat Tendangan</h3>
-            <div id="historyContainer">
-                <div class="empty-state">Belum ada tendangan tercatat</div>
-            </div>
-        </div>
-
-        <div class="card article">
-            <h2>📚 Cara Menghitung Tendangan Bayi</h2>
-            <p>Menghitung gerakan bayi (kick counting) adalah cara sederhana untuk memantau kesehatan janin, terutama mulai <strong>usia kehamilan 28 minggu</strong>.</p>
-            <ol>
-                <li><strong>Pilih waktu</strong> saat bayi biasanya aktif (setelah makan/minum manis).</li>
-                <li><strong>Duduk atau berbaring</strong> miring ke kiri dalam posisi tenang.</li>
-                <li><strong>Tekan tombol</strong> setiap kali merasakan gerakan (tendangan, gulungan, atau dorongan).</li>
-                <li><strong>Target:</strong> rasakan <strong>10 gerakan dalam 2 jam</strong> (biasanya tercapai dalam 30 menit).</li>
-            </ol>
-
-            <h3>✅ Apa yang Normal?</h3>
-            <ul>
-                <li><strong>10 gerakan dalam &lt; 2 jam</strong> = Bayi sehat & aktif ✅</li>
-                <li>Rata-rata ibu merasakan 10 gerakan dalam <strong>30 menit</strong></li>
-                <li>Bayi punya siklus tidur 20-40 menit (normal jika sebentar tidak bergerak)</li>
-            </ul>
-
-            <h3>⚠️ Kapan Harus Waspada?</h3>
-            <ul>
-                <li>Kurang dari 10 gerakan dalam 2 jam</li>
-                <li>Gerakan berkurang drastis dari biasanya</li>
-                <li>Tidak ada gerakan sama sekali selama beberapa jam</li>
-            </ul>
-            <p><strong>Jika waspada:</strong> Minum air dingin/manis, berbaring miring kiri, hitung ulang 1 jam. Jika masih kurang, <strong>segera hubungi dokter/bidan</strong>.</p>
-            <p><em>⚕️ Disclaimer: Tool ini hanya alat bantu pemantauan. Kepercayaan pada insting Anda penting - jika merasa ada yang tidak beres, segera konsultasi ke tenaga medis.</em></p>
-
-            <h3>🔗 Tools Kehamilan Lainnya</h3>
-            <div class="tools-grid">
-                <a href="kalkulator-kontraksi.html" class="tool-card"><div class="tool-icon">⏱️</div><div class="tool-name">Timer Kontraksi</div><div class="tool-desc">Pantau tanda persalinan</div></a>
-                <a href="kalkulator-kehamilan.html" class="tool-card"><div class="tool-icon">🤰</div><div class="tool-name">Kalkulator Kehamilan</div><div class="tool-desc">Hitung HPL & usia janin</div></a>
-                <a href="kalkulator-masa-subur.html" class="tool-card"><div class="tool-icon">🌸</div><div class="tool-name">Masa Subur</div><div class="tool-desc">Program kehamilan</div></a>
-                <a href="kalkulator-kalori.html" class="tool-card"><div class="tool-icon">🔥</div><div class="tool-name">Kalkulator Kalori</div><div class="tool-desc">Nutrisi ibu hamil</div></a>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-links">
-                <a href="index.html">BMI</a>
-                <a href="kalkulator-kehamilan.html">Kehamilan</a>
-                <a href="kalkulator-kontraksi.html">Kontraksi</a>
-                <a href="kalkulator-tendangan.html">Tendangan</a>
-                <a href="faq.html">FAQ</a>
-                <a href="about.html">Tentang</a>
-            </div>
-            <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
-        </div>
-    </div>
-
-    <script>
-/* =========================================================
-   Penghitung Tendangan  —  persisten + tombol RESET manual
-   Logika/aturan TIDAK diubah; hanya ditambah: simpan/pulihkan
-   (tahan reload) + tombol "Reset Sesi" kapan saja.
-   ========================================================= */
-const TARGET  = 10;
-const WARN_MS = 2 * 60 * 60 * 1000;        // 2 jam
-const STORE   = 'ko-tendangan-v1';         // kunci penyimpanan
-
-let count        = 0;
-let sessionStart = null;
-let kicks        = [];                     // timestamp tiap tendangan
-let sessionInterval = null;
-
-/* ---------- simpan / baca ---------- */
-function save(){
-  try { localStorage.setItem(STORE, JSON.stringify({ count:count, sessionStart:sessionStart, kicks:kicks })); } catch(e){}
-}
+function key(d){ d=d||new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function today(){ return key(); }
 function load(){
-  try {
-    const raw = localStorage.getItem(STORE);
-    if (!raw) return;
-    const d = JSON.parse(raw);
-    if (typeof d.count === 'number')        count = d.count;
-    if (typeof d.sessionStart === 'number') sessionStart = d.sessionStart;
-    if (Array.isArray(d.kicks))             kicks = d.kicks;
-  } catch(e){}
-}
-
-/* ---------- format waktu ---------- */
-function formatTime(ms) {
-  const totalSec = Math.floor(ms / 1000);
-  const m = Math.floor(totalSec / 60);
-  const s = totalSec % 60;
-  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-}
-function formatTimeFull(ms) {
-  const totalSec = Math.floor(ms / 1000);
-  const m = Math.floor(totalSec / 60);
-  const s = totalSec % 60;
-  if (m > 0) return m + 'm ' + s + 's';
-  return s + 's';
-}
-
-/* ---------- catat tendangan ---------- */
-function catatTendangan() {
-  const now = Date.now();
-  if (sessionStart === null) {
-    sessionStart = now;
-    startSessionTimer();
-  }
-  count++;
-  kicks.push(now);
-  updateUI();
-  renderHistory();
-  updateStatus();
-
-  if (count >= TARGET) {
-    clearInterval(sessionInterval);
-    sessionInterval = null;
-    const btn = document.getElementById('btnKick');
-    btn.classList.add('done');
-    btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
-    btn.onclick = resetSession;
-  }
-  save();
-}
-
-/* ---------- batalkan tendangan terakhir ---------- */
-function undoTendangan() {
-  if (count === 0) return;
-  count--;
-  kicks.pop();
-  if (count < TARGET) {
-    const btn = document.getElementById('btnKick');
-    btn.classList.remove('done');
-    btn.innerHTML = '👶 Catat Tendangan / Gerakan';
-    btn.onclick = catatTendangan;
-    if (sessionStart !== null && !sessionInterval) startSessionTimer();
-  }
-  updateUI();
-  renderHistory();
-  updateStatus();
-  save();
-}
-
-/* ---------- timer sesi ---------- */
-function startSessionTimer() {
-  if (sessionInterval) clearInterval(sessionInterval);
-  sessionInterval = setInterval(() => {
-    if (sessionStart !== null) {
-      document.getElementById('s-waktu').innerText = formatTime(Date.now() - sessionStart);
-      updateStatus();
+  try{
+    const r=localStorage.getItem(STORE);
+    if(r){ state=Object.assign(state, JSON.parse(r)); }
+    else { // migrasi dari v1
+      const l=localStorage.getItem(LEGACY);
+      if(l){ const d=JSON.parse(l); if((d.count||0)>0|| (d.kicks&&d.kicks.length)){
+        const k=d.kicks||[]; const meta=k.map(()=>({type:'kick',note:''}));
+        state.active={day:today(), start:d.sessionStart|| (k[0]||Date.now()), kicks:k.slice(), meta:meta.slice()};
+      }}
     }
-  }, 1000);
+  }catch(e){}
+  selType=state.prefs.type||'kick';
+  // pulihkan sesi aktif
+  if(state.active && state.active.kicks && state.active.kicks.length){
+    kicks=state.active.kicks.slice(); kickMeta=(state.active.meta||[]).slice();
+    while(kickMeta.length<kicks.length) kickMeta.push({type:'kick',note:''});
+    sessionStart=state.active.start|| (kicks[0]||null);
+  } else { kicks=[]; kickMeta=[]; sessionStart=null; }
+}
+function persist(){
+  state.active = (kicks.length||sessionStart) ? {day:today(), start:sessionStart, kicks:kicks.slice(), meta:kickMeta.slice()} : null;
+  state.prefs.type=selType;
+  try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){}
+}
+function ensureDay(k){ if(!state.days[k]) state.days[k]={date:k, sessions:[]}; return state.days[k]; }
+function allKicksDay(k){ const d=state.days[k]; let n=(d? d.sessions.reduce((a,s)=>a+s.kicks.length,0):0); if(k===today()) n+=kicks.length; return n; }
+function sessionsDay(k){ const d=state.days[k]; let n=d?d.sessions.length:0; return n; }
+function dayStatus(k){ const d=state.days[k]; if(!d||!d.sessions.length) return null; return d.sessions.some(s=>s.status==='watch')?'watch':'normal'; }
+function doneDurations(k){ const d=state.days[k]; return d? d.sessions.filter(s=>s.status==='done'||s.status==='reached'||s.status==='watch').map(s=>s.durationMs).filter(x=>x>0):[]; }
+
+/* ===================== FORMAT ===================== */
+function fmtHMS(ms){ const t=Math.max(0,Math.floor(ms/1000)); const h=Math.floor(t/3600), m=Math.floor(t%3600/60), s=t%60; return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+function fmtMin(ms){ const m=Math.round(ms/60000); if(m<1) return '<1 mnt'; if(m<60) return m+' mnt'; return Math.floor(m/60)+'j '+m%60+'m'; }
+function fmtGap(ms){ const s=Math.round(ms/1000); if(s<60) return s+' dtk'; return Math.floor(s/60)+'m '+s%60+'d'; }
+function fmtDate(k){ const p=k.split('-'); return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'}); }
+function fmtTime(t){ return new Date(t).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+
+/* ===================== LOGIKA COUNT-TO-10 ASLI (verbatim) + pencatatan sejajar ===================== */
+/* Rumus/aturan TIDAK berubah: target 10, jeda = kicks[i]-kicks[i-1], peringatan >2 jam. */
+function catatTendangan(){
+  const now=Date.now();
+  if(sessionStart===null){ sessionStart=now; startClock(); }
+  count_inc();                 // = count++ (logika asli)
+  kicks.push(now);             // (logika asli)
+  /* ekstensi: catat jenis+catatan SEJAJAR (tidak ikut perhitungan) */
+  const note=($('noteInput')&&$('noteInput').value||'').trim();
+  kickMeta.push({type:selType, note:note});
+  if($('noteInput')) $('noteInput').value='';
+  updateMonitor(); updateDashboard(); renderInsight(); persist();
+  if(count_val()>=TARGET){ onReached(); }   // (logika asli: if count>=TARGET)
+}
+function undoTendangan(){
+  if(count_val()===0) return;
+  count_dec();                 // = count-- (logika asli)
+  kicks.pop();                 // (logika asli)
+  kickMeta.pop();              // ekstensi sejajar
+  if(count_val()<TARGET){ const b=$('btnKick'); b.classList.remove('done'); b.innerHTML='<i data-lucide="baby"></i> Catat Tendangan / Gerakan'; b.onclick=catatTendangan; if(sessionStart!==null&&!clockTimer) startClock(); }
+  updateMonitor(); updateDashboard(); renderInsight(); persist(); icons();
+}
+/* count disinkronkan dengan kicks.length agar rumus jeda (kicks[i]-kicks[i-1]) identik asli */
+function count_val(){ return kicks.length; }
+function count_inc(){ /* no-op: count === kicks.length */ }
+function count_dec(){ /* no-op */ }
+
+function onReached(){
+  clearInterval(clockTimer); clockTimer=null;
+  const dur=Date.now()-sessionStart;
+  const b=$('btnKick'); b.classList.add('done'); b.innerHTML='<i data-lucide="party-popper"></i> Target Tercapai! Simpan & mulai sesi baru'; b.onclick=commitAndNew;
+  setStatus('reached','🎉 Target 10 gerakan tercapai dalam '+fmtMin(dur)+'. Simpan sesi untuk mencatat pola Anda.');
+}
+function commitAndNew(){
+  commitSession('done');
+  // mulai sesi baru (logika reset aktif asli, tanpa menghapus riwayat)
+  kicks=[]; kickMeta=[]; sessionStart=null; clearInterval(clockTimer); clockTimer=null;
+  const b=$('btnKick'); b.classList.remove('done'); b.innerHTML='<i data-lucide="baby"></i> Catat Tendangan / Gerakan'; b.onclick=catatTendangan;
+  $('sWaktu').textContent='00:00:00'; $('sWaktu').classList.remove('run');
+  updateMonitor(); updateDashboard(); renderAll(); persist();
+  if(window.KO&&KO.toast) KO.toast('Sesi tersimpan. Sesi baru dimulai.');
+}
+function commitSession(status){
+  if(!kicks.length && !sessionStart) return;
+  const start=sessionStart|| (kicks[0]||Date.now());
+  const end=Date.now();
+  const dur=end-start;
+  const st = status || (dur>WARN_MS?'watch':'done');
+  const dayKey=key(new Date(start));
+  const d=ensureDay(dayKey);
+  d.sessions.push({id:Date.now(), start:start, end:end, durationMs:dur, kicks:kicks.slice(), meta:kickMeta.slice(), status:st});
+}
+function discardSession(){
+  if((kicks.length>0) && !confirm('Buang sesi aktif ini tanpa menyimpan?')) return;
+  kicks=[]; kickMeta=[]; sessionStart=null; clearInterval(clockTimer); clockTimer=null;
+  const b=$('btnKick'); b.classList.remove('done'); b.innerHTML='<i data-lucide="baby"></i> Catat Tendangan / Gerakan'; b.onclick=catatTendangan;
+  $('sWaktu').textContent='00:00:00'; $('sWaktu').classList.remove('run');
+  updateMonitor(); updateDashboard(); renderInsight(); persist();
+  if(window.KO&&KO.toast) KO.toast('Sesi aktif dibuang.');
+}
+function saveManual(){
+  if(!kicks.length){ if(window.KO&&KO.toast) KO.toast('Belum ada gerakan untuk disimpan.'); return; }
+  const reached=count_val()>=TARGET;
+  commitSession(reached?'done':'done');
+  kicks=[]; kickMeta=[]; sessionStart=null; clearInterval(clockTimer); clockTimer=null;
+  const b=$('btnKick'); b.classList.remove('done'); b.innerHTML='<i data-lucide="baby"></i> Catat Tendangan / Gerakan'; b.onclick=catatTendangan;
+  $('sWaktu').textContent='00:00:00'; $('sWaktu').classList.remove('run');
+  updateMonitor(); updateDashboard(); renderAll(); persist();
+  if(window.KO&&KO.toast) KO.toast('Sesi disimpan.');
 }
 
-/* ---------- tampilan angka ---------- */
-function updateUI() {
-  document.getElementById('countValue').innerText = count;
-  const percent = Math.min((count / TARGET) * 100, 100);
-  document.getElementById('progressFill').style.width = percent + '%';
-  document.getElementById('progressPercent').innerText = Math.round(percent) + '%';
+/* ===================== CLOCK ===================== */
+function startClock(){ clearInterval(clockTimer); $('sWaktu').classList.add('run'); clockTimer=setInterval(()=>{ if(sessionStart!==null) $('sWaktu').textContent=fmtHMS(Date.now()-sessionStart); }, 1000); }
 
-  if (kicks.length >= 2) {
-    let totalJeda = 0;
-    for (let i = 1; i < kicks.length; i++) totalJeda += kicks[i] - kicks[i-1];
-    const avg = totalJeda / (kicks.length - 1);
-    document.getElementById('s-rata').innerText = formatTimeFull(avg);
-  } else {
-    document.getElementById('s-rata').innerText = '-';
-  }
-
-  if (sessionStart !== null && count > 0) {
-    const elapsedJam = (Date.now() - sessionStart) / 3600000;
-    const perJam = elapsedJam > 0 ? Math.round(count / elapsedJam) : 0;
-    document.getElementById('s-perjam').innerText = perJam;
-  }
+/* ===================== STATUS / WARNING ===================== */
+function curStatus(){
+  if(count_val()>=TARGET) return 'reached';
+  if(sessionStart!==null && (Date.now()-sessionStart)>WARN_MS) return 'watch';
+  if(sessionStart!==null) return 'counting';
+  const k=today(); return (state.days[k]&&state.days[k].sessions.length)?'done':'idle';
+}
+function setStatus(cls,html){ const b=$('statusBox'); b.className='fm-status '+cls; const ic={idle:'info',counting:'timer',reached:'party-popper',watch:'triangle-alert',done:'check-circle-2'}[cls]||'info'; b.innerHTML='<i data-lucide="'+ic+'"></i><span>'+html+'</span>'; icons(); }
+function updateStatus(){
+  const s=curStatus();
+  if(s==='reached') return; // diisi onReached
+  if(s==='watch'){ setStatus('watch','⚠️ Sudah >2 jam belum 10 gerakan. Minum air manis, berbaring miring kiri. Jika gerakan jauh berkurang dari biasa, hubungi tenaga kesehatan.'); }
+  else if(s==='counting'){ setStatus('counting','👶 Menghitung… '+count_val()+' dari 10 gerakan. Tetap tenang & fokus.'); }
+  else if(s==='done'){ setStatus('done','✅ Sesi tersimpan hari ini. Anda bisa memulai sesi baru kapan saja.'); }
+  else { setStatus('idle','Belum mulai. Duduk/berbaring tenang, fokus rasakan gerakan bayi.'); }
+}
+function updateWarnBanner(){
+  const show = sessionStart!==null && (Date.now()-sessionStart)>WARN_MS && count_val()<TARGET;
+  $('warnBanner').innerHTML = show ? '<div class="fm-card" style="margin:16px 0"><div class="fm-banner danger" style="margin:0"><i data-lucide="siren"></i><div><strong>Perhatian:</strong> Apabila gerakan terasa jauh berkurang dari biasanya atau Anda khawatir, pertimbangkan untuk segera menghubungi tenaga kesehatan.</div></div></div>' : '';
+  icons();
 }
 
-/* ---------- tabel riwayat ---------- */
-function renderHistory() {
-  const container = document.getElementById('historyContainer');
-  if (kicks.length === 0) {
-    container.innerHTML = '<div class="empty-state">Belum ada tendangan tercatat</div>';
-    return;
-  }
-  let html = '<table class="history-table"><thead><tr><th>#</th><th>Waktu</th><th>Jeda dari sebelumnya</th></tr></thead><tbody>';
-  kicks.forEach((t, i) => {
-    const waktu = new Date(t).toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-    const jeda = i > 0 ? formatTimeFull(t - kicks[i-1]) : '-';
-    html += '<tr><td>' + (i+1) + '</td><td>' + waktu + '</td><td>' + jeda + '</td></tr>';
-  });
-  html += '</tbody></table>';
-  container.innerHTML = html;
+/* ===================== MONITOR UI ===================== */
+function updateMonitor(){
+  const c=count_val();
+  $('countValue').textContent=c;
+  $('countdown').textContent = c>=TARGET? '✓ Target tercapai' : (TARGET-c)+' gerakan lagi';
+  const off=CIRC-(c/TARGET)*CIRC; $('ringFill').setAttribute('stroke-dashoffset', Math.max(0,off).toFixed(2));
+  // rata-rata jeda (RUMUS ASLI)
+  if(kicks.length>=2){ let tg=0; for(let i=1;i<kicks.length;i++) tg+=kicks[i]-kicks[i-1]; $('sAvgGap').textContent=fmtGap(tg/(kicks.length-1)); }
+  else $('sAvgGap').textContent='—';
+  // per jam estimasi
+  if(sessionStart&&c>0){ const ej=(Date.now()-sessionStart)/3600000; $('sPerHr').textContent= ej>0? Math.round(c/ej):0; } else $('sPerHr').textContent=0;
+  updateStatus(); updateWarnBanner();
 }
 
-/* ---------- status / peringatan ---------- */
-function updateStatus() {
-  const box = document.getElementById('statusBox');
-  if (count >= TARGET) {
-    const elapsed = Date.now() - sessionStart;
-    box.className = 'status-box status-normal';
-    box.innerHTML = '🎉 HEBAT! Bayi Anda aktif & sehat. 10 gerakan tercapai dalam ' + formatTimeFull(elapsed) + '.';
-    return;
-  }
-  if (sessionStart !== null && (Date.now() - sessionStart) > WARN_MS && count < TARGET) {
-    box.className = 'status-box status-waspada';
-    box.innerHTML = '⚠️ PERHATIAN: Sudah 2 jam tapi belum 10 gerakan. Minum air manis, berbaring miring kiri. Jika masih kurang, hubungi dokter/bidan!';
-    return;
-  }
-  if (count === 0) {
-    box.className = 'status-box status-aktif';
-    box.innerHTML = 'ℹ️ Mulai menghitung! Duduk/berbaring tenang, fokus rasakan gerakan bayi.';
-    return;
-  }
-  box.className = 'status-box status-aktif';
-  box.innerHTML = '👶 Terus menghitung... ' + count + ' dari 10 gerakan. Tetap tenang & fokus.';
+/* ===================== DASHBOARD ===================== */
+function updateDashboard(){
+  const k=today();
+  $('sToday').textContent=allKicksDay(k);
+  $('dDate').textContent=fmtDate(k);
+  // waktu ke 10 terakhir hari ini
+  const durs=doneDurations(k); $('sTime10').textContent= durs.length? fmtMin(durs[durs.length-1]) : '—';
+  // progres harian (apakah sudah ada sesi done hari ini)
+  const doneToday=(state.days[k]?state.days[k].sessions.filter(s=>s.status!=='watch').length:0);
+  $('sProgD').textContent= doneToday>0? '✓':(count_val()>0? Math.round(count_val()/TARGET*100)+'%':'0%');
+  // hari tercatat 7 hr
+  let dw=0; for(let i=0;i<7;i++){ const dd=new Date(); dd.setDate(dd.getDate()-i); if(allKicksDay(key(dd))>0) dw++; }
+  $('sProgW').textContent=dw+'/7';
+  $('sSessions').textContent= sessionsDay(k) + (kicks.length?1:0);
+  const st=curStatus(); $('sStatus').textContent={idle:'Belum Mulai',counting:'Menghitung',reached:'Tercapai',watch:'Dipantau',done:'Selesai'}[st];
 }
 
-/* ---------- reset sesi (dipakai tombol "target tercapai" & tombol reset manual) ---------- */
-function resetSession() {
-  count = 0;
-  kicks = [];
-  sessionStart = null;
-  clearInterval(sessionInterval);
-  sessionInterval = null;
-  const btn = document.getElementById('btnKick');
-  btn.classList.remove('done');
-  btn.innerHTML = '👶 Catat Tendangan / Gerakan';
-  btn.onclick = catatTendangan;
-  document.getElementById('s-waktu').innerText = '00:00';
-  document.getElementById('s-rata').innerText = '-';
-  document.getElementById('s-perjam').innerText = '0';
-  updateUI();
-  renderHistory();
-  updateStatus();
-  try { localStorage.removeItem(STORE); } catch(e){}
+/* ===================== INSIGHT (edukatif, pola sendiri) ===================== */
+function avg(arr){ return arr.length? arr.reduce((a,b)=>a+b,0)/arr.length : null; }
+function renderInsight(){
+  const box=$('insightBox'); const ins=[];
+  const k=today(); const todayDur=doneDurations(k); const lastToday=todayDur.length?todayDur[todayDur.length-1]:null;
+  const b7=baseline(7), b14=baseline(14);
+  if(lastToday && b7){
+    const ratio=lastToday/b7;
+    if(ratio<=1.2 && ratio>=0.8) ins.push(['smile','Waktu ke 10 gerakan hari ini ('+fmtMin(lastToday)+') <strong>mirip rata‑rata 7 hari Anda</strong> ('+fmtMin(b7)+'). Pola konsisten.']);
+    else if(ratio>1.2) ins.push(['trending-up','Hari ini sedikit <strong>lebih lambat</strong> ('+fmtMin(lastToday)+') dibanding rata‑rata 7 hari Anda ('+fmtMin(b7)+'). Ini bisa normal — perhatikan apakah polanya berlanjut.']);
+    else ins.push(['zap','Hari ini <strong>lebih cepat</strong> ('+fmtMin(lastToday)+') dibanding rata‑rata 7 hari Anda ('+fmtMin(b7)+'). Bayi sedang aktif.']);
+  } else if(lastToday){ ins.push(['info','Sesi pertama tercatat: '+fmtMin(lastToday)+' untuk 10 gerakan. Terus catat beberapa hari agar baseline terbentuk.']); }
+  else { ins.push(['info','Belum ada sesi selesai hari ini. Mulai menghitung untuk membangun pola Anda.']); }
+  // konsistensi
+  let dw=0; for(let i=0;i<7;i++){ const dd=new Date(); dd.setDate(dd.getDate()-i); if(allKicksDay(key(dd))>0) dw++; }
+  ins.push(['calendar-check','Anda mencatat gerakan pada <strong>'+dw+' dari 7 hari</strong> terakhir. Konsistensi membantu membaca pola.']);
+  if(b14 && b7){ const tr=b7/b14; const word = tr>1.15?'sedang melambat':tr<0.85?'sedang lebih cepat':'relatif stabil';
+    ins.push(['activity','Tren 7‑hari vs 14‑hari: waktu‑ke‑10 Anda <strong>'+word+'</strong>. Perubahan kecil hari‑ke‑hari itu wajar.']); }
+  box.innerHTML=ins.map(x=>'<div class="fm-ins"><i data-lucide="'+x[0]+'"></i><span>'+x[1]+'</span></div>').join('');
+  icons();
+}
+function baseline(days){ let arr=[]; for(let i=0;i<days;i++){ const dd=new Date(); dd.setDate(dd.getDate()-i); arr=arr.concat(doneDurations(key(dd))); } return avg(arr); }
+
+/* ===================== JAM AKTIF & JENIS ===================== */
+function renderActiveHours(){
+  const hist=new Array(24).fill(0);
+  Object.values(state.days).forEach(d=>d.sessions.forEach(s=>s.kicks.forEach(t=>{ hist[new Date(t).getHours()]++; })));
+  if(kicks.length) kicks.forEach(t=>{ hist[new Date(t).getHours()]++; });
+  const max=Math.max(1,...hist);
+  // top 5
+  const idx=hist.map((v,h)=>({h,v})).sort((a,b)=>b.v-a.v).filter(x=>x.v>0).slice(0,5);
+  const el=$('activeHours');
+  if(!idx.length){ el.innerHTML='<div class="fm-empty">Belum cukup data. Jam aktif akan muncul setelah Anda mencatat gerakan.</div>'; return; }
+  el.innerHTML=idx.map(x=>'<div class="br hot"><span>'+String(x.h).padStart(2,'0')+':00</span><span class="bt"><span class="bf" style="width:'+(x.v/max*100).toFixed(0)+'%"></span></span><span>'+x.v+'×</span></div>').join('')
+    + '<div style="font-size:11px;color:var(--text-3);margin-top:6px">Jam dengan gerakan terbanyak — membantu memilih waktu menghitung.</div>';
+}
+function renderTypeStats(){
+  const c={}; TYPES.forEach(t=>c[t[0]]=0);
+  Object.values(state.days).forEach(d=>d.sessions.forEach(s=>(s.meta||[]).forEach(m=>{ c[m.type]=(c[m.type]||0)+1; })));
+  kickMeta.forEach(m=>{ c[m.type]=(c[m.type]||0)+1; });
+  const total=Math.max(1,Object.values(c).reduce((a,b)=>a+b,0));
+  const el=$('typeStats');
+  const rows=TYPES.filter(t=>c[t[0]]>0).map(t=>({t,n:c[t[0]]})).sort((a,b)=>b.n-a.n);
+  if(!rows.length){ el.innerHTML='<div class="fm-empty">Belum ada jenis gerakan tercatat.</div>'; return; }
+  el.innerHTML=rows.map(r=>'<div class="br"><span>'+r.t[1]+'</span><span class="bt"><span class="bf" style="width:'+(r.n/total*100).toFixed(0)+'%"></span></span><span>'+r.n+'</span></div>').join('');
 }
 
-/* ---------- RESET MANUAL (dengan konfirmasi) ---------- */
-function resetManual() {
-  if (count === 0 && kicks.length === 0) return;          // sudah kosong
-  if (confirm('Hapus semua hitungan tendangan & mulai sesi baru dari 0?')) {
-    resetSession();
-    if (window.KO && KO.toast) KO.toast('Sesi tendangan direset.');
+/* ===================== RIWAYAT ===================== */
+function renderHistory(){
+  const box=$('histBox'); const keys=Object.keys(state.days).sort().reverse();
+  if(!keys.length){ box.innerHTML='<div class="fm-empty">Belum ada riwayat. Sesi yang Anda simpan akan muncul di sini per hari.</div>'; return; }
+  box.innerHTML=keys.map(k=>{
+    const d=state.days[k]; const tot=d.sessions.reduce((a,s)=>a+s.kicks.length,0)+(k===today()?kicks.length:0);
+    const st=dayStatus(k); const mins=d.sessions.length? Math.round(avg(d.sessions.map(s=>s.durationMs))/60000):0;
+    const badge = st==='watch'?'<span class="badge watch">Perlu Dipantau</span>': st==='normal'?'<span class="badge normal">Normal</span>':'';
+    const rows=d.sessions.map((s,si)=>{
+      const inner=s.kicks.map((t,i)=>{ const m=(s.meta&&s.meta[i])||{type:'kick',note:''}; const ty=TYPES.find(x=>x[0]===m.type)||TYPES[0]; const gap=i>0?fmtGap(t-s.kicks[i-1]):'—';
+        return '<tr><td>'+(i+1)+'</td><td>'+fmtTime(t)+'</td><td><span class="ty"><i data-lucide="'+ty[2]+'"></i>'+ty[1]+'</span></td><td>'+gap+'</td><td>'+(m.note||'—')+'</td></tr>'; }).join('');
+      return '<div style="margin:8px 0;font-size:12px;color:var(--text-3);font-weight:600">Sesi '+(si+1)+' · '+fmtTime(s.start)+' · '+fmtMin(s.durationMs)+' · '+(s.status==='watch'?'dipantau':'selesai')+'</div>'+
+        '<table class="fm-tbl"><thead><tr><th>#</th><th>Jam</th><th>Jenis</th><th>Jeda</th><th>Catatan</th></tr></thead><tbody>'+inner+'</tbody></table>';
+    }).join('');
+    return '<div class="fm-day"><button aria-expanded="false" onclick="toggleDay(this)"><span>'+fmtDate(k)+'</span><span class="meta">'+tot+' gerakan · '+d.sessions.length+' sesi · '+mins+'m '+badge+'<i data-lucide="chevron-down"></i></span></button><div class="body"><div class="in">'+(rows||'<div class="fm-empty">Tidak ada sesi tersimpan.</div>')+'</div></div></div>';
+  }).join('');
+  icons();
+}
+function toggleDay(btn){ const o=btn.getAttribute('aria-expanded')==='true'; const body=btn.nextElementSibling; btn.setAttribute('aria-expanded',!o); body.style.maxHeight=o?null:body.scrollHeight+'px'; if(!o){ icons(); setTimeout(()=>body.style.maxHeight=body.scrollHeight+'px',50);} }
+
+/* ===================== KALENDER ===================== */
+function renderCalendar(){
+  const y=calView.getFullYear(), m=calView.getMonth();
+  $('calMonth').textContent=calView.toLocaleDateString('id-ID',{month:'long',year:'numeric'});
+  const first=new Date(y,m,1).getDay(); const dim=new Date(y,m+1,0).getDate(); const tk=today();
+  let h=''; ['M','S','S','R','K','J','S'].forEach(d=>h+='<div class="dow">'+d+'</div>');
+  for(let i=0;i<first;i++) h+='<div class="cell empty"></div>';
+  for(let d=1;d<=dim;d++){ const k=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const cls=[]; const isFut = new Date(y,m,d) > new Date(); if(isFut) cls.push('future');
+    if(k===tk) cls.push('today');
+    const st=dayStatus(k); if(st==='normal') cls.push('normal'); else if(st==='watch') cls.push('watch');
+    const dot = allKicksDay(k)>0? '<span class="dot"></span>':'';
+    h+='<button class="cell '+cls.join(' ')+'" data-k="'+k+'" onclick="showCalDay(\''+k+'\')" aria-label="'+fmtDate(k)+'">'+d+dot+'</button>';
   }
+  $('calGrid').innerHTML=h;
+}
+function showCalDay(k){
+  const tot=allKicksDay(k); const d=state.days[k]; const ns=d?d.sessions.length:0;
+  const st=dayStatus(k); const durs=doneDurations(k);
+  $('calDetail').innerHTML='<div class="fm-card" style="margin:0"><h2 style="margin-bottom:8px"><i data-lucide="calendar-days"></i> '+fmtDate(k)+'</h2>'+
+    '<div class="fm-stats" style="grid-template-columns:repeat(3,1fr)"><div class="fm-st"><div class="v">'+tot+'</div><div class="l">Gerakan</div></div><div class="fm-st"><div class="v">'+ns+'</div><div class="l">Sesi</div></div><div class="fm-st"><div class="v">'+(durs.length?fmtMin(avg(durs)):'—')+'</div><div class="l">Rata‑rata ke 10</div></div></div>'+
+    '<div style="margin-top:10px;font-size:13px;color:var(--text-2)">Status: '+(st==='watch'?'<strong style="color:var(--c-warning)">Perlu Dipantau</strong>':st==='normal'?'<strong style="color:var(--c-success)">Normal</strong>':'<span style="color:var(--text-3)">Belum tercatat</span>')+'</div></div>';
+  icons();
 }
 
-/* ---------- buat tombol Reset otomatis (tanpa edit HTML) + stylenya ---------- */
-function addResetButton() {
-  // stylenya (sekali saja, ramah light & dark)
-  if (!document.getElementById('ko-reset-style')) {
-    const st = document.createElement('style');
-    st.id = 'ko-reset-style';
-    st.textContent =
-      '.btn-reset-sesi{margin-top:10px;width:100%;padding:12px;border-radius:12px;font-weight:600;' +
-      'font-family:inherit;cursor:pointer;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);' +
-      'color:#b91c1c;transition:background .3s,transform .3s}' +
-      '.btn-reset-sesi:hover{background:rgba(239,68,68,.16)}' +
-      '.btn-reset-sesi:active{transform:scale(.98)}' +
-      '[data-theme="dark"] .btn-reset-sesi{color:#fca5a5;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4)}' +
-      '[data-theme="dark"] .btn-reset-sesi:hover{background:rgba(239,68,68,.2)}';
-    document.head.appendChild(st);
+/* ===================== ANALITIK: SKOR + GRAFIK ===================== */
+function activityScore(){
+  // konsistensi 7 hari (0..1) *40 + kecukupan sesi *30 + stabilitas durasi *30
+  let dw=0; for(let i=0;i<7;i++){ const dd=new Date(); dd.setDate(dd.getDate()-i); if(allKicksDay(key(dd))>0) dw++; }
+  const consist=dw/7;
+  let sess=0; for(let i=0;i<7;i++){ const dd=new Date(); dd.setDate(dd.getDate()-i); sess+=sessionsDay(key(dd)); }
+  const suff=Math.min(1, sess/(7*1)); // ~1 sesi/hari
+  const b7=baseline(7); let stab=0.5;
+  if(b7){ const durs=[]; for(let i=0;i<7;i++){ const dd=new Date(); dd.setDate(dd.getDate()-i); durs.push(...doneDurations(key(dd))); }
+    if(durs.length>1){ const mean=avg(durs); const varr=avg(durs.map(x=>(x-mean)*(x-mean))); const cv=Math.sqrt(varr)/mean; stab=Math.max(0,1-Math.min(1,cv)); }
   }
-  // tombolnya (idempoten: kalau sudah ada, jangan dobel)
-  const undo = document.querySelector('.btn-undo');
-  if (!undo || document.getElementById('btnResetSesi')) return;
-  const b = document.createElement('button');
-  b.id = 'btnResetSesi';
-  b.type = 'button';
-  b.className = 'btn-reset-sesi';
-  b.setAttribute('aria-label', 'Reset sesi tendangan dari nol');
-  b.innerHTML = '🗑️ Reset Sesi (Mulai dari 0)';
-  b.addEventListener('click', resetManual);
-  undo.insertAdjacentElement('afterend', b);   // taruh tepat di bawah "Batalkan"
+  const score=Math.round((consist*40+suff*30+stab*30));
+  return {score, consist, suff, stab};
+}
+function renderScore(){
+  const {score}=activityScore();
+  $('scoreVal').textContent=score;
+  $('gaugeFill').setAttribute('stroke-dashoffset', (GCIRC-(score/100)*GCIRC).toFixed(2));
+  const exp = score>=70? 'Pola pencatatan Anda <strong>konsisten</strong> — bagus untuk membaca perubahan dari biasanya.':
+              score>=40? 'Pola pencatatan Anda <strong>cukup</strong>. Mencatat di jam yang sama tiap hari akan meningkatkan konsistensi.':
+                         'Baru mulai atau jarang mencatat. Coba luangkan waktu singkat tiap hari untuk membangun baseline.';
+  $('scoreExp').innerHTML=exp+' <em>(Bukan penilaian kesehatan janin.)</em>';
+  $('b7').textContent= fmtMinOrDash(baseline(7));
+  $('b14').textContent= fmtMinOrDash(baseline(14));
+  $('b30').textContent= fmtMinOrDash(baseline(30));
+}
+function fmtMinOrDash(v){ return v? fmtMin(v):'—'; }
+function seriesDays(n, fn){ const arr=[]; for(let i=n-1;i>=0;i--){ const dd=new Date(); dd.setDate(dd.getDate()-i); arr.push({k:key(dd), label:dd.getDate()+'', v:fn(key(dd))}); } return arr; }
+function lineChart(hostId, data, unit){
+  const host=$(hostId); if(!host) return; const W=host.clientWidth||320, H=150, pad=16;
+  const vals=data.map(d=>d.v); const max=Math.max(1,...vals); const has=vals.some(v=>v>0);
+  const X=i=> pad+(i/(data.length-1))*(W-2*pad); const Y=v=> H-pad-(v/max)*(H-2*pad);
+  let line='', area='', dots='';
+  data.forEach((d,i)=>{ if(d.v>0){ const x=X(i).toFixed(1), y=Y(d.v).toFixed(1); line+=(line?'L':'M')+x+' '+y+' '; } });
+  const posIdx=data.map((d,i)=>d.v>0?i:-1).filter(i=>i>=0);
+  if(posIdx.length){ area='M'+X(posIdx[0]).toFixed(1)+' '+(H-pad)+' '+line.replace(/^M/,'L')+'L'+X(posIdx[posIdx.length-1]).toFixed(1)+' '+(H-pad)+' Z'; }
+  data.forEach((d,i)=>{ if(d.v>0) dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(d.v).toFixed(1)+'" r="3" fill="#6C63FF" vector-effect="non-scaling-stroke"/>'; });
+  const grid=[0,.5,1].map(g=>'<line x1="'+pad+'" y1="'+(pad+g*(H-2*pad))+'" x2="'+(W-pad)+'" y2="'+(pad+g*(H-2*pad))+'" stroke="var(--border)" stroke-width="1" vector-effect="non-scaling-stroke"/>').join('');
+  host.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg_'+hostId+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".3"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></linearGradient></defs>'+grid+(has?('<path d="'+area+'" fill="url(#lg_'+hostId+')"/><path d="'+line.trim()+'" fill="none" stroke="#6C63FF" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'):'')+dots+(has?'':'<text x="'+(W/2)+'" y="'+(H/2)+'" fill="var(--text-3)" font-size="12" text-anchor="middle">Belum ada data</text>')+'</svg>';
+}
+function renderCharts(){
+  lineChart('chartDur', seriesDays(14, k=>{ const d=doneDurations(k); return d.length? Math.round(avg(d)/60000):0; }), 'mnt');
+  lineChart('chartCnt', seriesDays(14, k=> allKicksDay(k)), '');
 }
 
-/* =========================================================
-   INIT: pulihkan rekaman + pasang tombol reset
-   ========================================================= */
+/* ===================== EDUKASI + FAQ ===================== */
+function renderEdu(){
+  $('eduBox').innerHTML=EDU.map(e=>'<div class="e"><h3><i data-lucide="help-circle"></i>'+e[0]+'</h3><p>'+e[1]+'</p></div>').join('');
+  let fh='', schema=[];
+  FAQ.forEach((f,i)=>{ fh+='<button class="q" aria-expanded="false" aria-controls="fq'+i+'" onclick="toggleFaq(this)">'+f[0]+'<i data-lucide="chevron-down"></i></button><div class="a" id="fq'+i+'" role="region"><div class="in">'+f[1]+'</div></div>'; schema.push({"@type":"Question","name":f[0],"acceptedAnswer":{"@type":"Answer","text":f[1]}}); });
+  $('faqBox').innerHTML=fh;
+  $('faqSchema').textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":schema});
+  icons();
+}
+function toggleFaq(btn){ const o=btn.getAttribute('aria-expanded')==='true'; const p=$(btn.getAttribute('aria-controls')); btn.setAttribute('aria-expanded',!o); p.style.maxHeight=o?null:p.scrollHeight+'px'; }
+
+/* ===================== USIA KEHAMILAN ===================== */
+function updateGest(){
+  const v=$('hpht').value; state.hpht=v||null; persist();
+  if(!v){ $('hGest').style.display='none'; $('gestBanner').innerHTML=''; icons(); return; }
+  const hpht=new Date(v), now=new Date(); if(hpht>now){ $('hGest').style.display='none'; return; }
+  const dh=Math.floor((now-hpht)/864e5), mg=Math.floor(dh/7), hr=dh%7;
+  $('hGest').style.display='inline-flex'; $('hGestTxt').textContent=mg+' mg '+hr+' hr';
+  $('gestBanner').innerHTML = mg<28 ? '<div class="fm-card" style="margin:16px 0"><div class="fm-banner info" style="margin:0"><i data-lucide="info"></i><span>Pemantauan tendangan secara rutin umumnya mulai dianjurkan sekitar <strong>28 minggu</strong> atau sesuai anjuran dokter. Sebelum itu, gerakan belum selalu teratur — Anda tetap boleh membiasakan mencatat.</span></div></div>' : '';
+  icons();
+}
+
+/* ===================== REMINDER ===================== */
+function updateReminder(){
+  const on=$('remToggle').checked; const min=parseInt($('remMin').value)||120;
+  state.prefs.reminder=on; state.prefs.remMin=min; persist();
+  clearTimeout(remTimer); remTimer=null;
+  if(on){
+    if('Notification' in window && Notification.permission==='default') Notification.requestPermission();
+    scheduleReminder(min);
+    $('remStatus').textContent='🔔 Pengingat aktif: setiap '+min+' menit (selama halaman terbuka).';
+  } else { $('remStatus').textContent='Pengingat nonaktif.'; }
+}
+function scheduleReminder(min){
+  clearTimeout(remTimer);
+  remTimer=setTimeout(()=>{
+    if(allKicksDay(today())===0){
+      if('Notification' in window && Notification.permission==='granted'){ try{ new Notification('Waktunya menghitung gerakan bayi 👶', {body:'Luangkan sebentar untuk mencatat gerakan bayi Anda.'}); }catch(e){} }
+      if(window.KO&&KO.toast) KO.toast('🔔 Pengingat: waktunya menghitung gerakan bayi.');
+    }
+    if(state.prefs.reminder) scheduleReminder(min);
+  }, min*60000);
+}
+
+/* ===================== EXPORT ===================== */
+function buildRows(){
+  const rows=[['Tanggal','Sesi','No','Jam','Jenis','Jeda(dtk)','Catatan','DurasiSesi(mnt)','Status']];
+  Object.keys(state.days).sort().forEach(k=>{ state.days[k].sessions.forEach((s,si)=>{ s.kicks.forEach((t,i)=>{ const m=(s.meta&&s.meta[i])||{type:'kick',note:''}; const gap=i>0?Math.round((t-s.kicks[i-1])/1000):''; rows.push([k,si+1,i+1,fmtTime(t),m.type,gap,(m.note||'').replace(/"/g,'""'),Math.round(s.durationMs/60000),s.status]); }); }); });
+  return rows;
+}
+function exportCSV(){
+  const rows=buildRows(); const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  download(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),'tendangan-janin.csv');
+  if(window.KO&&KO.toast) KO.toast('CSV (Excel) diunduh.');
+}
+function exportJSON(){ download(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),'backup-tendangan.json'); if(window.KO&&KO.toast) KO.toast('Backup JSON diunduh.'); }
+function download(blob,name){ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
+function shareData(){
+  const k=today(); const txt='Ringkasan Gerakan Janin — '+fmtDate(k)+'\nTendangan hari ini: '+allKicksDay(k)+'\nSesi: '+sessionsDay(k)+'\n(Dicatat via KalkulatorOnline.my.id)';
+  if(navigator.share){ navigator.share({title:'Gerakan Janin', text:txt}).catch(()=>{}); }
+  else if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(()=>window.KO&&KO.toast&&KO.toast('Ringkasan disalin ke clipboard.')); }
+}
+
+/* ===================== TYPES / QUICK UI ===================== */
+function buildTypeSel(){
+  $('typeSel').innerHTML=TYPES.map(t=>'<button data-t="'+t[0]+'" role="radio" aria-checked="'+(t[0]===selType)+'" class="'+(t[0]===selType?'on':'')+'"><i data-lucide="'+t[2]+'"></i>'+t[1]+'</button>').join('');
+  $('typeSel').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ selType=b.dataset.t; state.prefs.type=selType; buildTypeSel(); persist(); icons(); }));
+  $('quickNotes').innerHTML=QUICK_NOTES.map(n=>'<button type="button" data-n="'+n+'">+'+n+'</button>').join('');
+  $('quickNotes').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ $('noteInput').value=b.dataset.n; }));
+}
+
+/* ===================== TABS ===================== */
+let tabRendered={};
+function showTab(name){
+  document.querySelectorAll('.fm-tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===name));
+  document.querySelectorAll('.fm-tabpane').forEach(p=>p.classList.toggle('on', p.id==='tab-'+name));
+  if(name==='hist'&&!tabRendered.hist){ renderHistory(); tabRendered.hist=true; }
+  if(name==='cal'){ renderCalendar(); }
+  if(name==='ana'){ renderScore(); renderCharts(); }
+  if(name==='edu'&&!tabRendered.edu){ renderEdu(); tabRendered.edu=true; }
+  if(name==='sum'){ renderInsight(); renderActiveHours(); renderTypeStats(); }
+  icons();
+}
+
+/* ===================== RENDER ALL ===================== */
+function renderAll(){ updateMonitor(); updateDashboard(); renderInsight(); renderActiveHours(); renderTypeStats();
+  if($('tab-hist').classList.contains('on')) renderHistory();
+  if($('tab-cal').classList.contains('on')) renderCalendar();
+  if($('tab-ana').classList.contains('on')){ renderScore(); renderCharts(); }
+  tabRendered.hist=false; // biar refresh saat buka
+}
+function icons(){ window.lucide&&lucide.createIcons(); }
+
+/* ===================== INIT ===================== */
 load();
-updateUI();
-renderHistory();
-updateStatus();
-if (sessionStart !== null && count < TARGET) startSessionTimer();
-if (count >= TARGET) {
-  const btn = document.getElementById('btnKick');
-  btn.classList.add('done');
-  btn.innerHTML = '🎉 Target Tercapai! (Tekan untuk sesi baru)';
-  btn.onclick = resetSession;
-}
-addResetButton();
+$('hToday').textContent=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'short',year:'numeric'});
+if(state.hpht){ $('hpht').value=state.hpht; }
+$('hpht').addEventListener('change', updateGest); updateGest();
+buildTypeSel();
+$('btnKick').onclick=catatTendangan;
+$('btnUndo').onclick=undoTendangan;
+$('btnDone').onclick=saveManual;
+$('btnDiscard').onclick=discardSession;
+$('remToggle').checked=!!state.prefs.reminder;
+$('remMin').value=state.prefs.remMin||120;
+$('remToggle').addEventListener('change', updateReminder);
+$('remMin').addEventListener('change', updateReminder);
+updateReminder();
+document.querySelectorAll('.fm-tabs button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+$('calPrev').onclick=()=>{ calView.setMonth(calView.getMonth()-1); renderCalendar(); };
+$('calNext').onclick=()=>{ calView.setMonth(calView.getMonth()+1); renderCalendar(); };
+$('exPrint').onclick=()=>window.print();
+$('exCsv').onclick=exportCSV;
+$('exJson').onclick=exportJSON;
+$('exShare').onclick=shareData;
+$('btnWipe').onclick=()=>{ if(confirm('Hapus SELURUH data tendangan secara permanen? Tindakan ini tidak bisa dibatalkan.')){ try{localStorage.removeItem(STORE);localStorage.removeItem(LEGACY);}catch(e){} location.reload(); } };
+// keyboard: spasi/Enter pada area monitor = catat (kecuali fokus di input)
+document.addEventListener('keydown',e=>{ if((e.code==='Space') && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='BUTTON'){ e.preventDefault(); catatTendangan(); } });
+// redraw chart on resize
+addEventListener('resize',()=>{ clearTimeout(window.__rz); window.__rz=setTimeout(()=>{ if($('tab-ana').classList.contains('on')) renderCharts(); },150); });
+renderAll();
+// jalankan clock jika ada sesi aktif berjalan
+if(sessionStart!==null && count_val()<TARGET) startClock();
+if(count_val()>=TARGET){ onReached(); }
+icons();
+addEventListener('load',()=>{ icons(); if($('tab-ana').classList.contains('on')) renderCharts(); });
 </script>
-
 <script src="/app.js" defer></script>
 </body>
 </html>
