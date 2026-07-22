@@ -175,6 +175,29 @@
 .fz-resetbtn svg{width:15px;height:15px}
 [data-theme="dark"] .fz-resetbtn{color:#fca5a5;background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4)}
 @media(prefers-reduced-motion:reduce){.fz-baby .sil3d,.fz-fruit .emo{animation:none}.fz-flash{animation:none}}
+
+/* ko-jsum-css : kartu ringkasan minggu (auto-sync) */
+.fm-sumcard{display:none}
+.fm-sumcard.show{display:block;animation:fzfade .4s ease}
+.jsum-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 14px}
+.jsum-nm{background:var(--surface-solid);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;min-width:0}
+.jsum-nm .v{font-size:clamp(16px,3.5vw,22px);font-weight:800;line-height:1.1;word-break:break-word}
+.jsum-nm .v.grad{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.jsum-nm .l{font-size:11px;color:var(--text-3);font-weight:600;margin-top:5px;text-transform:uppercase;letter-spacing:.03em}
+.jsum-narr{font-size:14px;line-height:1.85;color:var(--text-2)}
+.jsum-narr p{margin:0 0 10px}
+.jsum-narr .tip{color:var(--text);font-weight:600}
+.jsum-narr .disc{display:block;font-size:12px;color:var(--text-3);border-left:3px solid var(--border);padding-left:12px;margin-top:4px}
+.jsum-act{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.jsum-act button{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-solid);font-weight:600;font-size:13px;color:var(--text-2);cursor:pointer}
+.jsum-act button svg{width:15px;height:15px}
+.jsum-act button:hover{border-color:var(--c-primary);color:var(--c-primary)}
+.jsum-act .jsum-sp{flex:1}
+.jsum-act label{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--text-3);font-weight:600;cursor:pointer}
+.jsum-act input{width:16px;height:16px;accent-color:var(--c-primary)}
+@media(max-width:420px){.jsum-nums{grid-template-columns:1fr}}
+@media print{.jsum-act{display:none}}
+
 </style>
 </head>
 <body>
@@ -258,6 +281,25 @@
     <!-- [RESET] -->
     <div class="fz-resetrow"><button type="button" class="fz-resetbtn" id="fzReset" aria-label="Reset tampilan ke minggu 20 dan hapus HPHT tersimpan"><i data-lucide="rotate-ccw"></i> Reset ke Minggu 20</button></div>
   </section>
+
+<!-- ko-jsum-html : kartu ringkasan minggu (auto-sync) -->
+<section class="fz-card fm-sumcard" id="jsumCard" aria-live="polite" aria-label="Ringkasan minggu kehamilan">
+  <h2><i data-lucide="sparkles"></i> Ringkasan Minggu Ini <span class="fz-h2sub" id="jsumWeek">Minggu 20</span></h2>
+  <div class="jsum-nums">
+    <div class="jsum-nm"><div class="v grad" id="jsumBerat">-</div><div class="l">Berat</div></div>
+    <div class="jsum-nm"><div class="v" id="jsumPanjang">-</div><div class="l">Panjang</div></div>
+    <div class="jsum-nm"><div class="v" id="jsumTri">-</div><div class="l">Trimester</div></div>
+  </div>
+  <div class="jsum-narr" id="jsumNarr"></div>
+  <div class="jsum-act">
+    <button type="button" id="jsumSpeak"><i data-lucide="volume-2"></i> Dengarkan</button>
+    <button type="button" id="jsumStop"><i data-lucide="square"></i> Berhenti</button>
+    <span class="jsum-sp"></span>
+    <label><input type="checkbox" id="jsumAutoVoice"> Bacakan otomatis lain kali</label>
+    <button type="button" id="jsumClose"><i data-lucide="x"></i> Sembunyikan</button>
+  </div>
+</section>
+
 
   <section class="fz-card">
     <h2><i data-lucide="baby"></i> Visual & Perbandingan Ukuran <span class="fz-h2sub" id="vWeek">Minggu 20</span></h2>
@@ -630,6 +672,79 @@ const _rb=$('fzReset'); if(_rb) _rb.addEventListener('click', resetView);
 /* redraw grafik saat lebar berubah (biar marker tetap bulat) */
 addEventListener('resize', ()=>{ clearTimeout(window.__rz); window.__rz=setTimeout(()=>{ drawChart('chartW',currentWeek,x=>D[x-4].b,'gWval',' g'); drawChart('chartL',currentWeek,x=>D[x-4].l,'gLval',' cm'); },150); });
 addEventListener('load', ()=>{ window.lucide&&lucide.createIcons(); drawChart('chartW',currentWeek,x=>D[x-4].b,'gWval',' g'); drawChart('chartL',currentWeek,x=>D[x-4].l,'gLval',' cm'); });
+</script>
+<script>
+/* ko-jsum-js : wrapper pasif (TIDAK mengubah logika asli) */
+(function(){
+  function el(id){return document.getElementById(id);}
+  function clean(s){return (s||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();}
+  var STORE_VOICE='ko-janin-autovoice';
+  function getVoice(){ try{return localStorage.getItem(STORE_VOICE)==='1';}catch(e){return false;} }
+  function setVoice(v){ try{localStorage.setItem(STORE_VOICE, v?'1':'0');}catch(e){} }
+  function curWeek(){ var s=el('weekSlider'); return s? parseInt(s.value,10):20; }
+  function readDOM(){
+    var w=curWeek();
+    var buah=clean(el('fruitName')? el('fruitName').textContent:'');
+    var tri=clean(el('triBadge')? el('triBadge').textContent:'');
+    var dvs=el('detailGrid')? el('detailGrid').querySelectorAll('.fz-d .dv'):[];
+    var berat=dvs[0]? clean(dvs[0].textContent):'';
+    var panjang=dvs[1]? clean(dvs[1].textContent):'';
+    var liNow=el('devBaby')? el('devBaby').querySelector('li.now span'):null;
+    var milestone= liNow? clean(liNow.textContent).replace('Minggu ini','').trim():'';
+    var tipEl=el('tipsList')? el('tipsList').querySelector('li span'):null;
+    var tip= tipEl? clean(tipEl.textContent):'';
+    return {w:w,buah:buah,tri:tri,berat:berat,panjang:panjang,milestone:milestone,tip:tip};
+  }
+  function buildNarr(d){
+    var p=[];
+    p.push('Pada minggu ke-'+d.w+' ('+d.tri+'), bayi Anda seukuran <strong>'+d.buah+'</strong>, dengan perkiraan berat <strong>'+d.berat+'</strong> dan panjang <strong>'+d.panjang+'</strong>.');
+    if(d.milestone) p.push('Perkembangan utama minggu ini: <em>'+d.milestone+'.</em>');
+    if(d.tip) p.push('<span class="tip">Tips minggu ini: '+d.tip+'</span>');
+    p.push('<span class="disc">Angka ini estimasi atau median referensi berdasarkan usia kehamilan; pertumbuhan tiap ibu bisa berbeda. Gunakan hasil USG dan konsultasi dokter atau bidan sebagai acuan utama.</span>');
+    return p.map(function(x){return '<p>'+x+'</p>';}).join('');
+  }
+  function ttsText(d){
+    var t='Pada minggu ke '+d.w+', '+d.tri+', bayi Anda seukuran '+d.buah+', perkiraan berat '+d.berat+', panjang '+d.panjang+'.';
+    if(d.milestone) t+=' Perkembangan utama: '+d.milestone+'.';
+    if(d.tip) t+=' Tips: '+d.tip;
+    t+=' Ingat, ini estimasi; gunakan USG dan dokter sebagai acuan.';
+    return t;
+  }
+  var lastText='', speakTimer=null;
+  function renderSummary(){
+    var card=el('jsumCard'); if(!card) return;
+    var d=readDOM();
+    el('jsumWeek').textContent='Minggu '+d.w;
+    el('jsumBerat').textContent=d.berat||'-';
+    el('jsumPanjang').textContent=d.panjang||'-';
+    el('jsumTri').textContent=d.tri||'-';
+    el('jsumNarr').innerHTML=buildNarr(d);
+    lastText=ttsText(d);
+    card.classList.add('show');
+    var nb=el('jsumNarr'); if(nb){ nb.classList.remove('fm-flash'); void nb.offsetWidth; nb.classList.add('fm-flash'); }
+    if(window.lucide) lucide.createIcons();
+    if(getVoice()){ clearTimeout(speakTimer); speakTimer=setTimeout(speak,700); }
+  }
+  function canSpeak(){ return ('speechSynthesis' in window); }
+  function speak(){ if(!canSpeak()||!lastText) return; try{ window.speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(lastText); u.lang='id-ID'; u.rate=1; window.speechSynthesis.speak(u);}catch(e){} }
+  function stopSpeak(){ if(canSpeak()){ try{window.speechSynthesis.cancel();}catch(e){} } }
+  function wire(){
+    var sp=el('jsumSpeak'), st=el('jsumStop'), cl=el('jsumClose'), av=el('jsumAutoVoice');
+    if(sp) sp.onclick=speak;
+    if(st) st.onclick=stopSpeak;
+    if(cl) cl.onclick=function(){ var c=el('jsumCard'); if(c) c.classList.remove('show'); stopSpeak(); };
+    if(av){ av.checked=getVoice(); av.onchange=function(){ setVoice(av.checked); if(av.checked && canSpeak()) speak(); }; }
+    if(!canSpeak()){ [sp,st].forEach(function(b){if(b)b.style.display='none';}); if(av&&av.parentNode) av.parentNode.style.display='none'; }
+  }
+  if(typeof renderRich==='function' && !window.__jsumWrapped){
+    var _orig=renderRich;
+    renderRich=function(){ var r=_orig.apply(this,arguments); try{ renderSummary(); }catch(e){} return r; };
+    window.__jsumWrapped=true;
+  }
+  function init(){ wire(); try{ renderSummary(); }catch(e){} }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
+  addEventListener('load', function(){ wire(); if(window.lucide) lucide.createIcons(); });
+})();
 </script>
 <script src="/app.js" defer></script>
 </body>
