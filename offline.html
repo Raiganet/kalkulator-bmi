@@ -1,0 +1,32 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offline — KalkulatorOnline</title>
+<link rel="stylesheet" href="/app.css">
+<style>body{display:grid;place-items:center;min-height:100dvh;text-align:center}
+.o{max-width:420px;padding:24px}.o svg{width:64px;height:64px;color:var(--c-primary);margin:0 auto 16px}
+.o a{display:inline-block;margin-top:18px}</style>
+<!-- ===== redesign: shared assets (auto-injected) ===== -->
+<meta name="theme-color" content="#6C63FF">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="/app.css">
+<!-- ===== /redesign ===== -->
+</head>
+<body data-ko="redesign"><div class="o">
+  <svg data-lucide="wifi-off"></svg>
+  <h1 class="grad-text">Anda sedang offline</h1>
+  <p style="color:var(--text-2)">Tenang — kalkulator yang pernah Anda buka tetap bisa dipakai dari cache. Periksa koneksi untuk memuat halaman baru.</p>
+  <a class="btn-primary" href="/" style="width:auto;padding:12px 22px">Coba lagi</a>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons()</script>
+
+<script src="/app.js" defer></script>
+</body></html>

@@ -62,8 +62,22 @@
         .footer p { color: #aaa; font-size: 13px; }
         @media (max-width: 768px) { .result-grid, .tools-grid { grid-template-columns: 1fr 1fr; } .hero-header h1 { font-size: 28px; } .navbar { flex-direction: column; gap: 12px; } .navbar .nav-links { justify-content: center; width: 100%; } .dropdown { width: 100%; } .dropdown .dropbtn { width: 100%; text-align: center; } .dropdown-content { position: static; width: 100%; margin-top: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); } .dropdown-content a { text-align: center; } }
     </style>
+
+<!-- ===== redesign: shared assets (auto-injected) ===== -->
+<meta name="theme-color" content="#6C63FF">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="/app.css">
+<!-- ===== /redesign ===== -->
 </head>
-<body>
+<body data-ko="redesign">
     <div class="wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">🧮 KalkulatorOnline</a>
@@ -175,5 +189,7 @@
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     </script>
+
+<script src="/app.js" defer></script>
 </body>
 </html>

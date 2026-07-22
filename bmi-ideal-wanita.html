@@ -204,8 +204,22 @@
   }]
 }
 </script>
+
+<!-- ===== redesign: shared assets (auto-injected) ===== -->
+<meta name="theme-color" content="#6C63FF">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="/app.css">
+<!-- ===== /redesign ===== -->
 </head>
-<body>
+<body data-ko="redesign">
     <div class="container">
         <a href="index.html" class="back-link">← Kembali ke Beranda</a>
         <h1>BMI Ideal untuk Wanita: Panduan Lengkap</h1>
@@ -369,5 +383,7 @@
         </p>
         <p>© 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi</p>
     </div>
+
+<script src="/app.js" defer></script>
 </body>
 </html>
