@@ -1,369 +1,251 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6C63FF">
-
+<meta charset="utf-8"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#6C63FF" name="theme-color"/>
 <title>Kalkulator BMI Online Gratis - Hitung Indeks Massa Tubuh | KalkulatorOnline.my.id</title>
-<meta name="description" content="Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight, plus tahu berapa kg berat idealmu.">
-<meta name="keywords" content="kalkulator BMI, hitung BMI, indeks massa tubuh, berat badan ideal, kalkulator kesehatan, BMI calculator Indonesia">
-<meta name="author" content="KalkulatorOnline.my.id">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.kalkulatoronline.my.id/">
+<meta content="Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight, plus tahu berapa kg berat idealmu." name="description"/>
 
-<!-- Open Graph / Twitter -->
+<!-- Stage 4: canonical + social metadata -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkulatoronline.my.id/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.kalkulatoronline.my.id/">
-<meta property="og:title" content="Kalkulator BMI Online Gratis - Hitung Indeks Massa Tubuh & Berat Ideal">
-<meta property="og:description" content="Hitung BMI dan berat badan ideal kamu secara gratis.">
-<meta property="og:image" content="https://www.kalkulatoronline.my.id/og-image.svg">
+<meta property="og:url" content="https://kalkulatoronline.my.id/">
+<meta property="og:title" content="Kalkulator BMI Online Gratis - Hitung Indeks Massa Tubuh | KalkulatorOnline.my.id">
+<meta property="og:description" content="Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight, plus tahu berapa kg berat idealmu.">
+<meta property="og:image" content="https://kalkulatoronline.my.id/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KalkulatorOnline — kalkulator gratis">
 <meta property="og:locale" content="id_ID">
 <meta property="og:site_name" content="KalkulatorOnline.my.id">
 <meta name="twitter:card" content="summary_large_image">
-
+<meta name="twitter:title" content="Kalkulator BMI Online Gratis - Hitung Indeks Massa Tubuh | KalkulatorOnline.my.id">
+<meta name="twitter:description" content="Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight, plus tahu berapa kg berat idealmu.">
+<meta name="twitter:image" content="https://kalkulatoronline.my.id/og-image.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="application-name" content="KalkulatorOnline">
+<meta name="color-scheme" content="light dark">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"KalkulatorOnline.my.id","url":"https://kalkulatoronline.my.id/","inLanguage":"id-ID","potentialAction":{"@type":"SearchAction","target":"https://kalkulatoronline.my.id/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kalkulator BMI","description":"Hitung BMI dan berat badan ideal kamu secara gratis. Cek apakah berat badanmu ideal, kurus, atau overweight, plus tahu berapa kg berat idealmu.","url":"https://kalkulatoronline.my.id/","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":"id-ID","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://kalkulatoronline.my.id/"}]}</script>
+<script defer src="/cookie-consent.js"></script>
+<meta content="kalkulator BMI, hitung BMI, indeks massa tubuh, berat badan ideal, kalkulator kesehatan, BMI calculator Indonesia" name="keywords"/>
+<meta content="KalkulatorOnline.my.id" name="author"/>
+<!-- Open Graph / Twitter -->
 <!-- PWA -->
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/icons/icon.svg">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kalkulator">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="Kalkulator" name="apple-mobile-web-app-title"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <!-- Fonts: preload + swap (performance) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-
 <!-- Lucide icons (defer) -->
-<script defer src="https://unpkg.com/lucide@latest"></script>
-
-<!-- Schema: WebSite + SearchAction + Breadcrumb + Calculator(WebApplication) -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"KalkulatorOnline.my.id","url":"https://www.kalkulatoronline.my.id","potentialAction":{"@type":"SearchAction","target":"https://www.kalkulatoronline.my.id/?s={search_term_string}","query-input":"required name=search_term_string"}}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.kalkulatoronline.my.id/"}]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Kalkulator BMI","url":"https://www.kalkulatoronline.my.id/index.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}}
-</script>
-
-<!-- Google Analytics (pertahankan ID Anda) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-24G7H4QNBD"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-24G7H4QNBD');</script>
-
 <!-- Design system (shared) -->
-<link rel="stylesheet" href="/app.css">
 
-<!-- ===== redesign: shared assets (auto-injected) ===== -->
-<meta name="theme-color" content="#6C63FF">
-<link rel="manifest" href="/manifest.webmanifest">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="/icons/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-<script defer src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="/app.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap">
+<link href="/app.css" rel="stylesheet"/>
+<!-- ===== redesign: shared assets (auto-injected) ===== -->
 <!-- ===== /redesign ===== -->
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<script defer src="https://unpkg.com/lucide@1.47.0"></script>
 </head>
-<body data-ko="redesign">
-<a class="skip" href="#main">Lewati ke konten</a>
-
-<!-- ============ NAVBAR (shared markup) ============ -->
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="KalkulatorOnline beranda">
-      <span class="logo-mark"><i data-lucide="calculator"></i></span>
-      <span>Kalkulator<span class="grad-text">Online</span></span>
-    </a>
-    <div class="nav-spacer"></div>
-
-    <div class="search" role="search">
-      <i class="s-ico" data-lucide="search"></i>
-      <input id="searchDesktop" type="search" placeholder="Cari kalkulator… (cth: BMI)" aria-label="Cari kalkulator" autocomplete="off">
-      <div class="search-results" id="searchDesktopRes" role="listbox"></div>
-    </div>
-
-    <nav aria-label="Menu utama">
-      <ul class="menu">
-        <li><a href="#" class="dropbtn">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
-            <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
-            <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
-            <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Kalkulator Air Minum</a>
-            <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> Kalkulator WHtR</a>
-            <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
-            <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
-            <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kalkulator Kehamilan</a>
-            <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
-            <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Penghitung Tendangan</a>
-            <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
-          </div>
-        </li>
-        <li><a href="#" class="dropbtn">Keuangan <i class="chev" data-lucide="chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Kalkulator Cicilan</a>
-            <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Kalkulator Diskon</a>
-            <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> Kalkulator PPN</a>
-            <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Kalkulator Persentase</a>
-          </div>
-        </li>
-        <li><a href="#" class="dropbtn">Umum <i class="chev" data-lucide="chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Kalkulator Umur</a>
-            <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a>
-            <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
-            <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
-          </div>
-        </li>
-        <li><a href="about.html">Tentang</a></li>
-      </ul>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="icon-btn js-theme" aria-label="Ganti tema (terang/gelap/otomatis)">
-        <svg width="20" height="20"><use class="theme-ico-use" href="#i-sun"></use></svg>
-      </button>
-      <button class="install-btn js-install" aria-label="Install aplikasi"><i data-lucide="download"></i><span>Install</span></button>
-      <button class="icon-btn burger" aria-label="Buka menu" aria-expanded="false" aria-controls="drawer"><i data-lucide="menu"></i></button>
-    </div>
-  </div>
-</header>
-
-<!-- ============ MOBILE DRAWER ============ -->
-<div class="drawer" id="drawer" aria-hidden="true">
-  <div class="scrim"></div>
-  <aside class="panel">
-    <div class="dhead"><strong>Menu</strong><button class="icon-btn" aria-label="Tutup menu" onclick="document.getElementById('drawer').classList.remove('open')"><i data-lucide="x"></i></button></div>
-    <div class="search" role="search">
-      <i class="s-ico" data-lucide="search"></i>
-      <input id="searchDrawer" type="search" placeholder="Cari kalkulator…" aria-label="Cari kalkulator" autocomplete="off">
-      <div class="search-results" id="searchDrawerRes"></div>
-    </div>
-    <details open><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary>
-      <div class="sub">
-        <a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
-        <a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
-        <a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
-        <a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a>
-        <a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a>
-        <a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
-        <a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
-        <a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a>
-        <a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Timer Kontraksi</a>
-        <a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a>
-        <a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
-      </div></details>
-    <details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary>
-      <div class="sub">
-        <a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a>
-        <a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a>
-        <a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a>
-        <a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
-      </div></details>
-    <details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary>
-      <div class="sub">
-        <a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a>
-        <a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a>
-        <a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
-        <a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
-      </div></details>
-    <a href="about.html" style="padding:14px 4px;font-weight:600">Tentang</a>
-  </aside>
+<body data-ko="v3">
+<a class="skip" href="#main">Lewati ke konten</a><header class="nav" id="nav">
+<div class="wrap nav-inner">
+<a aria-label="KalkulatorOnline beranda" class="brand" href="index.html">
+<span class="logo-mark"><i data-lucide="calculator"></i></span>
+<span class="brand-copy">Kalkulator<span class="grad-text">Online</span></span>
+</a>
+<div class="nav-spacer"></div>
+<div class="search nav-search" role="search">
+<i class="s-ico" data-lucide="search"></i>
+<input aria-label="Cari kalkulator" autocomplete="off" id="searchDesktop" placeholder="Cari kalkulator…" type="search"/>
+<div class="search-results" id="searchDesktopRes" role="listbox"></div>
 </div>
-
-<main id="main">
-  <!-- ============ HERO ============ -->
-  <section class="hero wrap reveal">
-    <span class="eyebrow"><i data-lucide="sparkles"></i> Gratis • Akurat • Tanpa daftar</span>
-    <h1>Semua Kalkulator yang Anda butuh,<br><span class="grad-text">dalam satu tempat.</span></h1>
-    <p>Kesehatan, keuangan, kehamilan, dan konversi — cepat, elegan, dan bisa dipakai offline.</p>
-    <div class="search" role="search">
-      <i class="s-ico" data-lucide="search"></i>
-      <input id="searchHero" type="search" placeholder="Coba ketik: kalori, cicilan, kehamilan…" aria-label="Cari kalkulator" autocomplete="off"
-             oninput="document.getElementById('searchDesktop').value=this.value;document.getElementById('searchDesktop').dispatchEvent(new Event('input'))">
-    </div>
-  </section>
-
-  <!-- ============ KALKULATOR BMI (konten asli, dibungkus .card) ============ -->
-  <section class="wrap">
-    <div class="card reveal">
-      <div class="hero-header">
-        <div class="badge"><i data-lucide="badge-check" style="width:14px;height:14px"></i> Gratis & Akurat</div>
-        <h1 class="grad-text">Kalkulator BMI</h1>
-        <p class="subtitle">Hitung BMI & Berat Badan Idealmu dalam Hitungan Detik</p>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group"><label for="berat">Berat Badan (kg)</label>
-          <div class="input-wrapper"><span class="input-icon">⚖️</span>
-          <input type="number" id="berat" placeholder="Contoh: 65" min="1" inputmode="decimal"></div></div>
-        <div class="form-group"><label for="tinggi">Tinggi Badan (cm)</label>
-          <div class="input-wrapper"><span class="input-icon">📏</span>
-          <input type="number" id="tinggi" placeholder="Contoh: 170" min="1" inputmode="decimal"></div></div>
-      </div>
-
-      <button class="calculate-btn" onclick="hitungBMI()"><i data-lucide="rocket" style="width:18px;height:18px;vertical-align:-3px"></i> Hitung BMI & Berat Ideal</button>
-
-      <!-- hasil: STRUKTUR ASLI dipertahankan agar JS rumus tetap bekerja -->
-      <div class="result" id="result">
-        <div class="result-header"><h2>📊 Hasil Perhitungan Kamu</h2></div>
-        <div class="bmi-circle"><span class="bmi-label">BMI</span><span class="bmi-number" id="r-bmi">0</span></div>
-        <div class="result-details" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0">
-          <div class="detail-card"><div class="detail-icon">⚖️</div><div class="detail-value" id="r-berat">0</div><div class="detail-label">Berat (kg)</div></div>
-          <div class="detail-card"><div class="detail-icon">📏</div><div class="detail-value" id="r-tinggi">0</div><div class="detail-label">Tinggi (cm)</div></div>
-          <div class="detail-card"><div class="detail-icon">📅</div><div class="detail-value" id="r-tanggal">-</div><div class="detail-label">Tanggal</div></div>
-        </div>
-        <div class="ideal-weight-section">
-          <div class="ideal-weight-title"><span>🎯</span><span>Berat Badan Ideal Untukmu</span></div>
-          <div class="ideal-weight-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div class="ideal-weight-card highlight"><div class="iw-label">Range Ideal (WHO)</div><div class="iw-value" id="r-range-ideal">-</div><div class="iw-unit">kilogram</div></div>
-            <div class="ideal-weight-card"><div class="iw-label">Rumus Broca</div><div class="iw-value" id="r-broca">-</div><div class="iw-unit">kilogram</div></div>
-          </div>
-          <div class="progress-container" style="margin-top:14px">
-            <div class="progress-label" style="display:flex;justify-content:space-between;font-size:12px;opacity:.9;margin-bottom:8px"><span>Kurus</span><span>Normal</span><span>Gemuk</span><span>Obesitas</span></div>
-            <div class="progress-bar" style="height:12px;background:rgba(255,255,255,.2);border-radius:10px;position:relative;overflow:hidden">
-              <div class="progress-fill" id="progress-fill" style="width:0%;height:100%;border-radius:10px;background:linear-gradient(90deg,#ffd700,#28a745,#ffc107,#dc3545)"></div>
-              <div class="progress-marker" id="progress-marker" style="position:absolute;top:-8px;width:4px;height:28px;background:#fff;border-radius:2px;left:0%"></div>
-            </div>
-          </div>
-          <div class="weight-diff" style="background:rgba(255,255,255,.95);color:#333;border-radius:14px;padding:18px;margin-top:14px;text-align:center">
-            <div style="font-size:13px;color:#888">Selisih dengan Berat Ideal</div>
-            <div class="diff-value" id="r-diff" style="font-size:30px;font-weight:800;margin:8px 0">0 kg</div>
-            <div class="diff-message" id="r-diff-message">-</div>
-          </div>
-        </div>
-        <div class="kategori-badge" id="r-kategori-badge">Kategori: -</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ KATEGORI + GRID SEMUA KALKULATOR ============ -->
-  <section class="section wrap reveal">
-    <div class="section-head"><h2>Jelajahi Kalkulator</h2><span class="muted">19 tools</span></div>
-    <div class="chips" role="tablist" aria-label="Kategori">
-      <button class="chip active" data-cat="all"><i data-lucide="layout-grid"></i> Semua</button>
-      <button class="chip" data-cat="kesehatan"><i data-lucide="heart-pulse"></i> Kesehatan</button>
-      <button class="chip" data-cat="keuangan"><i data-lucide="wallet"></i> Keuangan</button>
-      <button class="chip" data-cat="umum"><i data-lucide="shapes"></i> Umum</button>
-    </div>
-    <div class="grid" id="calcGrid" style="margin-top:20px"></div>
-  </section>
-
-  <!-- ============ ARTIKEL SEO (dipertahankan) ============ -->
-  <section class="wrap">
-    <div class="card article reveal">
-      <h2>📚 Apa Itu BMI (Body Mass Index)?</h2>
-      <p>BMI (Body Mass Index) atau Indeks Massa Tubuh (IMT) adalah alat ukur untuk menentukan apakah berat badan seseorang berada dalam kategori sehat berdasarkan tinggi badannya, standar internasional WHO.</p>
-      <h3>📋 Kategori BMI Menurut WHO</h3>
-      <table class="premium-table"><thead><tr><th>Kategori</th><th>Rentang BMI</th><th>Keterangan</th></tr></thead>
-      <tbody>
-        <tr><td>⚠️ Kurus (Underweight)</td><td>&lt; 18.5</td><td>Berat badan kurang</td></tr>
-        <tr><td>✅ Normal (Ideal)</td><td>18.5 - 24.9</td><td>Berat badan sehat</td></tr>
-        <tr><td>⚠️ Gemuk (Overweight)</td><td>25 - 29.9</td><td>Kelebihan berat badan</td></tr>
-        <tr><td>❌ Obesitas</td><td>≥ 30</td><td>Risiko tinggi penyakit kronis</td></tr>
-      </tbody></table>
-    </div>
-  </section>
-</main>
-
-<!-- ============ BOTTOM NAV (mobile) ============ -->
-<nav class="bottomnav" aria-label="Navigasi bawah">
-  <a href="index.html"><i data-lucide="home"></i>Beranda</a>
-  <a href="#" onclick="document.getElementById('searchHero').focus();return false"><i data-lucide="search"></i>Cari</a>
-  <a href="kalkulator-kalori.html"><i data-lucide="flame"></i>Kalori</a>
-  <a href="kalkulator-cicilan.html"><i data-lucide="wallet"></i>Keuangan</a>
-  <a href="#" class="js-theme"><i data-lucide="moon"></i>Tema</a>
+<nav aria-label="Menu utama">
+<ul class="menu">
+<li data-section="kesehatan"><a class="dropbtn" href="#">Kesehatan <i class="chev" data-lucide="chevron-down"></i></a>
+<div class="dropdown-content">
+<a href="index.html"><i data-lucide="scale"></i> Kalkulator BMI</a>
+<a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalkulator Kalori</a>
+<a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> Kalkulator BMR</a>
+<a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a>
+<a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a>
+<a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat %</a>
+<a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a>
+<a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a>
+<a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Kontraksi</a>
+<a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a>
+<a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
+</div>
+</li>
+<li data-section="keuangan"><a class="dropbtn" href="#">Keuangan <i class="chev" data-lucide="chevron-down"></i></a>
+<div class="dropdown-content">
+<a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a>
+<a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a>
+<a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a>
+<a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
+</div>
+</li>
+<li data-section="umum"><a class="dropbtn" href="#">Umum <i class="chev" data-lucide="chevron-down"></i></a>
+<div class="dropdown-content">
+<a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a>
+<a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi Satuan</a>
+<a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a>
+<a href="cara-install-aplikasi.html"><i data-lucide="download"></i> Install Aplikasi</a>
+<a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a>
+<a href="kalkulator-populer.html"><i data-lucide="sparkles"></i> Kalkulator Populer</a>
+</div>
+</li>
+<li><a href="about.html">Tentang</a></li>
+</ul>
 </nav>
-
+<div class="nav-actions">
+<button aria-label="Ganti tema" class="icon-btn js-theme" title="Ganti tema">
+<svg aria-hidden="true" height="20" width="20"><use class="theme-ico-use" href="#i-sun"></use></svg>
+</button>
+<button aria-label="Install aplikasi" class="install-btn js-install"><i data-lucide="download"></i><span>Install</span></button>
+<button aria-controls="drawer" aria-expanded="false" aria-label="Buka menu" class="icon-btn burger"><i data-lucide="menu"></i></button>
+</div>
+</div>
+</header><div aria-hidden="true" class="drawer" id="drawer">
+<div class="scrim"></div>
+<aside aria-label="Menu mobile" class="panel">
+<div class="dhead">
+<a class="brand" href="index.html"><span class="logo-mark"><i data-lucide="calculator"></i></span><span>Kalkulator<span class="grad-text">Online</span></span></a>
+<button aria-label="Tutup menu" class="icon-btn"><i data-lucide="x"></i></button>
+</div>
+<div class="search" role="search">
+<i class="s-ico" data-lucide="search"></i>
+<input aria-label="Cari kalkulator" autocomplete="off" id="searchDrawer" placeholder="Cari kalkulator…" type="search"/>
+<div class="search-results" id="searchDrawerRes" role="listbox"></div>
+</div>
+<details open=""><summary>Kesehatan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub">
+<a href="index.html"><i data-lucide="scale"></i> BMI</a><a href="kalkulator-kalori.html"><i data-lucide="flame"></i> Kalori</a><a href="kalkulator-bmr.html"><i data-lucide="heart-pulse"></i> BMR</a><a href="kalkulator-air.html"><i data-lucide="droplet"></i> Air Minum</a><a href="kalkulator-whtr.html"><i data-lucide="ruler"></i> WHtR</a><a href="kalkulator-body-fat.html"><i data-lucide="person-standing"></i> Body Fat</a><a href="kalkulator-masa-subur.html"><i data-lucide="flower-2"></i> Masa Subur</a><a href="kalkulator-kehamilan.html"><i data-lucide="baby"></i> Kehamilan</a><a href="kalkulator-kontraksi.html"><i data-lucide="timer"></i> Kontraksi</a><a href="kalkulator-tendangan.html"><i data-lucide="footprints"></i> Tendangan</a><a href="kalkulator-ukuran-janin.html"><i data-lucide="cherry"></i> Ukuran Janin</a>
+</div></details>
+<details><summary>Keuangan <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub">
+<a href="kalkulator-cicilan.html"><i data-lucide="landmark"></i> Cicilan</a><a href="kalkulator-diskon.html"><i data-lucide="tag"></i> Diskon</a><a href="kalkulator-ppn.html"><i data-lucide="receipt-text"></i> PPN</a><a href="kalkulator-persen.html"><i data-lucide="percent"></i> Persentase</a>
+</div></details>
+<details><summary>Umum <i class="chev" data-lucide="chevron-down"></i></summary><div class="sub">
+<a href="kalkulator-umur.html"><i data-lucide="cake"></i> Umur</a><a href="konversi-satuan.html"><i data-lucide="arrow-left-right"></i> Konversi</a><a href="cara-menghitung-bmi.html"><i data-lucide="book-open"></i> Panduan BMI</a><a href="cara-install-aplikasi.html"><i data-lucide="download"></i> Install Aplikasi</a><a href="faq.html"><i data-lucide="circle-help"></i> FAQ</a><a href="kalkulator-populer.html"><i data-lucide="sparkles"></i> Kalkulator Populer</a>
+</div></details>
+<div class="drawer-links"><a href="kalkulator-populer.html"><i data-lucide="sparkles"></i> Populer</a><a href="statistik.html"><i data-lucide="chart-no-axes-column-increasing"></i> Statistik Saya</a><a href="about.html"><i data-lucide="info"></i> Tentang</a><a href="contact.html"><i data-lucide="mail"></i> Kontak</a></div>
+</aside>
+</div><nav aria-label="Navigasi bawah" class="bottomnav">
+<a data-bottom="home" href="index.html"><i data-lucide="home"></i><span>Beranda</span></a>
+<a data-bottom="search" href="#"><i data-lucide="search"></i><span>Cari</span></a>
+<a data-bottom="health" href="kalkulator-kalori.html"><i data-lucide="heart-pulse"></i><span>Kesehatan</span></a>
+<a data-bottom="finance" href="kalkulator-cicilan.html"><i data-lucide="wallet"></i><span>Keuangan</span></a>
+<a class="js-theme" data-bottom="theme" href="#"><i data-lucide="moon"></i><span>Tema</span></a>
+</nav>
+<!-- ============ NAVBAR (shared markup) ============ -->
+<!-- ============ MOBILE DRAWER ============ -->
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero wrap reveal">
+<span class="eyebrow"><i data-lucide="sparkles"></i> Gratis • Akurat • Tanpa daftar</span>
+<h1>Semua kalkulator yang Anda butuhkan, <span class="grad-text">dalam satu tempat.</span></h1>
+<p>Hitung kebutuhan kesehatan, keuangan, kehamilan, dan utilitas dengan cepat — gratis, tanpa login, dan nyaman di semua perangkat.</p>
+<div class="search" role="search">
+<i class="s-ico" data-lucide="search"></i>
+<input aria-label="Cari kalkulator" autocomplete="off" id="searchHero" placeholder="Coba ketik: kalori, cicilan, kehamilan…" type="search"/>
+<div class="search-results" id="searchHeroRes" role="listbox"></div>
+</div><div class="hero-trust"><span><i data-lucide="check-circle-2"></i> Gratis</span><span><i data-lucide="shield-check"></i> Tanpa login</span><span><i data-lucide="smartphone"></i> Mobile friendly</span></div>
+</section>
+<!-- ============ KALKULATOR BMI (konten asli, dibungkus .card) ============ -->
+<section class="section wrap reveal">
+<div class="section-head"><h2>Jelajahi Kalkulator</h2><span class="muted">17 kalkulator • 2 panduan</span></div>
+<div aria-label="Kategori" class="chips" role="tablist">
+<button class="chip active" data-cat="all" type="button"><i data-lucide="layout-grid"></i> Semua</button>
+<button class="chip" data-cat="kesehatan" type="button"><i data-lucide="heart-pulse"></i> Kesehatan</button>
+<button class="chip" data-cat="keuangan" type="button"><i data-lucide="wallet"></i> Keuangan</button>
+<button class="chip" data-cat="umum" type="button"><i data-lucide="shapes"></i> Umum</button>
+</div>
+<div class="grid" id="calcGrid" style="margin-top:20px"></div>
+</section><div class="wrap featured-label"><span><i data-lucide="sparkles"></i> Kalkulator unggulan</span></div><section class="wrap">
+<div class="card reveal">
+<div class="hero-header">
+<div class="badge"><i data-lucide="badge-check" style="width:14px;height:14px"></i> Gratis &amp; Akurat</div>
+<h1 class="grad-text">Kalkulator BMI</h1>
+<p class="subtitle">Hitung BMI &amp; Berat Badan Idealmu dalam Hitungan Detik</p>
+</div>
+<div class="form-grid">
+<div class="form-group"><label for="berat">Berat Badan (kg)</label>
+<div class="input-wrapper"><span class="input-icon">⚖️</span>
+<input id="berat" inputmode="decimal" min="1" placeholder="Contoh: 65" type="number"/></div></div>
+<div class="form-group"><label for="tinggi">Tinggi Badan (cm)</label>
+<div class="input-wrapper"><span class="input-icon">📏</span>
+<input id="tinggi" inputmode="decimal" min="1" placeholder="Contoh: 170" type="number"/></div></div>
+</div>
+<button class="calculate-btn" onclick="hitungBMI()" type="button"><i data-lucide="rocket" style="width:18px;height:18px;vertical-align:-3px"></i> Hitung BMI &amp; Berat Ideal</button>
+<!-- hasil: STRUKTUR ASLI dipertahankan agar JS rumus tetap bekerja -->
+<div aria-atomic="false" aria-live="polite" class="result" id="result">
+<div class="result-header"><h2>📊 Hasil Perhitungan Kamu</h2></div>
+<div class="bmi-circle"><span class="bmi-label">BMI</span><span class="bmi-number" id="r-bmi">0</span></div>
+<div class="result-details" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0">
+<div class="detail-card"><div class="detail-icon">⚖️</div><div class="detail-value" id="r-berat">0</div><div class="detail-label">Berat (kg)</div></div>
+<div class="detail-card"><div class="detail-icon">📏</div><div class="detail-value" id="r-tinggi">0</div><div class="detail-label">Tinggi (cm)</div></div>
+<div class="detail-card"><div class="detail-icon">📅</div><div class="detail-value" id="r-tanggal">-</div><div class="detail-label">Tanggal</div></div>
+</div>
+<div class="ideal-weight-section">
+<div class="ideal-weight-title"><span>🎯</span><span>Berat Badan Ideal Untukmu</span></div>
+<div class="ideal-weight-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="ideal-weight-card highlight"><div class="iw-label">Range Ideal (WHO)</div><div class="iw-value" id="r-range-ideal">-</div><div class="iw-unit">kilogram</div></div>
+<div class="ideal-weight-card"><div class="iw-label">Rumus Broca</div><div class="iw-value" id="r-broca">-</div><div class="iw-unit">kilogram</div></div>
+</div>
+<div class="progress-container" style="margin-top:14px">
+<div class="progress-label" style="display:flex;justify-content:space-between;font-size:12px;opacity:.9;margin-bottom:8px"><span>Kurus</span><span>Normal</span><span>Gemuk</span><span>Obesitas</span></div>
+<div class="progress-bar" style="height:12px;background:rgba(255,255,255,.2);border-radius:10px;position:relative;overflow:hidden">
+<div class="progress-fill" id="progress-fill" style="width:0%;height:100%;border-radius:10px;background:linear-gradient(90deg,#ffd700,#28a745,#ffc107,#dc3545)"></div>
+<div class="progress-marker" id="progress-marker" style="position:absolute;top:-8px;width:4px;height:28px;background:#fff;border-radius:2px;left:0%"></div>
+</div>
+</div>
+<div class="weight-diff" style="background:rgba(255,255,255,.95);color:#333;border-radius:14px;padding:18px;margin-top:14px;text-align:center">
+<div style="font-size:13px;color:#888">Selisih dengan Berat Ideal</div>
+<div class="diff-value" id="r-diff" style="font-size:30px;font-weight:800;margin:8px 0">0 kg</div>
+<div class="diff-message" id="r-diff-message">-</div>
+</div>
+</div>
+<div class="kategori-badge" id="r-kategori-badge">Kategori: -</div>
+</div>
+<div class="stage5-health-note"><i data-lucide="info"></i><span>BMI adalah alat skrining umum dewasa dan tidak membedakan massa otot, lemak, usia, atau kondisi khusus seperti kehamilan.</span></div>
+</div>
+</section>
+<!-- ============ KATEGORI + GRID SEMUA KALKULATOR ============ -->
+<!-- ============ ARTIKEL SEO (dipertahankan) ============ -->
+<section class="wrap">
+<div class="card article reveal">
+<h2>📚 Apa Itu BMI (Body Mass Index)?</h2>
+<p>BMI (Body Mass Index) atau Indeks Massa Tubuh (IMT) adalah alat ukur untuk menentukan apakah berat badan seseorang berada dalam kategori sehat berdasarkan tinggi badannya, standar internasional WHO.</p>
+<h3>📋 Kategori BMI Menurut WHO</h3>
+<table class="premium-table"><thead><tr><th>Kategori</th><th>Rentang BMI</th><th>Keterangan</th></tr></thead>
+<tbody>
+<tr><td>⚠️ Berat badan rendah</td><td>&lt; 18.5</td><td>Berat badan kurang</td></tr>
+<tr><td>✅ Dalam rentang referensi</td><td>18.5 - 24.9</td><td>Berat badan sehat</td></tr>
+<tr><td>⚠️ Berat badan berlebih</td><td>25 - 29.9</td><td>Kelebihan berat badan</td></tr>
+<tr><td>❌ Obesitas</td><td>≥ 30</td><td>Risiko tinggi penyakit kronis</td></tr>
+</tbody></table>
+</div>
+</section>
+</main>
+<!-- ============ BOTTOM NAV (mobile) ============ -->
 <!-- ============ FOOTER PREMIUM ============ -->
-<footer class="foot">
-  <div class="wrap">
-    <div>
-      <a class="brand" href="index.html" style="margin-bottom:12px"><span class="logo-mark"><i data-lucide="calculator"></i></span>KalkulatorOnline</a>
-      <p style="color:var(--text-2);font-size:14px;max-width:34ch">Kalkulator online gratis untuk kesehatan, keuangan, kehamilan & pendidikan.</p>
-      <div class="socials" style="margin-top:14px">
-        <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
-        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-        <a href="#" aria-label="X"><i data-lucide="twitter"></i></a>
-      </div>
-    </div>
-    <div><h4>Kesehatan</h4><a href="index.html">BMI</a><a href="kalkulator-kalori.html">Kalori</a><a href="kalkulator-kehamilan.html">Kehamilan</a><a href="kalkulator-ukuran-janin.html">Ukuran Janin</a></div>
-    <div><h4>Keuangan</h4><a href="kalkulator-cicilan.html">Cicilan</a><a href="kalkulator-diskon.html">Diskon</a><a href="kalkulator-ppn.html">PPN</a><a href="kalkulator-persen.html">Persentase</a></div>
-    <div><h4>Perusahaan</h4><a href="about.html">Tentang</a><a href="faq.html">FAQ</a><a href="privacy.html">Privasi</a><a href="terms.html">Ketentuan</a></div>
-  </div>
-  <div class="wrap foot-bottom"><span>© 2026 KalkulatorOnline.my.id</span><span>v2.0 • PWA ready</span></div>
-</footer>
-
 <!-- SVG sprite untuk toggle tema (sun/moon) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
-  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
-</svg>
-
 <!-- ============ GRID RENDER + FILTER (UX, bukan rumus) ============ -->
-<script>
-(function(){
-  const ICON={
-   "index.html":"scale","kalkulator-kalori.html":"flame","kalkulator-bmr.html":"heart-pulse",
-   "kalkulator-air.html":"droplet","kalkulator-whtr.html":"ruler","kalkulator-body-fat.html":"person-standing",
-   "kalkulator-masa-subur.html":"flower-2","kalkulator-kehamilan.html":"baby","kalkulator-kontraksi.html":"timer",
-   "kalkulator-tendangan.html":"footprints","kalkulator-ukuran-janin.html":"cherry","kalkulator-cicilan.html":"landmark",
-   "kalkulator-diskon.html":"tag","kalkulator-ppn.html":"receipt-text","kalkulator-persen.html":"percent",
-   "kalkulator-umur.html":"cake","konversi-satuan.html":"arrow-left-right","cara-menghitung-bmi.html":"book-open","faq.html":"circle-help"
-  };
-  const DATA=[
-   {t:"Kalkulator BMI",d:"Indeks massa tubuh & berat ideal",u:"index.html",c:"kesehatan"},
-   {t:"Kalkulator Kalori",d:"Kebutuhan kalori & TDEE",u:"kalkulator-kalori.html",c:"kesehatan"},
-   {t:"Kalkulator BMR",d:"Metabolisme basal",u:"kalkulator-bmr.html",c:"kesehatan"},
-   {t:"Kalkulator Air Minum",d:"Kebutuhan air harian",u:"kalkulator-air.html",c:"kesehatan"},
-   {t:"Kalkulator WHtR",d:"Rasio pinggang–tinggi",u:"kalkulator-whtr.html",c:"kesehatan"},
-   {t:"Body Fat %",d:"Persentase lemak tubuh",u:"kalkulator-body-fat.html",c:"kesehatan"},
-   {t:"Masa Subur",d:"Ovulasi & masa subur",u:"kalkulator-masa-subur.html",c:"kesehatan"},
-   {t:"Kalkulator Kehamilan",d:"HPL & usia janin",u:"kalkulator-kehamilan.html",c:"kesehatan"},
-   {t:"Timer Kontraksi",d:"Pantau tanda persalinan",u:"kalkulator-kontraksi.html",c:"kesehatan"},
-   {t:"Penghitung Tendangan",d:"Hitung gerakan bayi",u:"kalkulator-tendangan.html",c:"kesehatan"},
-   {t:"Ukuran Janin",d:"Sebesar apa bayi per minggu",u:"kalkulator-ukuran-janin.html",c:"kesehatan"},
-   {t:"Kalkulator Cicilan",d:"Simulasi KPR & kredit",u:"kalkulator-cicilan.html",c:"keuangan"},
-   {t:"Kalkulator Diskon",d:"Potongan harga",u:"kalkulator-diskon.html",c:"keuangan"},
-   {t:"Kalkulator PPN",d:"Pajak pertambahan nilai",u:"kalkulator-ppn.html",c:"keuangan"},
-   {t:"Kalkulator Persentase",d:"Hitung persen",u:"kalkulator-persen.html",c:"keuangan"},
-   {t:"Kalkulator Umur",d:"Usia tepat",u:"kalkulator-umur.html",c:"umum"},
-   {t:"Konversi Satuan",d:"Panjang, berat, suhu",u:"konversi-satuan.html",c:"umum"},
-   {t:"Panduan BMI",d:"Cara menghitung manual",u:"cara-menghitung-bmi.html",c:"umum"},
-   {t:"FAQ",d:"Pertanyaan umum",u:"faq.html",c:"umum"}
-  ];
-  const grid=document.getElementById('calcGrid');
-  function draw(cat){
-    grid.innerHTML=DATA.filter(x=>cat==='all'||x.c===cat).map(x=>`
-      <a class="calc-card" href="${x.u}">
-        <span class="ico"><i data-lucide="${ICON[x.u]||'calculator'}"></i></span>
-        <h3>${x.t}</h3><p>${x.d}</p>
-        <span class="go">Buka <i data-lucide="arrow-right"></i></span>
-      </a>`).join('');
-    window.lucide?.createIcons();
-  }
-  draw('all');
-  document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
-    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
-    c.classList.add('active'); draw(c.dataset.cat);
-  }));
-})();
-</script>
 
 <!-- ============ RUMUS BMI ASLI — TIDAK DIUBAH (bukti prinsip) ============ -->
 <script>
 function hitungBMI() {
     const berat = parseFloat(document.getElementById('berat').value);
     const tinggi = parseFloat(document.getElementById('tinggi').value);
-    if (!berat || !tinggi) { alert('Mohon isi berat dan tinggi badan dulu ya!'); return; }
+    if (![berat,tinggi].every(Number.isFinite) || berat < 20 || berat > 350 || tinggi < 100 || tinggi > 250) { alert('Masukkan berat 20–350 kg dan tinggi 100–250 cm. Kalkulator BMI ini ditujukan sebagai skrining umum dewasa.'); return; }
     const tinggiM = tinggi / 100;
     const bmi = (berat / (tinggiM * tinggiM)).toFixed(1);
     const today = new Date();
@@ -382,9 +264,9 @@ function hitungBMI() {
     const diffElement = document.getElementById('r-diff');
     const diffMessage = document.getElementById('r-diff-message');
     diffElement.className = 'diff-value';
-    if (selisih > 0.5) { diffElement.classList.add('negative'); diffElement.innerText = `+${selisihAbs} kg`; diffMessage.innerHTML = `Kamu perlu <strong>menurunkan ${selisihAbs} kg</strong> untuk mencapai berat ideal.<br>Mulai dengan defisit kalori 500 kkal/hari + olahraga rutin! 💪`; }
-    else if (selisih < -0.5) { diffElement.classList.add('positive'); diffElement.innerText = `-${selisihAbs} kg`; diffMessage.innerHTML = `Kamu perlu <strong>menaikan ${selisihAbs} kg</strong> untuk mencapai berat ideal.<br>Perbanyak asupan protein dan latihan kekuatan! 🥗`; }
-    else { diffElement.classList.add('neutral'); diffElement.innerText = `✨ Perfect!`; diffMessage.innerHTML = `Selamat! Berat badanmu sudah <strong>IDEAL</strong>! 🎉<br>Pertahankan dengan pola hidup sehat ya!`; }
+    if (selisih > 0.5) { diffElement.classList.add('negative'); diffElement.innerText = `+${selisihAbs} kg`; diffMessage.innerHTML = `Kamu perlu <strong>menurunkan ${selisihAbs} kg</strong> untuk mencapai berat ideal.<br>Gunakan perubahan bertahap dan pertimbangkan kebutuhan kalori individual.`; }
+    else if (selisih < -0.5) { diffElement.classList.add('positive'); diffElement.innerText = `-${selisihAbs} kg`; diffMessage.innerHTML = `Kamu perlu <strong>menaikan ${selisihAbs} kg</strong> untuk mencapai berat ideal.<br>Peningkatan berat sebaiknya dilakukan bertahap dengan asupan yang sesuai kebutuhan.`; }
+    else { diffElement.classList.add('neutral'); diffElement.innerText = `Dalam rentang`; diffMessage.innerHTML = `Berat badan berada dekat estimasi Broca. Pertahankan pola hidup yang sesuai dengan kondisi dan kebutuhanmu.`; }
     const bmiValue = parseFloat(bmi);
     let progressPercent = 0;
     if (bmiValue < 18.5) { progressPercent = (bmiValue / 18.5) * 25; }
@@ -396,17 +278,28 @@ function hitungBMI() {
     const badge = document.getElementById('r-kategori-badge');
     let kategori = '';
     badge.className = 'kategori-badge';
-    if (bmiValue < 18.5) { kategori = 'Kurus (Underweight)'; badge.classList.add('kategori-kurus'); }
-    else if (bmiValue <= 24.9) { kategori = 'Normal (Ideal)'; badge.classList.add('kategori-normal'); }
-    else if (bmiValue <= 29.9) { kategori = 'Gemuk (Overweight)'; badge.classList.add('kategori-gemuk'); }
+    if (bmiValue < 18.5) { kategori = 'Berat badan rendah'; badge.classList.add('kategori-kurus'); }
+    else if (bmiValue <= 24.9) { kategori = 'Dalam rentang referensi'; badge.classList.add('kategori-normal'); }
+    else if (bmiValue <= 29.9) { kategori = 'Berat badan berlebih'; badge.classList.add('kategori-gemuk'); }
     else { kategori = 'Obesitas'; badge.classList.add('kategori-obesitas'); }
     badge.innerText = `Kategori: ${kategori}`;
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 </script>
-
 <!-- behaviour layer (shared) -->
-<script src="/app.js" defer></script>
+<svg aria-hidden="true" class="ko-sprite" height="0" width="0"><symbol fill="none" id="i-sun" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></symbol><symbol fill="none" id="i-moon" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path></symbol></svg><footer class="foot">
+<div class="wrap foot-grid">
+<div class="foot-brand">
+<a class="brand" href="index.html"><span class="logo-mark"><i data-lucide="calculator"></i></span><span>Kalkulator<span class="grad-text">Online</span></span></a>
+<p>Kumpulan kalkulator gratis untuk kesehatan, keuangan, kehamilan, dan kebutuhan sehari-hari. Cepat, ringan, dan ramah perangkat mobile.</p>
+<div class="trust-row"><span><i data-lucide="shield-check"></i> Tanpa login</span><span><i data-lucide="smartphone"></i> PWA</span><span><i data-lucide="wifi-off"></i> Offline-ready</span></div>
+</div>
+<div><h4>Kalkulator</h4><a href="index.html">BMI</a><a href="kalkulator-kalori.html">Kalori</a><a href="kalkulator-kehamilan.html">Kehamilan</a><a href="kalkulator-cicilan.html">Cicilan</a></div>
+<div><h4>Panduan</h4><a href="cara-menghitung-bmi.html">Panduan BMI</a><a href="cara-install-aplikasi.html">Install Aplikasi</a><a href="faq.html">FAQ</a><a href="kalkulator-populer.html">Kalkulator Populer</a><a href="disclaimer.html">Disclaimer</a></div>
+<div><h4>Informasi</h4><a href="statistik.html">Statistik Saya</a><a href="about.html">Tentang</a><a href="contact.html">Kontak</a><a href="privacy.html">Privasi</a><a href="terms.html">Ketentuan</a></div>
+</div>
+<div class="wrap foot-bottom"><span>© 2026 KalkulatorOnline.my.id</span><span>Stage 8 • CMS-ready</span></div>
+</footer><script defer src="/cms-defaults.js"></script><script defer src="/cms-config.js"></script><script defer src="/cms-runtime.js"></script><script defer src="/monetization-config.js"></script><script defer="" src="/app.js"></script>
 </body>
 </html>

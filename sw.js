@@ -1,49 +1,100 @@
-/* sw.js — offline-first, DEFENSIVE (install tidak gagal walau ada 404) */
-const CACHE = 'ko-v2';
-const SHELL = ['/', '/index.html', '/app.css', '/app.js', '/offline.html', '/icons/icon.svg', '/manifest.webmanifest'];
+/* KalkulatorOnline Service Worker — Stage 8 CMS shell */
+const CACHE='ko-v9';
+const PRECACHE=[
+  '/', '/index.html', '/offline.html', '/app.css', '/app.js', '/cookie-consent.js',
+  '/manifest.webmanifest', '/site.webmanifest', '/cms-defaults.js', '/cms-config.js', '/cms-runtime.js', '/monetization-config.js', '/favicon.ico', '/favicon-16x16.png', '/favicon-32x32.png',
+  '/apple-touch-icon.png', '/android-chrome-192x192.png', '/android-chrome-512x512.png', '/icons/icon.svg', '/og-image.png',
+  '/about.html','/bahaya-obesitas.html','/bmi-ideal-wanita.html','/cara-install-aplikasi.html','/cara-menghitung-bmi.html',
+  '/contact.html','/disclaimer.html','/faq.html','/kalkulator-populer.html','/statistik.html','/kalkulator-air.html','/kalkulator-bmr.html','/kalkulator-body-fat.html',
+  '/kalkulator-cicilan.html','/kalkulator-diskon.html','/kalkulator-kalori.html','/kalkulator-kehamilan.html','/kalkulator-kontraksi.html',
+  '/kalkulator-masa-subur.html','/kalkulator-persen.html','/kalkulator-ppn.html','/kalkulator-tendangan.html','/kalkulator-ukuran-janin.html',
+  '/kalkulator-umur.html','/kalkulator-whtr.html','/konversi-satuan.html','/privacy.html','/terms.html',
+  '/baby-illustration.js','/janin-summary.js'
+];
+const OPTIONAL_EXTERNAL=[
+  'https://unpkg.com/lucide@1.47.0',
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap'
+];
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(cache =>
-      // cache satu-per-satu; yang 404 dilewati, BUKAN menggagalkan install
-      Promise.allSettled(SHELL.map(u => cache.add(u).catch(err => console.warn('[sw] lewati', u, err)))
-    ).then(() => self.skipWaiting())
-  );
+self.addEventListener('install',event=>{
+  event.waitUntil((async()=>{
+    const cache=await caches.open(CACHE);
+    await Promise.allSettled(PRECACHE.map(url=>cache.add(url)));
+    await Promise.allSettled(OPTIONAL_EXTERNAL.map(url=>cache.add(url)));
+    await self.skipWaiting();
+  })());
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+self.addEventListener('activate',event=>{
+  event.waitUntil((async()=>{
+    const keys=await caches.keys();
+    await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));
+    await self.clients.claim();
+  })());
 });
 
-self.addEventListener('fetch', e => {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-  const url = new URL(req.url);
+async function networkFirstNavigation(request){
+  const cache=await caches.open(CACHE);
+  try{
+    const response=await fetch(request);
+    if(response && response.ok) cache.put(request,response.clone());
+    return response;
+  }catch(err){
+    const url=new URL(request.url);
+    return (await cache.match(request,{ignoreSearch:true})) ||
+           (await cache.match(url.pathname,{ignoreSearch:true})) ||
+           (url.pathname==='/' ? await cache.match('/index.html') : null) ||
+           (await cache.match('/offline.html'));
+  }
+}
 
-  // Navigasi halaman: network-first, fallback cache, terakhir offline.html
-  if (req.mode === 'navigate') {
-    e.respondWith(
-      fetch(req).then(r => { const c = r.clone(); caches.open(CACHE).then(ca => ca.put(req, c)); return r; })
-        .catch(() => caches.match(req).then(m => m || caches.match('/offline.html').catch(() => m)))
-    );
+
+async function networkFirstAsset(request){
+  const cache=await caches.open(CACHE);
+  try{
+    const response=await fetch(request,{cache:'no-store'});
+    if(response && response.ok) cache.put(request,response.clone());
+    return response;
+  }catch(err){
+    return (await cache.match(request)) || Response.error();
+  }
+}
+
+async function cacheFirst(request){
+  const cache=await caches.open(CACHE);
+  const cached=await cache.match(request,{ignoreSearch:false});
+  if(cached){
+    fetch(request).then(response=>{
+      if(response && (response.ok || response.type==='opaque')) cache.put(request,response.clone());
+    }).catch(()=>{});
+    return cached;
+  }
+  try{
+    const response=await fetch(request);
+    if(response && (response.ok || response.type==='opaque')) cache.put(request,response.clone());
+    return response;
+  }catch(err){
+    return Response.error();
+  }
+}
+
+self.addEventListener('fetch',event=>{
+  const request=event.request;
+  if(request.method!=='GET') return;
+  const url=new URL(request.url);
+  // API responses must not become long-lived app-shell cache entries.
+  if(url.hostname==='firestore.googleapis.com') return;
+  if(request.mode==='navigate'){
+    event.respondWith(networkFirstNavigation(request));
     return;
   }
-
-  // Aset lain: cache-first, lalu network & simpan (stale-while-revalidate sederhana)
-  e.respondWith(
-    caches.match(req).then(cached => {
-      const network = fetch(req).then(r => {
-        if (r && r.status === 200 && (url.origin === self.location.origin || /fonts\.(googleapis|gstatic)/.test(url.host))) {
-          const c = r.clone(); caches.open(CACHE).then(ca => ca.put(req, c));
-        }
-        return r;
-      }).catch(() => cached);
-      return cached || network;
-    })
-  );
+  if(url.origin===self.location.origin && url.pathname==='/cms-config.js'){
+    event.respondWith(networkFirstAsset(request));
+    return;
+  }
+  event.respondWith(cacheFirst(request));
 });
 
-self.addEventListener('message', e => { if (e.data === 'SKIP_WAITING') self.skipWaiting(); });
+self.addEventListener('message',event=>{
+  if(event.data==='SKIP_WAITING') self.skipWaiting();
+});

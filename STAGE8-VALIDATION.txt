@@ -1,0 +1,16 @@
+Formula inline calculator identical vs Stage 7: 17/17 PASS
+Standalone JavaScript: 14/14 PASS
+Inline JavaScript: 20/20 PASS
+JSON-LD blocks: 59/59 PASS
+Duplicate HTML IDs: 0
+Missing local references: 0
+CMS runtime coverage: 29/29 public app/content pages PASS
+Admin noindex: PASS
+Admin excluded from sitemap: PASS
+Sitemap URLs: 28 total / 28 unique
+PWA precache: 50/50 resources present
+Service worker cache: ko-v9
+Cloud CMS safe default disabled: PASS
+Rules use UID authorization: PASS
+No service-account material: PASS
+RESULT: PASS

@@ -90,3 +90,8 @@ Free to use. © 2026 KalkulatorOnline.my.id - Semua Hak Dilindungi.
 <div align="center">
   <p>Dibuat dengan ❤️ di Indonesia</p>
 </div>
+
+
+## Stage 8 — Admin CMS
+
+Panel CMS tersedia di `admin.html`. Website tetap berjalan memakai `cms-defaults.js` jika Firebase belum dikonfigurasi. Untuk Cloud Publish melalui Firebase Authentication + Firestore, ikuti `CMS-SETUP-FIREBASE.md`. Jangan pernah menaruh service-account private key di repository frontend.

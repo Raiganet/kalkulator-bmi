@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Admin CMS | KalkulatorOnline.my.id</title>
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#6C63FF">
+<link rel="icon" href="favicon-32x32.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css"><link rel="stylesheet" href="cms-admin.css">
+<script defer src="https://unpkg.com/lucide@1.47.0"></script>
+<script defer src="cms-defaults.js"></script><script defer src="cms-config.js"></script><script defer src="cms-runtime.js"></script><script defer src="cms-admin.js"></script>
+</head>
+<body class="cms-body">
+<div class="cms-shell">
+<aside class="cms-side" id="cmsSide">
+<a class="cms-brand" href="index.html"><span class="logo-mark"><i data-lucide="calculator"></i></span><span>Kalkulator<span class="grad-text">Online</span></span></a>
+<small>Konten</small><nav class="cms-nav">
+<button class="active" data-pane="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+<button data-pane="home"><i data-lucide="home"></i> Beranda</button>
+<button data-pane="popular"><i data-lucide="sparkles"></i> Kalkulator Populer</button>
+<button data-pane="faq"><i data-lucide="circle-help"></i> FAQ & Rekomendasi</button>
+<button data-pane="ppn"><i data-lucide="receipt-text"></i> Konfigurasi PPN</button>
+<button data-pane="sponsor"><i data-lucide="badge-dollar-sign"></i> Sponsor</button>
+<button data-pane="footer"><i data-lucide="panel-bottom"></i> Footer</button>
+</nav>
+<small>Sistem</small><nav class="cms-nav">
+<button data-pane="cloud"><i data-lucide="cloud-cog"></i> Firebase / Publish</button>
+<button data-pane="backup"><i data-lucide="archive"></i> Backup & Restore</button>
+</nav>
+<div class="cms-side-foot"><strong>Stage 8 CMS</strong><span>Draft lokal + preview + publish Firestore. Tidak ada password yang disimpan di source.</span></div>
+</aside>
+<main class="cms-main">
+<header class="cms-top"><div style="display:flex;align-items:center;gap:10px"><button class="cms-btn cms-mobile-menu" id="cmsMenu" aria-label="Buka menu"><i data-lucide="menu"></i></button><div><h1 id="cmsTitle">Dashboard CMS</h1><p id="cmsSub">Kelola konten tanpa mengedit HTML satu per satu.</p></div></div><div class="cms-actions"><span class="cms-unsaved" id="unsaved" hidden>Belum disimpan</span><button class="cms-btn cms-hide-mobile" id="previewBtn"><i data-lucide="eye"></i> Preview</button><button class="cms-btn" id="saveDraft"><i data-lucide="save"></i> Simpan Draft</button><button class="cms-btn primary" id="publishTop"><i data-lucide="cloud-upload"></i> Publish</button></div></header>
+<div class="cms-content">
+<section class="cms-pane active" data-pane-content="dashboard">
+<div class="cms-pane-head"><div><span>OVERVIEW</span><h2>Dashboard CMS</h2><p>Konten publik tetap memiliki fallback bawaan. Jika Firestore tidak tersedia, kalkulator dan halaman inti tetap berjalan.</p></div></div>
+<div class="cms-grid">
+<div class="cms-card"><h3><i data-lucide="database"></i> Sumber konten</h3><div class="cms-status" id="sourceStatus"><i></i><span>Memeriksa…</span></div><p class="cms-hint" id="sourceHint"></p></div>
+<div class="cms-card"><h3><i data-lucide="cloud"></i> Cloud CMS</h3><div class="cms-status" id="cloudStatus"><i></i><span>Memeriksa konfigurasi Firebase…</span></div><p class="cms-hint">Cloud CMS bersifat opsional. Draft dan preview tetap bisa digunakan tanpa Firebase.</p></div>
+<div class="cms-card full"><h3><i data-lucide="workflow"></i> Alur kerja aman</h3><div class="cms-check-grid"><div class="cms-status good"><i></i><span>1. Edit konten</span></div><div class="cms-status good"><i></i><span>2. Simpan Draft</span></div><div class="cms-status good"><i></i><span>3. Preview di situs</span></div><div class="cms-status good"><i></i><span>4. Publish ke Firestore</span></div></div></div>
+</div></section>
+
+<section class="cms-pane" data-pane-content="home"><div class="cms-pane-head"><div><span>BERANDA</span><h2>Hero & konten pilihan</h2><p>Ubah copy utama dan kartu informasi beranda. HTML tidak menerima input mentah; semua teks dirender sebagai text content.</p></div></div><div class="cms-grid">
+<div class="cms-card"><h3><i data-lucide="megaphone"></i> Pengumuman</h3><label class="cms-check"><input id="annEnabled" type="checkbox"> Aktifkan announcement bar</label><div class="cms-field"><span>Teks</span><input id="annText" maxlength="140" placeholder="Contoh: Fitur baru sudah tersedia"></div><div class="cms-row"><div class="cms-field"><span>URL</span><input id="annUrl" placeholder="kalkulator-populer.html"></div><div class="cms-field"><span>CTA</span><input id="annCta" maxlength="32" placeholder="Lihat info"></div></div></div>
+<div class="cms-card"><h3><i data-lucide="wand-sparkles"></i> Hero</h3><div class="cms-field"><span>Eyebrow</span><input id="homeEyebrow"></div><div class="cms-field"><span>Judul utama</span><input id="homeTitle"></div><div class="cms-field"><span>Teks gradient</span><input id="homeAccent"></div><div class="cms-field"><span>Deskripsi</span><textarea id="homeDescription"></textarea></div><div class="cms-field"><span>Placeholder pencarian</span><input id="homeSearch"></div></div>
+<div class="cms-card full"><h3><i data-lucide="panels-top-left"></i> Label section</h3><div class="cms-row"><div class="cms-field"><span>Judul discovery</span><input id="homeDiscovery"></div><div class="cms-field"><span>Label featured</span><input id="homeFeatured"></div></div></div>
+<div class="cms-card full"><h3><i data-lucide="layout-template"></i> Kartu pilihan / highlight</h3><div id="highlightList" class="cms-repeat"></div><button class="cms-btn cms-add" id="addHighlight"><i data-lucide="plus"></i> Tambah kartu</button></div>
+</div></section>
+
+<section class="cms-pane" data-pane-content="popular"><div class="cms-pane-head"><div><span>DISCOVERY</span><h2>Pilihan Kalkulator Populer</h2><p>Tentukan kalkulator yang tampil pada bagian kurasi publik. Ranking personal pengguna tetap dihitung lokal dan tidak dapat diubah CMS.</p></div></div><div class="cms-card"><h3><i data-lucide="list-checks"></i> Pilih maksimal 12 kalkulator</h3><div id="popularChecks" class="cms-check-grid"></div></div></section>
+
+<section class="cms-pane" data-pane-content="faq"><div class="cms-pane-head"><div><span>CONTENT CLUSTER</span><h2>FAQ & rekomendasi per kalkulator</h2><p>Override FAQ bawaan hanya jika diperlukan. Jika override dikosongkan, FAQ Stage 7 otomatis dipakai kembali.</p></div></div><div class="cms-grid"><div class="cms-card full"><div class="cms-field"><span>Pilih kalkulator</span><select id="faqPage"></select></div></div><div class="cms-card full"><h3><i data-lucide="circle-help"></i> Override FAQ</h3><div id="faqList" class="cms-repeat"></div><button class="cms-btn cms-add" id="addFaq"><i data-lucide="plus"></i> Tambah pertanyaan</button><button class="cms-btn cms-add danger" id="clearFaq"><i data-lucide="rotate-ccw"></i> Gunakan FAQ bawaan</button></div><div class="cms-card full"><h3><i data-lucide="route"></i> Rekomendasi “Pelajari & hitung berikutnya”</h3><p class="cms-hint">Kosongkan semua pilihan untuk memakai rekomendasi otomatis berdasarkan kategori.</p><div id="contextChecks" class="cms-check-grid" style="margin-top:12px"></div></div></div></section>
+
+<section class="cms-pane" data-pane-content="ppn"><div class="cms-pane-head"><div><span>KONFIGURASI</span><h2>Kalkulator PPN</h2><p>Tarif dibuat configurable agar perubahan pilihan tidak memerlukan edit fungsi kalkulator.</p></div></div><div class="cms-grid"><div class="cms-card"><h3><i data-lucide="text"></i> Penjelasan</h3><div class="cms-field"><span>Subtitle</span><input id="ppnSubtitle"></div><div class="cms-field"><span>Intro</span><textarea id="ppnIntro"></textarea></div><div class="cms-field"><span>Tarif default (%)</span><input id="ppnDefault" type="number" min="0" max="100" step="0.01"></div></div><div class="cms-card"><h3><i data-lucide="percent"></i> Daftar tarif</h3><div id="ppnRates" class="cms-repeat"></div><button class="cms-btn cms-add" id="addRate"><i data-lucide="plus"></i> Tambah tarif</button></div></div></section>
+
+<section class="cms-pane" data-pane-content="sponsor"><div class="cms-pane-head"><div><span>MONETIZATION</span><h2>House Sponsor</h2><p>Sponsor first-party dapat dikelola dari CMS. AdSense tetap menggunakan konfigurasi terpisah dan consent advertising.</p></div></div><div class="cms-card"><label class="cms-check"><input id="sponsorEnabled" type="checkbox"> Tampilkan sponsor</label><div class="cms-row"><div class="cms-field"><span>Label</span><input id="sponsorLabel"></div><div class="cms-field"><span>CTA</span><input id="sponsorCta"></div></div><div class="cms-field"><span>Judul</span><input id="sponsorTitle"></div><div class="cms-field"><span>Deskripsi</span><textarea id="sponsorDescription"></textarea></div><div class="cms-field"><span>URL tujuan</span><input id="sponsorUrl" placeholder="https://..."></div><p class="cms-hint">Link sponsor otomatis memakai rel="sponsored noopener noreferrer".</p></div></section>
+
+<section class="cms-pane" data-pane-content="footer"><div class="cms-pane-head"><div><span>GLOBAL</span><h2>Footer</h2><p>Perubahan ini diterapkan ke semua halaman yang memuat CMS runtime.</p></div></div><div class="cms-card"><div class="cms-field"><span>Deskripsi brand</span><textarea id="footerTagline"></textarea></div><div class="cms-field"><span>Label versi/status</span><input id="footerStage"></div></div></section>
+
+<section class="cms-pane" data-pane-content="cloud"><div class="cms-pane-head"><div><span>PUBLISH</span><h2>Firebase & autentikasi admin</h2><p>Firebase config bukan rahasia, tetapi akses tulis wajib dilindungi Firestore Security Rules.</p></div></div><div class="cms-grid"><div class="cms-card"><h3><i data-lucide="settings"></i> Status konfigurasi</h3><div class="cms-status" id="cloudConfigDetail"><i></i><span>Memeriksa…</span></div><div class="cms-code" id="cloudConfigCode"></div><p class="cms-hint">Edit file <b>cms-config.js</b> satu kali saat setup awal. Sesudah itu perubahan konten dilakukan dari panel ini.</p></div><div class="cms-card"><h3><i data-lucide="shield-check"></i> Login admin</h3><div id="authLoggedOut"><div class="cms-auth"><div class="cms-field"><span>Email</span><input id="adminEmail" type="email" autocomplete="username"></div><div class="cms-field"><span>Password</span><input id="adminPassword" type="password" autocomplete="current-password"></div><button class="cms-btn primary" id="loginBtn"><i data-lucide="log-in"></i> Login</button></div><p class="cms-hint">Password dikirim langsung ke Firebase Authentication dan tidak disimpan oleh CMS.</p></div><div id="authLoggedIn" hidden><div class="cms-auth-state"><div><strong id="authEmail">-</strong><span>Session token disimpan hanya di sessionStorage.</span></div><button class="cms-btn" id="logoutBtn"><i data-lucide="log-out"></i> Logout</button></div></div></div><div class="cms-card full"><h3><i data-lucide="cloud-upload"></i> Publish control</h3><div class="cms-actions" style="justify-content:flex-start"><button class="cms-btn" id="loadPublished"><i data-lucide="cloud-download"></i> Muat Published</button><button class="cms-btn primary" id="publishBtn"><i data-lucide="cloud-upload"></i> Publish sekarang</button></div><p class="cms-hint" id="publishHint"></p></div></div></section>
+
+<section class="cms-pane" data-pane-content="backup"><div class="cms-pane-head"><div><span>PORTABLE</span><h2>Backup & Restore</h2><p>Export JSON berguna sebagai backup sebelum perubahan besar atau untuk memindahkan konfigurasi antar environment.</p></div></div><div class="cms-grid"><div class="cms-card"><h3><i data-lucide="download"></i> Export / Import</h3><div class="cms-actions" style="justify-content:flex-start"><button class="cms-btn" id="exportJson"><i data-lucide="download"></i> Export JSON</button><label class="cms-btn cms-upload"><i data-lucide="upload"></i> Import JSON<input id="importJson" type="file" accept="application/json,.json"></label></div></div><div class="cms-card cms-danger-zone"><h3><i data-lucide="triangle-alert"></i> Reset</h3><p class="cms-hint">Reset editor ke konten bawaan. Published Firestore tidak berubah sampai tombol Publish ditekan.</p><button class="cms-btn danger" id="resetDefaults"><i data-lucide="rotate-ccw"></i> Reset ke Default</button></div><div class="cms-card full"><h3><i data-lucide="braces"></i> Preview JSON</h3><pre class="cms-code cms-json-preview" id="jsonPreview"></pre></div></div></section>
+</div></main></div><div class="cms-toast" id="cmsToast"></div>
+</body></html>
