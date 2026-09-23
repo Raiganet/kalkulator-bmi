@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "KalkulatorOnline — Kalkulator Gratis",
+  "name": "KalkulatorOnline by Kastriva",
   "short_name": "KalkulatorOnline",
-  "description": "Kalkulator kesehatan, keuangan, kehamilan, dan utilitas gratis. Ringan, tanpa login, dan dapat digunakan sebagai PWA.",
+  "description": "Kalkulator kesehatan, keuangan, kehamilan, dan utilitas gratis — by Kastriva. Ringan, tanpa login, dan PWA-ready.",
   "lang": "id-ID",
   "dir": "ltr",
   "start_url": "/?source=pwa",

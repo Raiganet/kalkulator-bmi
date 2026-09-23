@@ -1,5 +1,5 @@
-﻿/* =====================================================================
-   app.js  â€”  KalkulatorOnline behaviour layer
+/* =====================================================================
+   app.js  —  KalkulatorOnline behaviour layer
    TIDAK menyentuh logika/rumus kalkulator. Hanya UX global.
    ===================================================================== */
 (function(){
@@ -16,7 +16,7 @@
     {t:"Kalkulator Kalori",d:"Kebutuhan kalori harian & TDEE",u:"kalkulator-kalori.html",c:"kesehatan",k:"kalori tdee diet defisit"},
     {t:"Kalkulator BMR",d:"Metabolisme basal",u:"kalkulator-bmr.html",c:"kesehatan",k:"bmr metabolisme basal"},
     {t:"Kalkulator Air Minum",d:"Kebutuhan air harian",u:"kalkulator-air.html",c:"kesehatan",k:"air minum hidrasi liter gelas"},
-    {t:"Kalkulator WHtR",d:"Rasio pinggangâ€“tinggi",u:"kalkulator-whtr.html",c:"kesehatan",k:"whtr pinggang rasio"},
+    {t:"Kalkulator WHtR",d:"Rasio pinggang–tinggi",u:"kalkulator-whtr.html",c:"kesehatan",k:"whtr pinggang rasio"},
     {t:"Body Fat %",d:"Persentase lemak tubuh",u:"kalkulator-body-fat.html",c:"kesehatan",k:"lemak body fat persen"},
     {t:"Masa Subur",d:"Ovulasi & masa subur",u:"kalkulator-masa-subur.html",c:"kesehatan",k:"subur ovulasi hamil haid"},
     {t:"Kalkulator Kehamilan",d:"HPL & usia janin",u:"kalkulator-kehamilan.html",c:"kesehatan",k:"kehamilan hpl trimester janin"},
@@ -94,7 +94,7 @@
     fav=adding?[u,...fav]:fav.filter(x=>x!==u);
     JSONStore.set(SMART_KEYS.favorites,fav.slice(0,30));
     document.dispatchEvent(new CustomEvent('ko:favorites'));
-    toast(adding?'Ditambahkan ke favorit â­':'Dihapus dari favorit');
+    toast(adding?'Ditambahkan ke favorit ⭐':'Dihapus dari favorit');
     const meta=calcByUrl(u); track('favorite_toggle',{calculator:u,category:meta?.c||'',action:adding?'add':'remove'});
     return adding;
   }
@@ -147,67 +147,20 @@
   (function(){
     const dropdownItems=$$('.menu>li').filter(li=>li.querySelector(':scope > .dropbtn')&&li.querySelector(':scope > .dropdown-content'));
     if(!dropdownItems.length) return;
-
-    // Bersihkan hash kosong peninggalan href="#" versi lama tanpa reload halaman.
-    if(location.href.endsWith('#')){
-      history.replaceState(history.state,'',location.pathname+location.search);
-    }
-
-    function setOpen(target,open){
-      dropdownItems.forEach(li=>{
-        const active=li===target&&open;
-        li.classList.toggle('menu-open',active);
-        li.querySelector(':scope > .dropbtn')?.setAttribute('aria-expanded',active?'true':'false');
-      });
-    }
-
+    if(location.href.endsWith('#')) history.replaceState(history.state,'',location.pathname+location.search);
+    function setOpen(target,open){dropdownItems.forEach(li=>{const active=li===target&&open;li.classList.toggle('menu-open',active);li.querySelector(':scope > .dropbtn')?.setAttribute('aria-expanded',active?'true':'false');});}
     dropdownItems.forEach(li=>{
-      const btn=li.querySelector(':scope > .dropbtn');
-      if(!btn) return;
-
-      // Tombol kategori bukan link halaman. Hilangkan href="#" agar URL tidak mendapat hash.
+      const btn=li.querySelector(':scope > .dropbtn'); if(!btn)return;
       if(btn.getAttribute('href')==='#') btn.removeAttribute('href');
-      btn.setAttribute('role','button');
-      btn.setAttribute('tabindex','0');
-      btn.setAttribute('aria-haspopup','true');
-      btn.setAttribute('aria-expanded','false');
-
-      btn.addEventListener('click',e=>{
-        e.preventDefault();
-        e.stopPropagation();
-        setOpen(li,!li.classList.contains('menu-open'));
-      });
-
-      btn.addEventListener('keydown',e=>{
-        if(e.key===' '||e.key==='Enter'){
-          e.preventDefault();
-          setOpen(li,!li.classList.contains('menu-open'));
-        }else if(e.key==='Escape'){
-          e.preventDefault();
-          setOpen(null,false);
-          btn.blur();
-        }
-      });
-
-      // Jika hover pindah kategori, tutup menu yang sebelumnya dibuka lewat klik.
-      li.addEventListener('mouseenter',()=>{
-        dropdownItems.forEach(other=>{
-          if(other!==li&&other.classList.contains('menu-open')){
-            other.classList.remove('menu-open');
-            other.querySelector(':scope > .dropbtn')?.setAttribute('aria-expanded','false');
-          }
-        });
-      });
+      btn.setAttribute('role','button');btn.setAttribute('tabindex','0');btn.setAttribute('aria-haspopup','true');btn.setAttribute('aria-expanded','false');
+      btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();setOpen(li,!li.classList.contains('menu-open'));});
+      btn.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();setOpen(li,!li.classList.contains('menu-open'));}else if(e.key==='Escape'){e.preventDefault();setOpen(null,false);btn.blur();}});
+      li.addEventListener('mouseenter',()=>dropdownItems.forEach(other=>{if(other!==li&&other.classList.contains('menu-open')){other.classList.remove('menu-open');other.querySelector(':scope > .dropbtn')?.setAttribute('aria-expanded','false');}}));
     });
-
-    document.addEventListener('click',e=>{
-      if(!e.target.closest('.menu>li')) setOpen(null,false);
-    });
-
-    addEventListener('keydown',e=>{
-      if(e.key==='Escape') setOpen(null,false);
-    });
+    document.addEventListener('click',e=>{if(!e.target.closest('.menu>li'))setOpen(null,false);});
+    addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(null,false);});
   })();
+
   /* ---------- SEARCH realtime ---------- */
   function wireSearch(inputEl, resultsEl){
     if(!inputEl||!resultsEl) return;
@@ -219,7 +172,7 @@
       active=-1;
       resultsEl.innerHTML = items.length
         ? items.map((c,i)=>`<a href="${c.u}" data-i="${i}"><span class="dd-ico" data-lucide="calculator"></span><span><strong>${c.t}</strong><br><small style="color:var(--text-3)">${c.d}</small></span></a>`).join('')
-        : `<div class="empty">Tidak ditemukan: â€œ${q}â€</div>`;
+        : `<div class="empty">Tidak ditemukan: “${q}”</div>`;
       resultsEl.classList.add('open');
       window.lucide?.createIcons();
     };
@@ -369,7 +322,7 @@
       $('#usageCount').textContent=total?`${total} hitungan`:'';
       $('#usageList').innerHTML=ranked.length?ranked.map(x=>{
         const html=cardHTML(x.item,true);
-        return html.replace('</a>',`<span class="stage6-usage-badge"><i data-lucide="activity"></i>${x.count}Ã— dihitung</span></a>`);
+        return html.replace('</a>',`<span class="stage6-usage-badge"><i data-lucide="activity"></i>${x.count}× dihitung</span></a>`);
       }).join(''):`<div class="smart-empty"><i data-lucide="chart-no-axes-column-increasing"></i><span>Setelah beberapa perhitungan, kalkulator favorit berdasarkan penggunaanmu muncul di sini.</span></div>`;
       window.lucide?.createIcons();
     }
@@ -522,14 +475,14 @@
     function historySummary(){
       if(currentFile==='index.html'){
         const bmi=$('#r-bmi')?.textContent?.trim(), kat=$('#r-kategori-badge')?.textContent?.trim();
-        if(bmi) return `BMI ${bmi}${kat?` â€¢ ${kat}`:''}`;
+        if(bmi) return `BMI ${bmi}${kat?` • ${kat}`:''}`;
       }
       const cards=$$('.result-card',result).slice(0,3).map(card=>{
         const label=card.querySelector('.label')?.textContent?.trim();
         const value=card.querySelector('.value')?.textContent?.trim();
         return label&&value?`${label}: ${value}`:value||label||'';
       }).filter(Boolean);
-      if(cards.length) return cards.join(' â€¢ ');
+      if(cards.length) return cards.join(' • ');
       const main=result.querySelector('.big-value,[id^="r-"]');
       if(main?.textContent?.trim()) return main.textContent.trim();
       return resultText().slice(0,140);
@@ -560,7 +513,7 @@
       ctx.fillStyle='#6b7280';ctx.font='500 28px Poppins, Arial, sans-serif';y=wrapCanvasText(ctx,'Ringkasan hasil',124,y+22,820,42,1);
       ctx.fillStyle='#27283a';ctx.font='700 39px Poppins, Arial, sans-serif';y=wrapCanvasText(ctx,historySummary(),124,y+30,820,54,7);
       ctx.fillStyle='#6b7280';ctx.font='500 24px Poppins, Arial, sans-serif';wrapCanvasText(ctx,'Hasil ini merupakan estimasi dari kalkulator dan bukan pengganti penilaian profesional bila konteksnya memerlukan.',124,770,820,36,3);
-      ctx.fillStyle='rgba(255,255,255,.95)';ctx.font='700 25px Poppins, Arial, sans-serif';ctx.fillText('Dibuat lokal â€¢ Data hasil tidak diunggah',78,990);
+      ctx.fillStyle='rgba(255,255,255,.95)';ctx.font='700 25px Poppins, Arial, sans-serif';ctx.fillText('Dibuat lokal • Data hasil tidak diunggah',78,990);
       return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('blob_failed')),'image/png',.95));
     }
     async function shareResultCard(){
@@ -578,7 +531,7 @@
       if(b.dataset.action==='copy'){ const ok=await copyText(text);toast(ok?'Hasil berhasil disalin':'Tidak dapat menyalin hasil');track('result_action',{calculator:currentFile,action:ok?'copy':'copy_failed'}); }
       if(b.dataset.action==='share'){
         if(navigator.share){ try{await navigator.share({title:document.title,text:resultText(),url:location.href});}catch(err){} }
-        else toast(await copyText(text)?'Browser tidak mendukung share â€” hasil disalin':'Share tidak didukung browser');
+        else toast(await copyText(text)?'Browser tidak mendukung share — hasil disalin':'Share tidak didukung browser');
         track('result_action',{calculator:currentFile,action:'share'});
       }
       if(b.dataset.action==='card'){
@@ -760,7 +713,7 @@
     function renderPopularLocal(){
       if(!localGrid) return;
       const ranked=usageItems().slice(0,8);
-      localGrid.innerHTML=ranked.length?ranked.map(x=>calcCard(x.item,`<em>${x.count}Ã— dihitung di perangkat ini</em>`)).join(''):
+      localGrid.innerHTML=ranked.length?ranked.map(x=>calcCard(x.item,`<em>${x.count}× dihitung di perangkat ini</em>`)).join(''):
         `<div class="stage7-empty-wide"><i data-lucide="sparkles"></i><strong>Belum ada ranking lokal</strong><span>Gunakan beberapa kalkulator. Ranking pribadi akan muncul otomatis tanpa akun.</span><a href="index.html#calcGrid">Mulai menghitung</a></div>`;
       window.lucide?.createIcons();
     }
@@ -787,8 +740,8 @@
     }
     function renderDashboard(){
       if(!dash) return; const d=statsData(); const top=d.ranked[0]; const maxDay=Math.max(1,...d.days.map(x=>x.count)); const maxTop=Math.max(1,...d.ranked.slice(0,6).map(x=>x.count));
-      $('#statTotal').textContent=d.total.toLocaleString('id-ID'); $('#statUnique').textContent=d.unique; $('#statFavorites').textContent=d.fav.length; $('#statTop').textContent=top?.item?.t.replace('Kalkulator ','')||'â€”';
-      $('#statsTopList').innerHTML=d.ranked.length?d.ranked.slice(0,6).map((x,i)=>`<div class="stage7-rank-row"><span class="stage7-rank-no">${i+1}</span><span class="stage7-rank-main"><strong>${x.item.t}</strong><span><i style="width:${Math.max(7,(x.count/maxTop)*100)}%"></i></span></span><b>${x.count}Ã—</b></div>`).join(''):`<div class="stage7-empty-inline">Belum ada data penggunaan.</div>`;
+      $('#statTotal').textContent=d.total.toLocaleString('id-ID'); $('#statUnique').textContent=d.unique; $('#statFavorites').textContent=d.fav.length; $('#statTop').textContent=top?.item?.t.replace('Kalkulator ','')||'—';
+      $('#statsTopList').innerHTML=d.ranked.length?d.ranked.slice(0,6).map((x,i)=>`<div class="stage7-rank-row"><span class="stage7-rank-no">${i+1}</span><span class="stage7-rank-main"><strong>${x.item.t}</strong><span><i style="width:${Math.max(7,(x.count/maxTop)*100)}%"></i></span></span><b>${x.count}×</b></div>`).join(''):`<div class="stage7-empty-inline">Belum ada data penggunaan.</div>`;
       $('#statsWeek').innerHTML=d.days.map(x=>`<div class="stage7-day"><span class="stage7-day-bar"><i style="height:${Math.max(x.count?10:2,(x.count/maxDay)*100)}%"></i></span><strong>${x.count}</strong><small>${x.label}</small></div>`).join('');
       const catTotal=Math.max(1,Object.values(d.category).reduce((a,b)=>a+b,0));
       $('#statsCategories').innerHTML=Object.entries(d.category).map(([k,v])=>`<div class="stage7-cat-row"><span>${k==='kesehatan'?'Kesehatan':k==='keuangan'?'Keuangan':'Umum'}</span><div><i style="width:${(v/catTotal)*100}%"></i></div><b>${v}</b></div>`).join('');
@@ -922,7 +875,7 @@
       if(opt.note){ctx.fillStyle=dark?'#c4b5fd':'#5b4ee7';ctx.font='650 25px Poppins, Arial, sans-serif';y=wrap(ctx,opt.note,124,Math.min(y+30,735),820,36,2);}
       ctx.fillStyle=dark?'#aab2c5':'#6b7280';ctx.font='500 23px Poppins, Arial, sans-serif';wrap(ctx,'Hasil kalkulator adalah estimasi. Gunakan konteks atau penilaian profesional bila diperlukan.',124,790,820,34,3);
       if(opt.date){ctx.fillStyle=dark?'#94a3b8':'#7b8190';ctx.font='600 22px Poppins, Arial, sans-serif';ctx.fillText(new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}),124,875);}
-      ctx.fillStyle=theme==='brand'?'rgba(255,255,255,.95)':dark?'#cbd5e1':'#586071';ctx.font='700 24px Poppins, Arial, sans-serif';ctx.fillText('Dibuat lokal â€¢ Data hasil tidak diunggah',78,990);
+      ctx.fillStyle=theme==='brand'?'rgba(255,255,255,.95)':dark?'#cbd5e1':'#586071';ctx.font='700 24px Poppins, Arial, sans-serif';ctx.fillText('Dibuat lokal • Data hasil tidak diunggah',78,990);
       return canvas;
     }
     function canvasBlob(canvas){return new Promise((res,rej)=>canvas.toBlob(b=>b?res(b):rej(new Error('blob_failed')),'image/png',.95));}
@@ -934,7 +887,7 @@
       const draw=()=>renderStudioCanvas(canvas,{theme,note:note.value.trim(),date:date.checked}).catch(()=>{});draw();note.addEventListener('input',draw);date.addEventListener('change',draw);$$('[data-theme]',modal).forEach(b=>b.addEventListener('click',()=>{$$('[data-theme]',modal).forEach(x=>x.classList.remove('active'));b.classList.add('active');theme=b.dataset.theme;draw();}));
       async function file(){await draw();const blob=await canvasBlob(canvas);return new File([blob],`hasil-${currentFile.replace(/\.html$/,'')||'bmi'}.png`,{type:'image/png'});}
       $('[data-card-download]',modal).addEventListener('click',async()=>{const f=await file(),url=URL.createObjectURL(f),a=document.createElement('a');a.href=url;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);toast('Kartu hasil PNG dibuat');track('result_action',{calculator:currentFile,action:'card_custom_download'});});
-      $('[data-card-share]',modal).addEventListener('click',async()=>{const f=await file();if(navigator.share&&navigator.canShare?.({files:[f]})){try{await navigator.share({title:calcByUrl(currentFile)?.t||document.title,text:'Kartu hasil dari KalkulatorOnline.my.id',files:[f]});track('result_action',{calculator:currentFile,action:'card_custom_share'});}catch(e){}}else{toast('File sharing tidak didukung â€” gunakan Unduh PNG.');}});
+      $('[data-card-share]',modal).addEventListener('click',async()=>{const f=await file();if(navigator.share&&navigator.canShare?.({files:[f]})){try{await navigator.share({title:calcByUrl(currentFile)?.t||document.title,text:'Kartu hasil dari KalkulatorOnline.my.id',files:[f]});track('result_action',{calculator:currentFile,action:'card_custom_share'});}catch(e){}}else{toast('File sharing tidak didukung — gunakan Unduh PNG.');}});
       modal.addEventListener('click',e=>{if(e.target===modal||e.target.closest('[data-card-close]'))closeStudio();});
       document.addEventListener('keydown',function esc(e){if(e.key==='Escape'){closeStudio();document.removeEventListener('keydown',esc);}});
     }
@@ -975,7 +928,7 @@
         const b=e.target.closest('[data-update]'); if(!b) return;
         if(b.dataset.update==='later'){ track('pwa_update',{action:'later'});bar.classList.remove('show'); setTimeout(()=>bar.remove(),220); return; }
         track('pwa_update',{action:'update_now'});
-        if(reg.waiting){ b.disabled=true; b.textContent='Memperbaruiâ€¦'; reg.waiting.postMessage('SKIP_WAITING'); }
+        if(reg.waiting){ b.disabled=true; b.textContent='Memperbarui…'; reg.waiting.postMessage('SKIP_WAITING'); }
         else location.reload();
       });
     }
@@ -996,11 +949,10 @@
         setInterval(()=>reg.update().catch(()=>{}),60*60*1000);
       }catch(e){}
     });
-    addEventListener('offline',()=>toast('ðŸ“´ Offline â€” semua kalkulator inti tetap tersedia.'));
+    addEventListener('offline',()=>toast('📴 Offline — semua kalkulator inti tetap tersedia.'));
     addEventListener('online',()=>toast('Koneksi kembali online.'));
   }
 
   // expose sedikit util (tidak mengganggu rumus)
   window.KO = { version:'8.0.0', toast, track, calculators:CALCS, resources:RESOURCES, toggleFavorite, markRecent, clearHistory, usage:usageItems };
 })();
-

@@ -1,9 +1,9 @@
-﻿/* KalkulatorOnline Service Worker â€” Stage 8 GAS CMS shell */
-const CACHE='ko-v13';
+/* KalkulatorOnline Service Worker — Stage 8 GAS CMS shell */
+const CACHE='ko-v14-brand';
 const PRECACHE=[
   '/', '/index.html', '/offline.html', '/app.css', '/app.js', '/cookie-consent.js',
   '/manifest.webmanifest', '/site.webmanifest', '/cms-defaults.js', '/cms-config.js', '/cms-runtime.js', '/monetization-config.js', '/favicon.ico', '/favicon-16x16.png', '/favicon-32x32.png',
-  '/apple-touch-icon.png', '/android-chrome-192x192.png', '/android-chrome-512x512.png', '/icons/icon.svg', '/og-image.png',
+  '/apple-touch-icon.png', '/android-chrome-192x192.png', '/android-chrome-512x512.png', '/icons/icon.svg', '/icons/kalkulatoronline-mark.svg', '/icons/kalkulatoronline-logo.svg', '/og-image.png',
   '/about.html','/bahaya-obesitas.html','/bmi-ideal-wanita.html','/cara-install-aplikasi.html','/cara-menghitung-bmi.html',
   '/contact.html','/disclaimer.html','/faq.html','/kalkulator-populer.html','/statistik.html','/kalkulator-air.html','/kalkulator-bmr.html','/kalkulator-body-fat.html',
   '/kalkulator-cicilan.html','/kalkulator-diskon.html','/kalkulator-kalori.html','/kalkulator-kehamilan.html','/kalkulator-kontraksi.html',
@@ -98,5 +98,3 @@ self.addEventListener('fetch',event=>{
 self.addEventListener('message',event=>{
   if(event.data==='SKIP_WAITING') self.skipWaiting();
 });
-
-
