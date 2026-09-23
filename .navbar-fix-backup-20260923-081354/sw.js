@@ -1,5 +1,5 @@
-﻿/* KalkulatorOnline Service Worker â€” Stage 8 GAS CMS shell */
-const CACHE='ko-v13';
+/* KalkulatorOnline Service Worker — Stage 8 GAS CMS shell */
+const CACHE='ko-v11';
 const PRECACHE=[
   '/', '/index.html', '/offline.html', '/app.css', '/app.js', '/cookie-consent.js',
   '/manifest.webmanifest', '/site.webmanifest', '/cms-defaults.js', '/cms-config.js', '/cms-runtime.js', '/monetization-config.js', '/favicon.ico', '/favicon-16x16.png', '/favicon-32x32.png',
@@ -98,5 +98,3 @@ self.addEventListener('fetch',event=>{
 self.addEventListener('message',event=>{
   if(event.data==='SKIP_WAITING') self.skipWaiting();
 });
-
-

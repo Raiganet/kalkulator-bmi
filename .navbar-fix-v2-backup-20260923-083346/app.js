@@ -165,10 +165,7 @@
       const btn=li.querySelector(':scope > .dropbtn');
       if(!btn) return;
 
-      // Tombol kategori bukan link halaman. Hilangkan href="#" agar URL tidak mendapat hash.
-      if(btn.getAttribute('href')==='#') btn.removeAttribute('href');
       btn.setAttribute('role','button');
-      btn.setAttribute('tabindex','0');
       btn.setAttribute('aria-haspopup','true');
       btn.setAttribute('aria-expanded','false');
 
@@ -179,7 +176,7 @@
       });
 
       btn.addEventListener('keydown',e=>{
-        if(e.key===' '||e.key==='Enter'){
+        if(e.key===' '){
           e.preventDefault();
           setOpen(li,!li.classList.contains('menu-open'));
         }else if(e.key==='Escape'){
@@ -1003,4 +1000,3 @@
   // expose sedikit util (tidak mengganggu rumus)
   window.KO = { version:'8.0.0', toast, track, calculators:CALCS, resources:RESOURCES, toggleFavorite, markRecent, clearHistory, usage:usageItems };
 })();
-
