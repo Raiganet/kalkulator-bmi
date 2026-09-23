@@ -7,7 +7,7 @@
     site: {
       announcement: { enabled: false, text: '', url: '', cta: 'Lihat info' },
       footerTagline: 'Kumpulan kalkulator gratis untuk kesehatan, keuangan, kehamilan, dan kebutuhan sehari-hari. Cepat, ringan, dan ramah perangkat mobile.',
-      footerStage: 'Stage 8 • CMS-ready'
+      footerStage: 'www.kastriva.web.id'
     },
     home: {
       eyebrow: 'Gratis • Akurat • Tanpa daftar',

@@ -29,7 +29,7 @@
     out.site={
       announcement:{enabled:bool(d.site?.announcement?.enabled),text:str(d.site?.announcement?.text,140),url:url(d.site?.announcement?.url),cta:str(d.site?.announcement?.cta,32)||'Lihat info'},
       footerTagline:str(d.site?.footerTagline,260)||DEFAULTS.site?.footerTagline||'',
-      footerStage:str(d.site?.footerStage,70)||'Stage 8 • CMS-ready'
+      footerStage:str(d.site?.footerStage,70)||'www.kastriva.web.id'
     };
     out.home={
       eyebrow:str(d.home?.eyebrow,80)||DEFAULTS.home?.eyebrow||'',
@@ -106,7 +106,7 @@
       const anchor=$('#calcGrid')?.closest('.section');anchor?.insertAdjacentElement('afterend',sec);
     }
   }
-  function footer(){const p=$('.foot-brand p');if(p)p.textContent=api.content.site?.footerTagline||'';const b=$('.foot-bottom span:last-child');if(b)b.textContent=api.content.site?.footerStage||'Stage 8 • CMS-ready';}
+  function footer(){const p=$('.foot-brand p');if(p)p.textContent=api.content.site?.footerTagline||'';const c=$('.foot-bottom span:first-child');if(c)c.textContent='© 2026 Kastriva. All rights reserved.';const b=$('.foot-bottom .kastriva-main-link');if(b)b.textContent='www.kastriva.web.id';}
   function ppn(){
     if((location.pathname.split('/').pop()||'')!=='kalkulator-ppn.html')return;const c=api.content.ppn||{}, sel=$('#tarif');
     if(sel&&Array.isArray(c.rates)){const current=String(c.defaultRate??'');sel.textContent='';c.rates.forEach(r=>{const o=document.createElement('option');o.value=String(r.value);o.textContent=r.label||`${r.value}%`;if(String(r.value)===current)o.selected=true;sel.appendChild(o);});}

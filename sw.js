@@ -1,5 +1,5 @@
 /* KalkulatorOnline Service Worker — Stage 8 GAS CMS shell */
-const CACHE='ko-v14-brand';
+const CACHE='ko-v15-kastriva-contact';
 const PRECACHE=[
   '/', '/index.html', '/offline.html', '/app.css', '/app.js', '/cookie-consent.js',
   '/manifest.webmanifest', '/site.webmanifest', '/cms-defaults.js', '/cms-config.js', '/cms-runtime.js', '/monetization-config.js', '/favicon.ico', '/favicon-16x16.png', '/favicon-32x32.png',
