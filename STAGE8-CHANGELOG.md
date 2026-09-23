@@ -1,31 +1,35 @@
-# Stage 8 — Admin CMS & Content Management
+# Stage 8 — Admin CMS (GAS Edition)
 
-## Fitur baru
-- `admin.html`: panel CMS responsif dengan tab Beranda, Kalkulator Populer, FAQ & Rekomendasi, PPN, Sponsor, Footer, Firebase/Publish, serta Backup & Restore.
-- Workflow Draft lokal → Preview → Publish.
-- `cms-defaults.js`: fallback konten yang selalu tersedia jika CMS cloud offline/belum dikonfigurasi.
-- `cms-config.js`: konfigurasi Firebase satu kali.
-- `cms-runtime.js`: loader konten publik dengan sanitasi, cache, preview, fallback, dan Firestore remote content.
-- Firebase Authentication Email/Password untuk login admin (password tidak disimpan oleh CMS).
-- Firestore Security Rules example untuk membatasi write ke UID admin tertentu.
-- Public Firestore content cache default 5 menit untuk mengurangi jumlah read.
-- Export/import konfigurasi CMS sebagai JSON.
-- FAQ per kalkulator dapat dioverride dari CMS; structured data FAQ mengikuti konten aktif.
-- Rekomendasi internal link per kalkulator dapat dikustom dari CMS.
-- Kurasi halaman Kalkulator Populer dapat diubah dari CMS.
-- Hero, announcement bar, highlight cards, label section dan footer dapat diubah dari CMS.
-- Pilihan tarif PPN dapat diubah tanpa mengedit fungsi kalkulator.
-- House sponsor first-party dapat diubah dari CMS. AdSense tetap terpisah dan mengikuti advertising consent.
-- `admin.html` menggunakan `noindex,nofollow,noarchive` dan tidak masuk sitemap.
-- Service worker cache dinaikkan `ko-v8` → `ko-v9`.
+## Perubahan utama
 
-## Prinsip keamanan
-- Firebase Web API key bukan password/secret; authorization write tetap wajib melalui Firestore Security Rules.
-- Password admin dikirim langsung ke Firebase Authentication dan tidak disimpan di source/localStorage.
-- ID token hanya disimpan di `sessionStorage` dan kadaluarsa.
-- Konten CMS disanitasi sebelum diterapkan ke DOM. Tidak ada editor raw HTML.
-- CMS tidak menerima atau menyimpan input/hasil kalkulator pengguna.
+- Backend CMS Firebase/Firestore diganti sepenuhnya menjadi **Google Apps Script + Google Spreadsheet**.
+- `admin.html` tetap memakai workflow **Draft → Preview → Publish**.
+- `cms-runtime.js` membaca konten publik dari endpoint GAS dengan fallback bundled defaults + cache lokal.
+- `cms-admin.js` memakai login/session GAS dan publish ke Spreadsheet.
+- `cms-config.js` hanya memerlukan `webAppUrl` GAS; tidak menyimpan password/secret admin.
+- Ditambahkan folder `gas-backend/` berisi `Code.gs` dan `appsscript.json`.
+- Ditambahkan `CMS-SETUP-GAS.md` untuk setup langkah demi langkah.
 
-## Backward compatibility
-- Rumus kalkulator Stage 5–7 tidak diubah.
-- Tanpa konfigurasi Firebase, situs tetap berfungsi dengan konten bawaan dan admin tetap dapat memakai draft/preview lokal.
+## Backend GAS
+
+- Public content endpoint: `GET ?action=content`.
+- Health endpoint: `GET ?action=health`.
+- Admin login, load, publish, logout melalui POST form-urlencoded.
+- Password admin disimpan sebagai salted SHA-256 hash di Script Properties.
+- Password plaintext setup dihapus otomatis setelah `setupCms()`.
+- Session admin default 4 jam menggunakan Script Cache.
+- Login rate limiting.
+- `LockService` untuk publish.
+- Spreadsheet otomatis memiliki `CMS_Content` dan `CMS_Audit`.
+- Audit log tidak menyimpan password atau payload sensitif pengguna.
+
+## Privasi
+
+- GAS CMS hanya menyimpan konten website/config CMS.
+- Input dan angka hasil kalkulator pengguna tidak dikirim ke GAS.
+- Statistik pribadi Stage 7 tetap local-only.
+
+## PWA
+
+- Cache Service Worker dinaikkan ke `ko-v10`.
+- Request ke `script.google.com` / `script.googleusercontent.com` tidak disimpan sebagai app-shell cache.

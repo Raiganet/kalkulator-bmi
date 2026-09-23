@@ -1,5 +1,5 @@
-/* KalkulatorOnline Service Worker — Stage 8 CMS shell */
-const CACHE='ko-v9';
+/* KalkulatorOnline Service Worker — Stage 8 GAS CMS shell */
+const CACHE='ko-v11';
 const PRECACHE=[
   '/', '/index.html', '/offline.html', '/app.css', '/app.js', '/cookie-consent.js',
   '/manifest.webmanifest', '/site.webmanifest', '/cms-defaults.js', '/cms-config.js', '/cms-runtime.js', '/monetization-config.js', '/favicon.ico', '/favicon-16x16.png', '/favicon-32x32.png',
@@ -83,7 +83,7 @@ self.addEventListener('fetch',event=>{
   if(request.method!=='GET') return;
   const url=new URL(request.url);
   // API responses must not become long-lived app-shell cache entries.
-  if(url.hostname==='firestore.googleapis.com') return;
+  if(url.hostname==='script.google.com' || url.hostname==='script.googleusercontent.com') return;
   if(request.mode==='navigate'){
     event.respondWith(networkFirstNavigation(request));
     return;

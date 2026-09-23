@@ -1,16 +1,36 @@
-Formula inline calculator identical vs Stage 7: 17/17 PASS
-Standalone JavaScript: 14/14 PASS
-Inline JavaScript: 20/20 PASS
-JSON-LD blocks: 59/59 PASS
-Duplicate HTML IDs: 0
-Missing local references: 0
-CMS runtime coverage: 29/29 public app/content pages PASS
-Admin noindex: PASS
-Admin excluded from sitemap: PASS
-Sitemap URLs: 28 total / 28 unique
-PWA precache: 50/50 resources present
-Service worker cache: ko-v9
-Cloud CMS safe default disabled: PASS
-Rules use UID authorization: PASS
-No service-account material: PASS
-RESULT: PASS
+KalkulatorOnline Stage 8 — GAS Edition Validation
+
+Backend
+- Firebase/Firestore active configuration: REMOVED
+- Google Apps Script backend: PASS
+- Google Spreadsheet content storage: PASS (implemented in Code.gs)
+- Script Properties auth design: PASS
+- Salted SHA-256 admin password hash: PASS
+- Temporary plaintext setup password auto-delete: PASS
+- Admin session token (4h default): PASS
+- Login rate limit: PASS
+- Publish LockService: PASS
+- CMS audit log: PASS
+
+Frontend
+- cms-config.js GAS URL configuration: PASS
+- cms-runtime.js bundled/cache/GAS flow: PASS
+- cms-admin.js GAS login/load/publish/logout: PASS
+- Password/admin secret absent from frontend config: PASS
+- GAS responses excluded from Service Worker app-shell cache: PASS
+
+Regression
+- Calculator inline logic identical to prior Stage 8: 17/17 PASS
+- Duplicate HTML IDs: 0
+- Missing local file references: 0
+- Standalone JavaScript syntax: PASS
+- Code.gs syntax parse check: PASS
+- PWA precache local resources: 50/50 PASS
+- Service Worker cache version: ko-v11
+
+Notes
+- Cloud end-to-end login/publish requires the user's deployed Apps Script /exec URL and cannot be executed before deployment/authorization.
+- Website continues to use bundled CMS defaults when GAS is disabled/unavailable.
+
+- GAS Web App configured: https://script.google.com/macros/s/AKfycbxzIiHbwdRnBNnT234Knba1dDpTRoy_eVh7WjA9vHd0b_75EvT9cZEJ9Iv5m0KFUgJ-/exec
+- CMS cloud mode: ENABLED

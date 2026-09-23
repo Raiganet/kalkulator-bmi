@@ -1,5 +1,5 @@
 /* KalkulatorOnline Stage 8 — CMS runtime
-   Public content flow: bundled defaults -> cached cloud content -> Firestore content.
+   Public content flow: bundled defaults -> cached GAS content -> Google Apps Script content.
    Admin preview is explicit and stays local to the current browser session. */
 (function(){
   'use strict';
@@ -60,29 +60,31 @@
   function pathGet(obj,path,fallback){const parts=String(path||'').split('.').filter(Boolean);let cur=obj;for(const p of parts){if(cur==null||!Object.prototype.hasOwnProperty.call(cur,p))return fallback;cur=cur[p];}return cur===undefined?fallback:cur;}
   function storageGet(key){try{return localStorage.getItem(key)}catch(e){return null}}
   function storageSet(key,val){try{localStorage.setItem(key,val)}catch(e){}}
-  function fireUrl(){
-    const f=CONFIG.firebase||{};if(!CONFIG.enabled||!f.projectId||!f.documentPath)return'';
-    const path=String(f.documentPath).split('/').filter(Boolean).map(encodeURIComponent).join('/');
-    const base=`https://firestore.googleapis.com/v1/projects/${encodeURIComponent(f.projectId)}/databases/(default)/documents/${path}`;return f.apiKey?`${base}?key=${encodeURIComponent(f.apiKey)}`:base;
+  function gasUrl(){
+    const g=CONFIG.gas||{};const u=String(g.webAppUrl||'').trim();
+    if(!CONFIG.enabled||!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec(?:\?.*)?$/i.test(u))return'';
+    return u;
   }
-  function cacheScope(){const f=CONFIG.firebase||{};return `${f.projectId||''}|${f.documentPath||''}`;}
+  function cacheScope(){return gasUrl()||'';}
   async function fetchRemote(){
-    const endpoint=fireUrl();if(!endpoint)return null;
-    const ctrl=new AbortController(), timer=setTimeout(()=>ctrl.abort(),5500);
+    const endpoint=gasUrl();if(!endpoint)return null;
+    const ctrl=new AbortController(), timer=setTimeout(()=>ctrl.abort(),7000);
     try{
-      const res=await fetch(endpoint,{headers:{Accept:'application/json'},signal:ctrl.signal,cache:'no-store'});
+      const sep=endpoint.includes('?')?'&':'?';
+      const res=await fetch(`${endpoint}${sep}action=content&_=${Date.now()}`,{headers:{Accept:'application/json'},signal:ctrl.signal,cache:'no-store',redirect:'follow'});
       if(!res.ok)throw new Error('cms_http_'+res.status);
-      const doc=await res.json(), raw=doc?.fields?.payload?.stringValue;if(!raw)return null;
-      const content=sanitize(JSON.parse(raw));
+      const doc=await res.json();if(!doc?.ok||!doc?.found||!doc?.payload)return null;
+      const raw=typeof doc.payload==='string'?JSON.parse(doc.payload):doc.payload;
+      const content=sanitize(raw);
       storageSet(CACHE_KEY,JSON.stringify({scope:cacheScope(),at:Date.now(),content}));return content;
     }finally{clearTimeout(timer)}
   }
-  function cached(){try{if(!fireUrl())return null;const c=JSON.parse(storageGet(CACHE_KEY)||'null');return c?.content&&c.scope===cacheScope()?{at:Number(c.at)||0,content:sanitize(c.content)}:null}catch(e){return null}}
+  function cached(){try{if(!gasUrl())return null;const c=JSON.parse(storageGet(CACHE_KEY)||'null');return c?.content&&c.scope===cacheScope()?{at:Number(c.at)||0,content:sanitize(c.content)}:null}catch(e){return null}}
   function draft(){try{const c=JSON.parse(storageGet(DRAFT_KEY)||'null');return c?sanitize(c):null}catch(e){return null}}
   function previewActive(){try{return sessionStorage.getItem(PREVIEW_KEY)==='1'}catch(e){return false}}
   function setPreviewActive(on){try{on?sessionStorage.setItem(PREVIEW_KEY,'1'):sessionStorage.removeItem(PREVIEW_KEY)}catch(e){}}
 
-  const api={content:sanitize(DEFAULTS),source:'bundled',ready:null,get(path,fallback){return pathGet(api.content,path,fallback)},sanitize,refresh,firestoreEnabled:()=>!!fireUrl(),setPreviewActive,draftKey:DRAFT_KEY};
+  const api={content:sanitize(DEFAULTS),source:'bundled',ready:null,get(path,fallback){return pathGet(api.content,path,fallback)},sanitize,refresh,gasEnabled:()=>!!gasUrl(),setPreviewActive,draftKey:DRAFT_KEY};
   window.KOCMS=api;
 
   function announce(){
@@ -115,17 +117,17 @@
 
   async function refresh(){
     if(previewActive()){const d=draft();if(d)return setContent(d,'preview');}
-    if(!fireUrl())return setContent(DEFAULTS,'bundled');
-    try{const remote=await fetchRemote();if(remote)return setContent(remote,'cloud');}catch(e){}
+    if(!gasUrl())return setContent(DEFAULTS,'bundled');
+    try{const remote=await fetchRemote();if(remote)return setContent(remote,'gas');}catch(e){}
     const c=cached();if(c)return setContent(c.content,'cache');return setContent(DEFAULTS,'bundled');
   }
   async function init(){
     const params=new URLSearchParams(location.search);if(params.get('cmsPreview')==='1')setPreviewActive(true);if(params.get('cmsPreview')==='0')setPreviewActive(false);
     if(previewActive()){const d=draft();if(d){setContent(d,'preview');return api.content;}}
-    if(!fireUrl()){setContent(DEFAULTS,'bundled');return api.content;}
+    if(!gasUrl()){setContent(DEFAULTS,'bundled');return api.content;}
     const c=cached();if(c)setContent(c.content,'cache');else apply();
     const ttl=Math.max(30000,Number(CONFIG.cacheTtlMs)||300000);
-    if(!c||Date.now()-c.at>ttl){try{const remote=await fetchRemote();if(remote)setContent(remote,'cloud');}catch(e){}}
+    if(!c||Date.now()-c.at>ttl){try{const remote=await fetchRemote();if(remote)setContent(remote,'gas');}catch(e){}}
     return api.content;
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>{api.ready=init();},{once:true}); else api.ready=init();

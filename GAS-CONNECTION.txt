@@ -1,0 +1,15 @@
+KalkulatorOnline Stage 8 — GAS connection
+
+Status: CONFIGURED / ENABLED
+Web App URL: https://script.google.com/macros/s/AKfycbxzIiHbwdRnBNnT234Knba1dDpTRoy_eVh7WjA9vHd0b_75EvT9cZEJ9Iv5m0KFUgJ-/exec
+Service Worker cache: ko-v11
+
+Backend setupCms(): completed by owner
+Spreadsheet: created by GAS setupCms()
+
+Next runtime checks after deploy website:
+1. Open /admin.html
+2. Login with the admin email/password configured in GAS
+3. Click Muat Published (initially may be empty)
+4. Change a harmless CMS field, Save Draft, Preview, then Publish
+5. Open the public site in a private window and confirm the published content appears

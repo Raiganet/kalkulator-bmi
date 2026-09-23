@@ -1,12 +1,10 @@
-/* KalkulatorOnline Stage 8 — Cloud CMS configuration.
-   Copy Firebase Web App values here after setup. API keys are public identifiers;
-   WRITE SECURITY MUST be enforced by Firestore Security Rules. */
+/* KalkulatorOnline Stage 8 GAS — CMS configuration.
+   Setelah deploy Google Apps Script sebagai Web App, tempel URL /exec di bawah.
+   Tidak ada password/admin secret yang boleh disimpan di file frontend ini. */
 window.KO_CMS_CONFIG = {
-  enabled: false,
-  firebase: {
-    apiKey: '',
-    projectId: '',
-    documentPath: 'cms/site'
+  enabled: true,
+  gas: {
+    webAppUrl: 'https://script.google.com/macros/s/AKfycbxzIiHbwdRnBNnT234Knba1dDpTRoy_eVh7WjA9vHd0b_75EvT9cZEJ9Iv5m0KFUgJ-/exec'
   },
   cacheTtlMs: 300000
 };
